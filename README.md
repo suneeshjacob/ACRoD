@@ -71,7 +71,7 @@ Jacobian as a Python function, where the arguments are the dimensional parameter
 jacobian_function = sympy.lambdify([robot_dimensional_parameters],symbolic_jacobian)
 ```
 
-### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
+#### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
 
 For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows.
 
