@@ -42,15 +42,19 @@ symbolic_jacobian = jacobian_information[0]
 symbolic_jacobian
 ```
 
-In an ipynb file, the above code would produce the following output.
+In an ipynb file of JupyterLab, the above code would produce the following output.
 
 $$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
 active_joint_velocities = Matrix(jacobian_information[4][0])
-print(active_joint_velocities)
+active_joint_velocities
 ```
+
+In an ipynb file of JupyterLab, the above code would produce the following output.
+
+$$\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matrix}\right]$$
 
 Robot dimensional parameters can be viewed by running the below line.
 ```py
