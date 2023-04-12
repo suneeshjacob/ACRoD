@@ -42,7 +42,7 @@ symbolic_jacobian = jacobian_information[0]
 symbolic_jacobian
 ```
 
-In an ipynb file, the below code would produce
+In an ipynb file, the above code would produce the following output.
 
 $$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
 
