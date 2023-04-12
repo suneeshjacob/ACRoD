@@ -59,8 +59,12 @@ $$\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matri
 Robot dimensional parameters can be viewed by running the below line.
 ```py
 robot_dimensional_parameters = Matrix(jacobian_information[7])
-print(robot_dimensional_parameters)
+robot_dimensional_parameters
 ```
+
+In an ipynb file of JupyterLab, the above code would produce the following output.
+
+$$\left[\begin{matrix}a_{x} \\\\ a_{y} \\\\ r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]$$
 
 Jacobian as a Python function, where the arguments are the dimensional parameters of the robot, can be generated as shown below.
 ```py
