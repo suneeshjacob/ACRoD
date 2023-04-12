@@ -44,7 +44,7 @@ symbolic_jacobian
 
 In an ipynb file, the below code would produce
 
-$$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\ 1 & 1\end{matrix}\right]$$
+$$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
