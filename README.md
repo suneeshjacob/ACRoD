@@ -39,8 +39,12 @@ jacobian_information = jacobian(M)
 Symbolic Jacobian is extracted from `jacobian_information` as follows.
 ```py
 symbolic_jacobian = jacobian_information[0]
-print(symbolic_jacobian)
+symbolic_jacobian
 ```
+
+In an ipynb file, the below code would produce
+
+$$\left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y}\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x}\\1 & 1\end{matrix}\right]$$
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
