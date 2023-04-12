@@ -21,38 +21,45 @@ $$\begin{bmatrix}
 0 & 1 & 9
 \end{bmatrix}$$
 
-The appropriate Jacobian function can be formulated as follows.
+The corresponding Jacobian function can be formulated as follows.
 
+Firstly, the required functions are imported as shown below.
 ```py
 from jacobian_planar import jacobian
 from numpy import matrix
 from sympy import Matrix, lambdify
 ```
 
+The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian function as follows.
 ```py
 M = matrix('9 1 0;1 9 1;0 1 9')
 jacobian_information = jacobian(M)
 ```
 
+Symbolic Jacobian is extracted from `jacobian_information` as follows.
 ```py
 symbolic_jacobian = jacobian_information[0]
 print(symbolic_jacobian)
 ```
 
+Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
 active_joint_velocities = Matrix(jacobian_information[4][0])
 print(active_joint_velocities)
 ```
 
+Robot dimensional parameters can be viewed by running the below line.
 ```py
 robot_dimensional_parameters = Matrix(jacobian_information[7])
 print(robot_dimensional_parameters)
 ```
 
+Jacobian as a Python function, where the arguments are the dimensional parameters of the robot, can be generated as shown below.
 ```py
 jacobian_function = sympy.lambdify([robot_dimensional_parameters],symbolic_jacobian)
 ```
 
+For a given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows.
 ```py
 end_effector_point = [1,2]
 configuration_parameters = [3,4,5,6]
