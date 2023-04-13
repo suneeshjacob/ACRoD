@@ -79,7 +79,7 @@ end_effector_point = [1,2]
 configuration_parameters = [3,4,5,6]
 total_parameters = end_effector_point + configuration_parameters
 jacobian_at_the_given_configuration = jacobian_function(total_parameters)
-print(jacobian_at_the_given_configuration)
+jacobian_at_the_given_configuration
 ```
 
 The output produced by running the above code, is shown below.
