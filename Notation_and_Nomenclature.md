@@ -36,32 +36,15 @@ $$\mathbf{\hat{m}}_{(i,j)}=m_{(i,j)x}\mathbf{\hat{i}}+m_{(i,j)y}\mathbf{\hat{j}}
 
 Since these are unit vectors, they have to satisfy the equations shown in \eqref{eq:nveccons} and \eqref{eq:mveccons}. This can be achieved by writing the elements of the unit vector in terms of two independent variables, as shown in equations \eqref{eq:nsubexprs} and \eqref{eq:msubexprs}. And since $\mathbf{\hat{m}}\_{(i,j)}$ occurs only in case of universal joint wherein it is always perpendicular to its companion axis $\mathbf{\hat{n}}\_{(i,j)}$, the elements of those unit vectors should also satisfy equation \eqref{eq:univperp}. Also in case of plane joints, $\mathbf{\hat{m}}\_{(i,j)}$ is the unit vector normal to the plane, and $\mathbf{\hat{n}}\_{(i,j)}$ is the unit vector along which instantaneous planar translation takes place, and hence the inner product of the two unit vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ should always be zero. Therefore, equations \eqref{eq:nveccons}, \eqref{eq:mveccons} and \eqref{eq:univperp} are applicable in the case of plane joints as well.
 
-$$n_{(i,j)x}^2+n_{(i,j)y}^2+n_{(i,j)z}^2=1$$
+$$n_{(i,j)x}^2+n_{(i,j)y}^2+n_{(i,j)z}^2=1 \tag{4}$$
 
 
 
-$$m_{(i,j)x}^2+m_{(i,j)y}^2+m_{(i,j)z}^2=1$$
+$$m_{(i,j)x}^2+m_{(i,j)y}^2+m_{(i,j)z}^2=1 \tag{5}$$
 
 
 
-$$m_{(i,j)x}n_{(i,j)x}+m_{(i,j)y}n_{(i,j)y}+m_{(i,j)z}n_{(i,j)z}=0$$
-
-
-
-
-
-
-
-
-
-
-
-
-$$n_{(i,j)x} = \sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)}$$
-
-$$n_{(i,j)y} = \sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)}$$
-
-$$n_{(i,j)z} = \cos{\left(\beta_{(i,j)}\right)}$$
+$$m_{(i,j)x}n_{(i,j)x}+m_{(i,j)y}n_{(i,j)y}+m_{(i,j)z}n_{(i,j)z}=0 \tag{6}$$
 
 
 
@@ -72,11 +55,28 @@ $$n_{(i,j)z} = \cos{\left(\beta_{(i,j)}\right)}$$
 
 
 
-$$m_{(i,j)x} = \sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)}$$
 
-$$m_{(i,j)y} = \sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)}$$
 
-$$m_{(i,j)z} = \cos{\left(\alpha_{(i,j)}\right)}$$
+$$n_{(i,j)x} = \sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)} \tag{7}$$
+
+$$n_{(i,j)y} = \sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)} \tag{8}$$
+
+$$n_{(i,j)z} = \cos{\left(\beta_{(i,j)}\right)} \tag{9}$$
+
+
+
+
+
+
+
+
+
+
+$$m_{(i,j)x} = \sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)} \tag{10}$$
+
+$$m_{(i,j)y} = \sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)} \tag{11}$$
+
+$$m_{(i,j)z} = \cos{\left(\alpha_{(i,j)}\right)} \tag{12}$$
 
 
 
