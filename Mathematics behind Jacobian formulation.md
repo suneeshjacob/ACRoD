@@ -30,21 +30,21 @@ The approach is that is typically used to formulate Jacobian of a serial manipul
 
 Formulation of Jacobian is done by the following steps:
 
-\qquad 1) Identification of all connecting paths from the base link to the end-effector link.
+1) Identification of all connecting paths from the base link to the end-effector link.
 
-\qquad 2) Reduction of the paths to independent paths for linear velocities.
+2) Reduction of the paths to independent paths for linear velocities.
 
-\qquad 3) Further reduction of paths to non-trivial ones in the context of angular velocities.
+3) Further reduction of paths to non-trivial ones in the context of angular velocities.
 
-\qquad 4) Calculation of the contributions of linear velocities through each of the independent paths and the contributions of angular velocities through each of the independent and non-trivial paths, and calculation of their sums for each path.
+4) Calculation of the contributions of linear velocities through each of the independent paths and the contributions of angular velocities through each of the independent and non-trivial paths, and calculation of their sums for each path.
 
-\qquad 5) Formulation of the velocity of the end-effector by using the first sums of the linear and angular velocity contributions.
+5) Formulation of the velocity of the end-effector by using the first sums of the linear and angular velocity contributions.
 
-\qquad 6) Formulation of constraint equations by taking the rest of the sums with the first sum, of each of linear and angular velocities.
+6) Formulation of constraint equations by taking the rest of the sums with the first sum, of each of linear and angular velocities.
 
-\qquad 7) Checking for superfluous DOF and formulate the supplementary equations if applicable.
+7) Checking for superfluous DOF and formulate the supplementary equations if applicable.
 
-\qquad 8) Fomulation of the matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$.
+8) Fomulation of the matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$.
 
 In step 1, all the paths from base link to the end-effector link are identified. Each path is nothing but an ordered array of links that start from 1 (the base link) and end at $N$ (the end-effector link), where $N$ is the number of links. The set of all paths can be found by taking an empty list and adding the base link sequence and finding all the links that are connected to that link and adding the link to form a new sequence as long as the sub-sequence is not repeated while adding a new link, and repeating this process until all the sequences in the list reach the end-effector link. This is shown in compact form in algorithm \ref{alg:paths}.
 
