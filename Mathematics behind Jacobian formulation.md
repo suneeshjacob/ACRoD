@@ -1,162 +1,185 @@
-## Notation for describing the parameters of spatial manipulators
+## Steps to formulate Jacobian
+\label{jacobianformulation}
 
-The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. The parameters required to describe each joint are discussed below in detail.
-
-The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation \eqref{eq:jointpos}.
-
-$$\mathbf{r}_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(i,j)z}\mathbf{\hat{k}}$$
+The approach is that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. Since in case of parallel manipulators multiple paths that join the base link and the end-effector link exist, the same concept\citenew{synthesis} is used for all the connecting paths from the base-link to the end-effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities.
 
 
 
-In order to fully describe a revolute joint or a prismatic joint or a cylindrical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of the axis of its appropriate motion ($\mathbf{\hat{n}}\_{(i,j)}$) needs to be specified. For a revolute joint, the appropriate motion would be revolute motion, and for a prismatic joint, the appropriate motion would be translatory motion. On the other hand, for a cylindrical joint, the appropriate motion consists of both revolute and translatory motions along the same axis. While specifying one axis is sufficient for a revolute, prismatic or cylindrial joint (apart from the position), it is required to specify two mutually perpendicular axes for a universal joint, namely $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$, as shown in figure \ref{universaljoint}. And in order to specify a helical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of its axis ($\mathbf{\hat{n}}\_{(i,j)}$) and the pitch ($p\_{ij}$) of the helix are to be specified. Alternatively, the helix angle can also be specified, from which the pitch of the helix can be calculated. Finally, in order to specify a plane joint, apart from its position, the orientation of the axis perpendicular to the plane ($\mathbf{\hat{m}}\_{(i,j)}$) is to be specified.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Formulation of Jacobian is done by the following steps:
+
+\qquad 1) Identification of all connecting paths from the base link to the end-effector link.
+
+\qquad 2) Reduction of the paths to independent paths for linear velocities.
+
+\qquad 3) Further reduction of paths to non-trivial ones in the context of angular velocities.
+
+\qquad 4) Calculation of the contributions of linear velocities through each of the independent paths and the contributions of angular velocities through each of the independent and non-trivial paths, and calculation of their sums for each path.
+
+\qquad 5) Formulation of the velocity of the end-effector by using the first sums of the linear and angular velocity contributions.
+
+\qquad 6) Formulation of constraint equations by taking the rest of the sums with the first sum, of each of linear and angular velocities.
+
+\qquad 7) Checking for superfluous DOF and formulate the supplementary equations if applicable.
+
+\qquad 8) Fomulation of the matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$.
+
+In step 1, all the paths from base link to the end-effector link are identified. Each path is nothing but an ordered array of links that start from 1 (the base link) and end at $N$ (the end-effector link), where $N$ is the number of links. The set of all paths can be found by taking an empty list and adding the base link sequence and finding all the links that are connected to that link and adding the link to form a new sequence as long as the sub-sequence is not repeated while adding a new link, and repeating this process until all the sequences in the list reach the end-effector link. This is shown in compact form in algorithm \ref{alg:paths}.
+
+
+
+In step 2, a set of independent paths are to be selected from the set of all paths. This can be done by formulating the matrix $[\mathbf{C\_{V}}]$ and finding the echelon form of its transpose and choosing the pivoted column indices and choosing the paths corresponding to these indices as a set of independent paths.
+
+In step 3, a set of non-trivial paths are to be selected from the set of independent paths. Non-trivial paths, in the context of angular velocities, are the paths that are trivial for angular velocity formulation, due to the presence of prismatic joints and planar joints, as prismatic joints and planar joints do not contribute to the angular velocity of the end-effector. These can be found by taking the $\mathbf{\Omega}\_{(i,j)}$ values corresponding to prismatic joints and planar joints as zeroes and finding the independent paths of the corresponding coefficient matrix. In the matrix $[\mathbf{C_{V}}]$, all the columns corresponding to prismatic joints and planar joints are removed to form the new reduced coefficient matrix $[\mathbf{C_{\Omega}}]$. Now, finding the echelon form of the transpose of this matrix gives the pivoted column indices, which would be the set of independent and non-trivial paths in the context of angular velocities.
+
+In step 4, the formulation of linear velocity of the end-effector through each path of $\widetilde{P}$ is given by the sum of contributions of linear velocities to the end-effector from all the joints through that path. Likewise, the formulation of angular velocity of the end-effector through each path of $\widetilde{P}\_{\omega}$ is given by the sum of contributions of angular velocities to the end-effector from all the joints through that path. If $\mathbf{a}$ = $\\{a_x, a_y, a_z\\}^T$ is the end-effector point, the contributions of linear velocity and angular velocity to the end-effector from a joint connected by the links $i$ and $j$ are denoted by $\mathbf{V}\_{(i,j)}$ and $\mathbf{\Omega}\_{(i,j)}$ respectively, and for each type of joint they are given as shown in table \ref{velocities}.
+
+
+## A table
+
+| Type | $\mathbf{\Omega}_{(i,j)}$ | $\mathbf{V}_{(i,j)}$ |
+| :----:  | :---:     | :---: |
+|$R$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)$  |
+|$P$ | 0 | $\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ |
+|$C$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right) + \dot{d}\_{(i,j)}\mathbf{n}\_{(i,j)}$  |
+|$S$ | $\mathbf{\omega}\_{(i,j)}$ | $\mathbf{\omega}\_{(i,j)} \times \left( \mathbf{a} - \mathbf{r}\_{(i,j)}\right)$  |
+|$U$ | $\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\left(\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\right)\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)$  |
+|$H$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)+\frac{p}{2\pi}\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$  |
+|$F$ | 0 | $\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ |
+
+
+
+
+Hence, for each $\text{k}^{\text{th}}$ path $p_k$ in $\widetilde{P}$, the linear velocity of the end-effector is given by $\mathbf{v^{(k)}} = \sum\limits_{p_k} \mathbf{V}\_{(i,j)}$, and likewise, for each $\text{k}^{\text{th}}$ path $p_k$ in $\widetilde{P}$, the linear velocity of the end-effector is given by $\mathbf{\omega^{(k)}} = \sum\limits_{p_k} \mathbf{\Omega}\_{(i,j)}$.
+
+In step 5, the velocity vector of the end-effector is formulated by using $\mathbf{v}^{(1)}$ and $\mathbf{\omega}^{(1)}$, as shown in equation \eqref{eq:velocities_v1}. This would be a function of not just the active joint velocities but also the passive joint velocities, and hence it is not sufficient to derive the Jacobian matrix. The passive joints are to be written in terms of active joint angles in order to be able to derive the Jacobian matrix.
+
+$$\mathbf{V_e} = \begin{Bmatrix} \mathbf{v} \\\\ \mathbf{\omega} \end{Bmatrix} = \begin{Bmatrix} \mathbf{v}^{(1)} \\\\ \mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p}$$
+
+
+
+
+
+
+
+
+In step 6, the constraints equations are formed by considering $\mathbf{v^{(i)}}-\mathbf{v}^{(1)}=0$ for all $i\neq 1$ and $\mathbf{\omega^{(j)}}-\mathbf{\omega}^{(1)}=0$ for all $j\neq 1$. These form a linear system of equations in active and passive joint velocities as shown in equation \eqref{eq:velocities_v2toN}, from which the passive joint velocities can be written in terms of active joint velocities as shown in equation \eqref{eq:passiveintermsofactive}.
+
+
+
+$$\begin{Bmatrix} \mathbf{v}^{(2)}-\mathbf{v}^{(1)} \\\\ \mathbf{v}^{(3)}-\mathbf{v}^{(1)} \\\\ \vdots \\\\ \mathbf{v}^{(N_{\mathbf{v}})}-\mathbf{v}^{(1)} \\\\ \mathbf{\omega}^{(2)}-\mathbf{\omega}^{(1)} \\\\ \mathbf{\omega}^{(3)}-\mathbf{\omega}^{(1)} \\\\ \vdots \\\\ \mathbf{\omega}^{(N_{\mathbf{\omega}})}-\mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a}+\mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0}$$
+
+
+
+
+In step 7, the existence of superfluous DOF(s), if any, is idenified. In the context of this paper, a superfluous DOF is DOF that does not each the end-effector of the robot by virtue of its inherent mechanism arrangement rather than any particular configuration. Jacob et al.\citenew{enumeration} mentioned in their paper that, for revolute, prismatic, cylindrical and spherical types of joints, two links connected by two joints cannot guarantee relative motion for arbitrary locations and orientations of axes of the joints, except in case of a spherical-spherical pair. Even with the inclusion of universal and helical joints, the spherical-spherical pair would be the only case in which two links can have guaranteed relative motion for arbitrary locations and orientations of the joints. Another way of looking at it is that if a link (or a set of links) is fixed (unmovable), then another link (or set of links) having connected to this link by some joints of arbitrary location and orientation, and being able to have relative motion with this link (or the set of links), would be possible only in case of a spherical-spherical connection. With this concept, it can be said that the possibility of superfluous DOF exists only in case of two spherical joints, as this is a motion that occurs even when all the links connected to it are fixed (stationary). Since this paper considers only revolute and prismatic actuators, the joint velocities of spherical joints are always passive, and hence a superfluous DOF cannot be actively controlled. In some cases, the existence of superfluous DOF makes it impossible to completely control the complete velocity of the end-effector, in which case the robot would be uncontrollable. But in some other cases, the existence of superfluous DOF does not affect the velocity of the end-effector. The method used in the earlier study\citenew{synthesis} is used to appropriately address the superfluous DOF case in Jacobian formulation.
+
+The identification of the existence of superfluous DOF is made by firstly checking whether the manipulator has at least two spherical joints. If the manipulator does not have at least two spherical joints then a superfluous DOF (in the context of this study) does not exist. But if the manipulator has two or more spherical joints, then the whole set of links of the manipulator are split into two mutually exhaustive sets in all possible (independent) combinations, and for each combination of two sets of links, whether or not the corresponding two parts of the manipulator are connected by two spherical joints (and no other joint) is checked. This can be done by extracting the coupling matrix of these two sets of links from the adjacency matrix and counting the total number of joints and the number of spherical joints in it. If the total number of joints and the number of spherical joints of the coupling matrix equal to 2, then those two parts of the manipulator are said to have an uncontrollable DOF. If base link and the end-effector link both happen to lie on one of the two sets (unlike the other case of the base link lying on one set and the end-effector link lying on the other set), it is said to be not affecting the velocity of the end-effector. If $c_{be}$ is the set of links that contains both the base and the end-effector links, and if $(i,j)$ and $(k,l)$ are the links connected by these two spherical joints such that $i$ and $l$ lie in $c_{be}$, then this would give the information related to the superfluous DOF. Hence, for all possible independent combinations, this is checked and for each applicable case, the superfluous DOF is collected in the set $S$. These steps are concisely put forth in the pseudocode shown in algorithm \ref{alg:superfluous}.
+
+
+
+If the set $S$ is non-empty then for each element (of the form $\left[c_{be},\left[(i,j),(k,l)\right]\right]$) in the set $S$, either the link $j$ or the link $k$ is chosen as the link $L_s$, and the absolute angular velocity of that link is formulated by taking a connecting path (from the base link to the end-effector link) that has this link and truncating the path at this link and formulating the angular velocity of $L_s$ through this truncated path, as $\mathbf{\omega_s}$.
+
+Once the set $c_{be}$ (the set of links connected to the rest of the mechanism by two spherical joints alone) is identified, the angular velocity of one of the links connecting to one of the spherical joints about the axis passing through the two spherical joints is to be set to zero (This equation does not represent the true velocity and is only to accommodate calculations simpler). This can be achieved by equation \eqref{eq:supfludofeqn}, where $\vec{\omega}\_{k}$ is the absolute velocity of the link if it is the case of a single link (and is the absolute velocity of any link that is connected to one of the spherical joints if it is the case of a set of links), $\mathbf{r}\_{(i,j)}$ and $\mathbf{r}\_{kl}$ are the position vectors of the two spherical joints.
+
+
+$$\mathbf{\omega_{s}}\cdot \left(\mathbf{r}_{(i,j)}-\mathbf{r}_{(k,l)}\right) = 0$$
+
+
+
+
+
+
+In step 8, $\mathbf{\Omega_a}$ and $\mathbf{\Omega_p}$ are chosen, and the equations $\mathbf{V_e} = \mathbf{J}\mathbf{\Omega}$ and $\mathbf{A}\mathbf{\Omega} = \mathbf{0}$ can be split appropriately to form the matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, as shown in equations \eqref{eq:active} and \eqref{eq:passiveintermsofactive}. The Jacobian can be formulated using these four matrices as shown in equation \eqref{eq:jacobian_parallel}. For serial manipulators, the matrices $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$ do not come into picture. Hence the Jacobian for serial manipulators is as shown in equation \eqref{eq:jacobian_serial}.
+
+
+$$\mathbf{V_e} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p}$$
+
+
+
+
+
+
+$$\mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a} + \mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0} \\
+        \Rightarrow \mathbf{\Omega_p}=-\mathbf{A^{-1}_p}\mathbf{A_a}\mathbf{\Omega_a}$$
+
+
+
+
+
+$$\mathbf{V_e} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\left(-\mathbf{A^{-1}_p}\mathbf{A_a}\mathbf{\Omega_a}\right) = \left(\mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\right)\mathbf{\Omega_a} = \mathbf{\widetilde{J}}\mathbf{\Omega_a}$$
+
+
+
+
+$$\mathbf{\widetilde{J}} = \mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}$$
+
+
+
+$$\mathbf{\widetilde{J}} = \mathbf{J_a}$$
+
+
+
+
+The above steps of the algorithm are concisely shown in the pseudocode of algorithm \ref{alg:jacobian}.
+
+
+1. Assert: Type(_iterator_) is Object.
+1. Assert: _completion_ is a Completion Record.
+1. Let _hasReturn_ be HasProperty(_iterator_, `"return"`).
+1. ReturnIfAbrupt(_hasReturn_).
+  1. If _hasReturn_ is *true*, then
+    1. Let _innerResult_ be Invoke(_iterator_, `"return"`, ( )).
+    1. If _completion_.[[type]] is not ~throw~ and _innerResult_.[[type]] is ~throw~, then
+      1. Return _innerResult_.
+1. Return _completion_.
+
+
+
+
 
 
 
 
 <p align="center">
-    <img src="./universaljoint.png" alt="Universal Joint" width="500px">
+    <img src="./algorithm1.png" alt="Algorithm 1" width="500px">
+</p>
+
+<p align="center">
+    <img src="./algorithm2.png" alt="Algorithm 2" width="500px">
+</p>
+
+<p align="center">
+    <img src="./algorithm3.png" alt="Algorithm 3" width="500px">
 </p>
 
 
 
-In case of universal joints, the vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ are unit vectors, each of which describes the corresponding axis of rotation/translation. The components in the global frame of reference are shown in equations \eqref{eq:nvec} and \eqref{eq:mvec}. 
 
 
 
 
 
-
-$$\mathbf{\hat{n}}_{(i,j)}=n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}+n_{(i,j)z}\mathbf{\hat{k}}$$
-$$\mathbf{\hat{m}}_{(i,j)}=m_{(i,j)x}\mathbf{\hat{i}}+m_{(i,j)y}\mathbf{\hat{j}}+m_{(i,j)z}\mathbf{\hat{k}}$$
-
-
-
-
-
-Since these are unit vectors, they have to satisfy the equations shown in \eqref{eq:nveccons} and \eqref{eq:mveccons}. This can be achieved by writing the elements of the unit vector in terms of two independent variables, as shown in equations \eqref{eq:nsubexprs} and \eqref{eq:msubexprs}. And since $\mathbf{\hat{m}}\_{(i,j)}$ occurs only in case of universal joint wherein it is always perpendicular to its companion axis $\mathbf{\hat{n}}\_{(i,j)}$, the elements of those unit vectors should also satisfy equation \eqref{eq:univperp}. Also in case of plane joints, $\mathbf{\hat{m}}\_{(i,j)}$ is the unit vector normal to the plane, and $\mathbf{\hat{n}}\_{(i,j)}$ is the unit vector along which instantaneous planar translation takes place, and hence the inner product of the two unit vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ should always be zero. Therefore, equations \eqref{eq:nveccons}, \eqref{eq:mveccons} and \eqref{eq:univperp} are applicable in the case of plane joints as well.
-
-$$n_{(i,j)x}^2+n_{(i,j)y}^2+n_{(i,j)z}^2=1$$
-
-
-
-$$m_{(i,j)x}^2+m_{(i,j)y}^2+m_{(i,j)z}^2=1$$
-
-
-
-$$m_{(i,j)x}n_{(i,j)x}+m_{(i,j)y}n_{(i,j)y}+m_{(i,j)z}n_{(i,j)z}=0$$
-
-
-
-
-
-
-
-
-
-
-
-
-$$n_{(i,j)x} = \sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)}$$
-
-$$n_{(i,j)y} = \sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)}$$
-
-$$n_{(i,j)z} = \cos{\left(\beta_{(i,j)}\right)}$$
-
-
-
-
-
-
-
-
-
-
-$$m_{(i,j)x} = \sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)}$$
-
-$$m_{(i,j)y} = \sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)}$$
-
-$$m_{(i,j)z} = \cos{\left(\alpha_{(i,j)}\right)}$$
-
-
-
-
-
-This reduces the six parameters, i.e., $m_{(i,j)x}$, $m_{(i,j)y}$, $m_{(i,j)z}$, $n_{(i,j)x}$, $n_{(i,j)y}$ and $n_{(i,j)z}$ into four parameters, i.e., $\alpha_{(i,j)}$, $\delta_{(i,j)}$, $\beta_{(i,j)}$ and $\phi_{(i,j)}$. But there are only three independent parameters. By putting these in the equality constraint shown in \eqref{eq:univperp}, we get
-
-$$\begin{array}{cc}\left(\sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)}\right)\left(\sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)}\right)
-\\
-+\left(\sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)}\right)\left(\sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)}\right)
-\\
-+\left(\cos{\left(\alpha_{(i,j)}\right)}\right)\left(\cos{\left(\beta_{(i,j)}\right)}\right)=0\end{array}$$
-
-
-
-$$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}+1=0$$
-
-$$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}=-\frac{1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}$$
-
-
-
-The range of inverse tangent function would be $[-\pi/2,\pi/2]$. But for uniformity with the ranges of parameters of other joints, $[0,\pi]$ is the preferred range of $\alpha_{(i,j)}$. Hence, $\alpha_{(i,j)}$ is expressed in the form shown in \eqref{eq:alpharangeuniversaljoint}, where $\xi$ and $u\left(\xi\right)$ are as shown in \eqref{eq:gammauniversaljoint} and \eqref{eq:stepfuncuniversaljoint}, respectively.
-
-$$\alpha_{(i,j)}=\xi+\pi\left(1-u\left(\xi\right)\right)$$
-
-
-
-
-
-$$\xi=\tan^{-1}{\left(\frac{-1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}\right)}$$
-
-
-
-$$u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}$$
-
-
-
-
-For spherical coordinates, the ranges of zenith and azimuth angles are $(0,\pi)$ and $(0,2\pi)$, respectively. However, in the context of describing the axis of for example a revolute joint, the direction of the unit vector does not affect the rotation, and hence, an angular velocity of $\dot{\theta}\_{(i,j)}$ about the axis $\mathbf{n\_{(i,j)}}$ and an angular velocity $-\dot{\theta}\_{(i,j)}$ about the axis $-\mathbf{n\_{(i,j)}}$ are equivalent. Therefore, spanning half of the unit sphere would be sufficient to capture all the possible orientations of the axis. Hence, both the ranges being $(0,\pi)$ would suffice.
-
-$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi$$
-
-
-
-
-
-
-
-
-
-
-
-
-
-Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation \eqref{eq:helical_relation_between_angular_and_linear_displacements}.
-
-$$d_{(i,j)} = \frac{p_{(i,j)}}{2\pi}\theta_{(i,j)}$$
-
-
-
-## Notation for planar manipulators
-Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation \eqref{eq:jointpos} reduces to the equation \eqref{eq:jointposplanar}. 
-
-$$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}$$
-
-
-
-In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarrevol}. And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarprism}, and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation \eqref{eq:nsubexprs} to equation \eqref{eq:nsubexprsprismplanar}.
-
-$$\mathbf{\hat{n}}_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}$$
-
-$$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}}$$
-
-
-
-
-$$n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)}$$
-
-$$n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)}$$
-
-
-
-
-Since all the motion lies entirely in the xy-plane, the z-component of linear velocity along with the x \& the y components of the angular velocity of the end-effector would be zeros, thereby reducing the size of the Jacobian from six rows to three rows.
+This algorithm can be used to find the four matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, from which the Jacobian can be formulated as $\mathbf{\widetilde{J}}=\mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}$. For serial manipulators, since passive joints do not come into picture, the Jacobian would simply be $\mathbf{\widetilde{J}}=\mathbf{J_a}$.
