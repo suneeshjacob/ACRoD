@@ -1,23 +1,162 @@
-# Robot-topology Matrix
-## Matrix-based representation of robot topology
-From graph theory, an adjacency matrix of a mechanism is normally a symmetric matrix in which each diagonal element represents each link and each off-diagonal element represents the connection between the corresponding links. The adjacency matrix is normally a symmetric matrix. However, to accommodate the distinction between active and passive joints, the upper off-diagonal region is dedicated to represent the connectivity of links whilst the lower off-diagonal region is dedicated to represent whether each corresponding joint is an active joint or a passive. The diagonal elements are normally taken as zeroes but in this study they are filled with '9's in order to distinguish the links from the absence of joints which could be helpful from the programming point of view. For linkages of single type of joints, each off-diagonal element is normally taken to be 1 when the two links are directly connected by a joint, and 0 when the two links are not directly connected by a joint. Since the robots in this study could have more than one type of joint, the off-diagonal elements are considered as shown in the table below.
+## Notation for describing the parameters of spatial manipulators
 
-| S. No. | Joint type | Off-diagonal element |
-| :----:  | ---     | :---: |
-|   1     |  Revolute ($R$)     | 1 |
-|   2     |  Prismatic ($P$)    | 2 |
-|   3     |  Cylindrical ($C$)    | 3 |
-|   4     |  Spherical ($S$)    | 4 |
-|   5     |  Universal ($U$)    | 5 |
-|   6     |  Helical ($H$)    | 6 |
-|   7     |  Plane ($F$)    | 7 |
-|   8     |  No joint ($O$)    | 0 |
+The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. The parameters required to describe each joint are discussed below in detail.
+
+The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation \eqref{eq:jointpos}.
+
+$$\mathbf{r}_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(i,j)z}\mathbf{\hat{k}}$$
 
 
-Unlike mere mechanisms, robots have a link dedicated to base link and a link dedicated to end-effector link. Hence, the first diagonal element in the matrix is dedicated to the base link and the last diagonal element is dedicated to the end-effector link.
 
-In a serial manipulator, typically all joints are active. However, in parallel manipulators (including closed-loop manipulators), not all joints are active. There could be multiple ways of choosing active and passive sets of joints for parallel ones. The adjacency matrix notation provided in our earlier study [[1]](#1) does not consist of information on the distinction of active and passive sets of joints but rather considers both the active and the passive joints alike. In this study, this issue is resolved by dedicating the lower off-diagonal elements of the matrix to represent whether they are active joints or not. For every upper off-diagonal element that represents a joint, the corresponding lower off-diagonal element (the corresponding element of its transpose) is assigned the number 1 if the joint is active and 0 if the joint is passive. And every upper off-diagonal element that does not represent a joint, would have the number 0 assigned to its corresponding off-diagonal element.
+In order to fully describe a revolute joint or a prismatic joint or a cylindrical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of the axis of its appropriate motion ($\mathbf{\hat{n}}\_{(i,j)}$) needs to be specified. For a revolute joint, the appropriate motion would be revolute motion, and for a prismatic joint, the appropriate motion would be translatory motion. On the other hand, for a cylindrical joint, the appropriate motion consists of both revolute and translatory motions along the same axis. While specifying one axis is sufficient for a revolute, prismatic or cylindrial joint (apart from the position), it is required to specify two mutually perpendicular axes for a universal joint, namely $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$, as shown in figure \ref{universaljoint}. And in order to specify a helical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of its axis ($\mathbf{\hat{n}}\_{(i,j)}$) and the pitch ($p\_{ij}$) of the helix are to be specified. Alternatively, the helix angle can also be specified, from which the pitch of the helix can be calculated. Finally, in order to specify a plane joint, apart from its position, the orientation of the axis perpendicular to the plane ($\mathbf{\hat{m}}\_{(i,j)}$) is to be specified.
 
-## References
-<a id="1">[1]</a> 
-Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
+
+
+
+<p align="center">
+    <img src="./universaljoint.png" alt="Universal Joint" width="500px">
+</p>
+
+
+
+In case of universal joints, the vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ are unit vectors, each of which describes the corresponding axis of rotation/translation. The components in the global frame of reference are shown in equations \eqref{eq:nvec} and \eqref{eq:mvec}. 
+
+
+
+
+
+
+$$\mathbf{\hat{n}}_{(i,j)}=n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}+n_{(i,j)z}\mathbf{\hat{k}}$$
+$$\mathbf{\hat{m}}_{(i,j)}=m_{(i,j)x}\mathbf{\hat{i}}+m_{(i,j)y}\mathbf{\hat{j}}+m_{(i,j)z}\mathbf{\hat{k}}$$
+
+
+
+
+
+Since these are unit vectors, they have to satisfy the equations shown in \eqref{eq:nveccons} and \eqref{eq:mveccons}. This can be achieved by writing the elements of the unit vector in terms of two independent variables, as shown in equations \eqref{eq:nsubexprs} and \eqref{eq:msubexprs}. And since $\mathbf{\hat{m}}\_{(i,j)}$ occurs only in case of universal joint wherein it is always perpendicular to its companion axis $\mathbf{\hat{n}}\_{(i,j)}$, the elements of those unit vectors should also satisfy equation \eqref{eq:univperp}. Also in case of plane joints, $\mathbf{\hat{m}}\_{(i,j)}$ is the unit vector normal to the plane, and $\mathbf{\hat{n}}\_{(i,j)}$ is the unit vector along which instantaneous planar translation takes place, and hence the inner product of the two unit vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ should always be zero. Therefore, equations \eqref{eq:nveccons}, \eqref{eq:mveccons} and \eqref{eq:univperp} are applicable in the case of plane joints as well.
+
+$$n_{(i,j)x}^2+n_{(i,j)y}^2+n_{(i,j)z}^2=1$$
+
+
+
+$$m_{(i,j)x}^2+m_{(i,j)y}^2+m_{(i,j)z}^2=1$$
+
+
+
+$$m_{(i,j)x}n_{(i,j)x}+m_{(i,j)y}n_{(i,j)y}+m_{(i,j)z}n_{(i,j)z}=0$$
+
+
+
+
+
+
+
+
+
+
+
+
+$$n_{(i,j)x} = \sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)}$$
+
+$$n_{(i,j)y} = \sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)}$$
+
+$$n_{(i,j)z} = \cos{\left(\beta_{(i,j)}\right)}$$
+
+
+
+
+
+
+
+
+
+
+$$m_{(i,j)x} = \sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)}$$
+
+$$m_{(i,j)y} = \sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)}$$
+
+$$m_{(i,j)z} = \cos{\left(\alpha_{(i,j)}\right)}$$
+
+
+
+
+
+This reduces the six parameters, i.e., $m_{(i,j)x}$, $m_{(i,j)y}$, $m_{(i,j)z}$, $n_{(i,j)x}$, $n_{(i,j)y}$ and $n_{(i,j)z}$ into four parameters, i.e., $\alpha_{(i,j)}$, $\delta_{(i,j)}$, $\beta_{(i,j)}$ and $\phi_{(i,j)}$. But there are only three independent parameters. By putting these in the equality constraint shown in \eqref{eq:univperp}, we get
+
+$$\begin{array}{cc}\left(\sin{\left(\alpha_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}\right)}\right)\left(\sin{\left(\beta_{(i,j)}\right)}\cos{\left(\phi_{(i,j)}\right)}\right)
+\\
++\left(\sin{\left(\alpha_{(i,j)}\right)}\sin{\left(\delta_{(i,j)}\right)}\right)\left(\sin{\left(\beta_{(i,j)}\right)}\sin{\left(\phi_{(i,j)}\right)}\right)
+\\
++\left(\cos{\left(\alpha_{(i,j)}\right)}\right)\left(\cos{\left(\beta_{(i,j)}\right)}\right)=0\end{array}$$
+
+
+
+$$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}+1=0$$
+
+$$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}=-\frac{1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}$$
+
+
+
+The range of inverse tangent function would be $[-\pi/2,\pi/2]$. But for uniformity with the ranges of parameters of other joints, $[0,\pi]$ is the preferred range of $\alpha_{(i,j)}$. Hence, $\alpha_{(i,j)}$ is expressed in the form shown in \eqref{eq:alpharangeuniversaljoint}, where $\xi$ and $u\left(\xi\right)$ are as shown in \eqref{eq:gammauniversaljoint} and \eqref{eq:stepfuncuniversaljoint}, respectively.
+
+$$\alpha_{(i,j)}=\xi+\pi\left(1-u\left(\xi\right)\right)$$
+
+
+
+
+
+$$\xi=\tan^{-1}{\left(\frac{-1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}\right)}$$
+
+
+
+$$u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}$$
+
+
+
+
+For spherical coordinates, the ranges of zenith and azimuth angles are $(0,\pi)$ and $(0,2\pi)$, respectively. However, in the context of describing the axis of for example a revolute joint, the direction of the unit vector does not affect the rotation, and hence, an angular velocity of $\dot{\theta}\_{(i,j)}$ about the axis $\mathbf{n\_{(i,j)}}$ and an angular velocity $-\dot{\theta}\_{(i,j)}$ about the axis $-\mathbf{n\_{(i,j)}}$ are equivalent. Therefore, spanning half of the unit sphere would be sufficient to capture all the possible orientations of the axis. Hence, both the ranges being $(0,\pi)$ would suffice.
+
+$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation \eqref{eq:helical_relation_between_angular_and_linear_displacements}.
+
+$$d_{(i,j)} = \frac{p_{(i,j)}}{2\pi}\theta_{(i,j)}$$
+
+
+
+## Notation for planar manipulators
+Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation \eqref{eq:jointpos} reduces to the equation \eqref{eq:jointposplanar}. 
+
+$$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}$$
+
+
+
+In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarrevol}. And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarprism}, and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation \eqref{eq:nsubexprs} to equation \eqref{eq:nsubexprsprismplanar}.
+
+$$\mathbf{\hat{n}}_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}$$
+
+$$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}}$$
+
+
+
+
+$$n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)}$$
+
+$$n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)}$$
+
+
+
+
+Since all the motion lies entirely in the xy-plane, the z-component of linear velocity along with the x \& the y components of the angular velocity of the end-effector would be zeros, thereby reducing the size of the Jacobian from six rows to three rows.
