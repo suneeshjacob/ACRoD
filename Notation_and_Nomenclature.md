@@ -2,7 +2,7 @@
 
 The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. The parameters required to describe each joint are discussed below in detail.
 
-The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation \eqref{eq:jointpos}.
+The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation (1).
 
 $$\mathbf{r}_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(i,j)z}\mathbf{\hat{k}} \tag{1}$$
 
@@ -19,15 +19,16 @@ In order to fully describe a revolute joint or a prismatic joint or a cylindrica
 
 
 
-In case of universal joints, the vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ are unit vectors, each of which describes the corresponding axis of rotation/translation. The components in the global frame of reference are shown in equations \eqref{eq:nvec} and \eqref{eq:mvec}. 
+In case of universal joints, the vectors $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$ are unit vectors, each of which describes the corresponding axis of rotation/translation. The components in the global frame of reference are shown in equations (2) and (3). 
 
 
 
 
 
 
-$$\mathbf{\hat{n}}_{(i,j)}=n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}+n_{(i,j)z}\mathbf{\hat{k}}$$
-$$\mathbf{\hat{m}}_{(i,j)}=m_{(i,j)x}\mathbf{\hat{i}}+m_{(i,j)y}\mathbf{\hat{j}}+m_{(i,j)z}\mathbf{\hat{k}}$$
+$$\mathbf{\hat{n}}_{(i,j)}=n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}}+n_{(i,j)z}\mathbf{\hat{k}} \tag{2}$$
+
+$$\mathbf{\hat{m}}_{(i,j)}=m_{(i,j)x}\mathbf{\hat{i}}+m_{(i,j)y}\mathbf{\hat{j}}+m_{(i,j)z}\mathbf{\hat{k}} \tag{3}$$
 
 
 
