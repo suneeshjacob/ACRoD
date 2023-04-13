@@ -20,5 +20,4 @@ In a serial manipulator, typically all joints are active. However, in parallel m
 
 ## References
 <a id="1">[1]</a> 
-Jacob AS, Dasgupta B and Datta R (2022). 
-Enumeration of spatial manipulators by using the concept of adjacency matrix, arXiv preprint arXiv:2210.03327.
+Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
