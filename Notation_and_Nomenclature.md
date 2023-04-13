@@ -4,7 +4,7 @@ The adjacency matrix considered in this study consists of the diagonal elements 
 
 The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation \eqref{eq:jointpos}.
 
-$$\mathbf{r}_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(i,j)z}\mathbf{\hat{k}}$$
+$$\mathbf{r}_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(i,j)z}\mathbf{\hat{k}}$$ (1)
 
 
 
