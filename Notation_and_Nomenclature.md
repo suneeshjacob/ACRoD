@@ -131,20 +131,20 @@ $$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi \tag{16}$$
 
 
 
-Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation \eqref{eq:helical_relation_between_angular_and_linear_displacements}.
+Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation (17).
 
 $$d_{(i,j)} = \frac{p_{(i,j)}}{2\pi}\theta_{(i,j)} \tag{17}$$
 
 
 
 ## Notation for planar manipulators
-Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation \eqref{eq:jointpos} reduces to the equation \eqref{eq:jointposplanar}. 
+Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation (1) reduces to the equation (18). 
 
 $$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}} \tag{18}$$
 
 
 
-In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarrevol}. And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation \eqref{eq:nvec} reduces to the equation \eqref{eq:nvecplanarprism}, and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation \eqref{eq:nsubexprs} to equation \eqref{eq:nsubexprsprismplanar}.
+In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (20). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (19), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation (9) to equation (21).
 
 $$\mathbf{\hat{n}}_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{19}$$
 
@@ -154,9 +154,6 @@ $$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}} \tag{20}$$
 
 
 $$\begin{matrix} n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)} \\\\ n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)} \end{matrix} \tag{21}$$
-
-$$$$
-
 
 
 
