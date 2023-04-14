@@ -28,6 +28,9 @@ In step 3, a set of non-trivial paths are to be selected from the set of indepen
 
 In step 4, the formulation of linear velocity of the end-effector through each path of $\widetilde{P}$ is given by the sum of contributions of linear velocities to the end-effector from all the joints through that path. Likewise, the formulation of angular velocity of the end-effector through each path of $\widetilde{P}\_{\omega}$ is given by the sum of contributions of angular velocities to the end-effector from all the joints through that path. If $\mathbf{a}$ = $\\{a_x, a_y, a_z\\}^T$ is the end-effector point, the contributions of linear velocity and angular velocity to the end-effector from a joint connected by the links $i$ and $j$ are denoted by $\mathbf{V}\_{(i,j)}$ and $\mathbf{\Omega}\_{(i,j)}$ respectively, and for each type of joint they are given as shown in table \ref{velocities}.
 
+```{table} my caption
+<table here>
+```
 
 ## A table
 
