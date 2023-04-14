@@ -29,15 +29,6 @@ In step 3, a set of non-trivial paths are to be selected from the set of indepen
 In step 4, the formulation of linear velocity of the end-effector through each path of $\widetilde{P}$ is given by the sum of contributions of linear velocities to the end-effector from all the joints through that path. Likewise, the formulation of angular velocity of the end-effector through each path of $\widetilde{P}\_{\omega}$ is given by the sum of contributions of angular velocities to the end-effector from all the joints through that path. If $\mathbf{a}$ = $\\{a_x, a_y, a_z\\}^T$ is the end-effector point, the contributions of linear velocity and angular velocity to the end-effector from a joint connected by the links $i$ and $j$ are denoted by $\mathbf{V}\_{(i,j)}$ and $\mathbf{\Omega}\_{(i,j)}$ respectively, and for each type of joint they are given as shown in table \ref{velocities}.
 
 ```{table} my caption
-| Type | $\mathbf{\Omega}_{(i,j)}$ | $\mathbf{V}_{(i,j)}$ |
-| :----:  | :---:     | :---: |
-|$R$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)$  |
-|$P$ | 0 | $\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ |
-|$C$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right) + \dot{d}\_{(i,j)}\mathbf{n}\_{(i,j)}$  |
-|$S$ | $\mathbf{\omega}\_{(i,j)}$ | $\mathbf{\omega}\_{(i,j)} \times \left( \mathbf{a} - \mathbf{r}\_{(i,j)}\right)$  |
-|$U$ | $\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\left(\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\right)\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)$  |
-|$H$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)+\frac{p}{2\pi}\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$  |
-|$F$ | 0 | $\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ |
 ```
 
 ## A table
