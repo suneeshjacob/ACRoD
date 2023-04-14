@@ -1,6 +1,6 @@
 ## Steps to formulate Jacobian
 
-The approach is that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. Since in case of parallel manipulators multiple paths that join the base link and the end-effector link exist, the same concept\citenew{synthesis} is used for all the connecting paths from the base-link to the end-effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities.
+The approach is that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. Since in case of parallel manipulators multiple paths that join the base link and the end-effector link exist, the same concept [[1]](#1) is used for all the connecting paths from the base-link to the end-effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities.
 
 Formulation of Jacobian is done by the following steps:
 
@@ -109,3 +109,7 @@ The above steps of the algorithm are concisely shown in the pseudocode of algori
 
 
 This algorithm can be used to find the four matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, from which the Jacobian can be formulated as $\mathbf{\widetilde{J}}=\mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}$. For serial manipulators, since passive joints do not come into picture, the Jacobian would simply be $\mathbf{\widetilde{J}}=\mathbf{J_a}$.
+
+## References
+<a id="1">[1]</a> 
+Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. "Dimensional synthesis of spatial manipulators for velocity and force transmission for operation around a specified task point." arXiv preprint arXiv:2210.04446 (2022).
