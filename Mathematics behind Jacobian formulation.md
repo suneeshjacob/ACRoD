@@ -113,5 +113,6 @@ This algorithm can be used to find the four matrices $\mathbf{J_a}$, $\mathbf{J_
 ## References
 <a id="1">[1]</a> 
 Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. "Dimensional synthesis of spatial manipulators for velocity and force transmission for operation around a specified task point." arXiv preprint arXiv:2210.04446 (2022).
+
 <a id="2">[2]</a> 
 Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
