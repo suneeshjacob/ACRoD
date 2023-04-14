@@ -77,16 +77,6 @@ $$\mathbf{\widetilde{J}} = \mathbf{J_a} \tag{8}$$
 
 The above steps of the algorithm are concisely shown in the pseudocode of algorithm 1.
 
-1. Assert: Type(_iterator_) is Object.
-1. Assert: _completion_ is a Completion Record.
-1. Let _hasReturn_ be HasProperty(_iterator_, `"return"`).
-1. ReturnIfAbrupt(_hasReturn_).
-  1. If _hasReturn_ is *true*, then
-    1. Let _innerResult_ be Invoke(_iterator_, `"return"`, ( )).
-    1. If _completion_.[[type]] is not ~throw~ and _innerResult_.[[type]] is ~throw~, then
-      1. Return _innerResult_.
-1. Return _completion_.
-
 <p align="center">
     <img src="./algorithm1.png" alt="Algorithm 1" width="500px">
 </p>
