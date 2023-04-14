@@ -30,7 +30,7 @@ In step 4, the formulation of linear velocity of the end-effector through each p
 
 
 ## A table
-
+Table: A Caption
 | Type | $\mathbf{\Omega}_{(i,j)}$ | $\mathbf{V}_{(i,j)}$ |
 | :----:  | :---:     | :---: |
 |$R$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}$ | $\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)$  |
