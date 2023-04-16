@@ -1,6 +1,6 @@
 ## Notation for describing the parameters of spatial manipulators
 
-The notations presented in this document are modified versions of the notations mentioned in [[1]](#1), which can be formulated directly formulated from the robot-topology matrix, which is a modified form of matrix-based representation of robots mentioned in [[2]](#2). They are explained below in detail.
+The notations presented in this document are modified versions of the notations mentioned in [[1]](#1), which can be formulated directly formulated from the robot-topology matrix, which is a modified form of matrix-based representation of robots mentioned in [[2]](#2). The notations are explained below in detail.
 
 The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. . The parameters required to describe each joint are discussed below in detail.
 
