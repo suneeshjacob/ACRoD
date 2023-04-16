@@ -1,6 +1,8 @@
 ## Notation for describing the parameters of spatial manipulators
 
-The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. The parameters required to describe each joint are discussed below in detail.
+These notations modified versions of the notations mentioned in [[1]](#1), which can be formulated directly formulated from the robot-topology matrix, which is a modified form of matrix-based representation of robots mentioned in [[2]](#2).
+
+The adjacency matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. . The parameters required to describe each joint are discussed below in detail.
 
 The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation (1).
 
@@ -162,7 +164,7 @@ Since all the motion lies entirely in the xy-plane, the z-component of linear ve
 
 ## References
 <a id="1">[1]</a> 
-Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
+Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. "Dimensional synthesis of spatial manipulators for velocity and force transmission for operation around a specified task point." arXiv preprint arXiv:2210.04446 (2022).
 
 <a id="2">[2]</a> 
-Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. "Dimensional synthesis of spatial manipulators for velocity and force transmission for operation around a specified task point." arXiv preprint arXiv:2210.04446 (2022).
+Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
