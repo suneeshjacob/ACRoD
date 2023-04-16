@@ -1,8 +1,8 @@
 ## Notation for describing the parameters of spatial manipulators
 
-The notations presented in this document are modified versions of the notations mentioned in [[1]](#1), which can be formulated directly formulated from the robot-topology matrix, which is a modified form of matrix-based representation of robots mentioned in [[2]](#2). The notations are explained below in detail.
+The notations presented in this document are modified versions of the notations mentioned in [[1]](#1), which can be formulated directly from the [robot-topology matrix](Robot_Topology_Matrix.md), a is a modified form of matrix-based representation of robots mentioned in [[2]](#2). The notations are explained below in detail.
 
-The robot-topology matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The upper off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. More about robot-topology matrix can be found [here](Robot_Topology_Matrix.md). The parameters required to describe each joint are discussed below in detail.
+The robot-topology matrix considered in this study consists of the diagonal elements corresponding to the links of the manipulator, in which the first diagonal element corresponds to the base link and the last diagonal element corresponds to the end-effector link of the manipulator. The upper off-diagonal elements correspond to the joints that the corresponding links are connected with. The types of joints considered are revolute, prismatic, cylindrical, spherical, universal and plane joints. The parameters required to describe each joint are discussed below in detail.
 
 The position of the joint of a manipulator connecting the two links $i$ and $j$, is given by equation (1).
 
