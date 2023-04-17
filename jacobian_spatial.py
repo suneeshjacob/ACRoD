@@ -376,9 +376,27 @@ def velosforpath(A,i_current, symbolicvariableslist = []):
                 latexomegatemp.append(r'\dot{\gamma}_{'+current_index+r'} \hat{m}_{'+current_index+r'}+\dot{\theta}_{'+current_index+r'} \hat{n}_{'+current_index+r'}')
         elif current_joint_temp == 6:
             if f'thd{current_index_reverse_temp}' in symbolicvariableslist:
-                pass
+                velolist_temporary.append(f'-thd{current_index_reverse_temp}*n{current_index_temp}.cross(a-r{current_index_temp})-(p{current_index_temp}/(2*sympy.pi))*thd{current_index_reverse_temp}*n{current_index_temp}')
+                latextemp.append(r'-\dot{\theta}_{'+current_index_reverse+r'} \hat{n}_{'+current_index+r'} \times \left( \vec{a} - \vec{r}_{'+current_index+r'} \right) - \left(\frac{p_{'+current_index+r'}}{2\pi}\right) \dot{\theta}_{'+current_index_reverse+r'} \hat{n}_{'+current_index+r'}')
+                angulist_temporary.append(f'-thd{current_index_reverse_temp}*n{current_index_temp}')
+                latexomegatemp.append(r'-\dot{\theta}_{'+current_index_reverse+r'} \hat{n}_{'+current_index+r'}')
             else:
-                pass
+                for j2 in ['x','y','z']:
+                    tobeexecuted.append(f'n{current_index_temp}{j2}=sympy.symbols(\'n_{{{current_index}{j2}}}\')')
+                    symbolicvariableslist.append(f'n{current_index_temp}{j2}')
+                    tobeexecuted.append(f'r{current_index_temp}{j2}=sympy.symbols(\'r_{{{current_index}{j2}}}\')')
+                    symbolicvariableslist.append(f'r{current_index_temp}{j2}')
+                tobeexecuted.append(f'n{current_index_temp}=sympy.Matrix([n{current_index_temp}x,n{current_index_temp}y,n{current_index_temp}z])')
+                tobeexecuted.append(f'r{current_index_temp}=sympy.Matrix([r{current_index_temp}x,r{current_index_temp}y,r{current_index_temp}z])')
+                tobeexecuted.append(f'thd{current_index_temp}=sympy.symbols(\'\\dot{{\\\\theta}}_{{{current_index}}}\')')
+                symbolicvariableslist.append(f'thd{current_index_temp}')
+                tobeexecuted.append(f'p{current_index_temp}=sympy.symbols(\'p_{{{current_index}}}\')')
+                #tobeexecuted.append(f'dd{current_index_temp}=sympy.symbols(\'\\dot{{d}}_{{{current_index}}}\')')
+                symbolicvariableslist.append(f'dd{current_index_temp}')
+                velolist_temporary.append(f'thd{current_index_temp}*n{current_index_temp}.cross(a-r{current_index_temp})+(p{current_index_temp}/(2*sympy.pi))*thd{current_index_temp}*n{current_index_temp}')
+                latextemp.append(r'\dot{\theta}_{'+current_index+r'} \hat{n}_{'+current_index+r'} \times \left( \vec{a} - \vec{r}_{'+current_index+r'} \right) + \left(\frac{p_{'+current_index+r'}}{2\pi}\right) \dot{\theta}_{'+current_index+r'} \hat{n}_{'+current_index+r'}')
+                angulist_temporary.append(f'thd{current_index_temp}*n{current_index_temp}')
+                latexomegatemp.append(r'\dot{\theta}_{'+current_index+r'} \hat{n}_{'+current_index+r'}')
         
         latexstringtemp.append('+'.join([i3 for i3 in latextemp if len(i3)>0]))
         latexomegastringtemp.append('+'.join([i3 for i3 in latexomegatemp if len(i3)>0]))
