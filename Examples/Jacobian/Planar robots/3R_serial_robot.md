@@ -2,12 +2,7 @@
 
 ## Mathematics involved
 
-\begin{figure}[hbt!]
-  \centering
-  \includegraphics[width=\linewidth]{RRR.png}
-  \caption{RRR planar serial manipulator}
-  \label{fig:RRR}
-\end{figure}
+[RRR planar serial manipulator](./RRR.png)
 
 An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
