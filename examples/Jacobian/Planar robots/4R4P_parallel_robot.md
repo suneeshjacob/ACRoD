@@ -150,24 +150,18 @@ The rank of the matrix $\begin{bmatrix}\bf{C_{\Omega}}\end{bmatrix}$ is 2, even 
 
 Therefore, the independent linear velocities are $\bf{v}^{(1)}$, $\bf{v}^{(2)}$ and $\bf{v}^{(3)}$, and the independent angular velocities are $\bf{\omega}^{(1)}$ and $\bf{\omega}^{(3)}$.
 
-$$\bf{v}^{(1)}=\dot{d}_{(1,2)} \bf{\hat{n}_{(1,2)}} + \dot{d}_{(2,4)} \bf{\hat{n}_{(2,4)}} \\
-+ \dot{\theta}_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,5)} \right) \\
-+ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)$$
+$$\bf{v}^{(1)}=\dot{d}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} + \dot{d}\_{(2,4)} \bf{\hat{n}\_{(2,4)}} + \dot{\theta}\_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,5)} \right) + \dot{\theta}\_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(5,7)} \right)$$
 
-$$\bf{v}^{(2)}=\dot{d}_{(1,3)} \bf{\hat{n}}_{(1,3)} + \dot{d}_{(3,4)} \bf{\hat{n}}_{(3,4)} \\
-+ \dot{\theta}_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,5)} \right) \\
-+ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)$$
+$$\bf{v}^{(2)}=\dot{d}\_{(1,3)} \bf{\hat{n}}\_{(1,3)} + \dot{d}\_{(3,4)} \bf{\hat{n}}\_{(3,4)} + \dot{\theta}\_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,5)} \right) + \dot{\theta}\_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(5,7)} \right)$$
 
-$$\bf{v}^{(3)}=\dot{d}_{(1,2)} \bf{\hat{n}}_{(1,2)} + \dot{d}_{(2,4)} \bf{\hat{n}}_{(2,4)} \\
-+ \dot{\theta}_{(4,6)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,6)} \right) \\
-+ \dot{\theta}_{(6,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(6,7)} \right)$$
+$$\bf{v}^{(3)}=\dot{d}\_{(1,2)} \bf{\hat{n}}\_{(1,2)} + \dot{d}\_{(2,4)} \bf{\hat{n}}\_{(2,4)} + \dot{\theta}\_{(4,6)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,6)} \right) + \dot{\theta}\_{(6,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(6,7)} \right)$$
 
-$$\bf{\omega}^{(1)} = \dot{\theta}_{(4,5)} \bf{\hat{k}} + \dot{\theta}_{(5,7)} \bf{\hat{k}}$$
+$$\bf{\omega}^{(1)} = \dot{\theta}\_{(4,5)} \bf{\hat{k}} + \dot{\theta}\_{(5,7)} \bf{\hat{k}}$$
 
-$$\bf{\omega}^{(3)} = \dot{\theta}_{(4,6)} \bf{\hat{k}} + \dot{\theta}_{(6,7)} \bf{\hat{k}}$$
+$$\bf{\omega}^{(3)} = \dot{\theta}\_{(4,6)} \bf{\hat{k}} + \dot{\theta}\_{(6,7)} \bf{\hat{k}}$$
 
 $$
-\begin{Bmatrix}\bf{v}^{(1)} \\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(4,5)y} & n_{(1,2)x} & 0\\a_{x} - r_{(4,5)x} & n_{(1,2)y} & 0\\1 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(4,5)}\\\dot{d}_{(1,2)}\\\dot{d}_{(1,3)}\end{Bmatrix} + 
+\begin{Bmatrix}\bf{v}^{(1)} \\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(4,5)y} & n_{(1,2)x} & 0\\a_{x} - r_{(4,5)x} & n_{(1,2)y} & 0\\1 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(4,5)}\\\dot{d}\_{(1,2)}\\\dot{d}\_{(1,3)}\end{Bmatrix} + 
 $$
 \\
 $$
