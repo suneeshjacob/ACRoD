@@ -1,5 +1,6 @@
-from src.jacobian_spatial import jacobian as jacobian_spatial
-from src.jacobian_planar import jacobian as jacobian_planar
+#from src.jacobian_spatial import jacobian as jacobian_spatial
+#from src.jacobian_planar import jacobian as jacobian_planar
+
 import numpy
 
 def test_planar_3Rs():
