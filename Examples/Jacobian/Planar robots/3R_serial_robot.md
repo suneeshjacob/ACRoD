@@ -1,91 +1,94 @@
-# Automatic Computation for Robot Design (ACRoD)
+# 3R Serial Robot
 
-## Description
+## Mathematics involved
 
-This repository is dedicated to develop functions for automatic computations for designing robotic manipulators.
+\subsection{Example 1: RRR planar serial manipulator}
+\label{subsec:RRR}
 
-## Currently available functions
+\begin{figure}[hbt!]
+  \centering
+  \includegraphics[width=\linewidth]{RRR.png}
+  \caption{RRR planar serial manipulator}
+  \label{fig:RRR}
+\end{figure}
 
-- Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)
+An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
-## Usage
+\begin{equation}
+\label{eq:adjmat_RRR}
+    \bm{M} = \left[\begin{matrix}L_1 & R & O & O \\A & L_2 & R & O\\O & A & L_3 & R\\O & O & A & L_4\end{matrix}\right]
+\end{equation}
 
-### Jacobian for planar manipulators
+\emph{Connecting paths:}
 
-The topological information of a robot is to be specified by using its robot-topology matrix. For a planar 2R serial manipulator, the robot topology matrix is given by
+$$
+\begin{matrix}
+    \text{Path 1:} \;\;\; L_1-L_2-L_3-L_4
+\end{matrix}
+$$
 
-$$\begin{bmatrix}
-9 & 1 & 0 \\
-1 & 9 & 1 \\
-0 & 1 & 9
-\end{bmatrix}$$
+Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $\begin{bmatrix}\bm{C}_{V}\end{bmatrix}$ and $\begin{bmatrix}\bm{C}_{\Omega}\end{bmatrix}$ are not required.
 
-The corresponding Jacobian function can be formulated as follows.
+The following are the linear and angular velocity contributions to the end-effector from each joint of the path, which are calculated by using the formulation shown in table \ref{velocities} and by using the convention that all the revolute joints of a planar manipulator would have their axes on the xy-plane, thereby reducing the unit vector along each axis to $\bm{\hat{n}}_{(i,j)}=\bm{\hat{k}}$, as mentioned in equation 20 of the main document.
 
-Firstly, the required functions are imported as shown below.
-```py
-from jacobian_planar import jacobian
-from numpy import matrix
-from sympy import Matrix, lambdify
-```
+$$\begin{matrix}
+  \bm{V_{12}}=\dot{\theta}_{(1,2)} \bm{\hat{n}_{(1,2)}} \times \left( \bm{a} - \bm{r}_{(1,2)} \right) = \dot{\theta}_{(1,2)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(1,2)} \right) \\
+  \bm{V_{23}}=\dot{\theta}_{(2,3)} \bm{\hat{n}_{(2,3)}} \times \left( \bm{a} - \bm{r}_{(2,3)} \right) = \dot{\theta}_{(2,3)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(2,3)} \right) \\
+  \bm{V_{34}}=\dot{\theta}_{(3,4)} \bm{\hat{n}_{(3,4)}} \times \left( \bm{a} - \bm{r}_{(3,4)} \right) = \dot{\theta}_{(3,4)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(3,4)} \right)
+\end{matrix}
+$$
 
-The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian function as follows.
-```py
-M = matrix('9 1 0;1 9 1;0 1 9')
-jacobian_information = jacobian(M)
-```
+$$\begin{matrix}
+  \bm{\Omega_{12}}=\dot{\theta}_{(1,2)} \bm{\hat{n}_{(1,2)}} = \dot{\theta}_{(1,2)} \bm{\hat{k}} \\
+  \bm{\Omega_{23}}=\dot{\theta}_{(2,3)} \bm{\hat{n}_{(2,3)}} = \dot{\theta}_{(2,3)} \bm{\hat{k}} \\
+  \bm{\Omega_{34}}=\dot{\theta}_{(3,4)} \bm{\hat{n}_{(3,4)}} = \dot{\theta}_{(3,4)} \bm{\hat{k}}
+\end{matrix}
+$$
 
-Symbolic Jacobian is extracted from `jacobian_information` as follows.
-```py
-symbolic_jacobian = jacobian_information[0]
-symbolic_jacobian
-```
+Therefore, the linear and angular velocities are given by \eqref{eq:RRR_linvel} and \eqref{eq:RRR_angvel}, respectively.
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+\begin{equation}
+    \label{eq:RRR_linvel}
+    \begin{array}{cc}
+        \bm{v}^{(1)}=\dot{\theta}_{(1,2)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(1,2)} \right) \\
+        + \dot{\theta}_{(2,3)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(2,3)} \right) \\
+        + \dot{\theta}_{(3,4)} \bm{\hat{k}} \times \left( \bm{a} - \bm{r}_{(3,4)} \right)
+    \end{array}
+\end{equation}
 
-$$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
+\begin{equation}
+        \label{eq:RRR_angvel}
+    \begin{array}{cc}
+        \bm{\omega}^{(1)}=\dot{\theta}_{(1,2)} \bm{\hat{k}} + \dot{\theta}_{(2,3)} \bm{\hat{k}} + \dot{\theta}_{(3,4)} \bm{\hat{k}}
+    \end{array}
+\end{equation}
 
-Active joint velocities, in the corresponding order, can be viewed by running the following lines.
-```py
-active_joint_velocities = Matrix(jacobian_information[4][0])
-active_joint_velocities
-```
+Since this is a planar manipulator, the case of superfluous DOF does not come into picture.
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+If the actuating joint velocities vector is considered to be $\bm{\Omega_a} = \begin{Bmatrix}\dot{\theta}_{(1,2)} & \dot{\theta}_{(2,3)} & \dot{\theta}_{(3,4)}\end{Bmatrix}^T$, the velocity of the end-effector is given by
 
-$$\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matrix}\right]$$
 
-Robot dimensional parameters can be viewed by running the below line.
-```py
-robot_dimensional_parameters = Matrix(jacobian_information[7])
-robot_dimensional_parameters
-```
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+% $$
+% \begin{Bmatrix}\bm{v} \\ \bm{\omega}\end{Bmatrix} = \begin{Bmatrix}\bm{v}^{(1)} \\ \bm{\omega}^{(1)}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} \\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} \\1 & 1 \end{matrix}\right.
+% $$
+% \\
+% $$
+% \qquad\left.\begin{matrix} - a_{y} + r_{(3,4)y}\\ a_{x} - r_{(3,4)x}\\ 1\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(1,2)}\\\dot{\theta}_{(2,3)}\\\dot{\theta}_{(3,4)}\end{Bmatrix}
+% $$
 
-$$\left[\begin{matrix}a_{x} \\\\ a_{y} \\\\ r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]$$
+$$\resizebox{\columnwidth}{!}{$%
+\begin{Bmatrix}\bm{v} \\ \bm{\omega}\end{Bmatrix} = \begin{Bmatrix}\bm{v}^{(1)} \\ \bm{\omega}^{(1)}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y} \\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\1 & 1 & 1\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(1,2)}\\\dot{\theta}_{(2,3)}\\\dot{\theta}_{(3,4)}\end{Bmatrix}
+$}$$
 
-Jacobian as a Python function, where the arguments are the dimensional parameters of the robot, can be generated as shown below.
-```py
-jacobian_function = sympy.lambdify([robot_dimensional_parameters],symbolic_jacobian)
-```
+$$
+\Rightarrow \begin{Bmatrix}\bm{v} \\ \bm{\omega}\end{Bmatrix} = \bm{J_a} \bm{\Omega_a}
+$$
 
-#### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
+Therefore, the Jacobian of the manipulator is
 
-For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows.
+$$
+\bm{\widetilde{J}} = \bm{J_a} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y}\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\1 & 1 & 1\end{matrix}\right]
+$$
 
-```py
-end_effector_point = [1,2]
-configuration_parameters = [3,4,5,6]
-total_parameters = end_effector_point + configuration_parameters
-jacobian_at_the_given_configuration = jacobian_function(total_parameters)
-jacobian_at_the_given_configuration
-```
-
-The output produced by running the above code, is shown below.
-
-```py
-array([[ 2,  4],
-       [-2, -4],
-       [ 1,  1]])
-```
+Since it is a serial manipulator, the matrices $\bm{J_p}$, $\bm{A_a}$ and $\bm{A_p}$ do not come into picture.
