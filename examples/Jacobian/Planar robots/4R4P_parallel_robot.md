@@ -103,7 +103,7 @@ $$
 \end{matrix}
 $$
 
-The $\bf{\Omega}_{(i,j)}$ terms corresponding to prismatic joints, i.e., $\bf{\Omega_{(1,2)}}$, $\bf{\Omega_{(1,3)}}$, $\bf{\Omega_{(2,4)}}$ and $\bf{\Omega_{(3,4)}}$ are set to zero. The equations would then become
+The $\bf{\Omega}\_{(i,j)}$ terms corresponding to prismatic joints, i.e., $\bf{\Omega\_{(1,2)}}$, $\bf{\Omega\_{(1,3)}}$, $\bf{\Omega\_{(2,4)}}$ and $\bf{\Omega\_{(3,4)}}$ are set to zero. The equations would then become
 
 $$
 \begin{matrix}
@@ -144,7 +144,7 @@ $$
 \end{Bmatrix}
 $$
 
-The rank of the matrix $\begin{bmatrix}\bf{C_{\Omega}}\end{bmatrix}$ is 2, even though there are three equations. Hence, only two independent equations exist. The set of independent connecting paths can be found by performing row-reduced echelon form or echelon form on $\begin{bmatrix}\bf{C_{\Omega}}\end{bmatrix}^T$. The set of indices of pivot columns would indicate the set of corresponding independent paths in the context of angular velocity. By performing row-reduced echelon form on $\begin{bmatrix}\bf{C_{\Omega}}\end{bmatrix}^T$, the list of pivoted columns is found to be (1,3), and hence the paths 1 and 3 amount to a set of independent paths in the context of angular velocity.
+The rank of the matrix $[\bf{C_{\Omega}}]$ is 2, even though there are three equations. Hence, only two independent equations exist. The set of independent connecting paths can be found by performing row-reduced echelon form or echelon form on $[\bf{C_{\Omega}}]^T$. The set of indices of pivot columns would indicate the set of corresponding independent paths in the context of angular velocity. By performing row-reduced echelon form on $[\bf{C_{\Omega}}]^T$, the list of pivoted columns is found to be (1,3), and hence the paths 1 and 3 amount to a set of independent paths in the context of angular velocity.
 
 
 
