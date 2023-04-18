@@ -2,9 +2,6 @@
 
 ## Mathematics involved
 
-\subsection{Example 1: RRR planar serial manipulator}
-\label{subsec:RRR}
-
 \begin{figure}[hbt!]
   \centering
   \includegraphics[width=\linewidth]{RRR.png}
@@ -16,7 +13,7 @@ An RRR planar serial manipulator is considered as shown in the figure \ref{fig:R
 
 $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
 
-\emph{Connecting paths:}
+### Connecting paths:
 
 $$\text{Path 1:}\\;\\;\\;\\;L_1-L_2-L_3-L_4$$
 
