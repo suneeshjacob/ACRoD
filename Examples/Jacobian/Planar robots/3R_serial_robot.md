@@ -16,15 +16,11 @@
 
 An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
-$$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\A & L_2 & R & O\\O & A & L_3 & R\\O & O & A & L_4\end{matrix}\right]$$
+$$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
 
 \emph{Connecting paths:}
 
-$$
-\begin{matrix}
-    \text{Path 1:} \;\;\; L_1-L_2-L_3-L_4
-\end{matrix}
-$$
+$$\text{Path 1:} \;\;\; L_1-L_2-L_3-L_4$$
 
 Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $\begin{bmatrix}\bf{C}_{V}\end{bmatrix}$ and $\begin{bmatrix}\bf{C}_{\Omega}\end{bmatrix}$ are not required.
 
