@@ -92,7 +92,7 @@ $$
 \end{Bmatrix}
 $$
 
-Even though there are 4 equations, the rank of the matrix $\begin{bmatrix}\bf{C}_{\bf{V}}\end{bmatrix}$ is 3. This shows that only three independent connecting paths from base to end-effector exist and hence one of the paths should be redundant. The set of independent connecting paths can be found by performing the row-reduced echelon form or the row echelon form of $\begin{bmatrix}\bf{C}_{\bf{V}}\end{bmatrix}^T$. The set of indices of pivot columns indicates that the set of corresponding paths are independent. By performing row-reduced echelon form on $\begin{bmatrix}\bf{C}_{\bf{V}}\end{bmatrix}^T$, the list of pivot columns is $(1,2,3)$, and hence the paths 1, 2 and 3 amount to a set of independent paths.
+Even though there are 4 equations, the rank of the matrix $[\bf{C}\_{\bf{V}}]$ is 3. This shows that only three independent connecting paths from base to end-effector exist and hence one of the paths should be redundant. The set of independent connecting paths can be found by performing the row-reduced echelon form or the row echelon form of $[\bf{C}\_{\bf{V}}]^T$. The set of indices of pivot columns indicates that the set of corresponding paths are independent. By performing row-reduced echelon form on $[\bf{C}\_{\bf{V}}]^T$, the list of pivot columns is $(1,2,3)$, and hence the paths 1, 2 and 3 amount to a set of independent paths.
 
 
 
