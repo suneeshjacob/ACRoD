@@ -26,7 +26,7 @@ A figure of RRRRPPPP planar hybrid manipulator is shown in figure \ref{fig:RRRRP
 
 
 
-$$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\A & L_2 & O & P & O & O & O\\A & O & L_3 & P & O & O & O\\O & O & O & L_4 & R & R & O\\O & O & O & A & L_5 & O & R\\O & O & O & O & O & L_6 & R\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
+$$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
 ### Connecting paths:
 
