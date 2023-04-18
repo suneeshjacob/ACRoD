@@ -18,7 +18,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_
 
 \emph{Connecting paths:}
 
-$$\text{Path 1:}\\;\\;\\;\\;\\;L_1-L_2-L_3-L_4$$
+$$\text{Path 1:}\\;\\;\\;\\;L_1-L_2-L_3-L_4$$
 
 Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $[\bf{C}\_{V}]$ and $[\bf{C}\_{\Omega}]$ are not required.
 
