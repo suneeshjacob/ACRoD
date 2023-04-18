@@ -1,91 +1,60 @@
-# Automatic Computation for Robot Design (ACRoD)
+# 3R Serial Robot
 
-## Description
+## Mathematics involved
 
-This repository is dedicated to develop functions for automatic computations for designing robotic manipulators.
+<p align="center">
+    <img src="./RRR.png" alt="RRR planar serial manipulator" width="500px">
+</p>
 
-## Currently available functions
+An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
-- Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)
+$$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
 
-## Usage
+### Connecting paths:
 
-### Jacobian for planar manipulators
+$$\text{Path 1:}\\;\\;\\;\\;L_1-L_2-L_3-L_4$$
 
-The topological information of a robot is to be specified by using its robot-topology matrix. For a planar 2R serial manipulator, the robot topology matrix is given by
+Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $[\bf{C}\_{V}]$ and $[\bf{C}\_{\Omega}]$ are not required.
 
-$$\begin{bmatrix}
-9 & 1 & 0 \\
-1 & 9 & 1 \\
-0 & 1 & 9
-\end{bmatrix}$$
+The following are the linear and angular velocity contributions to the end-effector from each joint of the path, which are calculated by using the formulation shown in table \ref{velocities} and by using the convention that all the revolute joints of a planar manipulator would have their axes on the xy-plane, thereby reducing the unit vector along each axis to $\bf{\hat{n}}\_{(i,j)}=\bf{\hat{k}}$, as mentioned in equation 20 of the main document.
 
-The corresponding Jacobian function can be formulated as follows.
+$$\begin{matrix}
+  \bf{V_{12}}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) = \dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) \\
+  \bf{V_{23}}=\dot{\theta}\_{(2,3)} \bf{\hat{n}\_{(2,3)}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) = \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) \\
+  \bf{V_{34}}=\dot{\theta}\_{(3,4)} \bf{\hat{n}\_{(3,4)}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right) = \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)
+\end{matrix}
+$$
 
-Firstly, the required functions are imported as shown below.
-```py
-from jacobian_planar import jacobian
-from numpy import matrix
-from sympy import Matrix, lambdify
-```
+$$\begin{matrix}
+  \bf{\Omega_{12}}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} = \dot{\theta}\_{(1,2)} \bf{\hat{k}} \\
+  \bf{\Omega_{23}}=\dot{\theta}\_{(2,3)} \bf{\hat{n}\_{(2,3)}} = \dot{\theta}\_{(2,3)} \bf{\hat{k}} \\
+  \bf{\Omega_{34}}=\dot{\theta}\_{(3,4)} \bf{\hat{n}\_{(3,4)}} = \dot{\theta}\_{(3,4)} \bf{\hat{k}}
+\end{matrix}
+$$
 
-The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian function as follows.
-```py
-M = matrix('9 1 0;1 9 1;0 1 9')
-jacobian_information = jacobian(M)
-```
+Therefore, the linear and angular velocities are given by \eqref{eq:RRR_linvel} and \eqref{eq:RRR_angvel}, respectively.
 
-Symbolic Jacobian is extracted from `jacobian_information` as follows.
-```py
-symbolic_jacobian = jacobian_information[0]
-symbolic_jacobian
-```
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+$$\bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) + \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) + \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)$$
 
-$$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
 
-Active joint velocities, in the corresponding order, can be viewed by running the following lines.
-```py
-active_joint_velocities = Matrix(jacobian_information[4][0])
-active_joint_velocities
-```
+$$\bf{\omega}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} + \dot{\theta}\_{(2,3)} \bf{\hat{k}} + \dot{\theta}\_{(3,4)} \bf{\hat{k}}$$
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+Since this is a planar manipulator, the case of superfluous DOF does not come into picture.
 
-$$\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matrix}\right]$$
+If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \\{\dot{\theta}\_{(1,2)} \\; \dot{\theta}\_{(2,3)} \\; \dot{\theta}\_{(3,4)}\\}^T$, the velocity of the end-effector is given by
 
-Robot dimensional parameters can be viewed by running the below line.
-```py
-robot_dimensional_parameters = Matrix(jacobian_information[7])
-robot_dimensional_parameters
-```
+$$\begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y} \\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(1,2)}\\\\\dot{\theta}\_{(2,3)}\\\\\dot{\theta}\_{(3,4)}\end{Bmatrix}$$
 
-In an ipynb file of JupyterLab, the above code would produce the following output.
+$$
+\Rightarrow \begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \bf{J_a} \bf{\Omega_a}
+$$
 
-$$\left[\begin{matrix}a_{x} \\\\ a_{y} \\\\ r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]$$
+Therefore, the Jacobian of the manipulator is
 
-Jacobian as a Python function, where the arguments are the dimensional parameters of the robot, can be generated as shown below.
-```py
-jacobian_function = sympy.lambdify([robot_dimensional_parameters],symbolic_jacobian)
-```
+$$
+\bf{\widetilde{J}} = \bf{J_a} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y}\\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]
+$$
 
-#### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
+Since it is a serial manipulator, the matrices $\bf{J_p}$, $\bf{A_a}$ and $\bf{A_p}$ do not come into picture.
 
-For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows.
-
-```py
-end_effector_point = [1,2]
-configuration_parameters = [3,4,5,6]
-total_parameters = end_effector_point + configuration_parameters
-jacobian_at_the_given_configuration = jacobian_function(total_parameters)
-jacobian_at_the_given_configuration
-```
-
-The output produced by running the above code, is shown below.
-
-```py
-array([[ 2,  4],
-       [-2, -4],
-       [ 1,  1]])
-```
