@@ -18,9 +18,9 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_
 
 \emph{Connecting paths:}
 
-$$\text{Path 1:} \;\;\;\;\; L_1-L_2-L_3-L_4$$
+$$\text{Path 1:}        L_1-L_2-L_3-L_4$$
 
-Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $\begin{bmatrix}\bf{C}\_{V}\end{bmatrix}$ and $\begin{bmatrix}\bf{C}\_{\Omega}\end{bmatrix}$ are not required.
+Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $[\bf{C}\_{V}]$ and $[\bf{C}\_{\Omega}]$ are not required.
 
 The following are the linear and angular velocity contributions to the end-effector from each joint of the path, which are calculated by using the formulation shown in table \ref{velocities} and by using the convention that all the revolute joints of a planar manipulator would have their axes on the xy-plane, thereby reducing the unit vector along each axis to $\bf{\hat{n}}\_{(i,j)}=\bf{\hat{k}}$, as mentioned in equation 20 of the main document.
 
