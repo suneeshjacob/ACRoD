@@ -2,7 +2,9 @@
 
 ## Mathematics involved
 
-[RRR planar serial manipulator](./RRR.png)
+<p align="center">
+    <img src="./RRR.png" alt="RRR planar serial manipulator" width="500px">
+</p>
 
 An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
