@@ -40,14 +40,9 @@ $$
 
 Therefore, the linear and angular velocities are given by \eqref{eq:RRR_linvel} and \eqref{eq:RRR_angvel}, respectively.
 
-\begin{equation}
-    \label{eq:RRR_linvel}
-    \begin{array}{cc}
-        \bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) \\
-        + \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) \\
-        + \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)
-    \end{array}
-\end{equation}
+
+$$\bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) + \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) + \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)$$
+
 
 \begin{equation}
         \label{eq:RRR_angvel}
