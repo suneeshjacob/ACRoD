@@ -171,13 +171,13 @@ $$
 $$
 \\
 $$
-\left[\begin{matrix}0 & - a_{y} + r_{(5,7)y} & 0 & n_{(2,4)x} & 0\\0 & a_{x} - r_{(5,7)x} & 0 & n_{(2,4)y} & 0\\0 & 1 & 0 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(4,6)}\\\dot{\theta}_{(5,7)}\\\dot{\theta}_{(6,7)}\\\dot{d}_{(2,4)}\\\dot{d}_{(3,4)}\end{Bmatrix}
+\left[\begin{matrix}0 & - a_{y} + r_{(5,7)y} & 0 & n_{(2,4)x} & 0\\\\0 & a_{x} - r_{(5,7)x} & 0 & n_{(2,4)y} & 0\\\\0 & 1 & 0 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(4,6)}\\\\\dot{\theta}\_{(5,7)}\\\\\dot{\theta}\_{(6,7)}\\\\\dot{d}\_{(2,4)}\\\\\dot{d}\_{(3,4)}\end{Bmatrix}
 $$
 
 Constraint equations:
 
 $$
-\begin{Bmatrix}\bf{v}^{(2)}-\bf{v}^{(1)} \\ \bf{v}^{(3)}-\bf{v}^{(1)} \\ \bf{\omega}^{(3)}-\bf{\omega}^{(1)}\end{Bmatrix} = \bf{0}
+\begin{Bmatrix}\bf{v}^{(2)}-\bf{v}^{(1)} \\\\ \bf{v}^{(3)}-\bf{v}^{(1)} \\\\ \bf{\omega}^{(3)}-\bf{\omega}^{(1)}\end{Bmatrix} = \bf{0}
 $$
 \\
 $$
