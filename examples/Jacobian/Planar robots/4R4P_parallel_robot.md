@@ -26,12 +26,9 @@ A figure of RRRRPPPP planar hybrid manipulator is shown in figure \ref{fig:RRRRP
 
 
 
-\begin{equation}
-\label{eq:adjmat_RRRRPPPP}
-    \bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\A & L_2 & O & P & O & O & O\\A & O & L_3 & P & O & O & O\\O & O & O & L_4 & R & R & O\\O & O & O & A & L_5 & O & R\\O & O & O & O & O & L_6 & R\\O & O & O & O & O & O & L_7\end{matrix}\right]
-\end{equation}
+$$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\A & L_2 & O & P & O & O & O\\A & O & L_3 & P & O & O & O\\O & O & O & L_4 & R & R & O\\O & O & O & A & L_5 & O & R\\O & O & O & O & O & L_6 & R\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
-\emph{Connecting paths:}
+### Connecting paths:
 
 All possible paths connecting the end-effector link from the base link, are shown below.
 
@@ -153,37 +150,21 @@ The rank of the matrix $\begin{bmatrix}\bf{C_{\Omega}}\end{bmatrix}$ is 2, even 
 
 Therefore, the independent linear velocities are $\bf{v}^{(1)}$, $\bf{v}^{(2)}$ and $\bf{v}^{(3)}$, and the independent angular velocities are $\bf{\omega}^{(1)}$ and $\bf{\omega}^{(3)}$.
 
-\begin{equation}
-\begin{array}{cc}
-\bf{v}^{(1)}=\dot{d}_{(1,2)} \bf{\hat{n}_{(1,2)}} + \dot{d}_{(2,4)} \bf{\hat{n}_{(2,4)}} \\
+$$\bf{v}^{(1)}=\dot{d}_{(1,2)} \bf{\hat{n}_{(1,2)}} + \dot{d}_{(2,4)} \bf{\hat{n}_{(2,4)}} \\
 + \dot{\theta}_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,5)} \right) \\
-+ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)
-\end{array}
-\end{equation}
++ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)$$
 
-\begin{equation}
-\begin{array}{cc}
-\bf{v}^{(2)}=\dot{d}_{(1,3)} \bf{\hat{n}}_{(1,3)} + \dot{d}_{(3,4)} \bf{\hat{n}}_{(3,4)} \\
+$$\bf{v}^{(2)}=\dot{d}_{(1,3)} \bf{\hat{n}}_{(1,3)} + \dot{d}_{(3,4)} \bf{\hat{n}}_{(3,4)} \\
 + \dot{\theta}_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,5)} \right) \\
-+ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)
-\end{array}
-\end{equation}
++ \dot{\theta}_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(5,7)} \right)$$
 
-\begin{equation}
-\begin{array}{cc}
-\bf{v}^{(3)}=\dot{d}_{(1,2)} \bf{\hat{n}}_{(1,2)} + \dot{d}_{(2,4)} \bf{\hat{n}}_{(2,4)} \\
+$$\bf{v}^{(3)}=\dot{d}_{(1,2)} \bf{\hat{n}}_{(1,2)} + \dot{d}_{(2,4)} \bf{\hat{n}}_{(2,4)} \\
 + \dot{\theta}_{(4,6)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(4,6)} \right) \\
-+ \dot{\theta}_{(6,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(6,7)} \right)
-\end{array}
-\end{equation}
++ \dot{\theta}_{(6,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(6,7)} \right)$$
 
-\begin{equation}
-\bf{\omega}^{(1)} = \dot{\theta}_{(4,5)} \bf{\hat{k}} + \dot{\theta}_{(5,7)} \bf{\hat{k}}
-\end{equation}
+$$\bf{\omega}^{(1)} = \dot{\theta}_{(4,5)} \bf{\hat{k}} + \dot{\theta}_{(5,7)} \bf{\hat{k}}$$
 
-\begin{equation}
-\bf{\omega}^{(3)} = \dot{\theta}_{(4,6)} \bf{\hat{k}} + \dot{\theta}_{(6,7)} \bf{\hat{k}}
-\end{equation}
+$$\bf{\omega}^{(3)} = \dot{\theta}_{(4,6)} \bf{\hat{k}} + \dot{\theta}_{(6,7)} \bf{\hat{k}}$$
 
 $$
 \begin{Bmatrix}\bf{v}^{(1)} \\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(4,5)y} & n_{(1,2)x} & 0\\a_{x} - r_{(4,5)x} & n_{(1,2)y} & 0\\1 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(4,5)}\\\dot{d}_{(1,2)}\\\dot{d}_{(1,3)}\end{Bmatrix} + 
@@ -225,17 +206,7 @@ $$
 \bf{A_a} = \left[\begin{matrix}0 & - n_{(1,2)x} & n_{(1,3)x}\\0 & - n_{(1,2)y} & n_{(1,3)y}\\a_{y} - r_{(4,5)y} & 0 & 0\\- a_{x} + r_{(4,5)x} & 0 & 0\\-1 & 0 & 0\end{matrix}\right]
 $$
 
-
-
-
-
-
-
-
-
-$$\resizebox{\columnwidth}{!}{$
-\bf{A_p} = \left[\begin{matrix}0 & 0 & 0 & - n_{(2,4)x} & n_{(3,4)x} \\0 & 0 & 0 & - n_{(2,4)y} & n_{(3,4)y} \\- a_{y} + r_{(4,6)y} & a_{y} - r_{(5,7)y} & - a_{y} + r_{(6,7)y} & 0 & 0 \\a_{x} - r_{(4,6)x} & - a_{x} + r_{(5,7)x} & a_{x} - r_{(6,7)x} & 0 & 0 \\1 & -1 & 1 & 0 & 0 \end{matrix}\right]
-$}$$
+$$\bf{A_p} = \left[\begin{matrix}0 & 0 & 0 & - n_{(2,4)x} & n_{(3,4)x} \\0 & 0 & 0 & - n_{(2,4)y} & n_{(3,4)y} \\- a_{y} + r_{(4,6)y} & a_{y} - r_{(5,7)y} & - a_{y} + r_{(6,7)y} & 0 & 0 \\a_{x} - r_{(4,6)x} & - a_{x} + r_{(5,7)x} & a_{x} - r_{(6,7)x} & 0 & 0 \\1 & -1 & 1 & 0 & 0 \end{matrix}\right]$$
 
 $$
 \bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}_p}\bf{A_a}
