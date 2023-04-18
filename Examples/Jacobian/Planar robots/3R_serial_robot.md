@@ -45,7 +45,7 @@ $$\bf{\omega}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} + \dot{\theta}\_{(2,3)} \
 
 Since this is a planar manipulator, the case of superfluous DOF does not come into picture.
 
-If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \{\dot{\theta}\_{(1,2)} \\; \dot{\theta}\_{(2,3)} \\; \dot{\theta}\_{(3,4)}\}^T$, the velocity of the end-effector is given by
+If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \\{\dot{\theta}\_{(1,2)} \\; \dot{\theta}\_{(2,3)} \\; \dot{\theta}\_{(3,4)}\\}^T$, the velocity of the end-effector is given by
 
 $$\begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y} \\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(1,2)}\\\\\dot{\theta}\_{(2,3)}\\\\\dot{\theta}\_{(3,4)}\end{Bmatrix}$$
 
