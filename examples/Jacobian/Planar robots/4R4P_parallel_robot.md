@@ -1,3 +1,13 @@
+# 4R-4P Parallel Robot
+
+## Mathematics involved
+
+<p align="center">
+    <img src="./RRRRPPPP.png" alt="4R-4P planar parallel manipulator" width="500px">
+</p>
+
+
+
 \subsection{Example 2: RRRRPPPP planar hybrid manipulator}
 
 \begin{figure}[hbt!]
