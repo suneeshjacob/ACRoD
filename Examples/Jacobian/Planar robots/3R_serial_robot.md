@@ -32,9 +32,9 @@ $$\begin{matrix}
 $$
 
 $$\begin{matrix}
-  \bf{\Omega_{12}}=\dot{\theta}_{(1,2)} \bf{\hat{n}_{(1,2)}} = \dot{\theta}_{(1,2)} \bf{\hat{k}} \\
-  \bf{\Omega_{23}}=\dot{\theta}_{(2,3)} \bf{\hat{n}_{(2,3)}} = \dot{\theta}_{(2,3)} \bf{\hat{k}} \\
-  \bf{\Omega_{34}}=\dot{\theta}_{(3,4)} \bf{\hat{n}_{(3,4)}} = \dot{\theta}_{(3,4)} \bf{\hat{k}}
+  \bf{\Omega_{12}}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} = \dot{\theta}\_{(1,2)} \bf{\hat{k}} \\
+  \bf{\Omega_{23}}=\dot{\theta}\_{(2,3)} \bf{\hat{n}\_{(2,3)}} = \dot{\theta}\_{(2,3)} \bf{\hat{k}} \\
+  \bf{\Omega_{34}}=\dot{\theta}\_{(3,4)} \bf{\hat{n}\_{(3,4)}} = \dot{\theta}\_{(3,4)} \bf{\hat{k}}
 \end{matrix}
 $$
 
@@ -43,22 +43,22 @@ Therefore, the linear and angular velocities are given by \eqref{eq:RRR_linvel} 
 \begin{equation}
     \label{eq:RRR_linvel}
     \begin{array}{cc}
-        \bf{v}^{(1)}=\dot{\theta}_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(1,2)} \right) \\
-        + \dot{\theta}_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(2,3)} \right) \\
-        + \dot{\theta}_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}_{(3,4)} \right)
+        \bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) \\
+        + \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) \\
+        + \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)
     \end{array}
 \end{equation}
 
 \begin{equation}
         \label{eq:RRR_angvel}
     \begin{array}{cc}
-        \bf{\omega}^{(1)}=\dot{\theta}_{(1,2)} \bf{\hat{k}} + \dot{\theta}_{(2,3)} \bf{\hat{k}} + \dot{\theta}_{(3,4)} \bf{\hat{k}}
+        \bf{\omega}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} + \dot{\theta}\_{(2,3)} \bf{\hat{k}} + \dot{\theta}\_{(3,4)} \bf{\hat{k}}
     \end{array}
 \end{equation}
 
 Since this is a planar manipulator, the case of superfluous DOF does not come into picture.
 
-If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \begin{Bmatrix}\dot{\theta}_{(1,2)} & \dot{\theta}_{(2,3)} & \dot{\theta}_{(3,4)}\end{Bmatrix}^T$, the velocity of the end-effector is given by
+If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \begin{Bmatrix}\dot{\theta}\_{(1,2)} & \dot{\theta}\_{(2,3)} & \dot{\theta}\_{(3,4)}\end{Bmatrix}^T$, the velocity of the end-effector is given by
 
 
 
