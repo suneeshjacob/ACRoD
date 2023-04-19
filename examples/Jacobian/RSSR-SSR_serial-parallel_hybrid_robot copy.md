@@ -20,7 +20,7 @@ The RSSR-SSR Serial-Parallel Hybrid Robot is taken from [[1]](#1), and a picture
 
 A schematic diagram of RSSR-SSR spatial parallel manipulator is shown in figure \ref{fig:RSSRSSR}. The corresponding adjacency matrix is given by
 
-$$M = \left[\begin{matrix}L_1 & R & R & O & R & O\\A & L_2 & O & O & O & S\\A & O & L_3 & S & O & O\\O & O & O & L_4 & O & S\\O & O & O & O & L_5 & S\\O & O & O & O & O & L_6\end{matrix}\right]$$
+$$M = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & S\\\\A & O & L_3 & S & O & O\\\\O & O & O & L_4 & O & S\\\\O & O & O & O & L_5 & S\\\\O & O & O & O & O & L_6\end{matrix}\right]$$
 
 All the steps that are followed in the previous example would follow here as well, except in step 7, the superfluous DOF comes into picture. If step 7 is not done, then the system of equations shown in \eqref{eq:velocities_v2toN} would be insufficient to represent the passive joint velocities in terms of active joint velocities. This is due to the fact that the fourth link has rotation along its longitudinal axis not controllable with the actuators yet does not affect the end-effector's velocity. Performing pseudo-inverse can fix this issue but pseudo-inverse could be a discontinuous operation near singular values. Also to enable the calculation of mobility of the robotic mechanism, the additional equation for each such superfluous DOF is calculated as per the method shown in algorithm 3 of the main document.
 
