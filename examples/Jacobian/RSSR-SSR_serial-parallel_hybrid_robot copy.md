@@ -42,7 +42,7 @@ It can be seen that the coupling matrix has only two spherical joints and no oth
 
 $$\bf{\omega}\_{s} = \bf{\Omega}\_{(1,3)} + \bf{\Omega}\_{(3,4)} \Rightarrow \bf{\omega}\_{s} = \dot{\theta}\_{(1,3)}\bf{\hat{n}}\_{(1,3)} + \bf{\omega}\_{(3,4)}$$
 
-Therefore, the additional equation corresponding to this superfluous DOF can be formulated as shown in equation \eqref{eq:supfludofeqn_forexample3}. This needs to be added to the system of equations shown in equation \eqref{eq:velocities_v2toN}, in order to make $\bm{A_p}$ a square matrix, with which the passive joint velocities can be written in terms of active joint velocities.
+Therefore, the additional equation corresponding to this superfluous DOF can be formulated as shown in equation \eqref{eq:supfludofeqn_forexample3}. This needs to be added to the system of equations shown in equation \eqref{eq:velocities_v2toN}, in order to make $\bf{A_p}$ a square matrix, with which the passive joint velocities can be written in terms of active joint velocities.
 
 $$\bf{\omega}\_{s}\cdot \left(\bf{r}\_{(3,4)}-\bf{r}\_{(4,6)}\right) = 0$$
 
