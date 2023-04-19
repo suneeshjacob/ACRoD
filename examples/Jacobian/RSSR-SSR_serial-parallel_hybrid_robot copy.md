@@ -27,11 +27,11 @@ All the steps that are followed in the previous example would follow here as wel
 In step 7, since the manipulator has more than two spherical joints, the list of all possible combinations C of dividing the manipulator into two parts is considered. Since there are six links and since 6 is an odd number, ${}^{6}C_{1}+{}^{6}C_{2}+{}^{6}C_{3}=41$ distinct combinations exist, out of which the combination $[\{4\}, \{1,2,3,5,6\}]$ is discussed in detail in this sub-section. This combination has $c_1 = \{4\}$ and $c_2 = \{1,2,3,5,6\}$. And by grouping the links of each part together, the topology-matrix can be rewritten as shown in equation \eqref{eq:adjmat_RSSRSSR_superfluous}, from which the coupling matrix can be extracted to be as shown in \eqref{eq:couplingmatrix}.
 
 $$\widetilde{M} = \begin{bmatrix}
-    L_4 & O & O & S & O & S \\
-    O & L_1 & R & R & R & O \\
-    O & A & L_2 & O & O & S \\
-    O & A & O & L_3 & O & O \\
-    O & O & O & O & L_5 & S \\
+    L_4 & O & O & S & O & S \\\\
+    O & L_1 & R & R & R & O \\\\
+    O & A & L_2 & O & O & S \\\\
+    O & A & O & L_3 & O & O \\\\
+    O & O & O & O & L_5 & S \\\\
     O & O & O & O & O & L_6
     \end{bmatrix}$$
 
