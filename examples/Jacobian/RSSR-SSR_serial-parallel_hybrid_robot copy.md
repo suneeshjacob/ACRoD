@@ -40,11 +40,11 @@ $$\widetilde{C} = \left[\begin{matrix}O & O & S & O & S\end{matrix}\right]$$
 It can be seen that the coupling matrix has only two spherical joints and no other joint. This shows that the two parts $c_1$ and $c_2$ are connected by two spherical joints alone and no other joint. And it can also be seen that both the base link (first link) and the end-effector link (last link), i.e., both the links $1$ and $6$, lie in one part of the combination, i.e., in $c_2$. Hence, $c_{be}=c_2$. The corresponding link numbers for each of the two spherical joints are $3,4$ and $4,6$. Since $3,6\in c_{be}$, the sequences $(i,j)$ and $(k,l)$ are considered to be $(3,4)$ and $(4,6)$, respectively. Since $j$ and $k$ are the same link (link 4), the superfluous link $s$ would be link $4$. Only one of the connecting paths $P$ happens to contain the link $4$ for this particular case, and that is $(1,3,4,6)$. If the path is truncated at the superfluous link, it would become $(1,3,4)$. Hence, absolute angular velocity of link 4, formulated through this truncated path, is given by equation \eqref{eq:angvelsupflulink_forexample3}.
 
 
-$$\bm{\omega}\_{s} = \bm{\Omega}\_{(1,3)} + \bm{\Omega}\_{(3,4)} \Rightarrow \bm{\omega}\_{s} = \dot{\theta}\_{(1,3)}\bm{\hat{n}}\_{(1,3)} + \bm{\omega}\_{(3,4)}$$
+$$\bf{\omega}\_{s} = \bf{\Omega}\_{(1,3)} + \bf{\Omega}\_{(3,4)} \Rightarrow \bf{\omega}\_{s} = \dot{\theta}\_{(1,3)}\bf{\hat{n}}\_{(1,3)} + \bf{\omega}\_{(3,4)}$$
 
 Therefore, the additional equation corresponding to this superfluous DOF can be formulated as shown in equation \eqref{eq:supfludofeqn_forexample3}. This needs to be added to the system of equations shown in equation \eqref{eq:velocities_v2toN}, in order to make $\bm{A_p}$ a square matrix, with which the passive joint velocities can be written in terms of active joint velocities.
 
-$$\bm{\omega}\_{s}\cdot \left(\bm{r}\_{(3,4)}-\bm{r}\_{(4,6)}\right) = 0$$
+$$\bf{\omega}\_{s}\cdot \left(\bf{r}\_{(3,4)}-\bf{r}\_{(4,6)}\right) = 0$$
 
 ## References
 <a id="1">[1]</a> 
