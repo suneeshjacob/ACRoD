@@ -1,60 +1,80 @@
-# 3R Serial Robot
+# RSSR-SSR Serial-Parallel Hybrid Robot
 
 ## Mathematics involved
 
 <p align="center">
-    <img src="./RRR.png" alt="RRR planar serial manipulator" width="500px">
+    <img src="./RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
 </p>
 
-An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
-
-$$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
-
-### Connecting paths:
-
-$$\text{Path 1:}\\;\\;\\;\\;L_1-L_2-L_3-L_4$$
-
-Since this has only one connecting path, if the manipulator represented by the matrix is valid then it must be a serial manipulator. Hence, there would be only one independent set of formulation of linear and angular velocities, and formulation of $[\bf{C}\_{V}]$ and $[\bf{C}\_{\Omega}]$ are not required.
-
-The following are the linear and angular velocity contributions to the end-effector from each joint of the path, which are calculated by using the formulation shown in table \ref{velocities} and by using the convention that all the revolute joints of a planar manipulator would have their axes on the xy-plane, thereby reducing the unit vector along each axis to $\bf{\hat{n}}\_{(i,j)}=\bf{\hat{k}}$, as mentioned in equation 20 of the main document.
-
-$$\begin{matrix}
-  \bf{V_{12}}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) = \dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) \\
-  \bf{V_{23}}=\dot{\theta}\_{(2,3)} \bf{\hat{n}\_{(2,3)}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) = \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) \\
-  \bf{V_{34}}=\dot{\theta}\_{(3,4)} \bf{\hat{n}\_{(3,4)}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right) = \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)
-\end{matrix}
-$$
-
-$$\begin{matrix}
-  \bf{\Omega_{12}}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} = \dot{\theta}\_{(1,2)} \bf{\hat{k}} \\
-  \bf{\Omega_{23}}=\dot{\theta}\_{(2,3)} \bf{\hat{n}\_{(2,3)}} = \dot{\theta}\_{(2,3)} \bf{\hat{k}} \\
-  \bf{\Omega_{34}}=\dot{\theta}\_{(3,4)} \bf{\hat{n}\_{(3,4)}} = \dot{\theta}\_{(3,4)} \bf{\hat{k}}
-\end{matrix}
-$$
-
-Therefore, the linear and angular velocities are given by \eqref{eq:RRR_linvel} and \eqref{eq:RRR_angvel}, respectively.
+The RSSR-SSR Serial-Parallel Hybrid Robot is taken from [[1]](#1), and a picture [[2]](#2) of the robot is shown in the above figure. The corresponding adjacency matrix is given by
 
 
-$$\bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) + \dot{\theta}\_{(2,3)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(2,3)} \right) + \dot{\theta}\_{(3,4)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right)$$
+\subsection{Example 3: RSSR-SSR spatial parallel manipulator}
 
+\begin{figure}[hbt!]
+  \centering
+  \includegraphics[width=\linewidth]{RSSRSSR.png}
+  \caption{RSSR-SSR spatial parallel manipulator}
+  \label{fig:RSSRSSR}
+\end{figure}
 
-$$\bf{\omega}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{k}} + \dot{\theta}\_{(2,3)} \bf{\hat{k}} + \dot{\theta}\_{(3,4)} \bf{\hat{k}}$$
+A schematic diagram of RSSR-SSR spatial parallel manipulator is shown in figure \ref{fig:RSSRSSR}. The corresponding adjacency matrix is given by
 
-Since this is a planar manipulator, the case of superfluous DOF does not come into picture.
+% \begin{equation}
+% \label{eq:adjmat_RSSRSSR}
+%     \resizebox{\columnwidth}{!}{$%
+%     M = \left[\begin{matrix}L_1 & R & R & O & R & O\\A & L_2 & O & O & O & S\\A & O & L_3 & S & O & O\\O & O & O & L_4 & O & S\\O & O & O & O & L_5 & S\\O & O & O & O & O & L_6\end{matrix}\right]
+%     $}
+% \end{equation}
 
-If the actuating joint velocities vector is considered to be $\bf{\Omega_a} = \\{\dot{\theta}\_{(1,2)} \\; \dot{\theta}\_{(2,3)} \\; \dot{\theta}\_{(3,4)}\\}^T$, the velocity of the end-effector is given by
+\begin{equation}
+\label{eq:adjmat_RSSRSSR}
+    M = \left[\begin{matrix}L_1 & R & R & O & R & O\\A & L_2 & O & O & O & S\\A & O & L_3 & S & O & O\\O & O & O & L_4 & O & S\\O & O & O & O & L_5 & S\\O & O & O & O & O & L_6\end{matrix}\right]
+\end{equation}
 
-$$\begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y} \\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(1,2)}\\\\\dot{\theta}\_{(2,3)}\\\\\dot{\theta}\_{(3,4)}\end{Bmatrix}$$
+All the steps that are followed in the previous example would follow here as well, except in step 7, the superfluous DOF comes into picture. If step 7 is not done, then the system of equations shown in \eqref{eq:velocities_v2toN} would be insufficient to represent the passive joint velocities in terms of active joint velocities. This is due to the fact that the fourth link has rotation along its longitudinal axis not controllable with the actuators yet does not affect the end-effector's velocity. Performing pseudo-inverse can fix this issue but pseudo-inverse could be a discontinuous operation near singular values. Also to enable the calculation of mobility of the robotic mechanism, the additional equation for each such superfluous DOF is calculated as per the method shown in algorithm 3 of the main document.
 
-$$
-\Rightarrow \begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \bf{J_a} \bf{\Omega_a}
-$$
+In step 7, since the manipulator has more than two spherical joints, the list of all possible combinations C of dividing the manipulator into two parts is considered. Since there are six links and since 6 is an odd number, ${}^{6}C_{1}+{}^{6}C_{2}+{}^{6}C_{3}=41$ distinct combinations exist, out of which the combination $[\{4\}, \{1,2,3,5,6\}]$ is discussed in detail in this sub-section. This combination has $c_1 = \{4\}$ and $c_2 = \{1,2,3,5,6\}$. And by grouping the links of each part together, the topology-matrix can be rewritten as shown in equation \eqref{eq:adjmat_RSSRSSR_superfluous}, from which the coupling matrix can be extracted to be as shown in \eqref{eq:couplingmatrix}.
 
-Therefore, the Jacobian of the manipulator is
+\begin{equation}
+\label{eq:adjmat_RSSRSSR_superfluous}
+    \widetilde{M} = \begin{bmatrix}
+    L_4 & O & O & S & O & S \\
+    O & L_1 & R & R & R & O \\
+    O & A & L_2 & O & O & S \\
+    O & A & O & L_3 & O & O \\
+    O & O & O & O & L_5 & S \\
+    O & O & O & O & O & L_6
+    \end{bmatrix}
+\end{equation}
 
-$$
-\bf{\widetilde{J}} = \bf{J_a} = \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y}\\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]
-$$
+\begin{equation}
+\label{eq:couplingmatrix}
+    \widetilde{C} = \left[\begin{matrix}O & O & S & O & S\end{matrix}\right]
+\end{equation}
 
-Since it is a serial manipulator, the matrices $\bf{J_p}$, $\bf{A_a}$ and $\bf{A_p}$ do not come into picture.
+It can be seen that the coupling matrix has only two spherical joints and no other joint. This shows that the two parts $c_1$ and $c_2$ are connected by two spherical joints alone and no other joint. And it can also be seen that both the base link (first link) and the end-effector link (last link), i.e., both the links $1$ and $6$, lie in one part of the combination, i.e., in $c_2$. Hence, $c_{be}=c_2$. The corresponding link numbers for each of the two spherical joints are $3,4$ and $4,6$. Since $3,6\in c_{be}$, the sequences $(i,j)$ and $(k,l)$ are considered to be $(3,4)$ and $(4,6)$, respectively. Since $j$ and $k$ are the same link (link 4), the superfluous link $s$ would be link $4$. Only one of the connecting paths $P$ happens to contain the link $4$ for this particular case, and that is $(1,3,4,6)$. If the path is truncated at the superfluous link, it would become $(1,3,4)$. Hence, absolute angular velocity of link 4, formulated through this truncated path, is given by equation \eqref{eq:angvelsupflulink_forexample3}.
 
+\begin{equation}
+    \label{eq:angvelsupflulink_forexample3}
+    \begin{array}{cc}
+    \bm{\omega}_{s} = \bm{\Omega}_{(1,3)} + \bm{\Omega}_{(3,4)} \\
+    \Rightarrow \bm{\omega}_{s} = \dot{\theta}_{(1,3)}\bm{\hat{n}}_{(1,3)} + \bm{\omega}_{(3,4)}
+    \end{array}
+\end{equation}
+
+Therefore, the additional equation corresponding to this superfluous DOF can be formulated as shown in equation \eqref{eq:supfludofeqn_forexample3}. This needs to be added to the system of equations shown in equation \eqref{eq:velocities_v2toN}, in order to make $\bm{A_p}$ a square matrix, with which the passive joint velocities can be written in terms of active joint velocities.
+
+\begin{equation}
+    \label{eq:supfludofeqn_forexample3}
+    \begin{array}{cc}
+    \bm{\omega}_{s}\cdot \left(\bm{r}_{(3,4)}-\bm{r}_{(4,6)}\right) = 0
+    \end{array}
+\end{equation}
+
+## References
+<a id="1">[1]</a> 
+Muralidharan V, Bandyopadhyay S (2019) "A two-degree-of-freedom rssr-ssr manipulator for sun-tracking." In: Badodkar DN, Dwarakanath TA (eds) Machines, Mechanism and Robotics. Springer Singapore, Singapore, pp 135–147
+
+<a id="2">[2]</a> 
+Jacob, Akkarapakam Suneesh, and Rituparna Datta. "A Generalised Method for Multi-objective Optimisation of Performance Parameters for Dimensional Synthesis of Robotic Manipulators Around a Specified End-effector Point" International Journal of Intelligent Robotics and Applications ***(submitted)**** (2022).
