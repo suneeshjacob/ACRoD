@@ -1,12 +1,12 @@
-# 4R-4P Parallel Robot
+# 4R-4P Serial-Parallel Hybrid Robot
 
 ## Mathematics involved
 
 <p align="center">
-    <img src="./RRRRPPPP.png" alt="4R-4P planar hybrid manipulator" width="500px">
+    <img src="./RRRRPPPP.png" alt="4R-4P planar serial-parallel hybrid manipulator" width="500px">
 </p>
 
-A figure of RRRRPPPP planar hybrid manipulator [[1]](#1) is shown above. The corresponding adjacency matrix is given by
+A figure of RRRRPPPP planar serial-parallel hybrid manipulator [[1]](#1) is shown above. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
