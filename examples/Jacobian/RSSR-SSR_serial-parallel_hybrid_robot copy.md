@@ -70,11 +70,9 @@ $$
 \end{Bmatrix}
 $$
 
-Even though there are 4 equations, the rank of the matrix $[\bf{C}\_{\bf{V}}]$ is 3. This shows that only three independent connecting paths from base to end-effector exist and hence one of the paths should be redundant. The set of independent connecting paths can be found by performing the row-reduced echelon form or the row echelon form of $[\bf{C}\_{\bf{V}}]^T$. The set of indices of pivot columns indicates that the set of corresponding paths are independent. By performing row-reduced echelon form on $[\bf{C}\_{\bf{V}}]^T$, the list of pivot columns is $(1,2,3)$, and hence the paths 1, 2 and 3 amount to a set of independent paths.
+The rank of the matrix $[\bf{C}\_{\bf{V}}]$ is 3. This shows that all the three connecting paths from base to end-effector are independent. Hence, all the three linear velocity equations are considered for Jacobian formulation.
 
-
-
-Now, given that the independent connecting paths are the first three paths, the angular velocity connectivity matrix is considered as follows.
+Now, the angular velocity connectivity matrix is considered as follows.
 
 $$
 \begin{matrix}
@@ -84,15 +82,7 @@ $$
 \end{matrix}
 $$
 
-The $\bf{\Omega}\_{(i,j)}$ terms corresponding to prismatic joints, i.e., $\bf{\Omega\_{(1,2)}}$, $\bf{\Omega\_{(1,3)}}$, $\bf{\Omega\_{(2,4)}}$ and $\bf{\Omega\_{(3,4)}}$ are set to zero. The equations would then become
-
-$$
-\begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,6)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(1,3)}+\bf{\Omega}_{(3,4)}+\bf{\Omega}_{(4,6)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(1,5)}+\bf{\Omega}_{(5,6)} \\
-\end{matrix}
-$$
+Since there are no prismatic joints, the equations are taken as they are, without any reduction. And the matrix $[\bf{C_{\Omega}}]$ is formulated as follows.
 
 $$
 \Rightarrow \begin{Bmatrix}
@@ -128,9 +118,7 @@ $$
 \end{Bmatrix}
 $$
 
-The rank of the matrix $[\bf{C_{\Omega}}]$ is 2, even though there are three equations. Hence, only two independent equations exist. The set of independent connecting paths can be found by performing row-reduced echelon form or echelon form on $[\bf{C_{\Omega}}]^T$. The set of indices of pivot columns would indicate the set of corresponding independent paths in the context of angular velocity. By performing row-reduced echelon form on $[\bf{C_{\Omega}}]^T$, the list of pivoted columns is found to be (1,3), and hence the paths 1 and 3 amount to a set of independent paths in the context of angular velocity.
-
-
+The rank of the matrix $[\bf{C_{\Omega}}]$ is 3. This shows that all the three connecting paths from base to end-effector are independent. Hence, all the three angular velocity equations are considered for Jacobian formulation.
 
 Therefore, the independent linear velocities are $\bf{v}^{(1)}$, $\bf{v}^{(2)}$ and $\bf{v}^{(3)}$, and the independent angular velocities are $\bf{\omega}^{(1)}$ and $\bf{\omega}^{(3)}$.
 
