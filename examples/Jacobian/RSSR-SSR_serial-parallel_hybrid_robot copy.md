@@ -120,17 +120,19 @@ $$
 
 The rank of the matrix $[\bf{C_{\Omega}}]$ is 3. This shows that all the three connecting paths from base to end-effector are independent. Hence, all the three angular velocity equations are considered for Jacobian formulation.
 
-Therefore, the independent linear velocities are $\bf{v}^{(1)}$, $\bf{v}^{(2)}$ and $\bf{v}^{(3)}$, and the independent angular velocities are $\bf{\omega}^{(1)}$ and $\bf{\omega}^{(3)}$.
+Therefore, the independent linear velocities are $\bf{v}^{(1)}$, $\bf{v}^{(2)}$ and $\bf{v}^{(3)}$, and the independent angular velocities are $\bf{\omega}^{(1)}$, $\bf{\omega}^{(2)}$ and $\bf{\omega}^{(3)}$.
 
-$$\bf{v}^{(1)}=\dot{d}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} + \dot{d}\_{(2,4)} \bf{\hat{n}\_{(2,4)}} + \dot{\theta}\_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,5)} \right) + \dot{\theta}\_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(5,7)} \right)$$
+$$\bf{v}^{(1)}=\dot{\theta}\_{(1,2)} \bf{\hat{n}\_{(1,2)}} \times \left( \bf{a} - \bf{r}\_{(1,2)} \right) + \omega\_{(2,6)} \times \left( \bf{a} - \bf{r}\_{(2,6)} \right)$$
 
-$$\bf{v}^{(2)}=\dot{d}\_{(1,3)} \bf{\hat{n}}\_{(1,3)} + \dot{d}\_{(3,4)} \bf{\hat{n}}\_{(3,4)} + \dot{\theta}\_{(4,5)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,5)} \right) + \dot{\theta}\_{(5,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(5,7)} \right)$$
+$$\bf{v}^{(2)}=\dot{\theta}\_{(1,3)} \bf{\hat{n}\_{(1,3)}} \times \left( \bf{a} - \bf{r}\_{(1,3)} \right) + \omega\_{(3,4)} \times \left( \bf{a} - \bf{r}\_{(3,4)} \right) + \omega\_{(4,6)} \times \left( \bf{a} - \bf{r}\_{(4,6)} \right)$$
 
-$$\bf{v}^{(3)}=\dot{d}\_{(1,2)} \bf{\hat{n}}\_{(1,2)} + \dot{d}\_{(2,4)} \bf{\hat{n}}\_{(2,4)} + \dot{\theta}\_{(4,6)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(4,6)} \right) + \dot{\theta}\_{(6,7)} \bf{\hat{k}} \times \left( \bf{a} - \bf{r}\_{(6,7)} \right)$$
+$$\bf{v}^{(3)}=\dot{\theta}\_{(1,5)} \bf{\hat{n}\_{(1,5)}} \times \left( \bf{a} - \bf{r}\_{(1,5)} \right) + \omega\_{(5,6)} \times \left( \bf{a} - \bf{r}\_{(5,6)} \right)$$
 
-$$\bf{\omega}^{(1)} = \dot{\theta}\_{(4,5)} \bf{\hat{k}} + \dot{\theta}\_{(5,7)} \bf{\hat{k}}$$
+$$\bf{\omega}^{(1)} = \dot{\theta}\_{(1,2)} \bf{\hat{k}} + \omega\_{(2,6)}$$
 
-$$\bf{\omega}^{(3)} = \dot{\theta}\_{(4,6)} \bf{\hat{k}} + \dot{\theta}\_{(6,7)} \bf{\hat{k}}$$
+$$\bf{\omega}^{(2)} = \dot{\theta}\_{(1,3)} \bf{\hat{k}} + \omega\_{(3,5)} + \omega\_{(5,6)}$$
+
+$$\bf{\omega}^{(3)} = \dot{\theta}\_{(1,5)} \bf{\hat{k}} + \omega\_{(5,6)}$$
 
 $$
 \begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}- a_{y} + r_{(4,5)y} & n_{(1,2)x} & 0\\\\a_{x} - r_{(4,5)x} & n_{(1,2)y} & 0\\\\1 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(4,5)}\\\\\dot{d}\_{(1,2)}\\\\\dot{d}\_{(1,3)}\end{Bmatrix} + \left[\begin{matrix}0 & - a_{y} + r_{(5,7)y} & 0 & n_{(2,4)x} & 0\\\\0 & a_{x} - r_{(5,7)x} & 0 & n_{(2,4)y} & 0\\\\0 & 1 & 0 & 0 & 0\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(4,6)}\\\\\dot{\theta}\_{(5,7)}\\\\\dot{\theta}\_{(6,7)}\\\\\dot{d}\_{(2,4)}\\\\\dot{d}\_{(3,4)}\end{Bmatrix}
