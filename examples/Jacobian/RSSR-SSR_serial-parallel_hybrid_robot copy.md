@@ -143,7 +143,7 @@ $$
 Constraint equations:
 
 $$
-\begin{Bmatrix}\bf{v}^{(2)}-\bf{v}^{(1)} \\\\ \bf{v}^{(3)}-\bf{v}^{(1)} \\\\ \bf{\omega}^{(3)}-\bf{\omega}^{(1)}\end{Bmatrix} = \bf{0}
+\begin{Bmatrix}\bf{v}^{(2)}-\bf{v}^{(1)} \\\\ \bf{v}^{(3)}-\bf{v}^{(1)} \\\\ \bf{\omega}^{(2)}-\bf{\omega}^{(1)} \\\\ \bf{\omega}^{(3)}-\bf{\omega}^{(1)}\end{Bmatrix} = \bf{0}
 $$
 
 $$
