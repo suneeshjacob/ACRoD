@@ -20,10 +20,9 @@ All possible paths connecting the end-effector link from the base link, are show
 
 $$
 \begin{matrix}
-    \text{Path 1:} \\;\\;\\; L_1-L_2-L_4-L_5-L_7 \\ 
-    \text{Path 2:} \\;\\;\\; L_1-L_3-L_4-L_5-L_7 \\ 
-    \text{Path 3:} \\;\\;\\; L_1-L_2-L_4-L_6-L_7 \\
-    \text{Path 4:} \\;\\;\\; L_1-L_3-L_4-L_6-L_7
+    \text{Path 1:} \\;\\;\\; L_1-L_2-L_6 \\ 
+    \text{Path 2:} \\;\\;\\; L_1-L_3-L_4-L_6 \\ 
+    \text{Path 3:} \\;\\;\\; L_1-L_5-L_6
 \end{matrix}
 $$
 
@@ -31,10 +30,9 @@ In order to check for possibility of redundant paths, the rank of the connectivi
 
 $$
 \begin{matrix}
-    \bf{v}^{(1)}=\bf{V}_{(1,2)}+\bf{V}_{(2,4)}+\bf{V}_{(4,5)}+\bf{V}_{(5,7)} \\ 
-    \bf{v}^{(2)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,5)}+\bf{V}_{(5,7)} \\ 
-    \bf{v}^{(3)}=\bf{V}_{(1,2)}+\bf{V}_{(2,4)}+\bf{V}_{(4,6)}+\bf{V}_{(6,7)} \\ 
-    \bf{v}^{(4)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,6)}+\bf{V}_{(6,7)} \\ 
+    \bf{v}^{(1)}=\bf{V}_{(1,2)}+\bf{V}_{(2,6)} \\ 
+    \bf{v}^{(2)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,6)} \\ 
+    \bf{v}^{(3)}=\bf{V}_{(1,5)}+\bf{V}_{(5,6)} \\
 \end{matrix}
 $$
 
@@ -42,8 +40,7 @@ $$
 \Rightarrow \begin{Bmatrix}
     \bf{v}^{(1)} \\
     \bf{v}^{(2)} \\
-    \bf{v}^{(3)} \\
-    \bf{v}^{(4)}
+    \bf{v}^{(3)} 
 \end{Bmatrix} = 
 \begin{bmatrix}
     1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 \\
