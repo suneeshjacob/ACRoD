@@ -155,8 +155,6 @@ $$
 $$\begin{Bmatrix} \dot{\theta}_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
 $$
 
------
-
 In step 7, since the manipulator has more than two spherical joints, the list of all possible combinations C of dividing the manipulator into two parts is considered. Since there are six links and since 6 is an odd number, ${}^{6}C_{1}+{}^{6}C_{2}+{}^{6}C_{3}=41$ distinct combinations exist, out of which the combination $[\{4\}, \{1,2,3,5,6\}]$ is discussed in detail in this sub-section. This combination has $c_1 = \{4\}$ and $c_2 = \{1,2,3,5,6\}$. And by grouping the links of each part together, the topology-matrix can be rewritten as shown in equation \eqref{eq:adjmat_RSSRSSR_superfluous}, from which the coupling matrix can be extracted to be as shown in \eqref{eq:couplingmatrix}.
 
 $$\widetilde{M} = \begin{bmatrix}
