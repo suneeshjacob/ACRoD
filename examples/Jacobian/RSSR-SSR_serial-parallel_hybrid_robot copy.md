@@ -155,25 +155,6 @@ $$
 $$\begin{Bmatrix} \dot{\theta}_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
 $$
 
-$$
-\bf{J_a} = \left[\begin{matrix}- a_{y} + r_{(4,5)y} & n_{(1,2)x} & 0\\\\a_{x} - r_{(4,5)x} & n_{(1,2)y} & 0\\\\1 & 0 & 0\end{matrix}\right]
-$$
-
-
-$$
-\bf{J_p} = \left[\begin{matrix}0 & - a_{y} + r_{(5,7)y} & 0 & n_{(2,4)x} & 0\\\\0 & a_{x} - r_{(5,7)x} & 0 & n_{(2,4)y} & 0\\\\0 & 1 & 0 & 0 & 0\end{matrix}\right]
-$$
-
-$$
-\bf{A_a} = \left[\begin{matrix}0 & - n_{(1,2)x} & n_{(1,3)x}\\\\0 & - n_{(1,2)y} & n_{(1,3)y}\\\\a_{y} - r_{(4,5)y} & 0 & 0\\\\- a_{x} + r_{(4,5)x} & 0 & 0\\\\-1 & 0 & 0\end{matrix}\right]
-$$
-
-$$\bf{A_p} = \left[\begin{matrix}0 & 0 & 0 & - n_{(2,4)x} & n_{(3,4)x} \\\\0 & 0 & 0 & - n_{(2,4)y} & n_{(3,4)y} \\\\- a_{y} + r_{(4,6)y} & a_{y} - r_{(5,7)y} & - a_{y} + r_{(6,7)y} & 0 & 0 \\\\a_{x} - r_{(4,6)x} & - a_{x} + r_{(5,7)x} & a_{x} - r_{(6,7)x} & 0 & 0 \\\\1 & -1 & 1 & 0 & 0 \end{matrix}\right]$$
-
-$$
-\bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}\_p}\bf{A_a}
-$$
-
 -----
 
 In step 7, since the manipulator has more than two spherical joints, the list of all possible combinations C of dividing the manipulator into two parts is considered. Since there are six links and since 6 is an odd number, ${}^{6}C_{1}+{}^{6}C_{2}+{}^{6}C_{3}=41$ distinct combinations exist, out of which the combination $[\{4\}, \{1,2,3,5,6\}]$ is discussed in detail in this sub-section. This combination has $c_1 = \{4\}$ and $c_2 = \{1,2,3,5,6\}$. And by grouping the links of each part together, the topology-matrix can be rewritten as shown in equation \eqref{eq:adjmat_RSSRSSR_superfluous}, from which the coupling matrix can be extracted to be as shown in \eqref{eq:couplingmatrix}.
