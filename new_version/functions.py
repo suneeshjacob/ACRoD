@@ -8,7 +8,7 @@ def all_joints_connected_to_the_link(M,linknumber):
 
     :param M: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
     :param linknumber: link number (it is to be indexed from 0, not from 1).
-    :return: a list of size n-1 items specifying the type of joint with which the given link is connected to every other joint.
+    :return: a list of size n-1 items specifying the type of joint with which the given link is connected to every other joint. The order of joints corresponds to the ascending order of the link numbers.
     """
     n=len(M)
     k=list(range(0,linknumber))+list(range(linknumber+1,n))
