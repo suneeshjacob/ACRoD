@@ -60,7 +60,7 @@ If the set $S$ is non-empty then for each element (of the form $\left[c_{be},\le
 
 Once the set $c_{be}$ (the set of links connected to the rest of the mechanism by two spherical joints alone) is identified, the angular velocity of one of the links connecting to one of the spherical joints about the axis passing through the two spherical joints is to be set to zero (This equation does not represent the true velocity and is only to accommodate calculations simpler). This can be achieved by equation (3), where $\vec{\omega}\_{k}$ is the absolute velocity of the link if it is the case of a single link (and is the absolute velocity of any link that is connected to one of the spherical joints if it is the case of a set of links), $\mathbf{r}\_{(i,j)}$ and $\mathbf{r}\_{kl}$ are the position vectors of the two spherical joints.
 
-$$\mathbf{\omega_{s}}\cdot \left(\mathbf{r}_{(i,j)}-\mathbf{r}_{(k,l)}\right) = 0 \tag{3}$$
+$$\mathbf{\omega_{s}}\cdot \left(\mathbf{r}\_{(i,j)}-\mathbf{r}\_{(k,l)}\right) = 0 \tag{3}$$
 
 In step 8, $\mathbf{\Omega_a}$ and $\mathbf{\Omega_p}$ are chosen, and the equations $\mathbf{V_e} = \mathbf{J}\mathbf{\Omega}$ and $\mathbf{A}\mathbf{\Omega} = \mathbf{0}$ can be split appropriately to form the matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, as shown in equations (4) and (5). The Jacobian can be formulated using these four matrices as shown in equation (7). For serial manipulators, the matrices $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$ do not come into picture. Hence the Jacobian for serial manipulators is as shown in equation (8).
 
