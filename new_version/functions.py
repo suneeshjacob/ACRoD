@@ -1,4 +1,5 @@
 import numpy
+import itertools
 
 def all_joints_connected_to_the_link(M,linknumber):
     """
