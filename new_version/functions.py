@@ -103,7 +103,7 @@ def graph_adjacency_matrix_from_robot_topology_matrix(M):
 def superfluous(M):
     S = []
     if numpy.sum(M==4) > 2:
-        C = get_all_combinations_of_two_links(len(M)):
+        C = get_all_combinations_of_two_links(len(M))
         for c in C:
             c1 = list(sorted(list(c[0])))
             c2 = list(sorted(list(c[1])))
