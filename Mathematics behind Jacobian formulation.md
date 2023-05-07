@@ -1,6 +1,6 @@
 ## Steps to formulate Jacobian
 
-This method is an extension/modification of the method explained presented in [[1]](#1). The approach that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. Since in case of parallel manipulators multiple paths that join the base link and the end-effector link exist, the same concept is used for all the connecting paths from the base-link to the end-effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities.
+This method is an extension/modification of the method/explained presented in [[1]](#1). The approach that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. Since in case of parallel manipulators multiple paths that join the base link and the end-effector link exist, the same concept is used for all the connecting paths from the base-link to the end-effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities.
 
 Formulation of Jacobian is done by the following steps:
 
