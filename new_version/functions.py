@@ -158,13 +158,14 @@ class jacobian(object):
             self.is_serial = False
     def get_independent_paths(self):
         P = self.P
-        P_tilde, P_tilde_omega = from_P_to_P_tilde(P)
+        M = self.M
+        P_tilde, P_tilde_omega = from_P_to_P_tilde(P,M)
         self.P_tilde = P_tilde
         self.P_tilde_omega = P_tilde_omega
     
 
 
-def from_P_to_P_tilde(P):
+def from_P_to_P_tilde(P,M):
     V_i_j_vector = []
     Cv = numpy.reshape(numpy.matrix(''),(0,0))
     for i in range(len(P)):
