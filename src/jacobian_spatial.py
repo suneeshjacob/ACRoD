@@ -261,7 +261,7 @@ def velosforpath(A,i_current, symbolicvariableslist = []):
     latexstringtemp = []
     latexomegastringtemp = []
     tobeexecuted = []
-    for j in range(len(i_current)):
+    for j in range(len(i_current)-1):
         latextemp=[]
         latexomegatemp=[]
 
