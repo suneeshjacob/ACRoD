@@ -1,4 +1,5 @@
 import numpy
+import sympy
 import itertools
 
 def all_joints_connected_to_the_link(M,linknumber):
@@ -111,7 +112,82 @@ def superfluous(M):
             indices_list = c1 + c2
             A = graph_adjacency_matrix_from_robot_topology_matrix(M)
             D = (A[indices_list,:][:,indices_list])[:len(c1),len(c1):]
+            if numpy.sum(D==4) == 2 and numpy.sum(D==0) == numpy.prod(D.shape)-2:
+                if 0 in c1 and len(M)-1 in c1:
+                    c_be = c1
+                elif 0 in c2 and len(M)-1 in c2:
+                    c_be = c2
+                else:
+                    uncontrollable = True
+                    return uncontrollable
+                c1_a = np.array(c1)
+                c2_a = np.array(c2)
+                spherical_indices = np.where(D==4)
+                ijkl = np.array([c1_a[spherical_indices[0]],c2_a[spherical_indices[1]]]).T
+                ij,kl = ijkl
+                if ij[0] in c_be:
+                    i,j = ij
+                else:
+                    j,i = ij
+                if kl[1] in c_be:
+                    k,l = kl
+                else:
+                    l,k = kl
+
+                S.append([c_be,[(i,j),(k,l)]])
 
 
 
     return S
+
+class jacobian(object):
+    def __init__(self, M, robot_type = 'spatial'):
+        self.M = M
+        self.type = robot_type
+        self.P = None
+        self.P_tilde = None
+        self.P_tilde_omega = None
+        self.is_serial = None
+    def get_all_paths(self):
+        M = self.M
+        P = all_paths(M)
+        self.P = P
+        if len(P) == 1:
+            self.is_serial = True
+        else:
+            self.is_serial = False
+    def get_independent_paths(self):
+        P = self.P
+        P_tilde, P_tilde_omega = from_P_to_P_tilde(P)
+        self.P_tilde = P_tilde
+        self.P_tilde_omega = P_tilde_omega
+    
+
+
+def from_P_to_P_tilde(P):
+    V_i_j_vector = []
+    Cv = numpy.reshape(numpy.matrix(''),(0,0))
+    for i in range(len(P)):
+        Cv = numpy.r_[Cv,numpy.zeros((1,len(V_i_j_vector)))]
+        for j in range(len(P[i])-1):
+            V_i_j_element_unsorted = [allpaths[i][j],allpaths[i][j+1]]
+            V_i_j_element_sorted = list(sorted(V_i_j_element_unsorted))
+            if V_i_j_element_sorted == V_i_j_element_unsorted:
+                sortflag = 1
+            elif V_i_j_element_sorted == V_i_j_element_unsorted[::-1]:
+                sortflag = -1
+            if V_i_j_element_sorted not in V_i_j_vector:
+                V_i_j_vector.append(V_i_j_element_sorted)
+                Cv = numpy.c_[Cv,numpy.r_[numpy.zeros((Cv.shape[0]-1,1)),numpy.matrix(sortflag)]]
+            elif V_i_j_element_sorted in V_i_j_vector:
+                ind = V_i_j_vector.index(V_i_j_element_sorted)
+                Cv[i,ind]= sortflag
+    _,independent_path_indices = sympy.Matrix(Cv).T.rref()
+    booleans_for_nonprismatic_joints = [False if M[i[0],i[1]]==2 else True for i in V_i_j_vector]
+    Comega = Cv[independent_path_indices,:][:,booleans_for_nonprismatic_joints]
+    _,independent_omega_path_indices = sympy.Matrix(Comega.T).rref()
+    P_tilde = [P[i] for i in range(len(P)) if i in independent_path_indices]
+    P_tilde_omega = [P[i] for i in range(len(P)) if i in independent_omega_path_indices]
+    return [P_tilde,P_tilde_omega]
+
+
