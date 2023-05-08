@@ -171,7 +171,7 @@ def from_P_to_P_tilde(P,M):
     for i in range(len(P)):
         Cv = numpy.r_[Cv,numpy.zeros((1,len(V_i_j_vector)))]
         for j in range(len(P[i])-1):
-            V_i_j_element_unsorted = [allpaths[i][j],allpaths[i][j+1]]
+            V_i_j_element_unsorted = [P[i][j],P[i][j+1]]
             V_i_j_element_sorted = list(sorted(V_i_j_element_unsorted))
             if V_i_j_element_sorted == V_i_j_element_unsorted:
                 sortflag = 1
