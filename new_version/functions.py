@@ -120,10 +120,10 @@ def superfluous(M):
                 else:
                     uncontrollable = True
                     return uncontrollable
-                c1_a = np.array(c1)
-                c2_a = np.array(c2)
-                spherical_indices = np.where(D==4)
-                ijkl = np.array([c1_a[spherical_indices[0]],c2_a[spherical_indices[1]]]).T
+                c1_a = numpy.array(c1)
+                c2_a = numpy.array(c2)
+                spherical_indices = numpy.where(D==4)
+                ijkl = numpy.array([c1_a[spherical_indices[0]],c2_a[spherical_indices[1]]]).T
                 ij,kl = ijkl
                 if ij[0] in c_be:
                     i,j = ij
