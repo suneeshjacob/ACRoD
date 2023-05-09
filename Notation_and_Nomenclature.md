@@ -148,7 +148,7 @@ $$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}} \tag
 
 In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (20). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (19), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation (9) to equation (21).
 
-$$\mathbf{\hat{n}}_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{19}$$
+$$\mathbf{\hat{n}}\_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{19}$$
 
 $$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}} \tag{20}$$
 
