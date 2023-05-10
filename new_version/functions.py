@@ -162,8 +162,47 @@ class jacobian(object):
         P_tilde, P_tilde_omega = from_P_to_P_tilde(P,M)
         self.P_tilde = P_tilde
         self.P_tilde_omega = P_tilde_omega
-    
 
+
+
+
+def vel_path(M, path, available_variables):
+
+    executions_list = []
+
+    for index in range(len(path)-1):
+        i,j = path[index:index+2]
+        if i < j:
+            i_s, j_s = i, j
+            direction = 'ascending'
+        else:
+            i_s, j_s = j, i
+            direction = 'descending'
+        
+        executions_list.append(f"a_x = sympy.symbols(r'a_x')")
+        executions_list.append(f"a_y = sympy.symbols(r'a_y')")
+        executions_list.append(f"a_z = sympy.symbols(r'a_z')")
+        executions_list.append(f"a = sympy.Matrix([[a_x],[a_y],[a_z]])")
+        A = graph_adjacency_matrix_from_robot_topology_matrix(M)
+        joint_type = A[i,j]
+        if joint_type == 1:
+            if f'{i_s}_{j_s}' not in available_variables:
+                executions_list.append(f"r_{i_s+1}_{j_s+1}_x = sympy.symbols(r'r_{{({i_s+1}\,{j_s+1})x}}')")
+                executions_list.append(f"r_{i_s+1}_{j_s+1}_y = sympy.symbols(r'r_{{({i_s+1}\,{j_s+1})y}}')")
+                executions_list.append(f"r_{i_s+1}_{j_s+1}_z = sympy.symbols(r'r_{{({i_s+1}\,{j_s+1})z}}')")
+                executions_list.append(f"r_{i_s+1}_{j_s+1} = sympy.Matrix([[r_{i_s+1}_{j_s+1}_x],[r_{i_s+1}_{j_s+1}_y],[r_{i_s+1}_{j_s+1}_z]])")
+                executions_list.append(f"beta_{i_s+1}_{j_s+1} = sympy.symbols(r'\\beta_{{({i_s+1}\,{j_s+1})}}')")
+                executions_list.append(f"phi_{i_s+1}_{j_s+1} = sympy.symbols(r'\phi_{{({i_s+1}\,{j_s+1})}}')")
+                executions_list.append(f"n_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.cos(phi_{i_s+1}_{j_s+1})],[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.sin(phi_{i_s+1}_{j_s+1})],[sympy.cos(beta_{i_s+1}_{j_s+1})]])")
+                executions_list.append(f"thd_{i_s+1}_{j_s+1} = sympy.symbols(r'\dot{{\\theta}}_{{({i_s+1}\,{j_s+1})}}')")
+                available_variables.append(f'{i_s}_{j_s}')
+            if direction == 'descending':
+                linear_velocity = eval(f'thd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}.cross(a-r_{i_s+1}_{j_s+1})')
+                angular_velocity = eval(f'thd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}')
+            else:
+                linear_velocity = eval(f'-thd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}.cross(a-r_{i_s+1}_{j_s+1})')
+                angular_velocity = eval(f'-thd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}')
+        return linear_velocity, angular_velocity, executions_list, available_variables
 
 def from_P_to_P_tilde(P,M):
     V_i_j_vector = []
