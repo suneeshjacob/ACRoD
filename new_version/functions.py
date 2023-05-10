@@ -192,3 +192,46 @@ def from_P_to_P_tilde(P,M):
     return [P_tilde,P_tilde_omega]
 
 
+def get_variables_list(M):
+    variables_list = []
+    for i in range(len(M)):
+        for j in range(i+1,len(M)):
+            if M[i,j] == 0:
+                pass
+            elif M[i,j] == 1:
+                variables_list.append(f'r_{i+1}_{j+1}_x')
+                variables_list.append(f'r_{i+1}_{j+1}_y')
+                variables_list.append(f'r_{i+1}_{j+1}_z')
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+            elif M[i,j] == 2:
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+            elif M[i,j] == 3:
+                variables_list.append(f'r_{i+1}_{j+1}_x')
+                variables_list.append(f'r_{i+1}_{j+1}_y')
+                variables_list.append(f'r_{i+1}_{j+1}_z')
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+            elif M[i,j] == 4:
+                variables_list.append(f'r_{i+1}_{j+1}_x')
+                variables_list.append(f'r_{i+1}_{j+1}_y')
+                variables_list.append(f'r_{i+1}_{j+1}_z')
+            elif M[i,j] == 5:
+                variables_list.append(f'r_{i+1}_{j+1}_x')
+                variables_list.append(f'r_{i+1}_{j+1}_y')
+                variables_list.append(f'r_{i+1}_{j+1}_z')
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+                variables_list.append(f'de_{i+1}_{j+1}')
+            elif M[i,j] == 6:
+                variables_list.append(f'r_{i+1}_{j+1}_x')
+                variables_list.append(f'r_{i+1}_{j+1}_y')
+                variables_list.append(f'r_{i+1}_{j+1}_z')
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+                variables_list.append(f'p_{i+1}_{j+1}')
+            elif M[i,j] == 7:
+                variables_list.append(f'be_{i+1}_{j+1}')
+                variables_list.append(f'ph_{i+1}_{j+1}')
+    return variables_list
