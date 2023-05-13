@@ -114,7 +114,9 @@ $$\xi=\tan^{-1}{\left(\frac{-1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delt
 
 
 
-$$\begin{equation}u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}\end{equation} \tag{15}$$
+$\begin{equation}u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}\end{equation}$
+
+$$\tag{15}$$
 
 
 
