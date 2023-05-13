@@ -1,9 +1,4 @@
----
-title: "Latex Cases"
-output:
-  xaringan::moon_reader:
-    seal: false
----
+
 
 ## Notation for describing the parameters of spatial manipulators
 
