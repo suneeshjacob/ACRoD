@@ -102,20 +102,8 @@ $$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}=-\frac{1}{\tan{\left(\beta_{(i,j
 
 
 
-The range of inverse tangent function would be $[-\pi/2,\pi/2]$. But for uniformity with the ranges of parameters of other joints, $[0,\pi]$ is the preferred range of $\alpha_{(i,j)}$. Hence, $\alpha_{(i,j)}$ is expressed in the form shown in (13), where $\xi$ and $u\left(\xi\right)$ are as shown in (14) and (15), respectively.
 
-$$\alpha_{(i,j)}=\xi+\pi\left(1-u\left(\xi\right)\right) \tag{13}$$
-
-
-$$\xi=\tan^{-1}{\left(\frac{-1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}\right)} \tag{14}$$
-
-
-$$\begin{equation}u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}\end{equation} \tag{15}$$
-
-
-For spherical coordinates, the ranges of zenith and azimuth angles are $(0,\pi)$ and $(0,2\pi)$, respectively. However, in the context of describing the axis of for example a revolute joint, the direction of the unit vector does not affect the rotation, and hence, an angular velocity of $\dot{\theta}\_{(i,j)}$ about the axis $\mathbf{n\_{(i,j)}}$ and an angular velocity $-\dot{\theta}\_{(i,j)}$ about the axis $-\mathbf{n\_{(i,j)}}$ are equivalent. Therefore, spanning half of the unit sphere would be sufficient to capture all the possible orientations of the axis. Hence, both the ranges being $(0,\pi)$ would suffice.
-
-$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi \tag{16}$$
+$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi \tag{13}$$
 
 
 
@@ -129,29 +117,29 @@ $$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi \tag{16}$$
 
 
 
-Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation (17).
+Regarding helical joints, in the context of this present study, single-threaded screws are considered with the convention that right-handed threading has positive pitch. Right-handed threading in the context of this study is defined such that when two links are connected by such a joint then the relative rotation of a link with respect to the other about an axis produces translation in the same direction of that axis. If $p\_{ij}$ is the pitch of a helical joint connecting the links $i$ and $j$, then the angular displacement of the screw is related to the linear displacement of the screw by equation (14).
 
-$$d_{(i,j)} = \frac{p_{(i,j)}}{2\pi}\theta_{(i,j)} \tag{17}$$
+$$d_{(i,j)} = \frac{p_{(i,j)}}{2\pi}\theta_{(i,j)} \tag{14}$$
 
 
 
 ## Notation for planar manipulators
-Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation (1) reduces to the equation (18). 
+Planar manipulators are a special case of spatial manipulators and hence the notation of planar manipulators is in some sense a subset of that of spatial manipulators. In planar manipulators, it is assumed that all the motion exists in xy-plane and hence the z-coordinate is 0 for all the position vectors of locations of joints. Thus, for planar manipulators, the equation (1) reduces to the equation (15). 
 
-$$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}} \tag{18}$$
-
-
-
-In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (20). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (19), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation (9) to equation (21).
-
-$$\mathbf{\hat{n}}\_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{19}$$
-
-$$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}} \tag{20}$$
+$$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}} \tag{15}$$
 
 
 
+In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (17). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (16), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation (9) to equation (18).
 
-$$\begin{matrix} n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)} \\\\ n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)} \end{matrix} \tag{21}$$
+$$\mathbf{\hat{n}}\_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{16}$$
+
+$$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}} \tag{17}$$
+
+
+
+
+$$\begin{matrix} n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)} \\\\ n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)} \end{matrix} \tag{18}$$
 
 
 
