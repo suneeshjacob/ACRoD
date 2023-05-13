@@ -103,7 +103,7 @@ $$\Rightarrow \tan{\left(\alpha_{(i,j)}\right)}=-\frac{1}{\tan{\left(\beta_{(i,j
 
 
 
-$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq\pi \tag{13}$$
+$$0\leq\beta_{(i,j)},\phi_{(i,j)},\delta_{(i,j)}\leq 2\pi \tag{13}$$
 
 
 
