@@ -1,3 +1,10 @@
+---
+title: "Latex Cases"
+output:
+  xaringan::moon_reader:
+    seal: false
+---
+
 ## Notation for describing the parameters of spatial manipulators
 
 The notations presented in this document are modified versions of the notations mentioned in [[1]](#1), which can be formulated directly from the [robot-topology matrix](Robot_Topology_Matrix.md), a is a modified form of matrix-based representation of robots mentioned in [[2]](#2). The notations are explained below in detail.
