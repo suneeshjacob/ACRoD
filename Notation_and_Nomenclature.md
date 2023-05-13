@@ -107,18 +107,10 @@ The range of inverse tangent function would be $[-\pi/2,\pi/2]$. But for uniform
 $$\alpha_{(i,j)}=\xi+\pi\left(1-u\left(\xi\right)\right) \tag{13}$$
 
 
-
-
-
 $$\xi=\tan^{-1}{\left(\frac{-1}{\tan{\left(\beta_{(i,j)}\right)}\cos{\left(\delta_{(i,j)}-\phi_{(i,j)}\right)}}\right)} \tag{14}$$
 
 
-
-$$\begin{equation}u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}\end{equation}$$
-
-$$\tag{15}$$
-
-
+$$\begin{equation}u\left(\xi\right)=\begin{cases} 0 & \xi \leq 0 \\ 1 & \xi > 0 \end{cases}\end{equation} \tag{15}$$
 
 
 For spherical coordinates, the ranges of zenith and azimuth angles are $(0,\pi)$ and $(0,2\pi)$, respectively. However, in the context of describing the axis of for example a revolute joint, the direction of the unit vector does not affect the rotation, and hence, an angular velocity of $\dot{\theta}\_{(i,j)}$ about the axis $\mathbf{n\_{(i,j)}}$ and an angular velocity $-\dot{\theta}\_{(i,j)}$ about the axis $-\mathbf{n\_{(i,j)}}$ are equivalent. Therefore, spanning half of the unit sphere would be sufficient to capture all the possible orientations of the axis. Hence, both the ranges being $(0,\pi)$ would suffice.
