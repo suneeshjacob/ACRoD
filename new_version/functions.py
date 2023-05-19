@@ -67,7 +67,15 @@ def all_paths(M):
     
     return P
 
-def get_all_combinations_of_two_links(M_size):
+def get_all_combinations_of_two_parts_of_manipulator(M_size):
+    """
+    get_all_combinations_of_two_parts_of_manipulator function gives all possible combinations of splitting the given set of links into two parts.
+
+    this function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.
+
+    :param M_size: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
+    :return: a list of lists of items each corresponding to a path and specifying the sequence of links in that path that are connected from the base link to the end-effector link (the link numbers are indexed from 0, not from 1).
+    """
     output_list = []
     if M_size%2 == 0:
         n = int(M_size/2)
@@ -105,7 +113,7 @@ def graph_adjacency_matrix_from_robot_topology_matrix(M):
 def superfluous(M):
     S = []
     if numpy.sum(M==4) >= 2:
-        C = get_all_combinations_of_two_links(len(M))
+        C = get_all_combinations_of_two_parts_of_manipulator(len(M))
         for c in C:
             c1 = list(sorted(list(c[0])))
             c2 = list(sorted(list(c[1])))
