@@ -234,9 +234,15 @@ class jacobian(object):
         angular_velocities_expressions = []
         superfluous_equations_expressions = []
         for i in linear_velocities:
-            linear_velocities_expressions.append(eval(i))
+            if i[0] == '+':
+                linear_velocities_expressions.append(eval(i[1:]))
+            else:
+                linear_velocities_expressions.append(eval(i))
         for i in angular_velocities:
-            angular_velocities_expressions.append(eval(i))
+            if i[0] == '+':
+                angular_velocities_expressions.append(eval(i[1:]))
+            else:
+                angular_velocities_expressions.append(eval(i))
         for i in superfluous_equations_executions:
             superfluous_equations_expressions.append(eval(i))
 
@@ -254,41 +260,57 @@ class jacobian(object):
 
         
         Ja = J_matrix.jacobian(active)
-        Jp = J_matrix.jacobian(passive)
-        Aa = A_matrix.jacobian(active)
-        Ap = A_matrix.jacobian(passive)
-
         self.Ja = Ja
-        self.Jp = Jp
-        self.Aa = Aa
-        self.Ap = Ap
+
+        if self.is_serial == False:
+            Jp = J_matrix.jacobian(passive)
+            Aa = A_matrix.jacobian(active)
+            Ap = A_matrix.jacobian(passive)
+
+            self.Jp = Jp
+            self.Aa = Aa
+            self.Ap = Ap
 
         if robot_type == 'spatial':
             decision_variables_str = sum(get_variables_list(M).values(),[])
+            endeffector_variables = [eval('a_x'), eval('a_y'), eval('a_z')]
         elif robot_type == 'planar':
             decision_variables_str = sum(get_variables_list_planar(M).values(),[])
+            endeffector_variables = [eval('a_x'), eval('a_y')]
         decision_variables = []
         for i in decision_variables_str:
             decision_variables.append(eval(i))
 
-        endeffector_variables = [eval('a_x'), eval('a_y'), eval('a_z')]
+        # if robot_type == 'spatial':
+        #     endeffector_variables = [eval('a_x'), eval('a_y'), eval('a_z')]
+        # elif robot_type == 'planar':
+
 
         Ja_func = sympy.lambdify([endeffector_variables, decision_variables],Ja)
-        Jp_func = sympy.lambdify([endeffector_variables, decision_variables],Jp)
-        Aa_func = sympy.lambdify([endeffector_variables, decision_variables],Aa)
-        Ap_func = sympy.lambdify([endeffector_variables, decision_variables],Ap)
-
         self.Ja_func = Ja_func
-        self.Jp_func = Jp_func
-        self.Aa_func = Aa_func
-        self.Ap_func = Ap_func
+
+        if self.is_serial == False:
+            Jp_func = sympy.lambdify([endeffector_variables, decision_variables],Jp)
+            Aa_func = sympy.lambdify([endeffector_variables, decision_variables],Aa)
+            Ap_func = sympy.lambdify([endeffector_variables, decision_variables],Ap)
+
+            self.Jp_func = Jp_func
+            self.Aa_func = Aa_func
+            self.Ap_func = Ap_func
+        else:
+            Jp_func = None
+            Aa_func = None
+            Ap_func = None
 
         self.active_joint_velocities = active_jointvelocities
-        self.passive_joint_velocities = passive_jointvelocities
-        self.parameters = decision_variables_str
         self.active_joint_velocities_symbolic = sympy.Matrix(active)
-        self.passive_joint_velocities_symbolic = sympy.Matrix(passive)
+        if self.is_serial == False:
+            self.passive_joint_velocities = passive_jointvelocities
+            self.passive_joint_velocities_symbolic = sympy.Matrix(passive)
+        self.parameters = decision_variables_str
         self.parameters_symbolic = sympy.Matrix(decision_variables)
+        
+        
 
         return Ja_func, Jp_func, Aa_func, Ap_func, active_jointvelocities, passive_jointvelocities, decision_variables_str
 
@@ -298,12 +320,15 @@ class jacobian(object):
         self.execute_equations()
 
     def get_jacobian_function(self):
-        self.process_functions()   
+        self.process_functions()
         Ja = self.Ja_func
-        Jp = self.Jp_func
-        Aa = self.Aa_func
-        Ap = self.Ap_func
-        J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+        if self.is_serial == False:
+            Jp = self.Jp_func
+            Aa = self.Aa_func
+            Ap = self.Ap_func
+            J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+        else:
+            J = lambda a,x: numpy.matrix(Ja(a,x))
         return J
 
 def vel_path_planar(M, path, available_variables):
@@ -566,7 +591,6 @@ def get_variables_list_planar(M):
             elif M[i,j] == 1:
                 current_variables_list.append(f'r_{i+1}_{j+1}_x')
                 current_variables_list.append(f'r_{i+1}_{j+1}_y')
-                current_variables_list.append(f'phi_{i+1}_{j+1}')
             elif M[i,j] == 2:
                 current_variables_list.append(f'phi_{i+1}_{j+1}')
 
