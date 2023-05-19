@@ -148,6 +148,22 @@ class jacobian(object):
         self.P_tilde = None
         self.P_tilde_omega = None
         self.is_serial = None
+        self.indices_P_tilde = None
+        self.indices_P_tilde_omega = None
+        self.Ja = None
+        self.Jp = None
+        self.Aa = None
+        self.Ap = None
+        self.Ja_func = None
+        self.Jp_func = None
+        self.Aa_func = None
+        self.Ap_func = None
+        self.linear_velocities = None
+        self.angular_velocities = None
+        self.parameters = None
+        self.linear_velocities_symbolic = None
+        self.angular_velocities_symbolic = None
+        self.parameters_symbolic = None
     def get_all_paths(self):
         M = self.M
         P = all_paths(M)
@@ -194,7 +210,7 @@ class jacobian(object):
                 truncated_path = path_containing_superfluous_link[:path_containing_superfluous_link.index(L_s)+1]
                 _, superfluous_link_angular_velocity, executions_list, current_variables = vel_path(M, truncated_path, current_variables)
                 executions += executions_list
-                #(i_u, j_u), (k_u, l_u) = current_superfluous_info[1]
+                
                 i_s, j_s = sorted(current_superfluous_info[1][0])
                 k_s, l_s = sorted(current_superfluous_info[1][1])
                 superfluous_equations_executions.append('('+superfluous_link_angular_velocity+f').dot(r_{i_s}_{j_s}-r_{k_s}_{l_s})')
@@ -212,9 +228,7 @@ class jacobian(object):
             angular_velocities_expressions.append(eval(i))
         for i in superfluous_equations_executions:
             superfluous_equations_expressions.append(eval(i))
-        #linear_velocities_expressions = [eval(i,locals()) for i in linear_velocities]
-        #angular_velocities_expressions = [eval(i) for i in angular_velocities]
-        #superfluous_equations_expressions = [eval(i) for i in superfluous_equations_executions]
+
         J_matrix = sympy.Matrix([linear_velocities_expressions[0], angular_velocities_expressions[0]])
         A_matrix = sympy.Matrix([linear_velocities_expressions[i+1]-linear_velocities_expressions[0] for i in range(len(linear_velocities_expressions)-1)]+[angular_velocities_expressions[i+1]-angular_velocities_expressions[0] for i in range(len(angular_velocities_expressions)-1)]+superfluous_equations_expressions)
         
@@ -226,33 +240,55 @@ class jacobian(object):
         for i in passive_jointvelocities:
             passive.append(eval(i))
 
-        #active = [eval(i) for i in active_jointvelocities]
-        #passive = [eval(i) for i in passive_jointvelocities]
-        
-        J_a = J_matrix.jacobian(active)
-        J_p = J_matrix.jacobian(passive)
-        A_a = A_matrix.jacobian(active)
-        A_p = A_matrix.jacobian(passive)
 
-        self.J_a = J_a
-        self.J_p = J_a
-        self.A_a = A_a
-        self.A_p = A_p
+        
+        Ja = J_matrix.jacobian(active)
+        Jp = J_matrix.jacobian(passive)
+        Aa = A_matrix.jacobian(active)
+        Ap = A_matrix.jacobian(passive)
+
+        self.Ja = Ja
+        self.Jp = Jp
+        self.Aa = Aa
+        self.Ap = Ap
 
         decision_variables_str = sum(get_variables_list(M).values(),[])
         decision_variables = []
         for i in decision_variables_str:
             decision_variables.append(eval(i))
-        #decision_variables = [eval(i) for i in decision_variables_str]
+
         endeffector_variables = [eval('a_x'), eval('a_y'), eval('a_z')]
 
-        J_a_func = sympy.lambdify([endeffector_variables, decision_variables],J_a)
-        J_p_func = sympy.lambdify([endeffector_variables, decision_variables],J_p)
-        A_a_func = sympy.lambdify([endeffector_variables, decision_variables],A_a)
-        A_p_func = sympy.lambdify([endeffector_variables, decision_variables],A_p)
+        Ja_func = sympy.lambdify([endeffector_variables, decision_variables],Ja)
+        Jp_func = sympy.lambdify([endeffector_variables, decision_variables],Jp)
+        Aa_func = sympy.lambdify([endeffector_variables, decision_variables],Aa)
+        Ap_func = sympy.lambdify([endeffector_variables, decision_variables],Ap)
 
-        return J_a_func, J_p_func, A_a_func, A_p_func, active_jointvelocities, passive_jointvelocities, decision_variables_str
+        self.Ja_func = Ja_func
+        self.Jp_func = Jp_func
+        self.Aa_func = Aa_func
+        self.Ap_func = Ap_func
 
+        self.linear_velocities = linear_velocities
+        self.angular_velocities = angular_velocities
+        self.linear_velocities_symbolic = sympy.Matrix(linear_velocities_expressions)
+        self.angular_velocities_symbolic = sympy.Matrix(angular_velocities_expressions)
+
+        return Ja_func, Jp_func, Aa_func, Ap_func, active_jointvelocities, passive_jointvelocities, decision_variables_str
+
+    def process_functions(self):
+        self.get_all_paths()
+        self.get_independent_paths()
+        self.execute_equations()
+
+    def get_jacobian_function(self):
+        self.process_functions()   
+        Ja = self.Ja_func
+        Jp = self.Jp_func
+        Aa = self.Aa_func
+        Ap = self.Ap_func
+        J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+        return J
 
 
 
