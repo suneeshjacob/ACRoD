@@ -73,8 +73,8 @@ def get_all_combinations_of_two_parts_of_manipulator(M_size):
 
     this function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.
 
-    :param M_size: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
-    :return: a list of lists of items each corresponding to a path and specifying the sequence of links in that path that are connected from the base link to the end-effector link (the link numbers are indexed from 0, not from 1).
+    :param M_size: The number of links of the robot.
+    :return: the entire possible list of items each containing the entire links grouped into two parts.
     """
     output_list = []
     if M_size%2 == 0:
