@@ -281,10 +281,8 @@ class jacobian(object):
         for i in decision_variables_str:
             decision_variables.append(eval(i))
 
-        # if robot_type == 'spatial':
-        #     endeffector_variables = [eval('a_x'), eval('a_y'), eval('a_z')]
-        # elif robot_type == 'planar':
-
+        self.parameters = decision_variables_str
+        self.parameters_symbolic = sympy.Matrix(decision_variables)
 
         Ja_func = sympy.lambdify([endeffector_variables, decision_variables],Ja)
         self.Ja_func = Ja_func
@@ -307,8 +305,7 @@ class jacobian(object):
         if self.is_serial == False:
             self.passive_joint_velocities = passive_jointvelocities
             self.passive_joint_velocities_symbolic = sympy.Matrix(passive)
-        self.parameters = decision_variables_str
-        self.parameters_symbolic = sympy.Matrix(decision_variables)
+
         
         
 
@@ -471,7 +468,9 @@ def vel_path(M, path, available_variables):
                 executions_list.append(f"beta_{i_s+1}_{j_s+1} = sympy.symbols(r'\\beta_{{({i_s+1}\,{j_s+1})}}')")
                 executions_list.append(f"phi_{i_s+1}_{j_s+1} = sympy.symbols(r'\phi_{{({i_s+1}\,{j_s+1})}}')")
                 executions_list.append(f"delta_{i_s+1}_{j_s+1} = sympy.symbols(r'\delta_{{({i_s+1}\,{j_s+1})}}')")
-                executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.symbols(r'sympy.tan(\\beta_{{({i_s+1}\,{j_s+1})}})*sympy.cos(\delta_{{({i_s+1}\,{j_s+1})}}-\phi_{{({i_s+1}\,{j_s+1})}})')))")
+                executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.tan(beta_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1}-phi_{i_s+1}_{j_s+1})))")
+                #executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.symbols(r'sympy.tan(beta_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1}-phi_{i_s+1}_{j_s+1})')))")
+                #executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.symbols(r'sympy.tan(\\beta_{{({i_s+1}\,{j_s+1})}})*sympy.cos(\delta_{{({i_s+1}\,{j_s+1})}}-\phi_{{({i_s+1}\,{j_s+1})}})')))")
                 executions_list.append(f"n_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.cos(phi_{i_s+1}_{j_s+1})],[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.sin(phi_{i_s+1}_{j_s+1})],[sympy.cos(beta_{i_s+1}_{j_s+1})]])")
                 executions_list.append(f"m_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.sin(alpha_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1})],[sympy.sin(alpha_{i_s+1}_{j_s+1})*sympy.sin(delta_{i_s+1}_{j_s+1})],[sympy.cos(alpha_{i_s+1}_{j_s+1})]])")
                 executions_list.append(f"thd_{i_s+1}_{j_s+1} = sympy.symbols(r'\dot{{\\theta}}_{{({i_s+1}\,{j_s+1})}}')")
