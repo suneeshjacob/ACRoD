@@ -158,11 +158,11 @@ class jacobian(object):
         self.Jp_func = None
         self.Aa_func = None
         self.Ap_func = None
-        self.linear_velocities = None
-        self.angular_velocities = None
+        self.active_joint_velocities = None
+        self.passive_joint_velocities = None
         self.parameters = None
-        self.linear_velocities_symbolic = None
-        self.angular_velocities_symbolic = None
+        self.active_joint_velocities_symbolic = None
+        self.passive_joint_velocities_symbolic = None
         self.parameters_symbolic = None
     def get_all_paths(self):
         M = self.M
@@ -183,37 +183,48 @@ class jacobian(object):
     def execute_equations(self):
         M = self.M
         P = self.P
+        robot_type = self.type
         indices_P_tilde = self.indices_P_tilde
         indices_P_tilde_omega = self.indices_P_tilde_omega
         current_variables = []
-        executions = [f"a_x = sympy.symbols(r'a_x')", f"a_y = sympy.symbols(r'a_y')", f"a_z = sympy.symbols(r'a_z')", f"a = sympy.Matrix([[a_x],[a_y],[a_z]])", "zero = sympy.Matrix([[0],[0],[0]])"]
+        if robot_type == 'spatial':
+            executions = [f"a_x = sympy.symbols(r'a_x')", f"a_y = sympy.symbols(r'a_y')", f"a_z = sympy.symbols(r'a_z')", f"a = sympy.Matrix([[a_x],[a_y],[a_z]])", "zero = sympy.Matrix([[0],[0],[0]])"]
+        elif robot_type == 'planar':
+            executions = [f"a_x = sympy.symbols(r'a_x')", f"a_y = sympy.symbols(r'a_y')", f"a = sympy.Matrix([[a_x],[a_y]])", "zero_1D = sympy.Matrix([[0]])"]
         linear_velocities = []
         angular_velocities = []
         for i in range(len(P)):
             if i in indices_P_tilde:
                 if i in indices_P_tilde_omega:
-                    linear_velocity, angular_velocity, executions_list, current_variables = vel_path(M, P[i], current_variables)
+                    if robot_type == 'spatial':
+                        linear_velocity, angular_velocity, executions_list, current_variables = vel_path(M, P[i], current_variables)
+                    elif robot_type == 'planar':
+                        linear_velocity, angular_velocity, executions_list, current_variables = vel_path_planar(M, P[i], current_variables)
                     linear_velocities.append(linear_velocity)
                     angular_velocities.append(angular_velocity)
                 else:
-                    linear_velocity, _, executions_list, current_variables = vel_path(M, P[i], current_variables)
+                    if robot_type == 'spatial':
+                        linear_velocity, _, executions_list, current_variables = vel_path(M, P[i], current_variables)
+                    elif robot_type == 'planar':
+                        linear_velocity, _, executions_list, current_variables = vel_path_planar(M, P[i], current_variables)
                     linear_velocities.append(linear_velocity)
                 executions += executions_list
         
-        superfluous_info = superfluous(M)
         superfluous_equations_executions = []
-        if len(superfluous_info) > 0:
-            for i in range(len(superfluous_info)):
-                current_superfluous_info = superfluous_info[i]
-                L_s = current_superfluous_info[1][0][1]
-                path_containing_superfluous_link = [i for i in P if L_s in i][0]
-                truncated_path = path_containing_superfluous_link[:path_containing_superfluous_link.index(L_s)+1]
-                _, superfluous_link_angular_velocity, executions_list, current_variables = vel_path(M, truncated_path, current_variables)
-                executions += executions_list
-                
-                i_s, j_s = sorted(current_superfluous_info[1][0])
-                k_s, l_s = sorted(current_superfluous_info[1][1])
-                superfluous_equations_executions.append('('+superfluous_link_angular_velocity+f').dot(r_{i_s}_{j_s}-r_{k_s}_{l_s})')
+        if robot_type == 'spatial':
+            superfluous_info = superfluous(M)
+            if len(superfluous_info) > 0:
+                for i in range(len(superfluous_info)):
+                    current_superfluous_info = superfluous_info[i]
+                    L_s = current_superfluous_info[1][0][1]
+                    path_containing_superfluous_link = [i for i in P if L_s in i][0]
+                    truncated_path = path_containing_superfluous_link[:path_containing_superfluous_link.index(L_s)+1]
+                    _, superfluous_link_angular_velocity, executions_list, current_variables = vel_path(M, truncated_path, current_variables)
+                    executions += executions_list
+                    
+                    i_s, j_s = sorted(current_superfluous_info[1][0])
+                    k_s, l_s = sorted(current_superfluous_info[1][1])
+                    superfluous_equations_executions.append('('+superfluous_link_angular_velocity+f').dot(r_{i_s+1}_{j_s+1}-r_{k_s+1}_{l_s+1})')
 
         import sympy
         for i in executions:
@@ -252,7 +263,10 @@ class jacobian(object):
         self.Aa = Aa
         self.Ap = Ap
 
-        decision_variables_str = sum(get_variables_list(M).values(),[])
+        if robot_type == 'spatial':
+            decision_variables_str = sum(get_variables_list(M).values(),[])
+        elif robot_type == 'planar':
+            decision_variables_str = sum(get_variables_list_planar(M).values(),[])
         decision_variables = []
         for i in decision_variables_str:
             decision_variables.append(eval(i))
@@ -269,10 +283,12 @@ class jacobian(object):
         self.Aa_func = Aa_func
         self.Ap_func = Ap_func
 
-        self.linear_velocities = linear_velocities
-        self.angular_velocities = angular_velocities
-        self.linear_velocities_symbolic = sympy.Matrix(linear_velocities_expressions)
-        self.angular_velocities_symbolic = sympy.Matrix(angular_velocities_expressions)
+        self.active_joint_velocities = active_jointvelocities
+        self.passive_joint_velocities = passive_jointvelocities
+        self.parameters = decision_variables_str
+        self.active_joint_velocities_symbolic = sympy.Matrix(active)
+        self.passive_joint_velocities_symbolic = sympy.Matrix(passive)
+        self.parameters_symbolic = sympy.Matrix(decision_variables)
 
         return Ja_func, Jp_func, Aa_func, Ap_func, active_jointvelocities, passive_jointvelocities, decision_variables_str
 
@@ -290,7 +306,53 @@ class jacobian(object):
         J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
         return J
 
+def vel_path_planar(M, path, available_variables):
 
+    executions_list = []
+    linear_velocity = ''
+    angular_velocity = ''
+
+    for index in range(len(path)-1):
+        i,j = path[index:index+2]
+        if i < j:
+            i_s, j_s = i, j
+            direction = 'ascending'
+        else:
+            i_s, j_s = j, i
+            direction = 'descending'
+        
+
+        A = graph_adjacency_matrix_from_robot_topology_matrix(M)
+        joint_type = A[i,j]
+        if joint_type == 1:
+            if f'{i_s}_{j_s}' not in available_variables:
+                executions_list.append(f"r_{i_s+1}_{j_s+1}_x = sympy.symbols(r'r_{{({i_s+1}\,{j_s+1})x}}')")
+                executions_list.append(f"r_{i_s+1}_{j_s+1}_y = sympy.symbols(r'r_{{({i_s+1}\,{j_s+1})y}}')")
+                executions_list.append(f"r_{i_s+1}_{j_s+1} = sympy.Matrix([[r_{i_s+1}_{j_s+1}_x],[r_{i_s+1}_{j_s+1}_y]])")
+                executions_list.append(f"phi_{i_s+1}_{j_s+1} = sympy.symbols(r'\phi_{{({i_s+1}\,{j_s+1})}}')")
+                executions_list.append(f"n_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.cos(phi_{i_s+1}_{j_s+1})],[sympy.sin(phi_{i_s+1}_{j_s+1})]])")
+                executions_list.append(f"thd_{i_s+1}_{j_s+1} = sympy.symbols(r'\dot{{\\theta}}_{{({i_s+1}\,{j_s+1})}}')")
+                available_variables.append(f'{i_s}_{j_s}')
+            if direction == 'descending':
+                linear_velocity += f'-thd_{i_s+1}_{j_s+1}*sympy.Matrix([[-(a_y-r_{i_s+1}_{j_s+1}_y)],[a_x-r_{i_s+1}_{j_s+1}_x]])'
+                angular_velocity += f'-thd_{i_s+1}_{j_s+1}*sympy.Matrix([[1]])'
+            else:
+                linear_velocity += f'+thd_{i_s+1}_{j_s+1}*sympy.Matrix([[-(a_y-r_{i_s+1}_{j_s+1}_y)],[a_x-r_{i_s+1}_{j_s+1}_x]])'
+                angular_velocity += f'+thd_{i_s+1}_{j_s+1}*sympy.Matrix([[1]])'
+        elif joint_type == 2:
+            if f'{i_s}_{j_s}' not in available_variables:
+                executions_list.append(f"phi_{i_s+1}_{j_s+1} = sympy.symbols(r'\phi_{{({i_s+1}\,{j_s+1})}}')")
+                executions_list.append(f"n_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.cos(phi_{i_s+1}_{j_s+1})],[sympy.sin(phi_{i_s+1}_{j_s+1})]])")
+                executions_list.append(f"dd_{i_s+1}_{j_s+1} = sympy.symbols(r'\dot{{d}}_{{({i_s+1}\,{j_s+1})}}')")
+                available_variables.append(f'{i_s}_{j_s}')
+            if direction == 'descending':
+                linear_velocity += f'-dd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}'
+                angular_velocity += f'-zero_1D'
+            else:
+                linear_velocity += f'+dd_{i_s+1}_{j_s+1}*n_{i_s+1}_{j_s+1}'
+                angular_velocity += f'+zero_1D'
+
+    return linear_velocity, angular_velocity, executions_list, available_variables
 
 def vel_path(M, path, available_variables):
 
@@ -492,6 +554,25 @@ def from_P_to_P_tilde(P,M):
     P_tilde = [P[i] for i in range(len(P)) if i in independent_path_indices]
     P_tilde_omega = [P[i] for i in range(len(P)) if i in independent_omega_path_indices]
     return [P_tilde,P_tilde_omega,independent_path_indices,independent_omega_path_indices]
+
+
+def get_variables_list_planar(M):
+    variables_dict = {}
+    for i in range(len(M)):
+        for j in range(i+1,len(M)):
+            current_variables_list = []
+            if M[i,j] == 0:
+                pass
+            elif M[i,j] == 1:
+                current_variables_list.append(f'r_{i+1}_{j+1}_x')
+                current_variables_list.append(f'r_{i+1}_{j+1}_y')
+                current_variables_list.append(f'phi_{i+1}_{j+1}')
+            elif M[i,j] == 2:
+                current_variables_list.append(f'phi_{i+1}_{j+1}')
+
+            if len(current_variables_list) > 0:
+                variables_dict[(i,j)] = current_variables_list
+    return variables_dict
 
 
 def get_variables_list(M):
