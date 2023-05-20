@@ -104,6 +104,14 @@ def get_all_combinations_of_two_parts_of_manipulator(M_size):
     return output_list
 
 def graph_adjacency_matrix_from_robot_topology_matrix(M):
+    """
+    graph_adjacency_matrix_from_robot_topology_matrix function converts a robot-topology matrix to its graph adjacency matrix. by doing so, it would no longer have the information to identify the actuating joints.
+
+    This function takes robot-topology matrix as input argument.
+
+    :param M: robot-topology matrix.
+    :return: the corresponding graph adjacency matrix.
+    """
     A = M.copy()
     B = numpy.matrix([[A[i,j] if j>i else 0 for j in range(A.shape[1])] for i in range(A.shape[0])])
     C = B + B.T
@@ -111,6 +119,14 @@ def graph_adjacency_matrix_from_robot_topology_matrix(M):
 
 # Function for getting information about superfluous DOF
 def superfluous(M):
+    """
+    superfluous function gives the information related to superfluous DOF if there are any, from the robot-topology matrix.
+
+    This function takes robot-topology matrix as input argument.
+
+    :param M: robot-topology matrix.
+    :return: a list of pieces of information regarding superfluous DOF. each piece of superfluous DOF would be of the format of [c_be, [(i,j),(k,l)]], where c_be is the part of links that has both base and the end-effector links, and [(i,j),(k,l)] are the points indices of two spherical joints corresponding to the superfluous DOF, in which the links j, k lie on the other part than c_be. if there are no superfluous DOF then it returns an empty list.
+    """
     S = []
     if numpy.sum(M==4) >= 2:
         C = get_all_combinations_of_two_parts_of_manipulator(len(M))
@@ -149,6 +165,32 @@ def superfluous(M):
     return S
 
 class jacobian(object):
+    """
+    jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
+
+    attributes:
+    M: robot-topology matrix.
+    type: robot_type (either 'planar' or 'spatial').
+    P: list of all paths.
+    P_tilde: list of independent paths for linear velocities.
+    P_tilde_omega: list of independent paths for angular velocitites.
+    is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not.
+    Ja: J_a in symbolic form.
+    Jp: J_p in symbolic form.
+    Aa: A_a in symbolic form.
+    Ap: A_p in symbolic form.
+    Ja_func: J_a in Python function form.
+    Jp_func: J_p in Python function form.
+    Aa_func: A_a in Python function form.
+    Ap_func: A_p in Python function form.
+    active_joint_velocities: list of active joint velocities, each in string format.
+    passive_joint_velocities: list of passive joint velocities, each in string format.
+    parameters: list of parameters (other than end-effector parameters), each in string format.
+    active_joint_velocities_symbolic: active joint velocities in symbolic form.
+    passive_joint_velocities_symbolic: passive joint velocities in symbolic form.
+    parameters_symbolic: list of parameters (other than end-effector parameters) in string format.
+    endeffector_variables_symbolic: end-effector parameters in symbolic form.
+    """
     def __init__(self, M, robot_type = 'spatial'):
         self.M = M
         self.type = robot_type
@@ -172,6 +214,7 @@ class jacobian(object):
         self.active_joint_velocities_symbolic = None
         self.passive_joint_velocities_symbolic = None
         self.parameters_symbolic = None
+        self.endeffector_variables_symbolic = None
     def get_all_paths(self):
         M = self.M
         P = all_paths(M)
@@ -292,6 +335,8 @@ class jacobian(object):
         self.parameters = decision_variables_str
         self.parameters_symbolic = sympy.Matrix(decision_variables)
 
+        self.endeffector_variables_symbolic = sympy.Matrix(endeffector_variables)
+
         Ja_func = sympy.lambdify([endeffector_variables, decision_variables],Ja)
         self.Ja_func = Ja_func
 
@@ -337,7 +382,16 @@ class jacobian(object):
         return J
 
 def vel_path_planar(M, path, available_variables):
+    """
+    vel_path_planar function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for planar manipulators.
 
+    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
+
+    :param M: robot-topology matrix.
+    :param path: a given path (containing link numbers in order) in list format.
+    :param available_variables: a list of available variables (each of them being in string format).
+    :return: the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.
+    """
     executions_list = []
     linear_velocity = ''
     angular_velocity = ''
@@ -385,7 +439,16 @@ def vel_path_planar(M, path, available_variables):
     return linear_velocity, angular_velocity, executions_list, available_variables
 
 def vel_path(M, path, available_variables):
+    """
+    vel_path function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for spatial manipulators.
 
+    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
+
+    :param M: robot-topology matrix.
+    :param path: a given path (containing link numbers in order) in list format.
+    :param available_variables: a list of available variables (each of them being in string format).
+    :return: the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.
+    """
     executions_list = []
     linear_velocity = ''
     angular_velocity = ''
@@ -528,6 +591,14 @@ def vel_path(M, path, available_variables):
     return linear_velocity, angular_velocity, executions_list, available_variables
 
 def get_jointvelocities_list(M):
+    """
+    get_jointvelocities_list function gets the expressions for active and passive joint velocities (in string form, to be executed), from the corresponding robot-topology matrix.
+
+    this function takes robot-topology matrix as the input argument.
+
+    :param M: robot-topology matrix.
+    :return: a list of active joint velocities (each in string format) and a list of passive joint velocities (each in string format).
+    """
     active_jointvelocities_list = []
     passive_jointvelocities_list = []
     for i in range(len(M)):
@@ -562,6 +633,15 @@ def get_jointvelocities_list(M):
     return active_jointvelocities_list, passive_jointvelocities_list
 
 def from_P_to_P_tilde(P,M):
+    """
+    from_P_to_P_tilde function gives P_tilde and P_tilde_omega from P, by using robot-topology matrix. it also gives the corresponding indices of P for each of the elements of P_tilde and P_tilde_omega.
+
+    this function takes the list P and the robot-topology matrix as the input arguments.
+
+    :param M: robot-topology matrix.
+    :param P: list of all paths, denoted by P.
+    :return: P_tilde in list format, P_tilde_omega in list format, independent_path_indices in list format and independent_omega_path_indices in list format.
+    """
     V_i_j_vector = []
     Cv = numpy.reshape(numpy.matrix(''),(0,0))
     for i in range(len(P)):
@@ -589,6 +669,14 @@ def from_P_to_P_tilde(P,M):
 
 
 def get_variables_list_planar(M):
+    """
+    get_variables_list_planar function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for planar manipulators.
+
+    this function takes robot-topology matrix as the input argument.
+
+    :param M: robot-topology matrix.
+    :return: a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).
+    """
     variables_dict = {}
     for i in range(len(M)):
         for j in range(i+1,len(M)):
@@ -607,6 +695,14 @@ def get_variables_list_planar(M):
 
 
 def get_variables_list(M):
+    """
+    get_variables_list function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for spatial manipulators.
+
+    this function takes robot-topology matrix as the input argument.
+
+    :param M: robot-topology matrix.
+    :return: a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).
+    """
     variables_dict = {}
     for i in range(len(M)):
         for j in range(i+1,len(M)):
