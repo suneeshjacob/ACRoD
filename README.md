@@ -8,15 +8,22 @@ This repository is dedicated to develop functions for automatic computations for
 
 - Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)
 
+## Installation
+
+The package can be installed from PyPI by using the following command via terminal.
+```shell
+pip3 install acrod
+```
+
 ## Usage
 
 ### Jacobian for planar manipulators
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For a planar 2R serial manipulator, the robot topology matrix is given by
 
-$$left[\begin{matrix}
-9 & 1 & 0 \\
-1 & 9 & 1 \\
+$$\left[\begin{matrix}
+9 & 1 & 0 \\\\
+1 & 9 & 1 \\\\
 0 & 1 & 9
 \end{matrix}\right]$$
 
