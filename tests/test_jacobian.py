@@ -1,4 +1,4 @@
-from src.functions import jacobian
+from src.jacobian.functions import jacobian
 
 import numpy
 
