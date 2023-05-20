@@ -1,5 +1,5 @@
 ---
-title: 'RobJac: A Python package for numerically calculating the Jacobian of a robot around a single end-effector point'
+title: 'Automatic Computation for Robot Design (ACRoD): A Python package for numerically calculating the Jacobian of a robot around a single end-effector point for optimisation of performance around the end-effector point.'
 tags:
   - Python
   - Robotics
@@ -12,7 +12,7 @@ authors:
     affiliation: 1 # (Multiple affiliations must be quoted)
     corresponding: true
   - name: Rituparna Datta
-  orcid: 0000-0003-3816-2438
+    orcid: 0000-0003-3816-2438
     equal-contrib: true # (This is how you can denote equal contributions between multiple authors)
     affiliation: 2
 affiliations:
