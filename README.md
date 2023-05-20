@@ -24,7 +24,7 @@ The corresponding Jacobian function can be formulated as follows.
 
 Firstly, the required functions are imported as shown below.
 ```py
-from src.jacobian.functions import jacobian
+from src.acrod.functions import jacobian
 from numpy import matrix
 ```
 

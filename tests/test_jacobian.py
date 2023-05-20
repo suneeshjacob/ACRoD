@@ -1,4 +1,4 @@
-from src.jacobian.functions import jacobian
+from src.acrod.functions import jacobian
 
 import numpy
 
