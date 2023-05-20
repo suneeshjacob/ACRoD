@@ -540,8 +540,6 @@ def vel_path(M, path, available_variables):
                 executions_list.append(f"phi_{i_s+1}_{j_s+1} = sympy.symbols(r'\phi_{{({i_s+1}\,{j_s+1})}}')")
                 executions_list.append(f"delta_{i_s+1}_{j_s+1} = sympy.symbols(r'\delta_{{({i_s+1}\,{j_s+1})}}')")
                 executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.tan(beta_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1}-phi_{i_s+1}_{j_s+1})))")
-                #executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.symbols(r'sympy.tan(beta_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1}-phi_{i_s+1}_{j_s+1})')))")
-                #executions_list.append(f"alpha_{i_s+1}_{j_s+1} = sympy.atan(-1/(sympy.symbols(r'sympy.tan(\\beta_{{({i_s+1}\,{j_s+1})}})*sympy.cos(\delta_{{({i_s+1}\,{j_s+1})}}-\phi_{{({i_s+1}\,{j_s+1})}})')))")
                 executions_list.append(f"n_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.cos(phi_{i_s+1}_{j_s+1})],[sympy.sin(beta_{i_s+1}_{j_s+1})*sympy.sin(phi_{i_s+1}_{j_s+1})],[sympy.cos(beta_{i_s+1}_{j_s+1})]])")
                 executions_list.append(f"m_{i_s+1}_{j_s+1} = sympy.Matrix([[sympy.sin(alpha_{i_s+1}_{j_s+1})*sympy.cos(delta_{i_s+1}_{j_s+1})],[sympy.sin(alpha_{i_s+1}_{j_s+1})*sympy.sin(delta_{i_s+1}_{j_s+1})],[sympy.cos(alpha_{i_s+1}_{j_s+1})]])")
                 executions_list.append(f"thd_{i_s+1}_{j_s+1} = sympy.symbols(r'\dot{{\\theta}}_{{({i_s+1}\,{j_s+1})}}')")
