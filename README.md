@@ -12,7 +12,7 @@ This repository is dedicated to develop functions for automatic computations for
 
 The package can be installed from PyPI by using the following command via terminal.
 ```shell
-pip3 install acrod
+pip install acrod
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ The corresponding Jacobian function can be formulated as follows.
 
 Firstly, the required functions are imported as shown below.
 ```py
-from src.acrod.functions import jacobian
+from acrod.functions import jacobian
 from numpy import matrix
 ```
 
@@ -49,7 +49,7 @@ jacobian_function = jac.get_jacobian_function()
 ```
 
 
-Symbolic Jacobian is extracted from `jacobian_information` as follows.
+In the process of generating the above jacobian function, other attributes of the jacobian object also are updated. Symbolic Jacobian matrices can be extracted from the attributes. Since this is a serial robot, the matrix $J_a$ itself would be the Jacobian matrix of the manipulator. The matrix $J_a$ is extracted from `Ja` attribute of the jacobian object as follows.
 ```py
 symbolic_jacobian = jac.Ja
 symbolic_jacobian
