@@ -28,16 +28,19 @@ from src.acrod.functions import jacobian
 from numpy import matrix
 ```
 
+
 The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
 M = matrix('9 1 0;1 9 1;0 1 9')
 jac = jacobian(M, robot_type = 'planar')
 ```
 
+
 Jacobian function is generated as shown below.
 ```py
 jacobian_function = jac.get_jacobian_function()
 ```
+
 
 Symbolic Jacobian is extracted from `jacobian_information` as follows.
 ```py
@@ -71,6 +74,7 @@ In an ipynb file of JupyterLab, the above code would produce the following outpu
 
 $$\left[\begin{matrix}r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]$$
 
+
 Robot end-effector parameters can be viewed by running the below line.
 ```py
 robot_endeffector_parameters = jac.endeffector_variables_symbolic
@@ -84,7 +88,6 @@ $$\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]$$
 #### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
 
 For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows.
-
 ```py
 end_effector_point = [1,2]
 configuration_parameters = [3,4,5,6]
@@ -93,7 +96,6 @@ jacobian_at_the_given_configuration
 ```
 
 The output produced by running the above code, is shown below.
-
 ```py
 array([[ 2,  4],
        [-2, -4],

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: acrod
-Version: 1.1.0
+Version: 1.1.1
 Summary: Automatic Computation for Robot Design (ACRoD)
 Author-email: Suneesh Jacob Akkarapakam <suneeshjacob@gmail.com>, Rituparna Datta <rituparndatta@gmail.com>
 License:                     GNU GENERAL PUBLIC LICENSE
@@ -705,11 +705,11 @@ This repository is dedicated to develop functions for automatic computations for
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For a planar 2R serial manipulator, the robot topology matrix is given by
 
-$$\begin{bmatrix}
+$$left[\begin{matrix}
 9 & 1 & 0 \\
 1 & 9 & 1 \\
 0 & 1 & 9
-\end{bmatrix}$$
+\end{matrix}\right]$$
 
 The corresponding Jacobian function can be formulated as follows.
 
