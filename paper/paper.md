@@ -106,7 +106,33 @@ The above steps of the algorithm are concisely shown in the pseudocode of algori
 
 
 
-
+$$\begin{algorithm}
+\caption{Pseudocode for identifying all possible paths}\label{alg:paths}
+\begin{algorithmic}[1]
+\Require Given input adjacency matrix $M$.
+\Ensure The array $P$ of paths, in which each element is an array containing the sequence of links for the corresponding path.
+\State Initialise an empty array $P$.\;
+\State Add a new sequence entry to the array $P$ as an array containing the number 1 (base link).\;
+\State n = size of matrix $M$.\;
+\While{not all sequences of $P$ have the last link as n}
+\For{each sequence $i$ through $P$}
+\State $l$ = last number in the sequence $i$.\;
+\If{$l \neq n$}
+\State $L$ = list of all link numbers connected to link $l$.\;
+\For{$j$ through $L$}
+\If{$j$ is not in $i$}
+\If{the sub-sequence $(l,j)$ does not exist in $i$}
+\State Append the sequence $i$ with the number $j$ and add the new sequence to $P$.\;
+\EndIf
+\EndIf
+\EndFor
+\State Drop the sequence $i$.\;
+\EndIf
+\EndFor
+\EndWhile
+\State Return $P$.\;
+\end{algorithmic}
+\end{algorithm}$$
 
 
 
