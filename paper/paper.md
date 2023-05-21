@@ -103,8 +103,9 @@ The above steps of the algorithm are concisely shown in the pseudocode of algori
 
 
 
-
-$$\begin{algorithm}
+\usepackage{algorithm}
+$$
+\begin{algorithm}
 \caption{Pseudocode for identifying all possible paths}\label{alg:paths}
 \begin{algorithmic}[1]
 \Require Given input adjacency matrix $M$.
