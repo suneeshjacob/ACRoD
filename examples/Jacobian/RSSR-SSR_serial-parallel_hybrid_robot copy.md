@@ -44,13 +44,13 @@ $$
     0 & 0 & 0 & 0 & 0 & 1 & 1 
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(1,2)} \\
-    \bf{V}_{(2,6)} \\
-    \bf{V}_{(1,3)} \\
-    \bf{V}_{(3,4)} \\
-    \bf{V}_{(4,6)} \\
-    \bf{V}_{(1,5)} \\
-    \bf{V}_{(5,6)} 
+    \bf{V}\_{(1,2)} \\
+    \bf{V}\_{(2,6)} \\
+    \bf{V}\_{(1,3)} \\
+    \bf{V}\_{(3,4)} \\
+    \bf{V}\_{(4,6)} \\
+    \bf{V}\_{(1,5)} \\
+    \bf{V}\_{(5,6)} 
 \end{Bmatrix}
 $$
 
@@ -59,10 +59,10 @@ $$
     \bf{v}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\bf{V}}
+    \bf{C}\_{\bf{V}}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(i,j)}
+    \bf{V}\_{(i,j)}
 \end{Bmatrix}
 $$
 
@@ -72,9 +72,9 @@ Now, the angular velocity connectivity matrix is considered as follows.
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,6)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(1,3)}+\bf{\Omega}_{(3,4)}+\bf{\Omega}_{(4,6)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(1,5)}+\bf{\Omega}_{(5,6)} \\
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,6)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(1,3)}+\bf{\Omega}\_{(3,4)}+\bf{\Omega}\_{(4,6)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(1,5)}+\bf{\Omega}\_{(5,6)} \\
 \end{matrix}
 $$
 
@@ -92,13 +92,13 @@ $$
     0 & 0 & 0 & 0 & 0 & 1 & 1 
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(1,2)} \\
-    \bf{\Omega}_{(2,6)} \\
-    \bf{\Omega}_{(1,3)} \\
-    \bf{\Omega}_{(3,4)} \\
-    \bf{\Omega}_{(4,6)} \\
-    \bf{\Omega}_{(1,5)} \\
-    \bf{\Omega}_{(5,6)} 
+    \bf{\Omega}\_{(1,2)} \\
+    \bf{\Omega}\_{(2,6)} \\
+    \bf{\Omega}\_{(1,3)} \\
+    \bf{\Omega}\_{(3,4)} \\
+    \bf{\Omega}\_{(4,6)} \\
+    \bf{\Omega}\_{(1,5)} \\
+    \bf{\Omega}\_{(5,6)} 
 \end{Bmatrix}
 $$
 
@@ -107,10 +107,10 @@ $$
     \bf{\omega}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\Omega}
+    \bf{C}\_{\Omega}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(i,j)}
+    \bf{\Omega}\_{(i,j)}
 \end{Bmatrix}
 $$
 
