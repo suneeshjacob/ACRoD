@@ -26,9 +26,9 @@ In order to check for possibility of redundant paths, the rank of the connectivi
 
 $$
 \begin{matrix}
-    \bf{v}^{(1)}=\bf{V}_{(1,2)}+\bf{V}_{(2,6)} \\ 
-    \bf{v}^{(2)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,6)} \\ 
-    \bf{v}^{(3)}=\bf{V}_{(1,5)}+\bf{V}_{(5,6)} \\
+    \bf{v}^{(1)}=\bf{V}\_{(1,2)}+\bf{V}\_{(2,6)} \\ 
+    \bf{v}^{(2)}=\bf{V}\_{(1,3)}+\bf{V}\_{(3,4)}+\bf{V}\_{(4,6)} \\ 
+    \bf{v}^{(3)}=\bf{V}\_{(1,5)}+\bf{V}\_{(5,6)} \\
 \end{matrix}
 $$
 
@@ -44,13 +44,13 @@ $$
     0 & 0 & 0 & 0 & 0 & 1 & 1 
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(1,2)} \\
-    \bf{V}_{(2,6)} \\
-    \bf{V}_{(1,3)} \\
-    \bf{V}_{(3,4)} \\
-    \bf{V}_{(4,6)} \\
-    \bf{V}_{(1,5)} \\
-    \bf{V}_{(5,6)} 
+    \bf{V}\_{(1,2)} \\
+    \bf{V}\_{(2,6)} \\
+    \bf{V}\_{(1,3)} \\
+    \bf{V}\_{(3,4)} \\
+    \bf{V}\_{(4,6)} \\
+    \bf{V}\_{(1,5)} \\
+    \bf{V}\_{(5,6)} 
 \end{Bmatrix}
 $$
 
@@ -59,10 +59,10 @@ $$
     \bf{v}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\bf{V}}
+    \bf{C}\_{\bf{V}}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(i,j)}
+    \bf{V}\_{(i,j)}
 \end{Bmatrix}
 $$
 
@@ -72,9 +72,9 @@ Now, the angular velocity connectivity matrix is considered as follows.
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,6)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(1,3)}+\bf{\Omega}_{(3,4)}+\bf{\Omega}_{(4,6)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(1,5)}+\bf{\Omega}_{(5,6)} \\
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,6)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(1,3)}+\bf{\Omega}\_{(3,4)}+\bf{\Omega}\_{(4,6)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(1,5)}+\bf{\Omega}\_{(5,6)} \\
 \end{matrix}
 $$
 
@@ -92,13 +92,13 @@ $$
     0 & 0 & 0 & 0 & 0 & 1 & 1 
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(1,2)} \\
-    \bf{\Omega}_{(2,6)} \\
-    \bf{\Omega}_{(1,3)} \\
-    \bf{\Omega}_{(3,4)} \\
-    \bf{\Omega}_{(4,6)} \\
-    \bf{\Omega}_{(1,5)} \\
-    \bf{\Omega}_{(5,6)} 
+    \bf{\Omega}\_{(1,2)} \\
+    \bf{\Omega}\_{(2,6)} \\
+    \bf{\Omega}\_{(1,3)} \\
+    \bf{\Omega}\_{(3,4)} \\
+    \bf{\Omega}\_{(4,6)} \\
+    \bf{\Omega}\_{(1,5)} \\
+    \bf{\Omega}\_{(5,6)} 
 \end{Bmatrix}
 $$
 
@@ -107,10 +107,10 @@ $$
     \bf{\omega}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\Omega}
+    \bf{C}\_{\Omega}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(i,j)}
+    \bf{\Omega}\_{(i,j)}
 \end{Bmatrix}
 $$
 
@@ -131,9 +131,9 @@ $$\bf{\omega}^{(2)} = \dot{\theta}\_{(1,3)} \bf{\hat{k}} + \bf{\omega\_{(3,5)}} 
 $$\bf{\omega}^{(3)} = \dot{\theta}\_{(1,5)} \bf{\hat{k}} + \bf{\omega\_{(5,6)}}$$
 
 $$
-\begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}0 & n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\0 & - n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) - n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & n_{(1,3)x}\\\\0 & n_{(1,3)y}\\\\0 & n_{(1,3)z}\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(1,2)} \\\\  \dot{\theta}_{(1,3)}\end{Bmatrix} +$$
+\begin{Bmatrix}\bf{v}^{(1)} \\\\ \bf{\omega}^{(1)}\end{Bmatrix} = \begin{Bmatrix}\bf{v} \\\\ \bf{\omega}\end{Bmatrix} = \left[\begin{matrix}0 & n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\0 & - n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) - n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & n_{(1,3)x}\\\\0 & n_{(1,3)y}\\\\0 & n_{(1,3)z}\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(1,2)} \\\\  \dot{\theta}\_{(1,3)}\end{Bmatrix} +$$
 
-$$\left[\begin{array}{ccccccccccccc}0 & 0 & 0 & 0 & 0 & a_{z} - r_{(3,4)z} & - a_{y} + r_{(3,4)y} & 0 & a_{z} - r_{(4,6)z} & - a_{y} + r_{(4,6)y} & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & - a_{z} + r_{(3,4)z} & 0 & a_{x} - r_{(3,4)x} & - a_{z} + r_{(4,6)z} & 0 & a_{x} - r_{(4,6)x} & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & a_{y} - r_{(3,4)y} & - a_{x} + r_{(3,4)x} & 0 & a_{y} - r_{(4,6)y} & - a_{x} + r_{(4,6)x} & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0\end{array}\right]\begin{Bmatrix} \dot{\theta}_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
+$$\left[\begin{array}{ccccccccccccc}0 & 0 & 0 & 0 & 0 & a_{z} - r_{(3,4)z} & - a_{y} + r_{(3,4)y} & 0 & a_{z} - r_{(4,6)z} & - a_{y} + r_{(4,6)y} & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & - a_{z} + r_{(3,4)z} & 0 & a_{x} - r_{(3,4)x} & - a_{z} + r_{(4,6)z} & 0 & a_{x} - r_{(4,6)x} & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & a_{y} - r_{(3,4)y} & - a_{x} + r_{(3,4)x} & 0 & a_{y} - r_{(4,6)y} & - a_{x} + r_{(4,6)x} & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0\end{array}\right]\begin{Bmatrix} \dot{\theta}\_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
 $$
 
 Constraint equations:
@@ -143,12 +143,12 @@ $$
 $$
 
 $$
-\Rightarrow \left[\begin{matrix}0 & - n_{(1,3)x}\\\\0 & - n_{(1,3)y}\\\\0 & - n_{(1,3)z}\\\\0 & - n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\0 & n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & - n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) + n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\\\\n_{(1,2)x} & - n_{(1,3)x}\\\\n_{(1,2)y} & - n_{(1,3)y}\\\\n_{(1,2)z} & - n_{(1,3)z}\\\\n_{(1,2)y} \left(a_{z} - r_{(1,2)z}\right) - n_{(1,2)z} \left(a_{y} - r_{(1,2)y}\right) & - n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\- n_{(1,2)x} \left(a_{z} - r_{(1,2)z}\right) + n_{(1,2)z} \left(a_{x} - r_{(1,2)x}\right) & n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\n_{(1,2)x} \left(a_{y} - r_{(1,2)y}\right) - n_{(1,2)y} \left(a_{x} - r_{(1,2)x}\right) & - n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) + n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\end{matrix}\right]\begin{Bmatrix}\dot{\theta}_{(1,2)} \\\\  \dot{\theta}_{(1,3)}\end{Bmatrix} + $$
+\Rightarrow \left[\begin{matrix}0 & - n_{(1,3)x}\\\\0 & - n_{(1,3)y}\\\\0 & - n_{(1,3)z}\\\\0 & - n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\0 & n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\0 & - n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) + n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\\\\n_{(1,2)x} & - n_{(1,3)x}\\\\n_{(1,2)y} & - n_{(1,3)y}\\\\n_{(1,2)z} & - n_{(1,3)z}\\\\n_{(1,2)y} \left(a_{z} - r_{(1,2)z}\right) - n_{(1,2)z} \left(a_{y} - r_{(1,2)y}\right) & - n_{(1,3)y} \left(a_{z} - r_{(1,3)z}\right) + n_{(1,3)z} \left(a_{y} - r_{(1,3)y}\right)\\\\- n_{(1,2)x} \left(a_{z} - r_{(1,2)z}\right) + n_{(1,2)z} \left(a_{x} - r_{(1,2)x}\right) & n_{(1,3)x} \left(a_{z} - r_{(1,3)z}\right) - n_{(1,3)z} \left(a_{x} - r_{(1,3)x}\right)\\\\n_{(1,2)x} \left(a_{y} - r_{(1,2)y}\right) - n_{(1,2)y} \left(a_{x} - r_{(1,2)x}\right) & - n_{(1,3)x} \left(a_{y} - r_{(1,3)y}\right) + n_{(1,3)y} \left(a_{x} - r_{(1,3)x}\right)\end{matrix}\right]\begin{Bmatrix}\dot{\theta}\_{(1,2)} \\\\  \dot{\theta}\_{(1,3)}\end{Bmatrix} + $$
 
 $$
 \left[\begin{array}{ccccccccccccc}n_{(1,5)x} & 0 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 1 & 0 & 0\\\\n_{(1,5)y} & 0 & 0 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 1 & 0\\\\n_{(1,5)z} & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 1\\\\n_{(1,5)y} \left(a_{z} - r_{(1,5)z}\right) - n_{(1,5)z} \left(a_{y} - r_{(1,5)y}\right) & 0 & 0 & 0 & 0 & - a_{z} + r_{(3,4)z} & a_{y} - r_{(3,4)y} & 0 & - a_{z} + r_{(4,6)z} & a_{y} - r_{(4,6)y} & 0 & a_{z} - r_{(5,6)z} & - a_{y} + r_{(5,6)y}\\\\- n_{(1,5)x} \left(a_{z} - r_{(1,5)z}\right) + n_{(1,5)z} \left(a_{x} - r_{(1,5)x}\right) & 0 & 0 & 0 & a_{z} - r_{(3,4)z} & 0 & - a_{x} + r_{(3,4)x} & a_{z} - r_{(4,6)z} & 0 & - a_{x} + r_{(4,6)x} & - a_{z} + r_{(5,6)z} & 0 & a_{x} - r_{(5,6)x}\\\\n_{(1,5)x} \left(a_{y} - r_{(1,5)y}\right) - n_{(1,5)y} \left(a_{x} - r_{(1,5)x}\right) & 0 & 0 & 0 & - a_{y} + r_{(3,4)y} & a_{x} - r_{(3,4)x} & 0 & - a_{y} + r_{(4,6)y} & a_{x} - r_{(4,6)x} & 0 & a_{y} - r_{(5,6)y} & - a_{x} + r_{(5,6)x} & 0\\\\0 & 1 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & 1 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 1 & 0 & 0 & -1 & 0 & 0 & -1 & 0 & 0 & 0\\\\0 & 0 & a_{z} - r_{(2,6)z} & - a_{y} + r_{(2,6)y} & 0 & - a_{z} + r_{(3,4)z} & a_{y} - r_{(3,4)y} & 0 & - a_{z} + r_{(4,6)z} & a_{y} - r_{(4,6)y} & 0 & 0 & 0\\\\0 & - a_{z} + r_{(2,6)z} & 0 & a_{x} - r_{(2,6)x} & a_{z} - r_{(3,4)z} & 0 & - a_{x} + r_{(3,4)x} & a_{z} - r_{(4,6)z} & 0 & - a_{x} + r_{(4,6)x} & 0 & 0 & 0\\\\0 & a_{y} - r_{(2,6)y} & - a_{x} + r_{(2,6)x} & 0 & - a_{y} + r_{(3,4)y} & a_{x} - r_{(3,4)x} & 0 & - a_{y} + r_{(4,6)y} & a_{x} - r_{(4,6)x} & 0 & 0 & 0 & 0\end{array}\right]$$
 
-$$\begin{Bmatrix} \dot{\theta}_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
+$$\begin{Bmatrix} \dot{\theta}\_{(1,5)} \\\\  \omega_{(2,6)x} \\\\  \omega_{(2,6)y} \\\\  \omega_{(2,6)z} \\\\  \omega_{(3,4)x} \\\\  \omega_{(3,4)y} \\\\  \omega_{(3,4)z} \\\\  \omega_{(4,6)x} \\\\  \omega_{(4,6)y} \\\\  \omega_{(4,6)z} \\\\  \omega_{(5,6)x} \\\\  \omega_{(5,6)y} \\\\  \omega_{(5,6)z} \end{Bmatrix}
 $$
 
 The system of equations shown in \eqref{eq:velocities_v2toN} would be insufficient to represent the passive joint velocities in terms of active joint velocities. This is due to the fact that the fourth link has rotation along its longitudinal axis not controllable with the actuators yet does not affect the end-effector's velocity. Performing pseudo-inverse can fix this issue but pseudo-inverse could be a discontinuous operation near singular values. Instead, an additional equation for each such superfluous DOF is calculated as per the method shown in algorithm 3 of the main document.
