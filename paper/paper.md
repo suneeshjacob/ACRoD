@@ -103,7 +103,7 @@ The above steps of the algorithm are concisely shown in the pseudocode of algori
 
 
 
-\usepackage{algorithm}
+<!-- \usepackage{algorithm}
 $$
 \begin{algorithm}
 \caption{Pseudocode for identifying all possible paths}\label{alg:paths}
@@ -131,7 +131,7 @@ $$
 \EndWhile
 \State Return $P$.\;
 \end{algorithmic}
-\end{algorithm}$$
+\end{algorithm}$$ -->
 
 
 
