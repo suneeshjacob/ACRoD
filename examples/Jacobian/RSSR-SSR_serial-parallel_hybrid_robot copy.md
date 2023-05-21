@@ -26,9 +26,9 @@ In order to check for possibility of redundant paths, the rank of the connectivi
 
 $$
 \begin{matrix}
-    \bf{v}^{(1)}=\bf{V}_{(1,2)}+\bf{V}_{(2,6)} \\ 
-    \bf{v}^{(2)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,6)} \\ 
-    \bf{v}^{(3)}=\bf{V}_{(1,5)}+\bf{V}_{(5,6)} \\
+    \bf{v}^{(1)}=\bf{V}\_{(1,2)}+\bf{V}\_{(2,6)} \\ 
+    \bf{v}^{(2)}=\bf{V}\_{(1,3)}+\bf{V}\_{(3,4)}+\bf{V}\_{(4,6)} \\ 
+    \bf{v}^{(3)}=\bf{V}\_{(1,5)}+\bf{V}\_{(5,6)} \\
 \end{matrix}
 $$
 
