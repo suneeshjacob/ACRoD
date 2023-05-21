@@ -60,7 +60,9 @@ Jacobian is extensively used in dimensional synthesis for Jacobian-based optimal
 
 
 
-$$\mathbf{\widetilde{J}} = \mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}$$
+\begin{equation}\label{eq:nonserial}\mathbf{\widetilde{J}} = \mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\end{equation}
+
+\begin{equation}\label{eq:serial}\mathbf{\widetilde{J}} = \mathbf{J_a}\end{equation}
 
 
 
