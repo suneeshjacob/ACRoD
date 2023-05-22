@@ -31,7 +31,7 @@ Jacobian is extensively used in dimensional synthesis for Jacobian-based optimal
 
 # Statement of need
 
-ACRoD provides a Python-based package for generating functions of Jacobian
+ACRoD provides a Python-based package for generating functions required to compute Jacobian at a given configuration for a given end-effector point. For a manipulator of a given topology, designing the dimensions based on optimal dexterous performance around a given end-effector point would require only the topological information for the formulation of Jacobian, and every other step can be automated. Formulation of Jacobian for parallel manipulators and serial-parallel hybrid manipulators are non-trivial, although all the steps of Jacobian formulation even in those cases would have to stem from the mere information of topology of the robot. This package automates the non-trivial formulation of Jacobian systematically. It uses a (matrix-based representation)[https://github.com/suneeshjacob/ACRoD/blob/main/Robot_Topology_Matrix.md] of the topology of the robotic manipulator, which is referred to here as the robot-topology matrix.
 
 `Gala` is an Astropy-affiliated Python package for galactic dynamics. Python
 enables wrapping low-level languages (e.g., C) for speed without losing
@@ -55,12 +55,14 @@ scientific explorations of forthcoming data releases from the *Gaia* mission
 
 # Mathematics
 
+For a serial manipulator, the contributions of the velocity of the end-effector from each joint (along the serial path from the base link to the end-effector link) can be summed up to get the velocity of the end-effector. Hence, Jacobian formulation for serial manipulators is very straight-forward, as there would be just one connecting path (of links through joints) from the base-link to the end-effector link and each joint velocity would be an active joint velocity (as serial manipulators do not have passive joint velocities).
+
 \begin{equation}\label{eq:nonserial}\mathbf{\widetilde{J}} = \mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\end{equation}
 
 \begin{equation}\label{eq:serial}\mathbf{\widetilde{J}} = \mathbf{J_a}\end{equation}
 
 
-The above steps of the algorithm are concisely shown in the pseudocode of algorithm \ref{alg:jacobian}.
+The above steps of the algorithm are concisely shown below.
 
 
 1. Assert: Type(_iterator_) is Object.
