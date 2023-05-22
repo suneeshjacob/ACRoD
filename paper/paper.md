@@ -31,33 +31,36 @@ Jacobian is extensively used in dimensional synthesis for Jacobian-based optimal
 
 # Statement of need
 
-`ACRoD` provides a Python-based package for generating functions required to compute Jacobian at a given configuration for a given end-effector point. For a manipulator of a given topology, designing the dimensions based on optimal dexterous performance around a given end-effector point would require only the topological information for the formulation of Jacobian, and every other step can be automated. Formulation of Jacobian for parallel manipulators and serial-parallel hybrid manipulators are non-trivial, although all the steps of Jacobian formulation even in those cases would have to stem from the mere information of topology of the robot. This package automates the non-trivial formulation of Jacobian systematically. It uses a [matrix-based representation](https://github.com/suneeshjacob/ACRoD/blob/main/Robot_Topology_Matrix.md) of the topology of the robotic manipulator (referred to here as the robot-topology matrix) which is a modified version of the graph adjacency matrix representation [@enumeration] of robotic manipulators.
+`ACRoD` provides a Python-based package for generating functions required to compute Jacobian at a given configuration for a given end-effector point. For a manipulator of a given topology, designing the dimensions based on optimal dexterous performance around a given end-effector point would require only the topological information for the formulation of Jacobian, and every other step can be automated. Formulation of Jacobian for parallel manipulators and serial-parallel hybrid manipulators are non-trivial, although all the steps of Jacobian formulation even in those cases would have to stem from the mere information of topology of the robot. This package automates the non-trivial formulation of Jacobian systematically. It uses a matrix-based representation of the topology of the robotic manipulator (referred to here as the robot-topology matrix, of which more information is provided [here](https://github.com/suneeshjacob/ACRoD/blob/main/Robot_Topology_Matrix.md)) which is a modified version of the graph adjacency matrix representation [@enumeration] of robotic manipulators.
 
 `ACRoD` uses NumPy [@numpy] and SymPy [@sympy] packages to generate the functions for Jacobian, which can be directly used in optimisation process to find the optimal dimensional parameters of the robot. The topology of a valid robot (with a single base-link and a single end-effector link and without non-contributing chains) is to be specified using robot-topology matrix in NumPy matrix format.
 
 # Mathematics
 
-For a serial manipulator, the contributions of the velocity of the end-effector from each joint (along the serial path from the base link to the end-effector link) can be summed up to get the velocity of the end-effector. Hence, Jacobian formulation for serial manipulators is very straight-forward, as there would be just one connecting path (of links through joints) from the base-link to the end-effector link and each joint velocity would be an active joint velocity (as serial manipulators do not have passive joint velocities).
+For a serial manipulator, the contributions of the velocity of the end-effector from each joint (along the serial path from the base link to the end-effector link) can be summed up to get the velocity of the end-effector. Hence, Jacobian formulation for serial manipulators is very straight-forward, as there would be just one connecting path (of links through joints) from the base-link to the end-effector link and each joint velocity would be an active joint velocity (as serial manipulators do not have passive joint velocities). The approach is that is typically used to formulate Jacobian of a serial manipulator is to simply calculate the individual contributions of each of the joints to the end-effector along the path that connects the base-link and the end-effector link. However, for non-serial manipulators (including parallel manipulators and serial-parallel hybrid manipulators), more than one connecting path would exist from the base link to the end-effector link, and passive joint velocities come into picture. Hence, for parallel manipulators, the same concept can be used [@synthesis] for all the connecting paths from the base-link to the end- effector link. But not all joint velocities through these paths are actually independent but instead the passive joint velocities are supposed to be dependent on the active joint velocities. Additionally, it is desirable for the paths to be independent in order to avoid the case of an over-determined system. Hence, the procedure would be to take the robot-topology matrix and identify all the independent connecting paths in it for both linear and angular velocities independently, and to formulate linear and angular velocities of the end-effector through these paths and to form constraint equations by which the passive joint velocities can be expressed in terms of active joint velocities, and to finally calculate the end-effector's velocity in terms of active joint velocities alone, from which the Jacobian matrix can be extracted. Since the relationship between active and passive joint velocities is always linear, the passive joint velocities can be expressed in terms of active joint velocities by using constraint equations that can be derived from velocities, as shown in \autoref{eq:constraintequations2}.
+
+\begin{equation}\label{eq:velocity}\mathbf{v} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p}\end{equation}
+
+\begin{equation}\label{eq:constraintequations}\mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a}+\mathbf{A_p}\mathbf{\Omega_p}=0\end{equation}
+
+The above steps of the algorithm (to formulate Jacobian of a typical non-serial manipulator) are concisely shown below.
+
+1. Identification of all connecting paths from the base link to the end-effector link.
+1. Reduction of the list of paths to a list of independent paths for linear velocities.
+1. Further reduction of paths to non-trivial ones in the context of angular velocities.
+1. Calculation of the contributions of linear velocities through each of the independent paths and the contributions of angular velocities through each of the independent non-trivial paths, and calculation of their sums for each path.
+1. Formulation of the velocity of the end-effector as shown in \autoref{eq:velocity} by using one of the sums (for both linear and angular velocities) formulated in the previous step.
+1. Formulation of constraint equations as shown in \autoref{eq:constraintequations} by using the rest of the velocities (sums).
+1. Checking for superfluous DOF and formulating supplementary equations (if applicable).
+1. Formulation of matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$.
+
+The above steps can be used to find the four matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, from which the Jacobian can be formulated by using \autoref{eq:nonserial}. For serial manipulators, since passive joints do not come into picture, the Jacobian would simply be as shown in \autoref{eq:serial}.
 
 \begin{equation}\label{eq:nonserial}\mathbf{\widetilde{J}} = \mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\end{equation}
 
 \begin{equation}\label{eq:serial}\mathbf{\widetilde{J}} = \mathbf{J_a}\end{equation}
 
-
-The above steps of the algorithm (to formulate Jacobian of a typical non-serial manipulator) are concisely shown below.
-
-
-1. Identification of all connecting paths from the base link to the end-effector link.
-1. Reduction of the paths to independent paths for linear velocities.
-1. Further reduction of paths to non-trivial ones in the context of angular velocities.
-1. Calculation of the contributions of linear velocities through each of the independent paths and the contributions of angular velocities through each of the independent non-trivial paths, and calculation of their sums for each path.
-1. Formulation of the velocity of the end-effector by using one of the velocities (both linear and angular) formulated in the previous step.
-1. Formulation of constraint equations by using the rest of the velocities.
-1. Checking for superfluous DOF and formulating supplementary equations (if applicable).
-1. Formulation of matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_a}$.
-
-
-The above steps can be used to find the four matrices $\mathbf{J_a}$, $\mathbf{J_p}$, $\mathbf{A_a}$ and $\mathbf{A_p}$, from which the Jacobian can be formulated by using \autoref{eq:nonserial}. For serial manipulators, since passive joints do not come into picture, the Jacobian would simply be as shown in \autoref{eq:serial}.
+More details on formulation of Jacobian (along with appropriate algorithms) can be found [here](https://github.com/suneeshjacob/ACRoD/blob/main/Mathematics%20behind%20Jacobian%20formulation.md), and the notations and the nomenclature are explained [here](https://github.com/suneeshjacob/ACRoD/blob/main/Notation_and_Nomenclature.md) in detail. The robot-topology matrix representation is explained [here](https://github.com/suneeshjacob/ACRoD/blob/main/Robot_Topology_Matrix.md) in detail.
 
 # Acknowledgements
 
