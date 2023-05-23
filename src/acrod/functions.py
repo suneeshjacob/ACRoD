@@ -369,14 +369,17 @@ class jacobian(object):
         self.get_independent_paths()
         self.execute_equations()
 
-    def get_jacobian_function(self):
+    def get_jacobian_function(self, MoorePenrose = False):
         self.process_functions()
         Ja = self.Ja_func
         if self.is_serial == False:
             Jp = self.Jp_func
             Aa = self.Aa_func
             Ap = self.Ap_func
-            J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+            if MoorePenrose == True:
+                J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.pinv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+            else:
+                J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
         else:
             J = lambda a,x: numpy.matrix(Ja(a,x))
         return J
