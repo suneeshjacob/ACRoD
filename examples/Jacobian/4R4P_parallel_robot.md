@@ -64,10 +64,10 @@ $$
     \bf{v}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\bf{V}}
+    \bf{C}\_{\bf{V}}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(i,j)}
+    \bf{V}\_{(i,j)}
 \end{Bmatrix}
 $$
 
@@ -79,9 +79,9 @@ Now, given that the independent connecting paths are the first three paths, the 
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,4)}+\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(1,3)}+\bf{\Omega}_{(3,4)}+\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,4)}+\bf{\Omega}_{(4,6)}+\bf{\Omega}_{(6,7)} 
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,4)}+\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(1,3)}+\bf{\Omega}\_{(3,4)}+\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,4)}+\bf{\Omega}\_{(4,6)}+\bf{\Omega}\_{(6,7)} 
 \end{matrix}
 $$
 
