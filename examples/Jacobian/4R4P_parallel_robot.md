@@ -89,9 +89,9 @@ The $\bf{\Omega}\_{(i,j)}$ terms corresponding to prismatic joints, i.e., $\bf{\
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(4,6)}+\bf{\Omega}_{(6,7)} 
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(4,6)}+\bf{\Omega}\_{(6,7)} 
 \end{matrix}
 $$
 
@@ -107,10 +107,10 @@ $$
     0 & 0 & 1 & 1
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(4,5)} \\
-    \bf{\Omega}_{(5,7)} \\
-    \bf{\Omega}_{(4,6)} \\
-    \bf{\Omega}_{(6,7)}
+    \bf{\Omega}\_{(4,5)} \\
+    \bf{\Omega}\_{(5,7)} \\
+    \bf{\Omega}\_{(4,6)} \\
+    \bf{\Omega}\_{(6,7)}
 \end{Bmatrix}
 $$
 
@@ -119,10 +119,10 @@ $$
     \bf{\omega}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\Omega}
+    \bf{C}\_{\Omega}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(i,j)}
+    \bf{\Omega}\_{(i,j)}
 \end{Bmatrix}
 $$
 
