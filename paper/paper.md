@@ -1,5 +1,5 @@
 ---
-title: 'Automatic Computation for Robot Design (ACRoD): A Python package for numerical calculation of Jacobian of a robot at a given configuration around a specified end-effector point for optimisation of performance around that end-effector point.'
+title: 'Automatic Computation for Robot Design (ACRoD): A Python package for numerical calculation of Jacobian of a robot at a given configuration around a specified end-effector point'
 tags:
   - Python
   - Robotics
