@@ -27,10 +27,10 @@ In order to check for possibility of redundant paths, the rank of the connectivi
 
 $$
 \begin{matrix}
-    \bf{v}^{(1)}=\bf{V}_{(1,2)}+\bf{V}_{(2,4)}+\bf{V}_{(4,5)}+\bf{V}_{(5,7)} \\ 
-    \bf{v}^{(2)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,5)}+\bf{V}_{(5,7)} \\ 
-    \bf{v}^{(3)}=\bf{V}_{(1,2)}+\bf{V}_{(2,4)}+\bf{V}_{(4,6)}+\bf{V}_{(6,7)} \\ 
-    \bf{v}^{(4)}=\bf{V}_{(1,3)}+\bf{V}_{(3,4)}+\bf{V}_{(4,6)}+\bf{V}_{(6,7)} \\ 
+    \bf{v}^{(1)}=\bf{V}\_{(1,2)}+\bf{V}\_{(2,4)}+\bf{V}\_{(4,5)}+\bf{V}\_{(5,7)} \\ 
+    \bf{v}^{(2)}=\bf{V}\_{(1,3)}+\bf{V}\_{(3,4)}+\bf{V}\_{(4,5)}+\bf{V}\_{(5,7)} \\ 
+    \bf{v}^{(3)}=\bf{V}\_{(1,2)}+\bf{V}\_{(2,4)}+\bf{V}\_{(4,6)}+\bf{V}\_{(6,7)} \\ 
+    \bf{v}^{(4)}=\bf{V}\_{(1,3)}+\bf{V}\_{(3,4)}+\bf{V}\_{(4,6)}+\bf{V}\_{(6,7)} \\ 
 \end{matrix}
 $$
 
@@ -48,14 +48,14 @@ $$
     0 & 0 & 0 & 0 & 1 & 1 & 1 & 1
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(1,2)} \\
-    \bf{V}_{(2,4)} \\
-    \bf{V}_{(4,5)} \\
-    \bf{V}_{(5,7)} \\
-    \bf{V}_{(1,3)} \\
-    \bf{V}_{(3,4)} \\
-    \bf{V}_{(4,6)} \\
-    \bf{V}_{(6,7)}
+    \bf{V}\_{(1,2)} \\
+    \bf{V}\_{(2,4)} \\
+    \bf{V}\_{(4,5)} \\
+    \bf{V}\_{(5,7)} \\
+    \bf{V}\_{(1,3)} \\
+    \bf{V}\_{(3,4)} \\
+    \bf{V}\_{(4,6)} \\
+    \bf{V}\_{(6,7)}
 \end{Bmatrix}
 $$
 
@@ -64,10 +64,10 @@ $$
     \bf{v}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\bf{V}}
+    \bf{C}\_{\bf{V}}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{V}_{(i,j)}
+    \bf{V}\_{(i,j)}
 \end{Bmatrix}
 $$
 
@@ -79,9 +79,9 @@ Now, given that the independent connecting paths are the first three paths, the 
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,4)}+\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(1,3)}+\bf{\Omega}_{(3,4)}+\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(1,2)}+\bf{\Omega}_{(2,4)}+\bf{\Omega}_{(4,6)}+\bf{\Omega}_{(6,7)} 
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,4)}+\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(1,3)}+\bf{\Omega}\_{(3,4)}+\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(1,2)}+\bf{\Omega}\_{(2,4)}+\bf{\Omega}\_{(4,6)}+\bf{\Omega}\_{(6,7)} 
 \end{matrix}
 $$
 
@@ -89,9 +89,9 @@ The $\bf{\Omega}\_{(i,j)}$ terms corresponding to prismatic joints, i.e., $\bf{\
 
 $$
 \begin{matrix}
-    \bf{\omega}^{(1)}=\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(2)}=\bf{\Omega}_{(4,5)}+\bf{\Omega}_{(5,7)} \\ 
-    \bf{\omega}^{(3)}=\bf{\Omega}_{(4,6)}+\bf{\Omega}_{(6,7)} 
+    \bf{\omega}^{(1)}=\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(2)}=\bf{\Omega}\_{(4,5)}+\bf{\Omega}\_{(5,7)} \\ 
+    \bf{\omega}^{(3)}=\bf{\Omega}\_{(4,6)}+\bf{\Omega}\_{(6,7)} 
 \end{matrix}
 $$
 
@@ -107,10 +107,10 @@ $$
     0 & 0 & 1 & 1
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(4,5)} \\
-    \bf{\Omega}_{(5,7)} \\
-    \bf{\Omega}_{(4,6)} \\
-    \bf{\Omega}_{(6,7)}
+    \bf{\Omega}\_{(4,5)} \\
+    \bf{\Omega}\_{(5,7)} \\
+    \bf{\Omega}\_{(4,6)} \\
+    \bf{\Omega}\_{(6,7)}
 \end{Bmatrix}
 $$
 
@@ -119,10 +119,10 @@ $$
     \bf{\omega}^{(k)}
 \end{Bmatrix} = 
 \begin{bmatrix}
-    \bf{C}_{\Omega}
+    \bf{C}\_{\Omega}
 \end{bmatrix}
 \begin{Bmatrix}
-    \bf{\Omega}_{(i,j)}
+    \bf{\Omega}\_{(i,j)}
 \end{Bmatrix}
 $$
 
