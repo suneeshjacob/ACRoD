@@ -272,6 +272,9 @@ class jacobian(object):
                     truncated_path = path_containing_superfluous_link[:path_containing_superfluous_link.index(L_s)+1]
                     _, superfluous_link_angular_velocity, executions_list, current_variables = vel_path(M, truncated_path, current_variables)
                     executions += executions_list
+
+                    if superfluous_link_angular_velocity[0] == '+':
+                        superfluous_link_angular_velocity = superfluous_link_angular_velocity[1:]
                     
                     i_s, j_s = sorted(current_superfluous_info[1][0])
                     k_s, l_s = sorted(current_superfluous_info[1][1])
