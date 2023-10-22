@@ -6,7 +6,7 @@
     <img src="./RRRRPPPP.png" alt="4R-4P planar serial-parallel hybrid manipulator" width="500px">
 </p>
 
-A figure of RRRRPPPP planar serial-parallel hybrid manipulator [[1]](#1) is shown above. The corresponding adjacency matrix is given by
+A figure of RRRRPPPP planar serial-parallel hybrid manipulator is shown above. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
@@ -175,5 +175,4 @@ $$
 \bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}\_p}\bf{A_a}
 $$
 
-## References
-[1] Jacob, Akkarapakam Suneesh, and Rituparna Datta. "A Generalised Method for Multi-objective Optimisation of Performance Parameters for Dimensional Synthesis of Robotic Manipulators Around a Specified End-effector Point" International Journal of Intelligent Robotics and Applications ***(submitted)**** (2022).
+
