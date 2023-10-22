@@ -385,9 +385,9 @@ class jacobian(object):
             Aa = self.Aa_func
             Ap = self.Ap_func
             if MoorePenrose == True:
-                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,nrr)),numpy.linalg.pinv(numpy.array(Ap(a,nrr)))),numpy.array(Aa(a,nrr)))
+                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,x)),numpy.linalg.pinv(numpy.array(Ap(a,x)))),numpy.array(Aa(a,x)))
             else:
-                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,nrr)),numpy.linalg.inv(numpy.array(Ap(a,nrr)))),numpy.array(Aa(a,nrr)))
+                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,x)),numpy.linalg.inv(numpy.array(Ap(a,x)))),numpy.array(Aa(a,x)))
         else:
             J = lambda a,x: numpy.array(Ja(a,x))
         return J
