@@ -8,7 +8,7 @@ def all_joints_connected_to_the_link(M,linknumber):
 
     this function takes the robot-topology matrix and the link number as input arguments.
 
-    :param M: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
+    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :param linknumber: link number (it is to be indexed from 0, not from 1).
     :return: a list of size n-1 items specifying the type of joint with which the given link is connected to every other joint. The order of joints corresponds to the ascending order of the link numbers.
     """
@@ -27,7 +27,7 @@ def all_links_connected_to_the_link(M,linknumber):
 
     this function takes the robot-topology matrix and the link number as input arguments.
 
-    :param M: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
+    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :param linknumber: link number (it is to be indexed from 0, not from 1).
     :return: a list of items specifying the indices of links with which the given link is connected, in ascending order of the link numbers.
     """
@@ -43,7 +43,7 @@ def all_paths(M):
 
     this function takes the robot-topology matrix as input argument.
 
-    :param M: robot-topology matrix (of size nxn, to be given in numpy.matrix format).
+    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :return: a list of lists of items each corresponding to a path and specifying the sequence of links in that path that are connected from the base link to the end-effector link (the link numbers are indexed from 0, not from 1).
     """
     M = numpy.array(M)
@@ -113,7 +113,7 @@ def graph_adjacency_matrix_from_robot_topology_matrix(M):
     :return: the corresponding graph adjacency matrix.
     """
     A = M.copy()
-    B = numpy.matrix([[A[i,j] if j>i else 0 for j in range(A.shape[1])] for i in range(A.shape[0])])
+    B = numpy.array([[A[i,j] if j>i else 0 for j in range(A.shape[1])] for i in range(A.shape[0])])
     C = B + B.T
     return C
 
@@ -385,11 +385,11 @@ class jacobian(object):
             Aa = self.Aa_func
             Ap = self.Ap_func
             if MoorePenrose == True:
-                J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.pinv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,nrr)),numpy.linalg.pinv(numpy.array(Ap(a,nrr)))),numpy.array(Aa(a,nrr)))
             else:
-                J = lambda a,x: numpy.matrix(Ja(a,x)) - numpy.matrix(Jp(a,x))*numpy.linalg.inv(numpy.matrix(Ap(a,x)))*numpy.matrix(Aa(a,x))
+                J = lambda a,x: numpy.array(Ja(a,x)) - numpy.matmul(numpy.matmul(numpy.array(Jp(a,nrr)),numpy.linalg.inv(numpy.array(Ap(a,nrr)))),numpy.array(Aa(a,nrr)))
         else:
-            J = lambda a,x: numpy.matrix(Ja(a,x))
+            J = lambda a,x: numpy.array(Ja(a,x))
         return J
 
 def vel_path_planar(M, path, available_variables):
@@ -652,7 +652,7 @@ def from_P_to_P_tilde(P,M):
     :return: P_tilde in list format, P_tilde_omega in list format, independent_path_indices in list format and independent_omega_path_indices in list format.
     """
     V_i_j_vector = []
-    Cv = numpy.reshape(numpy.matrix(''),(0,0))
+    Cv = numpy.reshape(numpy.array([]),(0,0))
     for i in range(len(P)):
         Cv = numpy.r_[Cv,numpy.zeros((1,len(V_i_j_vector)))]
         for j in range(len(P[i])-1):
@@ -664,7 +664,7 @@ def from_P_to_P_tilde(P,M):
                 sortflag = -1
             if V_i_j_element_sorted not in V_i_j_vector:
                 V_i_j_vector.append(V_i_j_element_sorted)
-                Cv = numpy.c_[Cv,numpy.r_[numpy.zeros((Cv.shape[0]-1,1)),numpy.matrix(sortflag)]]
+                Cv = numpy.c_[Cv,numpy.r_[numpy.zeros((Cv.shape[0]-1,1)),numpy.array([[sortflag]])]]
             elif V_i_j_element_sorted in V_i_j_vector:
                 ind = V_i_j_vector.index(V_i_j_element_sorted)
                 Cv[i,ind]= sortflag
