@@ -301,8 +301,11 @@ class jacobian(object):
             superfluous_equations_expressions.append(eval(i))
 
         J_matrix = sympy.Matrix([linear_velocities_expressions[0], angular_velocities_expressions[0]])
-        A_matrix = sympy.Matrix([linear_velocities_expressions[i+1]-linear_velocities_expressions[0] for i in range(len(linear_velocities_expressions)-1)]+[angular_velocities_expressions[i+1]-angular_velocities_expressions[0] for i in range(len(angular_velocities_expressions)-1)]+superfluous_equations_expressions)
-        
+        if len(linear_velocities_expressions)>1 and len(angular_velocities_expressions)==1:
+            A_matrix = sympy.Matrix([linear_velocities_expressions[i+1]-linear_velocities_expressions[0] for i in range(len(linear_velocities_expressions)-1)]+angular_velocities_expressions+superfluous_equations_expressions)
+        else:
+            A_matrix = sympy.Matrix([linear_velocities_expressions[i+1]-linear_velocities_expressions[0] for i in range(len(linear_velocities_expressions)-1)]+[angular_velocities_expressions[i+1]-angular_velocities_expressions[0] for i in range(len(angular_velocities_expressions)-1)]+superfluous_equations_expressions)
+
         active_jointvelocities, passive_jointvelocities = get_jointvelocities_list(M)
         active = []
         passive = []
@@ -310,6 +313,8 @@ class jacobian(object):
             active.append(eval(i))
         for i in passive_jointvelocities:
             passive.append(eval(i))
+
+
 
 
         
