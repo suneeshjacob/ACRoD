@@ -278,3 +278,25 @@ def test_spatial_3RFS():
        [-0.27626281, -0.22535705,  0.499094  ],
        [ 0.11695045,  1.35715678, -0.34503766],
        [ 0.01347087,  0.06018991,  0.196297  ]])).all()
+
+
+def test_planar_for_descending():
+    A = numpy.array(
+      [[9, 2, 0, 0, 2, 0, 0],
+       [1, 9, 0, 2, 0, 0, 0],
+       [0, 0, 9, 1, 0, 0, 1],
+       [0, 0, 0, 9, 2, 1, 0],
+       [1, 0, 0, 0, 9, 0, 0],
+       [0, 0, 0, 1, 0, 9, 1],
+       [0, 0, 0, 0, 0, 0, 9]]
+    )
+    jac = jacobian(A, robot_type = 'planar')
+    jac_func = jac.get_jacobian_function()
+    assert str([jac.Ja, jac.Jp, jac.Aa, jac.Ap]) == '[Matrix([\n[cos(\\phi_{(1,2)}), 0, 0],\n[sin(\\phi_{(1,2)}), 0, 0],\n[                0, 0, 0]]), Matrix([\n[cos(\\phi_{(2,4)}),  a_y - r_{(3,4)y}, -a_y + r_{(3,7)y}, 0, 0],\n[sin(\\phi_{(2,4)}), -a_x + r_{(3,4)x},  a_x - r_{(3,7)x}, 0, 0],\n[                0,                -1,                 1, 0, 0]]), Matrix([\n[                 0,                 0, -a_y + r_{(4,6)y}],\n[                 0,                 0,  a_x - r_{(4,6)x}],\n[-cos(\\phi_{(1,2)}), cos(\\phi_{(1,5)}),                 0],\n[-sin(\\phi_{(1,2)}), sin(\\phi_{(1,5)}),                 0],\n[                 0,                 0,                 1]]), Matrix([\n[                 0, -a_y + r_{(3,4)y},  a_y - r_{(3,7)y},                  0, -a_y + r_{(6,7)y}],\n[                 0,  a_x - r_{(3,4)x}, -a_x + r_{(3,7)x},                  0,  a_x - r_{(6,7)x}],\n[-cos(\\phi_{(2,4)}),                 0,                 0, -cos(\\phi_{(4,5)}),                 0],\n[-sin(\\phi_{(2,4)}),                 0,                 0, -sin(\\phi_{(4,5)}),                 0],\n[                 0,                 1,                -1,                  0,                 1]])]'
+    numpy.random.seed(0)
+    end_effector_parameters = numpy.random.random(2)
+    numpy.random.seed(0)
+    robot_parameters = numpy.random.random(len(jac.parameters))
+    assert numpy.isclose(jac_func(end_effector_parameters, robot_parameters),numpy.array([[-0.11882638,  0.50774852, -0.58812428],
+       [-0.14723595,  0.34943317, -0.74914152],
+       [ 0.        ,  0.        ,  2.37618934]])).all()
