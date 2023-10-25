@@ -302,7 +302,7 @@ def test_planar_for_descending():
        [ 0.        ,  0.        ,  2.37618934]])).all()
 
 def test_spatial_for_descending_1():
-    A = array(
+    A = numpy.array(
       [[9, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
        [0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 4],
        [0, 0, 9, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 2, 0],
