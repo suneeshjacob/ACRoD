@@ -338,3 +338,34 @@ def test_spatial_for_descending_1():
          2.06073096e+00, -2.03709917e+00, -7.11180403e+01],
        [-5.74486260e+01, -2.71642977e+00,  8.60002598e+01,
          2.85012796e-01, -1.15294950e+00,  4.38284057e+02]])).all()
+
+
+def test_spatial_for_descending_2():
+    A = numpy.array(
+    [[9, 1, 0, 0, 0, 0, 0],
+     [1, 9, 1, 0, 0, 0, 0],
+     [0, 1, 9, 1, 0, 0, 0],
+     [0, 0, 1, 9, 1, 0, 0],
+     [0, 0, 0, 1, 9, 1, 0],
+     [0, 0, 0, 0, 1, 9, 1],
+     [0, 0, 0, 0, 0, 1, 9]]
+    )
+    jac = jacobian(A, robot_type = 'spatial')
+    jac_func = jac.get_jacobian_function()
+    assert str([jac.Ja, jac.Jp, jac.Aa, jac.Ap]) == '[Matrix([\n[                  -(a_y - r_{(1,6)y})*cos(\\beta_{(1,6)}) + (a_z - r_{(1,6)z})*sin(\\beta_{(1,6)})*sin(\\phi_{(1,6)}),                   -(a_y - r_{(2,4)y})*cos(\\beta_{(2,4)}) + (a_z - r_{(2,4)z})*sin(\\beta_{(2,4)})*sin(\\phi_{(2,4)}),                   (a_y - r_{(2,6)y})*cos(\\beta_{(2,6)}) - (a_z - r_{(2,6)z})*sin(\\beta_{(2,6)})*sin(\\phi_{(2,6)}),                   (a_y - r_{(3,4)y})*cos(\\beta_{(3,4)}) - (a_z - r_{(3,4)z})*sin(\\beta_{(3,4)})*sin(\\phi_{(3,4)}),                   -(a_y - r_{(3,5)y})*cos(\\beta_{(3,5)}) + (a_z - r_{(3,5)z})*sin(\\beta_{(3,5)})*sin(\\phi_{(3,5)}),                   -(a_y - r_{(5,7)y})*cos(\\beta_{(5,7)}) + (a_z - r_{(5,7)z})*sin(\\beta_{(5,7)})*sin(\\phi_{(5,7)})],\n[                   (a_x - r_{(1,6)x})*cos(\\beta_{(1,6)}) - (a_z - r_{(1,6)z})*sin(\\beta_{(1,6)})*cos(\\phi_{(1,6)}),                    (a_x - r_{(2,4)x})*cos(\\beta_{(2,4)}) - (a_z - r_{(2,4)z})*sin(\\beta_{(2,4)})*cos(\\phi_{(2,4)}),                  -(a_x - r_{(2,6)x})*cos(\\beta_{(2,6)}) + (a_z - r_{(2,6)z})*sin(\\beta_{(2,6)})*cos(\\phi_{(2,6)}),                  -(a_x - r_{(3,4)x})*cos(\\beta_{(3,4)}) + (a_z - r_{(3,4)z})*sin(\\beta_{(3,4)})*cos(\\phi_{(3,4)}),                    (a_x - r_{(3,5)x})*cos(\\beta_{(3,5)}) - (a_z - r_{(3,5)z})*sin(\\beta_{(3,5)})*cos(\\phi_{(3,5)}),                    (a_x - r_{(5,7)x})*cos(\\beta_{(5,7)}) - (a_z - r_{(5,7)z})*sin(\\beta_{(5,7)})*cos(\\phi_{(5,7)})],\n[-(a_x - r_{(1,6)x})*sin(\\beta_{(1,6)})*sin(\\phi_{(1,6)}) + (a_y - r_{(1,6)y})*sin(\\beta_{(1,6)})*cos(\\phi_{(1,6)}), -(a_x - r_{(2,4)x})*sin(\\beta_{(2,4)})*sin(\\phi_{(2,4)}) + (a_y - r_{(2,4)y})*sin(\\beta_{(2,4)})*cos(\\phi_{(2,4)}), (a_x - r_{(2,6)x})*sin(\\beta_{(2,6)})*sin(\\phi_{(2,6)}) - (a_y - r_{(2,6)y})*sin(\\beta_{(2,6)})*cos(\\phi_{(2,6)}), (a_x - r_{(3,4)x})*sin(\\beta_{(3,4)})*sin(\\phi_{(3,4)}) - (a_y - r_{(3,4)y})*sin(\\beta_{(3,4)})*cos(\\phi_{(3,4)}), -(a_x - r_{(3,5)x})*sin(\\beta_{(3,5)})*sin(\\phi_{(3,5)}) + (a_y - r_{(3,5)y})*sin(\\beta_{(3,5)})*cos(\\phi_{(3,5)}), -(a_x - r_{(5,7)x})*sin(\\beta_{(5,7)})*sin(\\phi_{(5,7)}) + (a_y - r_{(5,7)y})*sin(\\beta_{(5,7)})*cos(\\phi_{(5,7)})],\n[                                                                              sin(\\beta_{(1,6)})*cos(\\phi_{(1,6)}),                                                                               sin(\\beta_{(2,4)})*cos(\\phi_{(2,4)}),                                                                             -sin(\\beta_{(2,6)})*cos(\\phi_{(2,6)}),                                                                             -sin(\\beta_{(3,4)})*cos(\\phi_{(3,4)}),                                                                               sin(\\beta_{(3,5)})*cos(\\phi_{(3,5)}),                                                                               sin(\\beta_{(5,7)})*cos(\\phi_{(5,7)})],\n[                                                                              sin(\\beta_{(1,6)})*sin(\\phi_{(1,6)}),                                                                               sin(\\beta_{(2,4)})*sin(\\phi_{(2,4)}),                                                                             -sin(\\beta_{(2,6)})*sin(\\phi_{(2,6)}),                                                                             -sin(\\beta_{(3,4)})*sin(\\phi_{(3,4)}),                                                                               sin(\\beta_{(3,5)})*sin(\\phi_{(3,5)}),                                                                               sin(\\beta_{(5,7)})*sin(\\phi_{(5,7)})],\n[                                                                                                cos(\\beta_{(1,6)}),                                                                                                 cos(\\beta_{(2,4)}),                                                                                               -cos(\\beta_{(2,6)}),                                                                                               -cos(\\beta_{(3,4)}),                                                                                                 cos(\\beta_{(3,5)}),                                                                                                 cos(\\beta_{(5,7)})]]), None, None, None]'
+    numpy.random.seed(0)
+    end_effector_parameters = numpy.random.random(3)
+    numpy.random.seed(0)
+    robot_parameters = numpy.random.random(len(jac.parameters))
+    assert numpy.isclose(jac_func(end_effector_parameters, robot_parameters),numpy.array([[ 0.        , -0.24717605,  0.1100608 ,  0.61829149,  0.07139447,
+        -0.56438892],
+       [ 0.        ,  0.16473732,  0.17374646, -0.43285794, -0.40411481,
+         0.0770093 ],
+       [ 0.        ,  0.24126337, -0.16224528, -0.06686038, -0.02298567,
+         0.27919047],
+       [ 0.47249501,  0.76164703, -0.79696467, -0.45264098,  0.69873959,
+         0.45623812],
+       [ 0.21307796,  0.3072551 , -0.05670865, -0.53653983,  0.08303055,
+         0.20082922],
+       [ 0.85518784,  0.57051564, -0.601358  , -0.71220865,  0.71054128,
+         0.8668993 ]])).all()
