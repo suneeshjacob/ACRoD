@@ -6,8 +6,6 @@
     <img src="./RRR.png" alt="RRR planar serial manipulator" width="500px">
 </p>
 
-![RRR planar serial manipulator](https://github.com/suneeshjacob/ACRoD/blob/09ff17bcdd3d80cd2fbc26e9df680571ded0ec76/examples/Jacobian/RRR.png)
-
 An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
