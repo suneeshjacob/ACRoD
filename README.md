@@ -7,7 +7,8 @@ This repository is dedicated to develop functions for automatic computations for
 ## Currently available functions
 
 - Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)
-&emsp; ### Statement of need
+&emsp;
+### Statement of need
   - The 
 
 ## Installation
