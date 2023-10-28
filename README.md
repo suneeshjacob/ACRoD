@@ -93,7 +93,7 @@ In an ipynb file of JupyterLab, the above code would produce the following outpu
 
 $$\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]$$
 
-#### Sample computation of Jacobian at the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and at the configuration of $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
+#### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
 - End-effector point: $\textbf{a}=\hat{i}+2\hat{j}$
 - Locations of joints: $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
