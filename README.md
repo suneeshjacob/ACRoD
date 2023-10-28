@@ -109,3 +109,12 @@ array([[ 2,  4],
        [-2, -4],
        [ 1,  1]])
 ```
+
+## Community Guidelines
+
+- For contribution to the software:
+  - In order to contribute to the software, please consider using the [pull request feature](https://github.com/suneeshjacob/ACRoD/issues) of GitHub.
+- For reporting issues with the software:
+  - For reporting issues or problems, please use [issues](https://github.com/suneeshjacob/ACRoD/issues).
+- For support:
+  - For any further support (including installation, usage, etc.), feel free to contact via suneeshjacob-at-gmail-dot-com.
