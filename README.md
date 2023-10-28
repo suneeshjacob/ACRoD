@@ -98,7 +98,7 @@ $$\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]$$
 - End-effector point: $\textbf{a}=\hat{i}+2\hat{j}$
 - Locations of joints: $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$ and $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$
 
-For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters. The robot dimensional parameters (from `jac.parameters_symbolic`) are in the order of $r_{(1,2)x}$, $r_{(1,2)y}$, $r_{(2,3)x}$ and $r_{(2,3)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
+For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $r_{(1,2)x}$, $r_{(1,2)y}$, $r_{(2,3)x}$ and $r_{(2,3)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
 ```py
 end_effector_point = [1,2]
 configuration_parameters = [3,4,5,6]
