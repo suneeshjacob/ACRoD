@@ -39,7 +39,11 @@ from numpy import matrix
 
 The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
-M = matrix('9 1 0;1 9 1;0 1 9')
+M = numpy.array(
+        [[9, 1, 0],
+         [1, 9, 1],
+         [0, 1, 9]]
+    )
 jac = jacobian(M, robot_type = 'planar')
 ```
 
