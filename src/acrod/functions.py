@@ -190,7 +190,7 @@ class jacobian(object):
     passive_joint_velocities_symbolic: passive joint velocities in symbolic form.
     parameters_symbolic: list of parameters (other than end-effector parameters) in string format.
     endeffector_variables_symbolic: end-effector parameters in symbolic form.
-    superfluous_information: list containing information of superfluous DOF existing in the robot.
+    superfluous_dof_information: list containing information of superfluous DOF existing in the robot.
     """
     def __init__(self, M, robot_type = 'spatial'):
         self.M = M
@@ -267,7 +267,7 @@ class jacobian(object):
         if robot_type == 'spatial':
             superfluous_info = superfluous(M)
             if len(superfluous_info) > 0:
-                self.superfluous_information = superfluous_info
+                self.superfluous_dof_information = superfluous_info
                 for i in range(len(superfluous_info)):
                     current_superfluous_info = superfluous_info[i]
                     L_s = current_superfluous_info[1][0][1]
