@@ -16,7 +16,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & 
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For RRRRPPPP planar serial-parallel hybrid manipulator shown above, the robot topology matrix is given by
 
-$$\left[\begin{matrix}9 & 2 & 2 & 0 & 0 & 0 & 0\\\\1 & 9 & 0 & 2 & 0 & 0 & 0\\\\1 & 0 & 9 & 2 & 0 & 0 & 0\\\\0 & 0 & 0 & 9 & 1 & 1 & 0\\\\0 & 0 & 0 & 1 & 9 & 0 & 1\\\\0 & 0 & 0 & 0 & 0 & 9 & 1\\\\0 & 0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]$$
+$$\left[\begin{matrix}9 & 1 & 1 & 0 & 1 & 0\\\\1 & 9 & 0 & 0 & 0 & 4\\\\1 & 0 & 9 & 4 & 0 & 0\\\\0 & 0 & 0 & 9 & 0 & 4\\\\0 & 0 & 0 & 0 & 9 & 4\\\\0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]$$
 
 The corresponding Jacobian function can be formulated as follows.
 
@@ -29,7 +29,7 @@ from numpy import array
 
 The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
-M = numpy.array(
+M = array(
         [[9, 1, 1, 0, 1, 0],
          [1, 9, 0, 0, 0, 4],
          [1, 0, 9, 4, 0, 0],
