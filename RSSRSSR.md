@@ -78,7 +78,7 @@ $$\left[\begin{array}{ccccccccccccc}0 & 0 & a_{z} - r_{(2,6)z} & - a_{y} + r_{(2
 
 
 
-The above Jacobian is based on the notations defined and described [here](Notation_and_Nomenclature.md).
+The above matrices are based on the notations defined and described [here](Notation_and_Nomenclature.md).
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
