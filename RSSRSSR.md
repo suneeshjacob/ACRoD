@@ -51,9 +51,15 @@ In the process of generating the above jacobian function, other attributes of th
 
 ```py
 symbolic_Ja = jac.Ja
+symbolic_Jp = jac.Jp
+symbolic_Aa = jac.Aa
+symbolic_Ap = jac.Ap
+```
+In a Jupyter notebook, the symbolic matrices can be visualised as shown below.
+
+```py
 symbolic_Ja
 ```
-
 Output in Jupyter notebook:
 
 $$\begin{bmatrix}- \left(a_{y} - r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0 \\\\
@@ -64,40 +70,13 @@ $$\begin{bmatrix}- \left(a_{y} - r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \rig
 \cos{\left(\beta_{(1,2)} \right)} & 0\end{bmatrix}$$
 
 ```py
-symbolic_Jp = jac.Jp
 symbolic_Jp
 ```
 Output in Jupyter notebook:
 
 $$\left[\begin{array}{ccccccccccccc}0 & 0 & a_{z} - r_{(2,6)z} & - a_{y} + r_{(2,6)y} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\0 & - a_{z} + r_{(2,6)z} & 0 & a_{x} - r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\0 & a_{y} - r_{(2,6)y} & - a_{x} + r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\end{array}\right]$$
 
-```py
-symbolic_Aa = jac.Aa
-symbolic_Aa
-```
-Output in Jupyter notebook:
 
-$$\left[\begin{matrix}\left(a_{y} -r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} -\left(a_{z} -r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0\\\\
--\left(a_{x} -r_{(1,2)x}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} -r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0\\\\
-\left(a_{x} -r_{(1,2)x}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} -\left(a_{y} -r_{(1,2)y}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0\\\\
-\left(a_{y} -r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} -\left(a_{z} -r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & -\left(a_{y} -r_{(1,3)y}\right) \cos{\left(\beta_{(1,3)} \right)} + \left(a_{z} -r_{(1,3)z}\right) \sin{\left(\beta_{(1,3)} \right)} \sin{\left(\phi_{(1,3)} \right)}\\\\
--\left(a_{x} -r_{(1,2)x}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} -r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & \left(a_{x} -r_{(1,3)x}\right) \cos{\left(\beta_{(1,3)} \right)} -\left(a_{z} -r_{(1,3)z}\right) \sin{\left(\beta_{(1,3)} \right)} \cos{\left(\phi_{(1,3)} \right)}\\\\
-\left(a_{x} -r_{(1,2)x}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} -\left(a_{y} -r_{(1,2)y}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & -\left(a_{x} -r_{(1,3)x}\right) \sin{\left(\beta_{(1,3)} \right)} \sin{\left(\phi_{(1,3)} \right)} + \left(a_{y} -r_{(1,3)y}\right) \sin{\left(\beta_{(1,3)} \right)} \cos{\left(\phi_{(1,3)} \right)} \\\\
--\sin{\left(\beta \right)} & \sin{\left(\beta \right)} \end{matrix}\right]$$
-
-```
-\\\\-\sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0
-
-\\\\-\sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0\\\\-\cos{\left(\beta_{(1,2)} \right)} & 0\\\\-\sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & \sin{\left(\beta_{(1,3)} \right)} \cos{\left(\phi_{(1,3)} \right)}\\\\-\sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & \sin{\left(\beta_{(1,3)} \right)} \sin{\left(\phi_{(1,3)} \right)}\\\\-\cos{\left(\beta_{(1,2)} \right)} & \cos{\left(\beta_{(1,3)} \right)}\\\\0 & \left(r_{(3,4)x} -r_{(4,6)x}\right) \sin{\left(\beta_{(1,3)} \right)} \cos{\left(\phi_{(1,3)} \right)} + \left(r_{(3,4)y} -r_{(4,6)y}\right) \sin{\left(\beta_{(1,3)} \right)} \sin{\left(\phi_{(1,3)} \right)} + \left(r_{(3,4)z} -r_{(4,6)z}\right) \cos{\left(\beta_{(1,3)} \right)}
-```
-
-```py
-symbolic_Ap = jac.Ap
-symbolic_Ap
-```
-Output in Jupyter notebook:
-
-$$\left[\begin{array}{ccccccccccccc}\- \left(a_{y} \- r_{(1,5)y}\right) \cos{\left(\beta_{(1,5)} \right)} + \left(a_{z} \- r_{(1,5)z}\right) \sin{\left(\beta_{(1,5)} \right)} \sin{\left(\phi_{(1,5)} \right)} & 0 & \- a_{z} + r_{(2,6)z} & a_{y} \- r_{(2,6)y} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & a_{z} \- r_{(5,6)z} & \- a_{y} + r_{(5,6)y}\\\\\left(a_{x} \- r_{(1,5)x}\right) \cos{\left(\beta_{(1,5)} \right)} \- \left(a_{z} \- r_{(1,5)z}\right) \sin{\left(\beta_{(1,5)} \right)} \cos{\left(\phi_{(1,5)} \right)} & a_{z} \- r_{(2,6)z} & 0 & \- a_{x} + r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & \- a_{z} + r_{(5,6)z} & 0 & a_{x} \- r_{(5,6)x}\\\\\- \left(a_{x} \- r_{(1,5)x}\right) \sin{\left(\beta_{(1,5)} \right)} \sin{\left(\phi_{(1,5)} \right)} + \left(a_{y} \- r_{(1,5)y}\right) \sin{\left(\beta_{(1,5)} \right)} \cos{\left(\phi_{(1,5)} \right)} & \- a_{y} + r_{(2,6)y} & a_{x} \- r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & a_{y} \- r_{(5,6)y} & \- a_{x} + r_{(5,6)x} & 0\\\\0 & 0 & \- a_{z} + r_{(2,6)z} & a_{y} \- r_{(2,6)y} & 0 & a_{z} \- r_{(3,4)z} & \- a_{y} + r_{(3,4)y} & 0 & a_{z} \- r_{(4,6)z} & \- a_{y} + r_{(4,6)y} & 0 & 0 & 0\\\\0 & a_{z} \- r_{(2,6)z} & 0 & \- a_{x} + r_{(2,6)x} & \- a_{z} + r_{(3,4)z} & 0 & a_{x} \- r_{(3,4)x} & \- a_{z} + r_{(4,6)z} & 0 & a_{x} \- r_{(4,6)x} & 0 & 0 & 0\\\\0 & \- a_{y} + r_{(2,6)y} & a_{x} \- r_{(2,6)x} & 0 & a_{y} \- r_{(3,4)y} & \- a_{x} + r_{(3,4)x} & 0 & a_{y} \- r_{(4,6)y} & \- a_{x} + r_{(4,6)x} & 0 & 0 & 0 & 0\\\\\sin{\left(\beta_{(1,5)} \right)} \cos{\left(\phi_{(1,5)} \right)} & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\\\\sin{\left(\beta_{(1,5)} \right)} \sin{\left(\phi_{(1,5)} \right)} & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\\\\cos{\left(\beta_{(1,5)} \right)} & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\\\0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\\\0 & 0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\\\0 & 0 & 0 & -1 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0\\\\0 & 0 & 0 & 0 & r_{(3,4)x} \- r_{(4,6)x} & r_{(3,4)y} \- r_{(4,6)y} & r_{(3,4)z} \- r_{(4,6)z} & 0 & 0 & 0 & 0 & 0 & 0\end{array}\right]$$
 
 The above Jacobian is based on the notations defined and described [here](Notation_and_Nomenclature.md).
 
