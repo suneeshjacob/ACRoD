@@ -8,7 +8,7 @@
 
 A figure of RRRRPPPP planar serial-parallel hybrid manipulator is shown above. The corresponding adjacency matrix is given by
 
-$$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
+$$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & S\\\\A & O & L_3 & S & O & O\\\\O & O & O & L_4 & O & S\\\\O & O & O & O & L_5 & S\\\\O & O & O & O & O & L_6\end{matrix}\right]$$
 
 ## Usage
 
