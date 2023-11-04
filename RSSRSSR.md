@@ -109,7 +109,7 @@ robot_endeffector_parameters
 
 In an ipynb file of JupyterLab, the above code would produce the following output.
 
-$$\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]$$
+$$\left[\begin{matrix}a_{x}\\\\a_{y}\\\\a_{z}\end{matrix}\right]$$
 
 #### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
@@ -121,7 +121,7 @@ For the given set of dimensional parameters of the robot, the numerical Jacobian
 ```py
 from numpy import pi
 
-end_effector_point = [1,2]
+end_effector_point = [1,2,3]
 configuration_parameters = [2*pi/3,pi/3,pi/3,2*pi/3,2,8,6,8,3,10,5,10]
 jacobian_at_the_given_configuration = jacobian_function(end_effector_point, configuration_parameters)
 jacobian_at_the_given_configuration
