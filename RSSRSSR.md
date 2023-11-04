@@ -56,12 +56,12 @@ symbolic_Ja
 
 Output in Jupyter notebook:
 
-$$\left[\begin{matrix}- \left(a_{y} - r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0 \\\\
+$$\begin{bmatrix}- \left(a_{y} - r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0 \\\\
 \left(a_{x} - r_{(1,2)x}\right) \cos{\left(\beta_{(1,2)} \right)} - \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0 \\\\
 \left(a_{x} - r_{(1,2)x}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} + \left(a_{y} - r_{(1,2)y}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0 \\\\
 \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} & 0 \\\\
 \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} & 0 \\\\
-\cos{\left(\beta_{(1,2)} \right)} & 0\end{matrix}\right]$$
+\cos{\left(\beta_{(1,2)} \right)} & 0\end{bmatrix}$$
 
 ```py
 symbolic_Jp = jac.Jp
