@@ -1,4 +1,4 @@
-# Formulation of Jacobian for RSSR-SSR spatial parallel manipulator (with a superfluous ODF) as an example
+# Formulation of Jacobian for RSSR-SSR spatial parallel manipulator (with a superfluous DOF) as an example
 
 ## Figure
 
