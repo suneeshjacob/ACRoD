@@ -113,7 +113,7 @@ $$\left[\begin{matrix}a_{x}\\\\a_{y}\\\\a_{z}\end{matrix}\right]$$
 
 #### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
-- End-effector point: $\textbf{a}=\hat{i}+2\hat{j}$
+- End-effector point: $\textbf{a}=\hat{i}+2\hat{j}+3\hat{k}$
 - Locations of joints: $\textbf{r}\_{(4,5)}=2\hat{i}+8\hat{j}$, $\textbf{r}\_{(4,6)}=6\hat{i}+8\hat{j}$, $\textbf{r}\_{(5,7)}=3\hat{i}+10\hat{j}$ and $\textbf{r}\_{(6,7)}=5\hat{i}+10\hat{j}$
 - Orientations of joints: $\phi\_{(1,2)}=2\pi/3$, $\phi\_{(1,3)}=\pi/3$, $\phi\_{(2,4)}=\pi/3$ and $\phi\_{(3,4)}=2\pi/3$
 
