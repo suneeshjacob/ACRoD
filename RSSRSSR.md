@@ -37,7 +37,7 @@ M = array(
          [0, 0, 0, 0, 9, 4],
          [0, 0, 0, 0, 0, 9]]
     )
-jac = jacobian(M, robot_type = 'planar')
+jac = jacobian(M)
 ```
 
 
