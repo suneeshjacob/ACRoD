@@ -303,6 +303,14 @@ class jacobian(object):
         for i in superfluous_equations_executions:
             superfluous_equations_expressions.append(eval(i))
 
+        if len(angular_velocities_expressions) == 0:
+            if robot_type == 'planar':
+                zero_1D = sympy.Matrix([[0]])
+                angular_velocities_expressions.append(zero_1D)
+            elif robot_type == 'spatial':
+                zero = sympy.Matrix([[0],[0],[0]])
+                angular_velocities_expressions.append(zero)
+        
         J_matrix = sympy.Matrix([linear_velocities_expressions[0], angular_velocities_expressions[0]])
         if len(linear_velocities_expressions)>1 and len(angular_velocities_expressions)==1:
             A_matrix = sympy.Matrix([linear_velocities_expressions[i+1]-linear_velocities_expressions[0] for i in range(len(linear_velocities_expressions)-1)]+angular_velocities_expressions+superfluous_equations_expressions)
