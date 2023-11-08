@@ -213,6 +213,7 @@ array([[ 1.,  0., -1.,  1.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  5.],
 
 And the computation $J_a-J_pA^{-1}_pA_a$ is given by
 ```py
+import numpy
 numerical_Ja-numpy.matmul(numpy.matmul(numerical_Jp,numpy.linalg.inv(numerical_Ap)),numerical_Aa)
 ```
 which gives the same output as `jacobian_at_the_given_configuration`.
