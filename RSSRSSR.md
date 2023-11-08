@@ -114,8 +114,8 @@ $$\left[\begin{matrix}a_{x}\\\\a_{y}\\\\a_{z}\end{matrix}\right]$$
 #### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
 - End-effector point: $\textbf{a}=\hat{i}+2\hat{j}+3\hat{k}$
-- Locations of joints: $\textbf{r}\_{(1,2)}=2\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(1,3)}=6\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(1,5)}=6\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(2,6)}=6\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(3,4)}=6\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(4,6)}=3\hat{i}+10\hat{j}+3\hat{k}$ and $\textbf{r}\_{(5,6)}=5\hat{i}+10\hat{j}+3\hat{k}$
-- Orientations of joints: $\hat{n}\_{(1,2)}=2\pi/3$, $\hat{n}\_{(1,3)}=\pi/3$ and $\hat{n}\_{(1,5)}=2\pi/3$
+- Locations of joints: $\textbf{r}\_{(1,2)}=2\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(1,3)}=1\hat{i}+2\hat{j}+5\hat{k}$, $\textbf{r}\_{(1,5)}=2\hat{i}+4\hat{j}+7\hat{k}$, $\textbf{r}\_{(2,6)}=3\hat{i}+1\hat{j}+2\hat{k}$, $\textbf{r}\_{(3,4)}=6\hat{i}+8\hat{j}+4\hat{k}$, $\textbf{r}\_{(4,6)}=8\hat{i}+1\hat{j}+3\hat{k}$ and $\textbf{r}\_{(5,6)}=5\hat{i}+7\hat{j}+3\hat{k}$
+- Orientations of joints: $\beta\_{(1,2)}=\pi/6$, $\phi\_{(1,2)}=\pi/3$, $\beta\_{(1,3)}=5\pi/6$, $\phi\_{(1,3)}=2\pi/3$, $\beta\_{(1,5)}=\pi/12$ and $\phi\_{(1,5)}=\pi/2$.
 
 For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $\phi_{(1,2)}$, $\phi_{(1,3)}$, $\phi_{(2,4)}$, $\phi_{(3,4)}$, $r_{(4,5)x}$, $r_{(4,5)y}$, $r_{(4,6)x}$, $r_{(4,6)y}$, $r_{(5,7)x}$, $r_{(5,7)y}$, $r_{(6,7)x}$ and $r_{(6,7)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
 ```py
