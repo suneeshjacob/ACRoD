@@ -122,7 +122,7 @@ For the given set of dimensional parameters of the robot, the numerical Jacobian
 from numpy import pi
 
 end_effector_point = [1,2,3]
-configuration_parameters = [2*pi/3,pi/3,pi/3,2*pi/3,2,8,6,8,3,10,5,10]
+configuration_parameters = [2, 8, 3, pi/6, pi/3, 1, 2, 5, 5*pi/6, 2*pi/3, 2, 4, 7, pi/12, pi/2, 3, 1, 2, 6, 8, 4, 8, 1, 3, 5, 7, 3]
 jacobian_at_the_given_configuration = jacobian_function(end_effector_point, configuration_parameters)
 jacobian_at_the_given_configuration
 ```
