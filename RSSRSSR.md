@@ -252,4 +252,34 @@ Output:
 ```py
 [[0, 1, 5], [0, 4, 5], [0, 2, 3, 5]]
 ```
-The above scripts give the lists of all the independent connecting paths pertaining to linear and angular velocities (only link numbers are shown, indexed from 0).
+
+#### Superfluous DOF information:
+
+```py
+superfluous_dof_information = jac.superfluous_dof_information
+len(superfluous_dof_information)
+```
+
+```py
+1
+```
+
+```py
+c_be, [(i,j),(k,l)] = superfluous_dof_information[0]
+[(i,j),(k,l)]
+```
+
+```py
+[(2, 3), (3, 5)]
+```
+
+```py
+c_be_complement = [i for i in range(len(M)) if i not in c_be]
+c_be_complement
+```
+
+```py
+[3]
+```
+
+In the above lists, the link numbers are indexed from 0 (not 1).
