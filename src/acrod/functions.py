@@ -216,7 +216,7 @@ class jacobian(object):
         self.passive_joint_velocities_symbolic = None
         self.parameters_symbolic = None
         self.endeffector_variables_symbolic = None
-        self.superfluous_information = None
+        self.superfluous_dof_information = None
     def get_all_paths(self):
         M = self.M
         P = all_paths(M)
