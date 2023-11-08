@@ -255,31 +255,35 @@ Output:
 
 #### Superfluous DOF information:
 
+This manipulator has a superfluous DOF. The information of all the superfluous DOFs in the manipulator can be retrieved in a list by the script shown below:
+
 ```py
 superfluous_dof_information = jac.superfluous_dof_information
 len(superfluous_dof_information)
 ```
-
+Output:
 ```py
 1
 ```
-
+The above output shows that the number of superfluous DOF is 1. In order to access the information of this superfluous DOF, the script shown below can be used:
 ```py
 c_be, [(i,j),(k,l)] = superfluous_dof_information[0]
 [(i,j),(k,l)]
 ```
-
+Output:
 ```py
 [(2, 3), (3, 5)]
 ```
+The above output shows that the superfluous DOF exists between the spherical joints joined by links 3,4 and 4,6 (since the link numbers are indexed from zero). And `c_be` represents the list of link numbers of the part that contains base and end-effector links (as explained here). The complement list of `c_be` can be computed as shown below.
 
 ```py
 c_be_complement = [i for i in range(len(M)) if i not in c_be]
 c_be_complement
 ```
-
+Output:
 ```py
 [3]
 ```
+This shows that it is the link 4 that exhibits a superfluous DOF, which is evident from the figure in the beginning of this document.
 
-In the above lists, the link numbers are indexed from 0 (not 1).
+In the above results, the link numbers are indexed from 0 (not 1).
