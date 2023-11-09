@@ -178,6 +178,10 @@ $$\bf{\omega}\_{s}\cdot \left(\bf{r}\_{(3,4)}-\bf{r}\_{(4,6)}\right) = 0$$
 
 This needs to be added to the earlier system of equations, in order to make $\bf{A_p}$ a square matrix, with which the passive joint velocities can be written in terms of active joint velocities.
 
+## Implementation in ACRoD
+
+The implementation of Jacobian computation for this robot is shown [here](../codes/RSSRSSR_code.md).
+
 ## References
 <a id="1">[1]</a> 
 Muralidharan V, Bandyopadhyay S (2019) "A two-degree-of-freedom rssr-ssr manipulator for sun-tracking." In: Badodkar DN, Dwarakanath TA (eds) Machines, Mechanism and Robotics. Springer Singapore, Singapore, pp 135–147
