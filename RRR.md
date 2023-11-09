@@ -8,7 +8,7 @@
 
 A figure of RRR planar serial manipulator is shown above. The corresponding adjacency matrix is given by
 
-$$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & S\\\\A & O & L_3 & S & O & O\\\\O & O & O & L_4 & O & S\\\\O & O & O & O & L_5 & S\\\\O & O & O & O & O & L_6\end{matrix}\right]$$
+$$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
 
 ## Usage
 
@@ -16,7 +16,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & 
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For RRRRPPPP planar serial-parallel hybrid manipulator shown above, the robot topology matrix is given by
 
-$$\left[\begin{matrix}L_1 & R & 0 & 0 \\ A & L_2 & R & 0 \\ 0 & A & L_3 & R \\ 0 & 0 & A & L_4\end{matrix}\right]$$
+$$\left[\begin{matrix}9 & 1 & 0 & 0 \\ 1 & 9 & 1 & 0 \\ 0 & 1 & 9 & 1 \\ 0 & 0 & 1 & 9\end{matrix}\right]$$
 
 The corresponding Jacobian function can be formulated as follows.
 
