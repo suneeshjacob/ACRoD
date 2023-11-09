@@ -6,7 +6,7 @@
     <img src="../images/RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
 </p>
 
-A figure of RSSR-SSR planar serial-parallel hybrid manipulator is shown above. The corresponding adjacency matrix is given by
+The RSSR-SSR Serial-Parallel Hybrid Robot is taken from [[1]](#1), and a picture of the robot is shown in the above figure. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & S\\\\A & O & L_3 & S & O & O\\\\O & O & O & L_4 & O & S\\\\O & O & O & O & L_5 & S\\\\O & O & O & O & O & L_6\end{matrix}\right]$$
 
