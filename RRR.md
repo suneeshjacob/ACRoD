@@ -95,8 +95,6 @@ $$\left[\begin{matrix}a_{x}\\\\a_{y}\end{matrix}\right]$$
 
 For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $r_{(1,2)x}$, $r_{(1,2)y}$, $r_{(2,3)x}$, $r_{(2,3)y}$, $r_{(3,4)x}$ and $r_{(3,4)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
 ```py
-from numpy import pi
-
 end_effector_point = [1,2]
 configuration_parameters = [3, 4, 5, 6, 2, 3]
 jacobian_at_the_given_configuration = jacobian_function(end_effector_point, configuration_parameters)
