@@ -16,7 +16,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For RRRRPPPP planar serial-parallel hybrid manipulator shown above, the robot topology matrix is given by
 
-$$\left[\begin{matrix}9 & 1 & 0 & 0 \\ 1 & 9 & 1 & 0 \\ 0 & 1 & 9 & 1 \\ 0 & 0 & 1 & 9\end{matrix}\right]$$
+$$\left[\begin{matrix}9 & 1 & 0 & 0 \\\\ 1 & 9 & 1 & 0 \\\\ 0 & 1 & 9 & 1 \\\\ 0 & 0 & 1 & 9\end{matrix}\right]$$
 
 The corresponding Jacobian function can be formulated as follows.
 
