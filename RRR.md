@@ -1,4 +1,4 @@
-# Formulation of Jacobian for RRR planar serial manipulator (with a superfluous DOF) as an example
+# Formulation of Jacobian for RRR planar serial manipulator as an example
 
 ## Figure
 
