@@ -65,7 +65,7 @@ active_joint_velocities
 
 In an ipynb file of JupyterLab, the above code would produce the following output.
 
-$$\left[\begin{matrix}\dot{\theta}\_{(1,2)}\\\\\dot{\theta}\_{(1,3)}\end{matrix}\right]$$
+$$\left[\begin{matrix}\dot{\theta}\_{(1,2)}\\\\\dot{\theta}\_{(2,3)}\\\\\dot{\theta}\_{(3,4)}\end{matrix}\right]$$
 
 Robot dimensional parameters can be viewed by running the below line.
 ```py
