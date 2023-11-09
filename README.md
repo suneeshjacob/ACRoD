@@ -117,6 +117,10 @@ array([[ 2,  4],
        [ 1,  1]])
 ```
 
+## Examples
+
+Some examples (along with their mathematical derivations) are shown [here](./examples/Jacobian).
+
 ## Community Guidelines
 
 - For contribution to the software:
