@@ -86,7 +86,7 @@ robot_endeffector_parameters
 
 In an ipynb file of JupyterLab, the above code would produce the following output.
 
-$$\left[\begin{matrix}a_{x}\\\\a_{y}\\\\a_{z}\end{matrix}\right]$$
+$$\left[\begin{matrix}a_{x}\\\\a_{y}\end{matrix}\right]$$
 
 #### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
