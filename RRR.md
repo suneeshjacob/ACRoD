@@ -91,20 +91,20 @@ $$\left[\begin{matrix}a_{x}\\\\a_{y}\end{matrix}\right]$$
 #### Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 
 - End-effector point: $\textbf{a}=\hat{i}+2\hat{j}$
-- Locations of joints: $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$, $\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}$ and $\textbf{r}\_{(3,4)}=2\hat{i}+3\hat{j}$
+- Locations of joints: $\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}$, $\textbf{r}\_{(2,3)}=2\hat{i}+1\hat{j}$ and $\textbf{r}\_{(3,4)}=4\hat{i}+2\hat{j}$
 
 For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $r_{(1,2)x}$, $r_{(1,2)y}$, $r_{(2,3)x}$, $r_{(2,3)y}$, $r_{(3,4)x}$ and $r_{(3,4)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
 ```py
 end_effector_point = [1,2]
-configuration_parameters = [3, 4, 5, 6, 2, 3]
+configuration_parameters = [3, 4, 2, 1, 4, 2]
 jacobian_at_the_given_configuration = jacobian_function(end_effector_point, configuration_parameters)
 jacobian_at_the_given_configuration
 ```
 
 The output produced by running the above code, is shown below.
 ```py
-array([[ 2,  4,  1],
-       [-2, -4, -1],
+array([[ 2, -1,  0],
+       [-2, -1, -3],
        [ 1,  1,  1]])
 ```
 
