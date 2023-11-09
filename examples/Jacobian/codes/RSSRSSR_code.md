@@ -3,7 +3,7 @@
 ## Figure
 
 <p align="center">
-    <img src="./examples/Jacobian/RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
+    <img src="../images/RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
 </p>
 
 A figure of RSSR-SSR planar serial-parallel hybrid manipulator is shown above. The corresponding adjacency matrix is given by
