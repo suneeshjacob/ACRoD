@@ -12,7 +12,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & 
 
 ## Mathematical derivation of Jacobian
 
-The mathematical derivation is shown [../maths/4R4P_parallel_robot.md](here).
+The mathematical derivation is shown [here](../maths/4R4P_parallel_robot.md).
 
 ## Usage
 
