@@ -82,7 +82,7 @@ Output in Jupyter notebook:
 
 $$\left[\begin{matrix}0 & 0 & - a_{y} + r_{(4,6)y} & a_{y} - r_{(5,7)y} & - a_{y} + r_{(6,7)y}\\\\0 & 0 & a_{x} - r_{(4,6)x} & - a_{x} + r_{(5,7)x} & a_{x} - r_{(6,7)x}\\\\- \cos{\left(\phi_{(2,4)} \right)} & \cos{\left(\phi_{(3,4)} \right)} & 0 & 0 & 0\\\\- \sin{\left(\phi_{(2,4)} \right)} & \sin{\left(\phi_{(3,4)} \right)} & 0 & 0 & 0\\\\0 & 0 & 1 & -1 & 1\end{matrix}\right]$$
 
-The above matrices are based on the notations defined and described [here](Notation_and_Nomenclature.md).
+The above matrices are based on the notations defined and described [here](../../../Notation_and_Nomenclature.md).
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
