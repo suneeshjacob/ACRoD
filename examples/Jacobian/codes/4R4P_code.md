@@ -10,6 +10,10 @@ A figure of RRRRPPPP planar serial-parallel hybrid manipulator is shown above. T
 
 $$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
+## Mathematical derivation of Jacobian
+
+The mathematical derivation is shown (../maths/4R4P_parallel_robot.md)[here].
+
 ## Usage
 
 ### Jacobian for planar manipulators
