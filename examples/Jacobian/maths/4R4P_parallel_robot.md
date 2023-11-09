@@ -176,3 +176,6 @@ $$
 $$
 
 
+## Implementation in ACRoD
+
+The implementation of Jacobian computation for this robot is shown [here](../codes/4R4P_code.md).
