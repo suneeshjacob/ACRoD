@@ -3,7 +3,7 @@
 ## Mathematics involved
 
 <p align="center">
-    <img src="./RRRRPPPP.png" alt="4R-4P planar serial-parallel hybrid manipulator" width="500px">
+    <img src="../images/RRRRPPPP.png" alt="4R-4P planar serial-parallel hybrid manipulator" width="500px">
 </p>
 
 A figure of RRRRPPPP planar serial-parallel hybrid manipulator is shown above. The corresponding adjacency matrix is given by
