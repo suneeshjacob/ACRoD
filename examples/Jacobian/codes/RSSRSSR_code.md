@@ -291,3 +291,7 @@ In the above results, the link numbers are indexed from 0 (not 1).
 ## Mathematical derivation of Jacobian
 
 The mathematical derivation is shown [here](../maths/RSSR-SSR_serial-parallel_hybrid_robot.md).
+
+## References
+<a id="1">[1]</a> 
+Muralidharan V, Bandyopadhyay S (2019) "A two-degree-of-freedom rssr-ssr manipulator for sun-tracking." In: Badodkar DN, Dwarakanath TA (eds) Machines, Mechanism and Robotics. Springer Singapore, Singapore, pp 135–147
