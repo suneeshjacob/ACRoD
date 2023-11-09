@@ -75,7 +75,7 @@ robot_dimensional_parameters
 
 In an ipynb file of JupyterLab, the above code would produce the following output.
 
-$$\left[\begin{matrix}r_{(1,2)x}\\\\r_{(1,2)y}\\\\r_{(1,2)z}\\\\\beta_{(1,2)}\\\\\phi_{(1,2)}\\\\r_{(1,3)x}\\\\r_{(1,3)y}\\\\r_{(1,3)z}\\\\\beta_{(1,3)}\\\\\phi_{(1,3)}\\\\r_{(1,5)x}\\\\r_{(1,5)y}\\\\r_{(1,5)z}\\\\\beta_{(1,5)}\\\\\phi_{(1,5)}\\\\r_{(2,6)x}\\\\r_{(2,6)y}\\\\r_{(2,6)z}\\\\r_{(3,4)x}\\\\r_{(3,4)y}\\\\r_{(3,4)z}\\\\r_{(4,6)x}\\\\r_{(4,6)y}\\\\r_{(4,6)z}\\\\r_{(5,6)x}\\\\r_{(5,6)y}\\\\r_{(5,6)z}\end{matrix}\right]$$
+$$\left[\begin{matrix}r_{(1,2)x}\\\\r_{(1,2)y}\\\\r_{(2,3)x}\\\\r_{(2,3)y}\\\\r_{(3,4)x}\\\\r_{(3,4)y}\end{matrix}\right]$$
 
 
 Robot end-effector parameters can be viewed by running the below line.
