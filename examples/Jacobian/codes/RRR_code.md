@@ -108,4 +108,6 @@ array([[ 2, -1,  0],
        [ 1,  1,  1]])
 ```
 
+## Mathematical derivation of Jacobian
 
+The mathematical derivation is shown [here](../maths/3R_serial_robot.md).
