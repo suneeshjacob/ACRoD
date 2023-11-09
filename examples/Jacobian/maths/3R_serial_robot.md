@@ -6,7 +6,7 @@
     <img src="../images/RRR.png" alt="RRR planar serial manipulator" width="500px">
 </p>
 
-An RRR planar serial manipulator is considered as shown in the figure \ref{fig:RRR}. The corresponding adjacency matrix is given by
+An RRR planar serial manipulator is considered as shown in the figure above. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & R & O & O \\\\A & L_2 & R & O\\\\O & A & L_3 & R\\\\O & O & A & L_4\end{matrix}\right]$$
 
