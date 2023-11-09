@@ -287,3 +287,7 @@ Output:
 This shows that it is the link 4 that exhibits a superfluous DOF, which is evident from the figure in the beginning of this document.
 
 In the above results, the link numbers are indexed from 0 (not 1).
+
+## Mathematical derivation of Jacobian
+
+The mathematical derivation is shown [here](../maths/RSSR-SSR_serial-parallel_hybrid_robot.md).
