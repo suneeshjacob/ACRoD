@@ -119,7 +119,7 @@ array([[ 2,  4],
 
 ## Examples
 
-Some examples (along with their mathematical derivations) are shown [here](./examples/Jacobian).
+Some examples (along with their mathematical derivations) can be found [here](./examples/Jacobian).
 
 ## Community Guidelines
 
