@@ -1,12 +1,12 @@
-# Formulation of Jacobian for RSSR-SSR spatial parallel manipulator (with a superfluous DOF) as an example
+# Formulation of Jacobian for RRR planar serial manipulator (with a superfluous DOF) as an example
 
 ## Figure
 
 <p align="center">
-    <img src="./examples/Jacobian/RRR.png" alt="RRR spatial serial manipulator" width="500px">
+    <img src="./examples/Jacobian/RRR.png" alt="RRR planar serial manipulator" width="500px">
 </p>
 
-A figure of RRR spatial serial manipulator is shown above. The corresponding adjacency matrix is given by
+A figure of RRR planar serial manipulator is shown above. The corresponding adjacency matrix is given by
 
 $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & S\\\\A & O & L_3 & S & O & O\\\\O & O & O & L_4 & O & S\\\\O & O & O & O & L_5 & S\\\\O & O & O & O & O & L_6\end{matrix}\right]$$
 
@@ -16,7 +16,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & 
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For RRRRPPPP planar serial-parallel hybrid manipulator shown above, the robot topology matrix is given by
 
-$$\left[\begin{matrix}9 & 1 & 1 & 0 & 1 & 0\\\\1 & 9 & 0 & 0 & 0 & 4\\\\1 & 0 & 9 & 4 & 0 & 0\\\\0 & 0 & 0 & 9 & 0 & 4\\\\0 & 0 & 0 & 0 & 9 & 4\\\\0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]$$
+$$\left[\begin{matrix}L_1 & R & 0 & 0 \\ A & L_2 & R & 0 \\ 0 & A & L_3 & R \\ 0 & 0 & A & L_4\end{matrix}\right]$$
 
 The corresponding Jacobian function can be formulated as follows.
 
@@ -29,15 +29,13 @@ from numpy import array
 
 The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
-M = array(
-        [[9, 1, 1, 0, 1, 0],
-         [1, 9, 0, 0, 0, 4],
-         [1, 0, 9, 4, 0, 0],
-         [0, 0, 0, 9, 0, 4],
-         [0, 0, 0, 0, 9, 4],
-         [0, 0, 0, 0, 0, 9]]
-    )
-jac = jacobian(M)
+M = numpy.array(
+    [[9, 1, 0, 0],
+     [1, 9, 1, 0],
+     [0, 1, 9, 1],
+     [0, 0, 1, 9]]
+)
+jac = jacobian(M, robot_type='planar')
 ```
 
 
