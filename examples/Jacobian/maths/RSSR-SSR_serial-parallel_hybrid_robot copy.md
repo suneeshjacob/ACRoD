@@ -3,7 +3,7 @@
 ## Mathematics involved
 
 <p align="center">
-    <img src="./RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
+    <img src="../images/RSSRSSR.png" alt="RSSR-SSR spatial parallel manipulator" width="500px">
 </p>
 
 The RSSR-SSR Serial-Parallel Hybrid Robot is taken from [[1]](#1), and a picture of the robot is shown in the above figure. The corresponding adjacency matrix is given by
