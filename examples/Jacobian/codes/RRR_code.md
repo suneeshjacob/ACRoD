@@ -3,7 +3,7 @@
 ## Figure
 
 <p align="center">
-    <img src="./examples/Jacobian/images/RRR.png" alt="RRR planar serial manipulator" width="500px">
+    <img src="../images/RRR.png" alt="RRR planar serial manipulator" width="500px">
 </p>
 
 A figure of RRR planar serial manipulator is shown above. The corresponding adjacency matrix is given by
