@@ -10,10 +10,6 @@ A figure of RRRRPPPP planar serial-parallel hybrid manipulator is shown above. T
 
 $$\bf{M} = \left[\begin{matrix}L_1 & P & P & O & O & O & O\\\\A & L_2 & O & P & O & O & O\\\\A & O & L_3 & P & O & O & O\\\\O & O & O & L_4 & R & R & O\\\\O & O & O & A & L_5 & O & R\\\\O & O & O & O & O & L_6 & R\\\\O & O & O & O & O & O & L_7\end{matrix}\right]$$
 
-## Mathematical derivation of Jacobian
-
-The mathematical derivation is shown [here](../maths/4R4P_parallel_robot.md).
-
 ## Usage
 
 ### Jacobian for planar manipulators
@@ -236,3 +232,7 @@ Output:
 [[0, 1, 3, 4, 6], [0, 1, 3, 5, 6]]
 ```
 The above scripts give the lists of all the independent connecting paths pertaining to linear and angular velocities (only link numbers are shown, indexed from 0).
+
+## Mathematical derivation of Jacobian
+
+The mathematical derivation is shown [here](../maths/4R4P_parallel_robot.md).
