@@ -56,3 +56,6 @@ $$
 
 Since it is a serial manipulator, the matrices $\bf{J_p}$, $\bf{A_a}$ and $\bf{A_p}$ do not come into picture.
 
+## Implementation in ACRoD
+
+The implementation of Jacobian computation for this robot is shown [here](../codes/RRR_code.md).
