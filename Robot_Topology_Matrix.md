@@ -19,6 +19,8 @@ Unlike mere mechanisms, robots have a link dedicated to base link and a link ded
 
 In a serial manipulator, typically all joints are active. However, in parallel manipulators (including closed-loop manipulators), not all joints are active. There could be multiple ways of choosing active and passive sets of joints for parallel ones. The adjacency matrix notation provided in our earlier study [[1]](#1) does not consist of information on the distinction of active and passive sets of joints but rather considers both the active and the passive joints alike. In this study, this issue is resolved by dedicating the lower off-diagonal elements of the matrix to represent whether they are active joints or not. For every upper off-diagonal element that represents a joint, the corresponding lower off-diagonal element (the corresponding element of its transpose) is assigned the number 1 if the joint is active and 0 if the joint is passive. And every upper off-diagonal element that does not represent a joint, would have the number 0 assigned to its corresponding off-diagonal element.
 
+In ACRoD Jacobian formulation, only revolute and prismatic joints are considered for actuation and hence the other types joints (cylindrical, spherical, universal, helical and planar) can only be passive.
+
 ## References
 <a id="1">[1]</a> 
 Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta. "Enumeration of spatial manipulators by using the concept of Adjacency Matrix." arXiv preprint arXiv:2210.03327 (2022).
