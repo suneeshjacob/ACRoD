@@ -35,7 +35,15 @@ For a manipulator of a given topology, designing the dimensions based on optimis
 
 `ACRoD` uses NumPy [@numpy] and SymPy [@sympy] packages to generate the functions for Jacobian, which can be directly used in optimisation process to find the optimal dimensional parameters of the robot. The topology of a valid robot (with a single base-link and a single end-effector link and without non-contributing chains) is to be specified using robot-topology matrix in NumPy matrix format. The jacobian class object takes this robot-topology matrix as input argument and generates functions that are required to compute Jacobian. As byproducts, the Jacobian function generation produces the symbolic matrices, the set of independent paths, etc., the sets of active joint velocities and passive joint velocities, etc., which can be accessed from the attributes of the jacobian class object. More technical details on formulation of Jacobian (along with appropriate algorithms) can be found [here](https://github.com/suneeshjacob/ACRoD/blob/main/Mathematics%20behind%20Jacobian%20formulation.md), and the notations and the nomenclature are explained [here](https://github.com/suneeshjacob/ACRoD/blob/main/Notation_and_Nomenclature.md) in detail. The robot-topology matrix representation is explained [here](https://github.com/suneeshjacob/ACRoD/blob/main/Robot_Topology_Matrix.md) in detail. Jacobian formulation for three robot examples, namely the [3R planar serial robot](https://github.com/suneeshjacob/ACRoD/blob/main/examples/Jacobian/maths/3R_serial_robot.md), [a 4R-4P planar serial-parallel hybrid robot](https://github.com/suneeshjacob/ACRoD/blob/main/examples/Jacobian/maths/4R4P_parallel_robot.md) and [an RSSR-SSR spatial parallel robot](https://github.com/suneeshjacob/ACRoD/blob/main/examples/Jacobian/maths/RSSR-SSR_serial-parallel_hybrid_robot.md), are explained in detail in the corresponding hyperlinks.
 
-
+## Comparisonn with other softwares
+| Software    | Base Language   | Closed-loop linkages | Input complexity | Primary purpose       |
+|-------------|:---------------:|:--------------------:|------------------|-----------------------|
+| TriP (2022) | Python          | yes                  | non-strict       | Kinematics            |
+| Pybotics    | Python          | yes                  | strict           | 1993                  |
+| DART        | C++             | no                   | strict           | 1972                  |
+| CoreRobotics| C++             | no                   | strict           | 1972                  |
+| pinocchio   | C++             | no                   | strict           | Jacobian computation  |
+| ACRoD       | Python          | yes                  | Matrix           | Dimensional Synthesis |
 
 # Acknowledgements
 
