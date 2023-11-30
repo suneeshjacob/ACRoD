@@ -37,13 +37,13 @@ For a manipulator of a given topology, designing the dimensions based on optimis
 
 ## Comparisonn with other softwares
 | Software    | Base Language   | Closed-loop linkages in documentation | Input complexity | Primary purpose       |
-|-------------|:---------------:|:--------------------:|------------------|-----------------------|
-| TriP (2022) | Python          | yes                  | non-strict       | Kinematics            |
-| Pybotics    | Python          | no                   | strict           | 1993                  |
-| DART        | C++             | no                   | strict           | 1972                  |
-| CoreRobotics| C++             | no                   | strict           | 1972                  |
-| pinocchio   | C++             | no                   | strict           | Jacobian computation  |
-| ACRoD       | Python          | yes                  | Matrix           | Dimensional Synthesis |
+|-------------|:---------------:|:-------------------------------------:|------------------|-----------------------|
+| TriP (2022) | Python          | yes                                   | non-strict       | Kinematics            |
+| Pybotics    | Python          | X                                     | strict           | 1993                  |
+| DART        | C++             | X                                     | strict           | 1972                  |
+| CoreRobotics| C++             | X                                     | strict           | 1972                  |
+| pinocchio   | C++             | X                                     | strict           | Jacobian computation  |
+| ACRoD       | Python          | yes                                   | Matrix           | Dimensional Synthesis |
 
 X = possible but documentation not provided
 
