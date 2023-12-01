@@ -41,8 +41,8 @@ For a manipulator of a given topology, designing the dimensions based on optimis
 | TriP (2022)     | Python          | yes                                   | Human intervention needed to build robot*  | Kinematics of hybrid linkages  |
 | Pybotics (2019) | Python          | no                                    | Automatically buildable from DH parameters |   Kinematics, Dynamics, Trajectory Generations and Calibration of Serial Robots     |
 | DART (2018)     | C++             | X                                     | Human intervention needed to build robot*  | Kinematic and Dynamic Applications of Robotics     |
-| CoreRobotics    | C++             | X                                     | Human intervention needed to build robot   | Computational Algorithms for Real Time Robot Control                           |
-| pinocchio       | C++             | X                                     | Human intervention needed to build robot*  | Analytical Derivatives for Kinematics and Dynamics, Features for Control, Planning and Simulation           |
+| CoreRobotics (2017)| C++             | X                                     | Human intervention needed to build robot   | Computational Algorithms for Real Time Robot Control                           |
+| pinocchio (2019)| C++             | X                                     | Human intervention needed to build robot*  | Analytical Derivatives for Kinematics and Dynamics, Features for Control, Planning and Simulation           |
 | ACRoD (2023)    | Python          | yes                                   | yes                                        | Dimensional Synthesis          |
 
 - X = possible but neither documentation is provided nor an example is provided
