@@ -46,7 +46,7 @@ For a manipulator of a given topology, designing the dimensions based on optimis
 | ACRoD (2023)       | Python          | yes                                   | yes                                        | Dimensional Synthesis          |
 
 - X = possible but neither documentation is provided nor an example is provided
-- ^* = Accepts URDF models (but URDF models are limited to serial manipulators)
+- * = Accepts URDF models (but URDF models are limited to serial manipulators)
 - H = Human intervention required to build the robot
 - A = Automatically buildable from its DH parameters
 
