@@ -1,4 +1,4 @@
-# 3R Serial Robot
+# 3R Planar Serial Robot
 
 ## Mathematics involved
 
