@@ -29,13 +29,32 @@ Let us consider the 3R planar serial robot as shown in (a) of the figure below.
     <img src="./3R.png" alt="RRR planar serial manipulator" width="800px">
 </p>
 
-The above robot has four links (including the fixed link). Hence the Robot-Topology matrix $M$ would be a $4\times4$ matrix, with all of its diagonal elements as '9's. Since the base link is considered to be the first link and the end-effector link is considered to be the last link, the base and the end-effector links are assigned the names $L_1$ and $L_4$, as shown in (b) of the above figure. Now that the base and the end-effector links are fixed, the other two links can be arbitrarily named. Since there are two links left out, we have $2!=2$ possible ways of naming them. One way is to name the link that is connected to the base link as $L_2$ and the link that is connected to the end-effector link as $L_3$, as shown in (c) of the above figure. Here, we have three revolute joints between $L_1$ \& $L_2$, $L_2$ \& $L_3$ and $L_3$ \& $L_4$. Hence, the pairs of row-column indices of the Robot-Topology matrix in the ascending order, i.e., (1,2), (2,3) and (3,4), would have the corresponding elements of the Robot-Topology matrix as '1's. From (a) of the figure, it can be observed by the specified arrows that all the three revolute joints are actuated (as expected in a non-redundant serial robot). Hence, the elements corresponding to the indices of these three actuators (joints) in descending order, i.e., (2,1), (3,2) and (4,3), would be '1's. Since there is no joint other than these three joints, the rest of the elements of the Robot-Topology matrix would be zeros. Hence, the Robot-Topology matrix would be as shown below.
+The above robot has four links (including the fixed link). Hence the Robot-Topology matrix $M$ would be a $4\times4$ matrix, with all of its diagonal elements as '9's. Since the base link is considered to be the first link and the end-effector link is considered to be the last link, the base and the end-effector links are assigned the names $L_1$ and $L_4$ respectively, as shown in (b) of the above figure. Now that the base and the end-effector links are fixed, the other two links can be arbitrarily named. Since there are two links left out, we have $2!=2$ possible ways of naming them. One way is to name the link that is connected to the base link as $L_2$ and the link that is connected to the end-effector link as $L_3$, as shown in (c) of the above figure. Here, we have three revolute joints between $L_1$ \& $L_2$, $L_2$ \& $L_3$ and $L_3$ \& $L_4$. Hence, the pairs of row-column indices of the Robot-Topology matrix in the ascending order, i.e., (1,2), (2,3) and (3,4), would have the corresponding elements of the Robot-Topology matrix as '1's. From (a) of the figure, it can be observed by the specified arrows that all the three revolute joints are actuated (as expected in a non-redundant serial robot). Hence, the elements corresponding to the indices of these three actuators (joints) in descending order, i.e., (2,1), (3,2) and (4,3), would be '1's. Since there is no joint other than these three joints, the rest of the elements of the Robot-Topology matrix would be zeros. Hence, the Robot-Topology matrix would be as shown below.
 
 $$\bf{M} = \left[\begin{matrix}9 & 1 & 0 & 0 \\\\1 & 9 & 1 & 0\\\\0 & 1 & 9 & 1\\\\0 & 0 & 1 & 9\end{matrix}\right]$$
 
 Another way is to name the link that is connected to the base link as $L_3$ and the link that is connected to the end-effector link as $L_2$, as shown in (d) of the above figure. In that case, the elements (1,3), (2,3) and (2,4) would be '1's, indicating the existence of revolute joints. The elements (3,1), (3,2) and (4,2) would be '1's, indicating that the corresponding joints, i.e., (1,3), (2,3) and (2,4), are actuators. Hence, the Robot-Topology matrix would be as shown below.
 
 $$\bf{M} = \left[\begin{matrix}9 & 0 & 1 & 0 \\\\0 & 9 & 1 & 1\\\\1 & 1 & 9 & 0\\\\0 & 1 & 0 & 9\end{matrix}\right]$$
+
+Either matrix can be used as Robot-Topology matrix.
+
+### 4R-4P Planar Serial-Parallel Hybrid Robot
+Let us consider the 4R-4P planar serial-parallel hybrid robot as shown in (a) of the figure below.
+
+<p align="center">
+    <img src="./4R4P.png" alt="4R-4P planar serial-parallel hybrid manipulator" width="800px">
+</p>
+
+The above robot has seven links. Hence the Robot-Topology matrix $M$ would be a $7\times7$ matrix, with all of its diagonal elements as '9's. As per the convention, the base and the end-effector links are assigned the names $L_1$ and $L_7$ respectively. One possible way of naming the other links is shown in (b) of the above figure. Here, the robot has four prismatic joints between $L_1$ \& $L_2$, $L_1$ \& $L_3$, $L_2$ \& $L_4$ and $L_3$ \& $L_4$. Hence, the pairs of row-column indices of the Robot-Topology matrix in the ascending order, i.e., (1,2), (1,3), (2,4) and (3,4), would have the corresponding elements of the Robot-Topology matrix as '2's. Likewise, the robot has four revolute joints between $L_4$ \& $L_5$, $L_4$ \& $L_6$, $L_5$ \& $L_7$ and $L_6$ \& $L_7$, and hence, the elements at (4,5), (4,6), (5,7) and (6,7) would be '1's. From (a) of the figure, it can be observed by the specified arrows that the joints between $L_1$ \& $L_2$, $L_1$ \& $L_3$ and $L_4$ \& $L_5$ are actuators. Hence, the elements corresponding to the indices of these three actuators (joints) in descending order, i.e., (2,1), (3,1) and (5,4), would be '1's. The rest of the elements of the Robot-Topology matrix would be zeros. Hence, the Robot-Topology matrix would be as shown below.
+
+$$\bf{M} = \left[\begin{matrix}9 & 1 & 0 & 0 \\\\1 & 9 & 1 & 0\\\\0 & 1 & 9 & 1\\\\0 & 0 & 1 & 9\end{matrix}\right]$$
+
+Another way is to name the link that is connected to the base link as $L_3$ and the link that is connected to the end-effector link as $L_2$, as shown in (d) of the above figure. In that case, the elements (1,3), (2,3) and (2,4) would be '1's, indicating the existence of revolute joints. The elements (3,1), (3,2) and (4,2) would be '1's, indicating that the corresponding joints, i.e., (1,3), (2,3) and (2,4), are actuators. Hence, the Robot-Topology matrix would be as shown below.
+
+$$\bf{M} = \left[\begin{matrix}9 & 0 & 1 & 0 \\\\0 & 9 & 1 & 1\\\\1 & 1 & 9 & 0\\\\0 & 1 & 0 & 9\end{matrix}\right]$$
+
+Either matrix can be used as Robot-Topology matrix.
 
 ## References
 <a id="1">[1]</a> 
