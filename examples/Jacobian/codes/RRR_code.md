@@ -55,7 +55,7 @@ In an ipynb file of JupyterLab, the above code would produce the following outpu
 
 $$\left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y}\\\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\\\1 & 1 & 1\end{matrix}\right]$$
 
-The above Jacobian is based on the notations defined and described [here](../../../Notation_and_Nomenclature).
+The above Jacobian is based on the notations defined and described [here](../../../misc/Notation_and_Nomenclature.md).
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
