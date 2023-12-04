@@ -35,7 +35,7 @@ $$\bf{M} = \left[\begin{matrix}9 & 1 & 0 & 0 \\\\1 & 9 & 1 & 0\\\\0 & 1 & 9 & 1\
 
 Another way is to name the link that is connected to the base link as $L_3$ and the link that is connected to the end-effector link as $L_2$, as shown in (d) of the above figure. In that case, the elements (1,3), (2,3) and (2,4) would be '1's, indicating the existence of revolute joints. The elements (3,1), (3,2) and (4,2) would be '1's, indicating that the corresponding joints, i.e., (1,3), (2,3) and (2,4), are actuators. Hence, the Robot-Topology matrix would be as shown below.
 
-$$\bf{M} = \left[\begin{matrix}9 & 0 & 1 & 0 \\\\0 & 9 & 1 & 1\\\\1 & 1 & 9 & 0\\\\0 & 0 & 0 & 9\end{matrix}\right]$$
+$$\bf{M} = \left[\begin{matrix}9 & 0 & 1 & 0 \\\\0 & 9 & 1 & 1\\\\1 & 1 & 9 & 0\\\\0 & 1 & 0 & 9\end{matrix}\right]$$
 
 ## References
 <a id="1">[1]</a> 
