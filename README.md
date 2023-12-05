@@ -117,6 +117,8 @@ array([[ 2,  4],
        [ 1,  1]])
 ```
 
+Mathematical concepts behind formulating the Jacobian can be found [here](./misc/Mathematics behind Jacobian formulation.md).
+
 ## Examples
 
 Some examples (along with their mathematical derivations) can be found [here](./examples/Jacobian).
