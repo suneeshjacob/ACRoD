@@ -20,7 +20,7 @@ pip install acrod
 
 ### Jacobian for planar manipulators
 
-The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](Robot_Topology_Matrix.md). For a planar 2R serial manipulator, the robot topology matrix is given by
+The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](./misc/Robot_Topology_Matrix.md). For a planar 2R serial manipulator, the robot topology matrix is given by
 
 $$\left[\begin{matrix}
 9 & 1 & 0 \\\\
@@ -64,7 +64,7 @@ In an ipynb file of JupyterLab, the above code would produce the following outpu
 
 $$\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} & - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} & a\_{x} - r\_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]$$
 
-The above Jacobian is based on the notations defined and described [here](Notation_and_Nomenclature.md).
+The above Jacobian is based on the notations defined and described [here](./misc/Notation_and_Nomenclature.md).
 
 Active joint velocities, in the corresponding order, can be viewed by running the following lines.
 ```py
