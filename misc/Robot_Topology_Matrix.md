@@ -2,7 +2,7 @@
 ## Matrix-based representation of robot topology
 From graph theory, an adjacency matrix of a mechanism is normally a symmetric matrix in which each diagonal element represents each link and each off-diagonal element represents the connection between the corresponding links. The adjacency matrix is normally a symmetric matrix. However, to accommodate the distinction between active and passive joints, the upper off-diagonal region is dedicated to represent the connectivity of links whilst the lower off-diagonal region is dedicated to represent whether each corresponding joint is an active joint or a passive. The diagonal elements are normally taken as zeroes but in this study they are filled with '9's in order to distinguish the links from the absence of joints which could be helpful from the programming point of view. For linkages of single type of joints, each off-diagonal element is normally taken to be 1 when the two links are directly connected by a joint, and 0 when the two links are not directly connected by a joint. Since the robots in this study could have more than one type of joint, the off-diagonal elements are considered as shown in table 1.
 
-Table 1: Joint-indicators in an adjacency matrix
+Table 1: Joint-indicators in Robot-Topology matrix
 | S. No. | Joint type | Off-diagonal element |
 | :----:  | ---     | :---: |
 |   1     |  Revolute ($R$)     | 1 |
