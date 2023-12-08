@@ -141,6 +141,8 @@ def condition_number_func(jacobian_matrix):
 For reference if we take the joint at the fixed link to be at the origin, the dimensional synthesis for optimal performance around the end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ can be performed by the code shown below:
 
 ```py
+from scipy.optimize import minimize
+
 end_effector_point = [1,2]
 r12 = [0,0]
 jac_fun = lambda y: jacobian_function(end_effector_point,[r12[0],r12[1],y[0],y[1]])
