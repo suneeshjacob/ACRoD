@@ -154,7 +154,7 @@ Output:
 ```py
 3.4641016153289317 2.236067976155377 1.0000000007904777
 ```
-The above output shows that for $l_1=3.464$ and $l_2=2.236$ the robot has the condition number approximately equal to $1.0$, which signifies optimal performance.
+The above output shows that for $l_1=3.464$ and $l_2=2.236$, the robot has the condition number approximately equal to $1.0$, which signifies optimal performance.
 
 ## Examples
 
