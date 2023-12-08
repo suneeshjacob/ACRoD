@@ -142,7 +142,7 @@ For reference if we take the joint at the fixed link to be at the origin, the di
 
 ```py
 from scipy.optimize import minimize
-from numpy import hstack, random, ones
+from numpy import hstack, ones
 
 end_effector_point = [1,2]
 base_reference_point = [0,0]
