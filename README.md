@@ -20,7 +20,13 @@ pip install acrod
 
 ### Jacobian for planar manipulators
 
-The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](./misc/Robot_Topology_Matrix.md). For a planar 2R serial manipulator, the robot topology matrix is given by
+#### 2R Planar Serial Robot
+
+<p align="center">
+    <img src="./2R.png" alt="2R planar serial robot" width="800px">
+</p>
+
+The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](./misc/Robot_Topology_Matrix.md). For a planar 2R serial manipulator (as shown in the above figure), the robot topology matrix is given by
 
 $$\left[\begin{matrix}
 9 & 1 & 0 \\\\
