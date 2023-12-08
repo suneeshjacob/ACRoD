@@ -20,7 +20,7 @@ pip install acrod
 
 ### Jacobian for planar manipulators
 
-#### 2R Planar Serial Robot
+#### 2R Planar Serial Robot (as an example)
 
 <p align="center">
     <img src="./misc/2R.png" alt="2R planar serial robot" width="800px">
