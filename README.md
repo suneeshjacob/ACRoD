@@ -132,9 +132,23 @@ def condition_number_func(jacobian_matrix):
     return condition_number
 ```
 
-For the given end-effector point $\textbf{a}=\hat{i}+2\hat{j}$, dimensional synthesis 
+For the given end-effector point $\textbf{a}=\hat{i}+2\hat{j}$ and for the joint at the fixed link at the origin (i.e., $\textbf{r}_{12}=0\hat{i}+0\hat{j}$), the dimensional synthesis can be performed by the code shown below:
 
-
+```py
+end_effector_point = [1,2]
+r12 = [0,0]
+jac_fun = lambda y: jacobian_function(end_effector_point,[r12[0],r12[1],y[0],y[1]])
+condition_number = lambda z: condition_number_func(jac_fun(z))
+res = minimize(condition_number,[1,1])
+l1 = np.linalg.norm(res.x)
+l2 = np.linalg.norm(res.x-end_effector_point)
+print(l1,l2,res.fun)
+```
+Output:
+```py
+3.4641016153289317 2.236067976155377 1.0000000007904777
+```
+The above output shows that for $l_1=3.464$ and $l_2=2.236$ the robot has the condition number approximately equal to $1.0$, which signifies optimal performance.
 
 ## Examples
 
