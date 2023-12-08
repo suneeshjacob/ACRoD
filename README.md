@@ -147,7 +147,7 @@ from numpy import hstack, random, ones
 end_effector_point = [1,2]
 base_reference_point = [0,0]
 r12 = base_reference_point
-jac_fun = lambda y: jacobian_function(end_effector_point, hstack((base_reference_point,initial_guess)))
+jac_fun = lambda y: jacobian_function(end_effector_point, hstack((base_reference_point,y)))
 condition_number = lambda z: condition_number_func(jac_fun(z))
 initial_guess = ones(len(jac.parameters)-len(base_reference_point))
 res = minimize(condition_number, initial_guess)
