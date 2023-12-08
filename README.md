@@ -119,6 +119,23 @@ array([[ 2,  4],
 
 Mathematical concepts behind formulating the Jacobian can be found [here](./misc/Mathematics_behind_Jacobian_formulation.md).
 
+#### Dimensional Synthesis
+
+For dimensional synthesis, at least a performance parameter is required. One commonly used performance parameter in dimensional synthesis is the condition number. From the above Jacobian function, the condition number can be found by computing the ratio of maximum singular value and minimum singular value. This condition number has the bounds $(1,\infty)$. When the condition number is 1, that signifies the best performance in the context of condition number. The computation of condition number from a given Jacobian can be achieved by the code shown below:
+
+```py
+from numpy.linalg import svd
+
+def condition_number_func(jacobian_matrix):
+    _, singular_values, _ = svd(jacobian_matrix)
+    condition_number =  singular_values.max()/singular_values.min()
+    return condition_number
+```
+
+For the given end-effector point $\textbf{a}=\hat{i}+2\hat{j}$, dimensional synthesis 
+
+
+
 ## Examples
 
 Some examples (along with their mathematical derivations) can be found [here](./examples/Jacobian).
