@@ -142,14 +142,14 @@ For reference if we take the joint at the fixed link to be at the origin, the di
 
 ```py
 from scipy.optimize import minimize
-from numpy import hstack, random
+from numpy import hstack, random, ones
 
 end_effector_point = [1,2]
 base_reference_point = [0,0]
 r12 = base_reference_point
-jac_fun = lambda y: jacobian_function(end_effector_point, hstack((end_effector_point,initial_guess)))
+jac_fun = lambda y: jacobian_function(end_effector_point, hstack((base_reference_point,initial_guess)))
 condition_number = lambda z: condition_number_func(jac_fun(z))
-initial_guess = random.ones(len(jac.parameters)-len(base_reference_point))
+initial_guess = ones(len(jac.parameters)-len(base_reference_point))
 res = minimize(condition_number, initial_guess)
 ```
 
