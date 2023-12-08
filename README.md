@@ -23,7 +23,7 @@ pip install acrod
 #### 2R Planar Serial Robot (as an example)
 
 <p align="center">
-    <img src="./misc/2R.png" alt="2R planar serial robot" width="800px">
+    <img src="./misc/2R.png" alt="2R planar serial robot" width="400px">
 </p>
 
 The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](./misc/Robot_Topology_Matrix.md). For a planar 2R serial manipulator (as shown in the above figure), the robot topology matrix is given by
