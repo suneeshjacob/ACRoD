@@ -151,6 +151,7 @@ jac_fun = lambda y: jacobian_function(end_effector_point, hstack((base_reference
 condition_number = lambda z: condition_number_func(jac_fun(z))
 initial_guess = ones(len(jac.parameters)-len(base_reference_point))
 res = minimize(condition_number, initial_guess)
+r23 = res.x
 ```
 
 The link lengths $l_2$ and $l_3$ are given by $l_2 = \lVert \textbf{r}\_{12}-\textbf{r}\_{23} \rVert$ and $l_3 = \lVert\textbf{r}\_{23}-\textbf{a}\rVert$. By using the code below, the link lengths of 2R robot can be computed.
@@ -158,8 +159,8 @@ The link lengths $l_2$ and $l_3$ are given by $l_2 = \lVert \textbf{r}\_{12}-\te
 ```py
 from numpy.linalg import norm
 
-l1 = norm(res.x-r12)
-l2 = norm(res.x-end_effector_point)
+l1 = norm(r23-r12)
+l2 = norm(r23-end_effector_point)
 print(l1,l2,res.fun)
 ```
 Output:
