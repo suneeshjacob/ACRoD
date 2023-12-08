@@ -146,7 +146,7 @@ res = minimize(condition_number, initial_guess)
 The link lengths $l_2$ and $l_3$ are given by $l_2 = \lVert \textbf{r}\_{12}-\textbf{r}\_{23} \rVert$ and $l_3 = \lVert\textbf{r}\_{23}-\textbf{a}\rVert$. By using the code below, the link lengths of 2R robot can be computed.
 
 ```py
-l1 = np.linalg.norm(res.x)
+l1 = np.linalg.norm(res.x-r12)
 l2 = np.linalg.norm(res.x-end_effector_point)
 print(l1,l2,res.fun)
 ```
