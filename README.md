@@ -18,7 +18,7 @@ pip install acrod
 
 ## Usage
 
-### Jacobian for planar manipulators
+### Jacobian for robotic manipulators
 
 #### 2R Planar Serial Robot (as an example)
 
