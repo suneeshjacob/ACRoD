@@ -149,15 +149,17 @@ base_reference_point = [0,0]
 r12 = base_reference_point
 jac_fun = lambda y: jacobian_function(end_effector_point, hstack((end_effector_point,initial_guess)))
 condition_number = lambda z: condition_number_func(jac_fun(z))
-initial_guess = random.rand(len(jac.parameters)-len(base_reference_point))
+initial_guess = random.ones(len(jac.parameters)-len(base_reference_point))
 res = minimize(condition_number, initial_guess)
 ```
 
 The link lengths $l_2$ and $l_3$ are given by $l_2 = \lVert \textbf{r}\_{12}-\textbf{r}\_{23} \rVert$ and $l_3 = \lVert\textbf{r}\_{23}-\textbf{a}\rVert$. By using the code below, the link lengths of 2R robot can be computed.
 
 ```py
-l1 = np.linalg.norm(res.x-r12)
-l2 = np.linalg.norm(res.x-end_effector_point)
+from numpy.linalg import norm
+
+l1 = norm(res.x-r12)
+l2 = norm(res.x-end_effector_point)
 print(l1,l2,res.fun)
 ```
 Output:
