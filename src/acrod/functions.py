@@ -2,6 +2,37 @@ import numpy
 import sympy
 import itertools
 
+def check_robot_topology_matrix(M):
+    """
+    check_robot_topology_matrix function performs several checks on the logical consistency of Robot-Topology matrix.
+
+    this function takes the robot-topology matrix as the input argument.
+
+    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
+    """
+    s = M.shape
+    if len(s) != 2:
+        raise ValueError('The Robot-Topology matrix should be a 2D array!')
+    if s[0] != s[1]:
+        raise ValueError('The Robot-Topology matrix should be a square matrix!')
+    if not (numpy.diag(M)==9).all():
+        raise ValueError('Every diagonal element of a Robot-Topology matrix should be 9!')
+    for i in range(len(M)):
+        for j in range(i+1,len(M)):
+            if M[i,j] not in [0,1,2,3,4,5,6,7]:
+                raise ValueError(f'Error in index ({i},{j}) of Robot-Topology matrix: The joints should be specified in the upper off-diagonal elements only by integers between 0 and 7!')
+            if M[j,i] not in [0,1]:
+                raise ValueError(f'Error in index ({j},{i}) of Robot-Topology matrix: The presence/absence of actuators should be specified in the lower off-diagonal elements only by integers 0 and 1!')
+            if M[i,j] == 0:
+                if M[j,i] == 1:
+                    raise ValueError(f'Error in index ({j},{i}) of Robot-Topology matrix: An actuator cannot exist when there is no joint!')
+            if M[i,j] not in [1,2]:
+                if M[j,i] == 1:
+                    raise ValueError(f'Error in index ({j},{i}) of Robot-Topology matrix: Only revolute and prismatic joints can be actuators!')
+
+
+    
+
 def all_joints_connected_to_the_link(M,linknumber):
     """
     all_joints_connected_to_the_link function gives a list of all the joints connected to a given link for a given robot-topology matrix.
@@ -193,6 +224,7 @@ class jacobian(object):
     superfluous_dof_information: list containing information of superfluous DOF existing in the robot.
     """
     def __init__(self, M, robot_type = 'spatial'):
+        check_robot_topology_matrix(M)
         self.M = M
         self.type = robot_type
         self.P = None
