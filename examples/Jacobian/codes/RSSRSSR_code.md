@@ -14,7 +14,7 @@ $$\bf{M} = \left[\begin{matrix}L_1 & R & R & O & R & O\\\\A & L_2 & O & O & O & 
 
 ### Jacobian for planar manipulators
 
-The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](../../../misc/Robot_Topology_Matrix.md). For RRRRPPPP planar serial-parallel hybrid manipulator shown above, the robot topology matrix is given by
+The topological information of a robot is to be specified by using its robot-topology matrix, as defined [here](../../../misc/Robot_Topology_Matrix.md). For RSSR-SSR spatial parallel manipulator shown above, the robot topology matrix is given by
 
 $$\left[\begin{matrix}9 & 1 & 1 & 0 & 1 & 0\\\\1 & 9 & 0 & 0 & 0 & 4\\\\1 & 0 & 9 & 4 & 0 & 0\\\\0 & 0 & 0 & 9 & 0 & 4\\\\0 & 0 & 0 & 0 & 9 & 4\\\\0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]$$
 
@@ -27,7 +27,7 @@ from numpy import array
 ```
 
 
-The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
+The robot-topology matrix for RSSR-SSR spatial parallel manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
 M = array(
         [[9, 1, 1, 0, 1, 0],
@@ -117,7 +117,7 @@ $$\left[\begin{matrix}a_{x}\\\\a_{y}\\\\a_{z}\end{matrix}\right]$$
 - Locations of joints: $\textbf{r}\_{(1,2)}=2\hat{i}+8\hat{j}+3\hat{k}$, $\textbf{r}\_{(1,3)}=1\hat{i}+2\hat{j}+5\hat{k}$, $\textbf{r}\_{(1,5)}=2\hat{i}+4\hat{j}+7\hat{k}$, $\textbf{r}\_{(2,6)}=3\hat{i}+1\hat{j}+2\hat{k}$, $\textbf{r}\_{(3,4)}=6\hat{i}+8\hat{j}+4\hat{k}$, $\textbf{r}\_{(4,6)}=8\hat{i}+1\hat{j}+3\hat{k}$ and $\textbf{r}\_{(5,6)}=5\hat{i}+7\hat{j}+3\hat{k}$
 - Orientations of joints: $\beta\_{(1,2)}=\pi/6$, $\phi\_{(1,2)}=\pi/3$, $\beta\_{(1,3)}=5\pi/6$, $\phi\_{(1,3)}=2\pi/3$, $\beta\_{(1,5)}=\pi/12$ and $\phi\_{(1,5)}=\pi/2$.
 
-For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $\phi_{(1,2)}$, $\phi_{(1,3)}$, $\phi_{(2,4)}$, $\phi_{(3,4)}$, $r_{(4,5)x}$, $r_{(4,5)y}$, $r_{(4,6)x}$, $r_{(4,6)y}$, $r_{(5,7)x}$, $r_{(5,7)y}$, $r_{(6,7)x}$ and $r_{(6,7)y}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
+For the given set of dimensional parameters of the robot, the numerical Jacobian can be computed as follows. Firstly, we need to gather the configuration parameters in Python list format, in a particular order. The robot dimensional parameters from `jac.parameters_symbolic` are found (as shown earlier) to be in the order of $r_{(1,2)x}$, $r_{(1,2)y}$, $r_{(1,2)z}$, $\beta_{(1,2)}$, $\phi_{(1,2)}$, $r_{(1,3)x}$, $r_{(1,3)y}$, $r_{(1,3)z}$, $\beta_{(1,3)}$, $\phi_{(1,3)}$, $r_{(1,5)x}$, $r_{(1,5)y}$, $r_{(1,5)z}$, $\beta_{(1,5)}$, $\phi_{(1,5)}$, $r_{(2,6)x}$, $r_{(2,6)y}$, $r_{(2,6)z}$, $r_{(3,4)x}$, $r_{(3,4)y}$, $r_{(3,4)z}$, $r_{(4,6)x}$, $r_{(4,6)y}$, $r_{(4,6)z}$, $r_{(5,6)x}$, $r_{(5,6)y}$ and $r_{(5,6)z}$. Hence the configuration parameters are to be supplied in the same order, as a list. Thus, the computation can be performed as shown below.
 ```py
 from numpy import pi
 

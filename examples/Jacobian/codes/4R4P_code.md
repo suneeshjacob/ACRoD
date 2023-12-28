@@ -27,7 +27,7 @@ from numpy import array
 ```
 
 
-The robot-topology matrix for 3R planar serial manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
+The robot-topology matrix for RRRRPPPP planar serial-parallel hybrid manipulator is defined and jacobian information is processed via the imported jacobian class as follows.
 ```py
 M = array(
         [[9, 2, 2, 0, 0, 0, 0],
