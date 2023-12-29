@@ -22,7 +22,7 @@ The corresponding Jacobian function can be formulated as follows.
 
 Firstly, the required functions are imported as shown below.
 ```py
-from acrod.functions import jacobian
+from acrod.jacobian import Jacobian
 from numpy import array
 ```
 
@@ -35,7 +35,7 @@ M = array(
      [0, 1, 9, 1],
      [0, 0, 1, 9]]
 )
-jac = jacobian(M, robot_type='planar')
+jac = Jacobian(M, robot_type='planar')
 ```
 
 

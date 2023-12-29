@@ -195,7 +195,7 @@ def superfluous(M):
 
     return S
 
-class jacobian(object):
+class Jacobian(object):
     """
     jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
 
