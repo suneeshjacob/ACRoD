@@ -200,6 +200,7 @@ class Jacobian(object):
     jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
 
     attributes:
+    :param str M: robot-topology matrix.
     M: robot-topology matrix.
     type: robot_type (either 'planar' or 'spatial').
     P: list of all paths.
