@@ -9,8 +9,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.11.5"
-    numpy: "1.24.3"
-    sympy: "1.11.1"
     # You can also specify other tool versions:
     # nodejs: "20"
     # rust: "1.70"
