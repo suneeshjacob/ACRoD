@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>acrod.jacobian &mdash; ACRoD 1.1.10 documentation</title>
+  <title>acrod.jacobian &mdash; ACRoD 1.1.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
 
@@ -272,30 +272,55 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either &#39;spatial&#39; or &#39;planar&#39;. by default, it is &#39;spatial&#39;.</span>
 
-<span class="sd">    :param str M: robot-topology matrix.</span>
-<span class="sd">    :param str type: robot_type (either &#39;planar&#39; or &#39;spatial&#39;).</span>
-<span class="sd">    :param str P: list of all paths.</span>
-<span class="sd">    :param str P_tilde: list of independent paths for linear velocities.</span>
-<span class="sd">    :param str P_tilde_omega: list of independent paths for angular velocitites.</span>
-<span class="sd">    :param str is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not.</span>
-<span class="sd">    :param str Ja: J_a in symbolic form.</span>
-<span class="sd">    :param str Jp: J_p in symbolic form.</span>
-<span class="sd">    :param str Aa: A_a in symbolic form.</span>
-<span class="sd">    :param str Ap: A_p in symbolic form.</span>
-<span class="sd">    :param str Ja_func: J_a in Python function form.</span>
-<span class="sd">    :param str Jp_func: J_p in Python function form.</span>
-<span class="sd">    :param str Aa_func: A_a in Python function form.</span>
-<span class="sd">    :param str Ap_func: A_p in Python function form.</span>
-<span class="sd">    :param str active_joint_velocities: list of active joint velocities, each in string format.</span>
-<span class="sd">    :param str passive_joint_velocities: list of passive joint velocities, each in string format.</span>
-<span class="sd">    :param str parameters: list of parameters (other than end-effector parameters), each in string format.</span>
-<span class="sd">    :param str active_joint_velocities_symbolic: active joint velocities in symbolic form.</span>
-<span class="sd">    :param str passive_joint_velocities_symbolic: passive joint velocities in symbolic form.</span>
-<span class="sd">    :param str parameters_symbolic: list of parameters (other than end-effector parameters) in string format.</span>
-<span class="sd">    :param str endeffector_variables_symbolic: end-effector parameters in symbolic form.</span>
-<span class="sd">    :param str superfluous_dof_information: list containing information of superfluous DOF existing in the robot.</span>
+<span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
+<span class="sd">    :param type: robot_type (either &#39;planar&#39; or &#39;spatial&#39;).</span>
+<span class="sd">    :type type: str</span>
+<span class="sd">    :param P: list of all paths. (Initially initialised with `None` value)</span>
+<span class="sd">    :type P: list</span>
+<span class="sd">    :param P_tilde: list of independent paths for linear velocities. (Initially initialised with `None` value)</span>
+<span class="sd">    :type P_tilde: list</span>
+<span class="sd">    :param P_tilde_omega: list of independent paths for angular velocitites. (Initially initialised with `None` value)</span>
+<span class="sd">    :type P_tilde_omega: list</span>
+<span class="sd">    :param is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not. (Initially initialised with `None` value)</span>
+<span class="sd">    :type is_serial: bool</span>
+<span class="sd">    :param Ja: :math:`J_a` in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Ja: sympy.Matrix</span>
+<span class="sd">    :param Jp: :math:`J_p` in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Jp: sympy.Matrix</span>
+<span class="sd">    :param Aa: :math:`A_a` in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Aa: sympy.Matrix</span>
+<span class="sd">    :param Ap: :math:`A_p` in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Ap: sympy.Matrix</span>
+<span class="sd">    :param Ja_func: :math:`J_a` in Python function form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Ja_func: callable</span>
+<span class="sd">    :param Jp_func: :math:`J_p` in Python function form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Jp_func: callable</span>
+<span class="sd">    :param Aa_func: :math:`A_a` in Python function form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Aa_func: callable</span>
+<span class="sd">    :param Ap_func: :math:`A_p` in Python function form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type Ap_func: callable</span>
+<span class="sd">    :param active_joint_velocities: list of active joint velocities, each in string format. (Initially initialised with `None` value)</span>
+<span class="sd">    :type active_joint_velocities: list</span>
+<span class="sd">    :param passive_joint_velocities: list of passive joint velocities, each in string format. (Initially initialised with `None` value)</span>
+<span class="sd">    :type passive_joint_velocities: list</span>
+<span class="sd">    :param parameters: list of parameters (other than end-effector parameters), each in string format. (Initially initialised with `None` value)</span>
+<span class="sd">    :type parameters: list</span>
+<span class="sd">    :param active_joint_velocities_symbolic: active joint velocities in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type active_joint_velocities_symbolic: sympy.Matrix</span>
+<span class="sd">    :param passive_joint_velocities_symbolic: passive joint velocities in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type passive_joint_velocities_symbolic: sympy.Matrix</span>
+<span class="sd">    :param parameters_symbolic: list of parameters (other than end-effector parameters) in string format. (Initially initialised with `None` value)</span>
+<span class="sd">    :type parameters_symbolic: sympy.Matrix</span>
+<span class="sd">    :param endeffector_variables_symbolic: end-effector parameters in symbolic form. (Initially initialised with `None` value)</span>
+<span class="sd">    :type endeffector_variables_symbolic: sympy.Matrix</span>
+<span class="sd">    :param superfluous_dof_information: list containing information of superfluous DOF existing in the robot. (Initially initialised with `None` value)</span>
+<span class="sd">    :type superfluous_dof_information: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">robot_type</span> <span class="o">=</span> <span class="s1">&#39;spatial&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize a new instance of Jacobian.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">check_robot_topology_matrix</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">M</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">robot_type</span>

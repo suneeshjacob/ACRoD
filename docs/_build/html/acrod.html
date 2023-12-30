@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>acrod package &mdash; ACRoD 1.1.10 documentation</title>
+  <title>acrod package &mdash; ACRoD 1.1.12 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
@@ -18,6 +18,7 @@
         <script src="_static/underscore.js"></script>
         <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -96,28 +97,28 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>M</strong> (<em>str</em>) – robot-topology matrix.</p></li>
+<li><p><strong>M</strong> (<em>numpy.ndarray</em>) – robot-topology matrix.</p></li>
 <li><p><strong>type</strong> (<em>str</em>) – robot_type (either ‘planar’ or ‘spatial’).</p></li>
-<li><p><strong>P</strong> (<em>str</em>) – list of all paths.</p></li>
-<li><p><strong>P_tilde</strong> (<em>str</em>) – list of independent paths for linear velocities.</p></li>
-<li><p><strong>P_tilde_omega</strong> (<em>str</em>) – list of independent paths for angular velocitites.</p></li>
-<li><p><strong>is_serial</strong> (<em>str</em>) – boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not.</p></li>
-<li><p><strong>Ja</strong> (<em>str</em>) – J_a in symbolic form.</p></li>
-<li><p><strong>Jp</strong> (<em>str</em>) – J_p in symbolic form.</p></li>
-<li><p><strong>Aa</strong> (<em>str</em>) – A_a in symbolic form.</p></li>
-<li><p><strong>Ap</strong> (<em>str</em>) – A_p in symbolic form.</p></li>
-<li><p><strong>Ja_func</strong> (<em>str</em>) – J_a in Python function form.</p></li>
-<li><p><strong>Jp_func</strong> (<em>str</em>) – J_p in Python function form.</p></li>
-<li><p><strong>Aa_func</strong> (<em>str</em>) – A_a in Python function form.</p></li>
-<li><p><strong>Ap_func</strong> (<em>str</em>) – A_p in Python function form.</p></li>
-<li><p><strong>active_joint_velocities</strong> (<em>str</em>) – list of active joint velocities, each in string format.</p></li>
-<li><p><strong>passive_joint_velocities</strong> (<em>str</em>) – list of passive joint velocities, each in string format.</p></li>
-<li><p><strong>parameters</strong> (<em>str</em>) – list of parameters (other than end-effector parameters), each in string format.</p></li>
-<li><p><strong>active_joint_velocities_symbolic</strong> (<em>str</em>) – active joint velocities in symbolic form.</p></li>
-<li><p><strong>passive_joint_velocities_symbolic</strong> (<em>str</em>) – passive joint velocities in symbolic form.</p></li>
-<li><p><strong>parameters_symbolic</strong> (<em>str</em>) – list of parameters (other than end-effector parameters) in string format.</p></li>
-<li><p><strong>endeffector_variables_symbolic</strong> (<em>str</em>) – end-effector parameters in symbolic form.</p></li>
-<li><p><strong>superfluous_dof_information</strong> (<em>str</em>) – list containing information of superfluous DOF existing in the robot.</p></li>
+<li><p><strong>P</strong> (<em>list</em>) – list of all paths. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>P_tilde</strong> (<em>list</em>) – list of independent paths for linear velocities. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>P_tilde_omega</strong> (<em>list</em>) – list of independent paths for angular velocitites. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>is_serial</strong> (<em>bool</em>) – boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Ja</strong> (<em>sympy.Matrix</em>) – <span class="math notranslate nohighlight">\(J_a\)</span> in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Jp</strong> (<em>sympy.Matrix</em>) – <span class="math notranslate nohighlight">\(J_p\)</span> in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Aa</strong> (<em>sympy.Matrix</em>) – <span class="math notranslate nohighlight">\(A_a\)</span> in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Ap</strong> (<em>sympy.Matrix</em>) – <span class="math notranslate nohighlight">\(A_p\)</span> in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Ja_func</strong> (<em>callable</em>) – <span class="math notranslate nohighlight">\(J_a\)</span> in Python function form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Jp_func</strong> (<em>callable</em>) – <span class="math notranslate nohighlight">\(J_p\)</span> in Python function form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Aa_func</strong> (<em>callable</em>) – <span class="math notranslate nohighlight">\(A_a\)</span> in Python function form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>Ap_func</strong> (<em>callable</em>) – <span class="math notranslate nohighlight">\(A_p\)</span> in Python function form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>active_joint_velocities</strong> (<em>list</em>) – list of active joint velocities, each in string format. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>passive_joint_velocities</strong> (<em>list</em>) – list of passive joint velocities, each in string format. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>parameters</strong> (<em>list</em>) – list of parameters (other than end-effector parameters), each in string format. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>active_joint_velocities_symbolic</strong> (<em>sympy.Matrix</em>) – active joint velocities in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>passive_joint_velocities_symbolic</strong> (<em>sympy.Matrix</em>) – passive joint velocities in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>parameters_symbolic</strong> (<em>sympy.Matrix</em>) – list of parameters (other than end-effector parameters) in string format. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>endeffector_variables_symbolic</strong> (<em>sympy.Matrix</em>) – end-effector parameters in symbolic form. (Initially initialised with <cite>None</cite> value)</p></li>
+<li><p><strong>superfluous_dof_information</strong> (<em>list</em>) – list containing information of superfluous DOF existing in the robot. (Initially initialised with <cite>None</cite> value)</p></li>
 </ul>
 </dd>
 </dl>

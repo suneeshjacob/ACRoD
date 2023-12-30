@@ -211,21 +211,21 @@ class Jacobian(object):
     :type P_tilde_omega: list
     :param is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not. (Initially initialised with `None` value)
     :type is_serial: bool
-    :param Ja: J_a in symbolic form. (Initially initialised with `None` value)
+    :param Ja: :math:`J_a` in symbolic form. (Initially initialised with `None` value)
     :type Ja: sympy.Matrix
-    :param Jp: J_p in symbolic form. (Initially initialised with `None` value)
+    :param Jp: :math:`J_p` in symbolic form. (Initially initialised with `None` value)
     :type Jp: sympy.Matrix
-    :param Aa: A_a in symbolic form. (Initially initialised with `None` value)
+    :param Aa: :math:`A_a` in symbolic form. (Initially initialised with `None` value)
     :type Aa: sympy.Matrix
-    :param Ap: A_p in symbolic form. (Initially initialised with `None` value)
+    :param Ap: :math:`A_p` in symbolic form. (Initially initialised with `None` value)
     :type Ap: sympy.Matrix
-    :param Ja_func: J_a in Python function form. (Initially initialised with `None` value)
+    :param Ja_func: :math:`J_a` in Python function form. (Initially initialised with `None` value)
     :type Ja_func: callable
-    :param Jp_func: J_p in Python function form. (Initially initialised with `None` value)
+    :param Jp_func: :math:`J_p` in Python function form. (Initially initialised with `None` value)
     :type Jp_func: callable
-    :param Aa_func: A_a in Python function form. (Initially initialised with `None` value)
+    :param Aa_func: :math:`A_a` in Python function form. (Initially initialised with `None` value)
     :type Aa_func: callable
-    :param Ap_func: A_p in Python function form. (Initially initialised with `None` value)
+    :param Ap_func: :math:`A_p` in Python function form. (Initially initialised with `None` value)
     :type Ap_func: callable
     :param active_joint_velocities: list of active joint velocities, each in string format. (Initially initialised with `None` value)
     :type active_joint_velocities: list

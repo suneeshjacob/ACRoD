@@ -22,7 +22,7 @@ copyright = '2023, Akkarapakam Suneesh Jacob and Rituparna Datta'
 author = 'Akkarapakam Suneesh Jacob and Rituparna Datta'
 
 # The full version, including alpha/beta/rc tags
-release = '1.1.10'
+release = '1.1.12'
 
 
 # -- General configuration ---------------------------------------------------
@@ -33,7 +33,8 @@ release = '1.1.10'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx.ext.mathjax'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
