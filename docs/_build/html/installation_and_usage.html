@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; ACRoD 1.1.16 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="acrod" href="modules.html" />
+    <link rel="prev" title="Welcome to ACRoD’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ACRoD
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jacobian-for-robotic-manipulators">Jacobian for robotic manipulators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#r-planar-serial-robot-as-an-example">2R Planar Serial Robot (as an example)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">Sample computation of Jacobian for the configuration corresponding to the parameters shown below:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dimensional-synthesis">Dimensional Synthesis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#full-documentation">Full Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#community-guidelines">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">acrod</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ACRoD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation_and_usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+<p>The package can be installed from PyPI by using the following command
+via terminal.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>acrod
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<section id="jacobian-for-robotic-manipulators">
+<h2>Jacobian for robotic manipulators<a class="headerlink" href="#jacobian-for-robotic-manipulators" title="Permalink to this heading"></a></h2>
+<section id="r-planar-serial-robot-as-an-example">
+<h3>2R Planar Serial Robot (as an example)<a class="headerlink" href="#r-planar-serial-robot-as-an-example" title="Permalink to this heading"></a></h3>
+<p align="center"></p><p>The topological information of a robot is to be specified by using its
+robot-topology matrix, as defined
+<a class="reference external" href="./misc/Robot_Topology_Matrix.md">here</a>. For a planar 2R serial
+manipulator (as shown in the above figure), the robot topology matrix is
+given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}
+9 &amp; 1 &amp; 0 \\\\
+1 &amp; 9 &amp; 1 \\\\
+0 &amp; 1 &amp; 9
+\end{matrix}\right]\end{split}\]</div>
+<p>The corresponding Jacobian function can be formulated as follows.</p>
+<p>Firstly, the required functions are imported as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">acrod.jacobian</span> <span class="kn">import</span> <span class="n">Jacobian</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+</pre></div>
+</div>
+<p>The robot-topology matrix for 3R planar serial manipulator is defined
+and jacobian information is processed via the imported jacobian class as
+follows.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+    <span class="p">)</span>
+<span class="n">jac</span> <span class="o">=</span> <span class="n">Jacobian</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">robot_type</span> <span class="o">=</span> <span class="s1">&#39;planar&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Jacobian function is generated as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">jacobian_function</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">get_jacobian_function</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the process of generating the above jacobian function, other
+attributes of the jacobian object also are updated. Symbolic Jacobian
+matrices can be extracted from the attributes. Since this is a serial
+robot, the matrix <span class="math notranslate nohighlight">\(J_a\)</span> itself would be the Jacobian matrix of the
+manipulator. The matrix <span class="math notranslate nohighlight">\(J_a\)</span> is extracted from <code class="docutils literal notranslate"><span class="pre">Ja</span></code> attribute
+of the jacobian object as follows.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">symbolic_jacobian</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Ja</span>
+<span class="n">symbolic_jacobian</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} &amp; - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} &amp; a\_{x} - r\_{(2,3)x} \\\\ 1 &amp; 1\end{matrix}\right]\end{split}\]</div>
+<p>The above Jacobian is based on the notations defined and described
+<a class="reference external" href="./misc/Notation_and_Nomenclature.md">here</a>.</p>
+<p>Active joint velocities, in the corresponding order, can be viewed by
+running the following lines.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">active_joint_velocities</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">active_joint_velocities_symbolic</span>
+<span class="n">active_joint_velocities</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matrix}\right]\end{split}\]</div>
+<p>Robot dimensional parameters can be viewed by running the below line.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_dimensional_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">parameters_symbolic</span>
+<span class="n">robot_dimensional_parameters</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]\end{split}\]</div>
+<p>Robot end-effector parameters can be viewed by running the below line.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_endeffector_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">endeffector_variables_symbolic</span>
+<span class="n">robot_endeffector_parameters</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]\end{split}\]</div>
+</section>
+<section id="sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">
+<h3>Sample computation of Jacobian for the configuration corresponding to the parameters shown below:<a class="headerlink" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>End-effector point: <span class="math notranslate nohighlight">\(\textbf{a}=\hat{i}+2\hat{j}\)</span></p></li>
+<li><p>Locations of joints: <span class="math notranslate nohighlight">\(\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}\)</span>
+and <span class="math notranslate nohighlight">\(\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}\)</span></p></li>
+</ul>
+<p>For the given set of dimensional parameters of the robot, the numerical
+Jacobian can be computed as follows. Firstly, we need to gather the
+configuration parameters in Python list format, in a particular order.
+The robot dimensional parameters from <code class="docutils literal notranslate"><span class="pre">jac.parameters_symbolic</span></code> are
+found (as shown earlier) to be in the order of <span class="math notranslate nohighlight">\(r_{(1,2)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(1,2)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(2,3)x}\)</span> and <span class="math notranslate nohighlight">\(r_{(2,3)y}\)</span>. Hence the
+configuration parameters are to be supplied in the same order, as a
+list. Thus, the computation can be performed as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">end_effector_point</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">configuration_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">jacobian_at_the_given_configuration</span> <span class="o">=</span> <span class="n">jacobian_function</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">jacobian_at_the_given_configuration</span>
+</pre></div>
+</div>
+<p>The output produced by running the above code, is shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mi">2</span><span class="p">,</span>  <span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>Mathematical concepts behind formulating the Jacobian can be found
+<a class="reference external" href="./misc/Mathematics_behind_Jacobian_formulation.md">here</a>.</p>
+</section>
+<section id="dimensional-synthesis">
+<h3>Dimensional Synthesis<a class="headerlink" href="#dimensional-synthesis" title="Permalink to this heading"></a></h3>
+<p>For dimensional synthesis, at least a performance parameter is required.
+One commonly used performance parameter in dimensional synthesis is the
+condition number. From the above Jacobian function, the condition number
+can be found by computing the ratio of maximum singular value and
+minimum singular value. This condition number has the bounds
+<span class="math notranslate nohighlight">\((1,\infty)\)</span>. When the condition number is 1, that signifies the
+best performance in the context of condition number. The computation of
+condition number from a given Jacobian can be achieved by the code shown
+below:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">svd</span>
+
+<span class="k">def</span> <span class="nf">condition_number_func</span><span class="p">(</span><span class="n">jacobian_matrix</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">singular_values</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">jacobian_matrix</span><span class="p">)</span>
+    <span class="n">condition_number</span> <span class="o">=</span>  <span class="n">singular_values</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">/</span><span class="n">singular_values</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">condition_number</span>
+</pre></div>
+</div>
+<p>For reference if we take the joint at the fixed link to be at the
+origin, the dimensional synthesis for optimal performance around the
+end-effector point <span class="math notranslate nohighlight">\(\textbf{a}=\hat{i}+2\hat{j}\)</span> can be performed
+by the code shown below:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">hstack</span><span class="p">,</span> <span class="n">ones</span>
+
+<span class="n">end_effector_point</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">base_reference_point</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">r12</span> <span class="o">=</span> <span class="n">base_reference_point</span>
+<span class="n">jac_fun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">jacobian_function</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">hstack</span><span class="p">((</span><span class="n">base_reference_point</span><span class="p">,</span><span class="n">y</span><span class="p">)))</span>
+<span class="n">condition_number</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">z</span><span class="p">:</span> <span class="n">condition_number_func</span><span class="p">(</span><span class="n">jac_fun</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="n">initial_guess</span> <span class="o">=</span> <span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">jac</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">base_reference_point</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">condition_number</span><span class="p">,</span> <span class="n">initial_guess</span><span class="p">)</span>
+<span class="n">r23</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<p>The link lengths <span class="math notranslate nohighlight">\(l_2\)</span> and <span class="math notranslate nohighlight">\(l_3\)</span> are given by
+<span class="math notranslate nohighlight">\(l_2 = \lVert \textbf{r}\_{12}-\textbf{r}\_{23} \rVert\)</span> and
+<span class="math notranslate nohighlight">\(l_3 = \lVert\textbf{r}\_{23}-\textbf{a}\rVert\)</span>. By using the code
+below, the link lengths of 2R robot can be computed.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
+
+<span class="n">l1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">r23</span><span class="o">-</span><span class="n">r12</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">r23</span><span class="o">-</span><span class="n">end_effector_point</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span><span class="n">l2</span><span class="p">,</span><span class="n">res</span><span class="o">.</span><span class="n">fun</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="mf">3.4641016153289317</span> <span class="mf">2.236067976155377</span> <span class="mf">1.0000000007904777</span>
+</pre></div>
+</div>
+<p>The above output shows that for <span class="math notranslate nohighlight">\(l_1=3.464\)</span> and <span class="math notranslate nohighlight">\(l_2=2.236\)</span>,
+the robot has the condition number approximately equal to <span class="math notranslate nohighlight">\(1.0\)</span>,
+which signifies optimal performance.</p>
+</section>
+</section>
+</section>
+<section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
+<p>Some examples (along with their mathematical derivations) can be found
+<a class="reference external" href="./examples/Jacobian">here</a>.</p>
+</section>
+<section id="full-documentation">
+<h1>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this heading"></a></h1>
+<p>For full documentation, visit the documentation page
+<a class="reference external" href="https://acrod.readthedocs.io/en/latest/">here</a>.</p>
+</section>
+<section id="community-guidelines">
+<h1>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>For contribution to the software:</p>
+<ul>
+<li><p>In order to contribute to the software, please consider using the
+<a class="reference external" href="https://github.com/suneeshjacob/ACRoD/issues">pull request
+feature</a> of
+GitHub.</p></li>
+</ul>
+</li>
+<li><p>For reporting issues with the software:</p>
+<ul>
+<li><p>For reporting issues or problems, please use
+<a class="reference external" href="https://github.com/suneeshjacob/ACRoD/issues">issues</a>.</p></li>
+</ul>
+</li>
+<li><p>For support:</p>
+<ul>
+<li><p>For any further support (including installation, usage, etc.),
+feel free to contact via suneeshjacob-at-gmail-dot-com.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to ACRoD’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="acrod" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Akkarapakam Suneesh Jacob and Rituparna Datta.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

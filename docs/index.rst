@@ -18,7 +18,7 @@ Currently available features
    :maxdepth: 2
    :caption: Contents:
 
-   installation
+   installation_and_usage
    modules
 
 Indices and tables
