@@ -23,10 +23,10 @@ than one type of joint, the off-diagonal elements are considered as
 shown in table 1.
 
 .. list-table:: Table 1: Joint-indicators in Robot-Topology matrix
-   :widths: 5 5 5
+   :widths: 20 40 40
    :header-rows: 1
 
-   * - S. No.
+   * - \S. No.
      - Joint type
      - Off-diagonal element
    * - 1
