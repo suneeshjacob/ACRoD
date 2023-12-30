@@ -1,5 +1,8 @@
+Mathematics Behind Jacobian Formulation
+=======================================
+
 Steps to formulate Jacobian
-===========================
+---------------------------
 
 This method is an extension/modification of the method explained
 presented in `[1] <#1>`__. The approach that is typically used to
@@ -245,29 +248,20 @@ serial manipulators is as shown in equation (8).
 The above steps of the algorithm are concisely shown in the pseudocode
 of algorithm 1.
 
-.. raw:: html
+.. image:: ../misc/algorithm1.png
+   :alt: Alternative Text
+   :width: 300
+   :align: center
 
-   <p align="center">
+.. image:: ../misc/algorithm2.png
+   :alt: Alternative Text
+   :width: 300
+   :align: center
 
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
-
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
+.. image:: ../misc/algorithm3.png
+   :alt: Alternative Text
+   :width: 300
+   :align: center
 
 This algorithm can be used to find the four matrices
 :math:`\mathbf{J_a}`, :math:`\mathbf{J_p}`, :math:`\mathbf{A_a}` and
@@ -278,7 +272,7 @@ the Jacobian would simply be
 :math:`\mathbf{\widetilde{J}}=\mathbf{J_a}`.
 
 References
-==========
+----------
 
 [1] Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. “Dimensional
 synthesis of spatial manipulators for velocity and force transmission

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Steps to formulate Jacobian &mdash; ACRoD 1.1.16 documentation</title>
+  <title>Mathematics Behind Jacobian Formulation &mdash; ACRoD 1.1.16 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
@@ -50,8 +50,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation_and_usage.html">Installation and Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notation_and_nomenclature.html">Notation and Nomenclature</a></li>
 <li class="toctree-l1"><a class="reference internal" href="robot_topology_matrix.html">Robot-topology Matrix</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Steps to formulate Jacobian</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#references">References</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mathematics Behind Jacobian Formulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#steps-to-formulate-jacobian">Steps to formulate Jacobian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="community_guidelines.html">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">API Documentation</a></li>
 </ul>
@@ -70,7 +73,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Steps to formulate Jacobian</li>
+      <li class="breadcrumb-item active">Mathematics Behind Jacobian Formulation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/mathematics_behind_jacobian_formulation.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -80,8 +83,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="steps-to-formulate-jacobian">
-<h1>Steps to formulate Jacobian<a class="headerlink" href="#steps-to-formulate-jacobian" title="Permalink to this heading"></a></h1>
+  <section id="mathematics-behind-jacobian-formulation">
+<h1>Mathematics Behind Jacobian Formulation<a class="headerlink" href="#mathematics-behind-jacobian-formulation" title="Permalink to this heading"></a></h1>
+<section id="steps-to-formulate-jacobian">
+<h2>Steps to formulate Jacobian<a class="headerlink" href="#steps-to-formulate-jacobian" title="Permalink to this heading"></a></h2>
 <p>This method is an extension/modification of the method explained
 presented in <a class="reference external" href="#1">[1]</a>. The approach that is typically used to
 formulate Jacobian of a serial manipulator is to simply calculate the
@@ -302,7 +307,10 @@ serial manipulators is as shown in equation (8).</p>
 \[\mathbf{\widetilde{J}} = \mathbf{J_a} \tag{8}\]</div>
 <p>The above steps of the algorithm are concisely shown in the pseudocode
 of algorithm 1.</p>
-<p align="center"></p><p align="center"></p><p align="center"></p><p>This algorithm can be used to find the four matrices
+<a class="reference internal image-reference" href="_images/algorithm1.png"><img alt="Alternative Text" class="align-center" src="_images/algorithm1.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/algorithm2.png"><img alt="Alternative Text" class="align-center" src="_images/algorithm2.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/algorithm3.png"><img alt="Alternative Text" class="align-center" src="_images/algorithm3.png" style="width: 300px;" /></a>
+<p>This algorithm can be used to find the four matrices
 <span class="math notranslate nohighlight">\(\mathbf{J_a}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{J_p}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{A_a}\)</span> and
 <span class="math notranslate nohighlight">\(\mathbf{A_p}\)</span>, from which the Jacobian can be formulated as
 <span class="math notranslate nohighlight">\(\mathbf{\widetilde{J}}=\mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\)</span>.
@@ -311,7 +319,7 @@ the Jacobian would simply be
 <span class="math notranslate nohighlight">\(\mathbf{\widetilde{J}}=\mathbf{J_a}\)</span>.</p>
 </section>
 <section id="references">
-<h1>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h1>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <p>[1] Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. “Dimensional
 synthesis of spatial manipulators for velocity and force transmission
 for operation around a specified task point.” arXiv preprint
@@ -319,6 +327,7 @@ arXiv:2210.04446 (2022).</p>
 <p>[2] Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta.
 “Enumeration of spatial manipulators by using the concept of Adjacency
 Matrix.” arXiv preprint arXiv:2210.03327 (2022).</p>
+</section>
 </section>
 
 
