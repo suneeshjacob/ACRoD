@@ -12,7 +12,7 @@ $$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}}+r_{(
 
 
 
-In order to fully describe a revolute joint or a prismatic joint or a cylindrical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of the axis of its appropriate motion ($\mathbf{\hat{n}}\_{(i,j)}$) needs to be specified. For a revolute joint, the appropriate motion would be revolute motion, and for a prismatic joint, the appropriate motion would be translatory motion. On the other hand, for a cylindrical joint, the appropriate motion consists of both revolute and translatory motions along the same axis. While specifying one axis is sufficient for a revolute, prismatic or cylindrial joint (apart from the position), it is required to specify two mutually perpendicular axes for a universal joint, namely $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$, as shown in figure \ref{universaljoint}. And in order to specify a helical joint, apart from its position ($\mathbf{r}\_{(i,j)}$) and the orientation of its axis ($\mathbf{\hat{n}}\_{(i,j)}$), the pitch ($p\_{ij}$) of the helix is to be specified. Alternatively, the helix angle can also be specified, from which the pitch of the helix can be calculated. Finally, in order to specify a plane joint, apart from its position, the orientation of the axis perpendicular to the plane ($\mathbf{\hat{m}}\_{(i,j)}$) is to be specified.
+In order to fully describe a revolute joint or a prismatic joint or a cylindrical joint, apart from its position ($\mathbf{r}\_{(i,j)}$), the orientation of the axis of its appropriate motion ($\mathbf{\hat{n}}\_{(i,j)}$) needs to be specified. For a revolute joint, the appropriate motion would be revolute motion, and for a prismatic joint, the appropriate motion would be translatory motion. On the other hand, for a cylindrical joint, the appropriate motion consists of both revolute and translatory motions along the same axis. While specifying one axis is sufficient for a revolute, prismatic or cylindrial joint (apart from the position), it is required to specify two mutually perpendicular axes for a universal joint, namely $\mathbf{\hat{m}}\_{(i,j)}$ and $\mathbf{\hat{n}}\_{(i,j)}$, as shown in figure below. And in order to specify a helical joint, apart from its position ($\mathbf{r}\_{(i,j)}$) and the orientation of its axis ($\mathbf{\hat{n}}\_{(i,j)}$), the pitch ($p\_{ij}$) of the helix is to be specified. Alternatively, the helix angle can also be specified, from which the pitch of the helix can be calculated. Finally, in order to specify a plane joint, apart from its position, the orientation of the axis perpendicular to the plane ($\mathbf{\hat{m}}\_{(i,j)}$) is to be specified.
 
 
 
@@ -130,7 +130,7 @@ $$\mathbf{r}\_{(i,j)}=r_{(i,j)x}\mathbf{\hat{i}}+r_{(i,j)y}\mathbf{\hat{j}} \tag
 
 
 
-In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (17). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (16), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equation (9) to equation (18).
+In this study, only two types of joints, namely revolute and prismatic are considered. The axis of each revolute joint is always perpendicular to the plane, and hence, for revolute joints of planar manipulators, the equation (2) reduces to the equation (17). And the axis of each prismatic joint should lie within the plane, and hence the z-coordinate of the unit vector along the axis of each prismatic joint would be zero. Thus, for prismatic joints of planar manipulators, the equation (2) reduces to the equation (16), and correspondingly, $n_{(i,j)z}$ being zero conventionally implies $\beta_{(i,j)}=\frac{\pi}{2}$ and $\sin{\beta_{(i,j)}}=1$, thereby reducing equations (7) and (8) to equations (18) and (19) respectively.
 
 $$\mathbf{\hat{n}}\_{(i,j)} = n_{(i,j)x}\mathbf{\hat{i}}+n_{(i,j)y}\mathbf{\hat{j}} \tag{16}$$
 
@@ -139,7 +139,9 @@ $$\mathbf{\hat{n}}_{(i,j)} = \mathbf{\hat{k}} \tag{17}$$
 
 
 
-$$\begin{matrix} n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)} \\\\ n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)} \end{matrix} \tag{18}$$
+$$n_{(i,j)x} = \cos{\left(\phi_{(i,j)}\right)} \tag{18}$$
+
+$$n_{(i,j)y} = \sin{\left(\phi_{(i,j)}\right)} \tag{19}$$
 
 
 
