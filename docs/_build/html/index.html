@@ -21,7 +21,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="acrod" href="modules.html" /> 
+    <link rel="next" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">acrod</a></li>
 </ul>
 
@@ -74,15 +75,29 @@
              
   <section id="welcome-to-acrod-s-documentation">
 <h1>Welcome to ACRoD’s documentation!<a class="headerlink" href="#welcome-to-acrod-s-documentation" title="Permalink to this heading"></a></h1>
+<p>Ever felt tedious of computations required for designing robots? ACRoD is dedicated to develop functions for automatic computations for designing robotic manipulators.</p>
+<section id="currently-available-features">
+<h2>Currently available features<a class="headerlink" href="#currently-available-features" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)</dt><dd><ul>
+<li><p>Statement of need: Jacobian formulation is highly used in dimensional synthesis of robotic manipulators, which deals with optimal design of robot’s dimensional parameters (link-lengths and joint-orientations). For a given topological structure, formulating Jacobian around a given end-effector point for designing optimal dimensional parameters would require only the topological information, as every other step can be automated. Formulating Jacobian for serial manipulators is easy but for parallel manipulators and serial-parallel hybrid manipulators it is more complicated and often tedious. ACRoD automates this task of formulating Jacobian for a given end-effector point by running all the required steps in the background. The targetted audience includes researchers and engineers working on performing dimensional synthesis of manipulators (especially for multiple manipultors in bulk for comparison) to compute optimal dimensions for operation around a single end-effector point, and those needing to verify the DOF of a topological structure (especially for those special cases of kinematic mechanisms where Chebychev–Grübler–Kutzbach criterion fails to accurately determine the DOF) by analysing the Jacobian.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">acrod</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="acrod.html">acrod package</a></li>
 </ul>
 </li>
 </ul>
 </div>
+</section>
 </section>
 <section id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
@@ -97,7 +112,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-right" title="acrod" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
