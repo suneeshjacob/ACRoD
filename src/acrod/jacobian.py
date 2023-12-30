@@ -197,34 +197,57 @@ def superfluous(M):
 
 class Jacobian(object):
     """
-    jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
+    Jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
 
-    attributes:
-    :param str M: robot-topology matrix.
-    M: robot-topology matrix.
-    type: robot_type (either 'planar' or 'spatial').
-    P: list of all paths.
-    P_tilde: list of independent paths for linear velocities.
-    P_tilde_omega: list of independent paths for angular velocitites.
-    is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not.
-    Ja: J_a in symbolic form.
-    Jp: J_p in symbolic form.
-    Aa: A_a in symbolic form.
-    Ap: A_p in symbolic form.
-    Ja_func: J_a in Python function form.
-    Jp_func: J_p in Python function form.
-    Aa_func: A_a in Python function form.
-    Ap_func: A_p in Python function form.
-    active_joint_velocities: list of active joint velocities, each in string format.
-    passive_joint_velocities: list of passive joint velocities, each in string format.
-    parameters: list of parameters (other than end-effector parameters), each in string format.
-    active_joint_velocities_symbolic: active joint velocities in symbolic form.
-    passive_joint_velocities_symbolic: passive joint velocities in symbolic form.
-    parameters_symbolic: list of parameters (other than end-effector parameters) in string format.
-    endeffector_variables_symbolic: end-effector parameters in symbolic form.
-    superfluous_dof_information: list containing information of superfluous DOF existing in the robot.
+    :param M: robot-topology matrix.
+    :type M: numpy.ndarray
+    :param type: robot_type (either 'planar' or 'spatial').
+    :type type: str
+    :param P: list of all paths. (Initially initialised with `None` value)
+    :type P: list
+    :param P_tilde: list of independent paths for linear velocities. (Initially initialised with `None` value)
+    :type P_tilde: list
+    :param P_tilde_omega: list of independent paths for angular velocitites. (Initially initialised with `None` value)
+    :type P_tilde_omega: list
+    :param is_serial: boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not. (Initially initialised with `None` value)
+    :type is_serial: bool
+    :param Ja: J_a in symbolic form. (Initially initialised with `None` value)
+    :type Ja: sympy.Matrix
+    :param Jp: J_p in symbolic form. (Initially initialised with `None` value)
+    :type Jp: sympy.Matrix
+    :param Aa: A_a in symbolic form. (Initially initialised with `None` value)
+    :type Aa: sympy.Matrix
+    :param Ap: A_p in symbolic form. (Initially initialised with `None` value)
+    :type Ap: sympy.Matrix
+    :param Ja_func: J_a in Python function form. (Initially initialised with `None` value)
+    :type Ja_func: callable
+    :param Jp_func: J_p in Python function form. (Initially initialised with `None` value)
+    :type Jp_func: callable
+    :param Aa_func: A_a in Python function form. (Initially initialised with `None` value)
+    :type Aa_func: callable
+    :param Ap_func: A_p in Python function form. (Initially initialised with `None` value)
+    :type Ap_func: callable
+    :param active_joint_velocities: list of active joint velocities, each in string format. (Initially initialised with `None` value)
+    :type active_joint_velocities: list
+    :param passive_joint_velocities: list of passive joint velocities, each in string format. (Initially initialised with `None` value)
+    :type passive_joint_velocities: list
+    :param parameters: list of parameters (other than end-effector parameters), each in string format. (Initially initialised with `None` value)
+    :type parameters: list
+    :param active_joint_velocities_symbolic: active joint velocities in symbolic form. (Initially initialised with `None` value)
+    :type active_joint_velocities_symbolic: sympy.Matrix
+    :param passive_joint_velocities_symbolic: passive joint velocities in symbolic form. (Initially initialised with `None` value)
+    :type passive_joint_velocities_symbolic: sympy.Matrix
+    :param parameters_symbolic: list of parameters (other than end-effector parameters) in string format. (Initially initialised with `None` value)
+    :type parameters_symbolic: sympy.Matrix
+    :param endeffector_variables_symbolic: end-effector parameters in symbolic form. (Initially initialised with `None` value)
+    :type endeffector_variables_symbolic: sympy.Matrix
+    :param superfluous_dof_information: list containing information of superfluous DOF existing in the robot. (Initially initialised with `None` value)
+    :type superfluous_dof_information: list
     """
     def __init__(self, M, robot_type = 'spatial'):
+        """
+        Initialize a new instance of Jacobian.
+        """
         check_robot_topology_matrix(M)
         self.M = M
         self.type = robot_type
