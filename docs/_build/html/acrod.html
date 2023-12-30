@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>acrod package &mdash; ACRoD 1.1.10 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="acrod" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ACRoD
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">acrod</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">acrod package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-acrod.jacobian">acrod.jacobian module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-acrod">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ACRoD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">acrod</a></li>
+      <li class="breadcrumb-item active">acrod package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/acrod.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="acrod-package">
+<h1>acrod package<a class="headerlink" href="#acrod-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-acrod.jacobian">
+<span id="acrod-jacobian-module"></span><h2>acrod.jacobian module<a class="headerlink" href="#module-acrod.jacobian" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">Jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spatial'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either ‘spatial’ or ‘planar’. by default, it is ‘spatial’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> (<em>str</em>) – robot-topology matrix.</p></li>
+<li><p><strong>type</strong> (<em>str</em>) – robot_type (either ‘planar’ or ‘spatial’).</p></li>
+<li><p><strong>P</strong> (<em>str</em>) – list of all paths.</p></li>
+<li><p><strong>P_tilde</strong> (<em>str</em>) – list of independent paths for linear velocities.</p></li>
+<li><p><strong>P_tilde_omega</strong> (<em>str</em>) – list of independent paths for angular velocitites.</p></li>
+<li><p><strong>is_serial</strong> (<em>str</em>) – boolean, mentioning whether the manipulator is a serial manipulator or not a serial manipulator. it is initialised with None before determining whether the manipulator is serial or not.</p></li>
+<li><p><strong>Ja</strong> (<em>str</em>) – J_a in symbolic form.</p></li>
+<li><p><strong>Jp</strong> (<em>str</em>) – J_p in symbolic form.</p></li>
+<li><p><strong>Aa</strong> (<em>str</em>) – A_a in symbolic form.</p></li>
+<li><p><strong>Ap</strong> (<em>str</em>) – A_p in symbolic form.</p></li>
+<li><p><strong>Ja_func</strong> (<em>str</em>) – J_a in Python function form.</p></li>
+<li><p><strong>Jp_func</strong> (<em>str</em>) – J_p in Python function form.</p></li>
+<li><p><strong>Aa_func</strong> (<em>str</em>) – A_a in Python function form.</p></li>
+<li><p><strong>Ap_func</strong> (<em>str</em>) – A_p in Python function form.</p></li>
+<li><p><strong>active_joint_velocities</strong> (<em>str</em>) – list of active joint velocities, each in string format.</p></li>
+<li><p><strong>passive_joint_velocities</strong> (<em>str</em>) – list of passive joint velocities, each in string format.</p></li>
+<li><p><strong>parameters</strong> (<em>str</em>) – list of parameters (other than end-effector parameters), each in string format.</p></li>
+<li><p><strong>active_joint_velocities_symbolic</strong> (<em>str</em>) – active joint velocities in symbolic form.</p></li>
+<li><p><strong>passive_joint_velocities_symbolic</strong> (<em>str</em>) – passive joint velocities in symbolic form.</p></li>
+<li><p><strong>parameters_symbolic</strong> (<em>str</em>) – list of parameters (other than end-effector parameters) in string format.</p></li>
+<li><p><strong>endeffector_variables_symbolic</strong> (<em>str</em>) – end-effector parameters in symbolic form.</p></li>
+<li><p><strong>superfluous_dof_information</strong> (<em>str</em>) – list containing information of superfluous DOF existing in the robot.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian.execute_equations">
+<span class="sig-name descname"><span class="pre">execute_equations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian.execute_equations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian.execute_equations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian.get_all_paths">
+<span class="sig-name descname"><span class="pre">get_all_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian.get_all_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian.get_all_paths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian.get_independent_paths">
+<span class="sig-name descname"><span class="pre">get_independent_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian.get_independent_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian.get_independent_paths" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian.get_jacobian_function">
+<span class="sig-name descname"><span class="pre">get_jacobian_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MoorePenrose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian.get_jacobian_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian.get_jacobian_function" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="acrod.jacobian.Jacobian.process_functions">
+<span class="sig-name descname"><span class="pre">process_functions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#Jacobian.process_functions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.Jacobian.process_functions" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.all_joints_connected_to_the_link">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">all_joints_connected_to_the_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#all_joints_connected_to_the_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.all_joints_connected_to_the_link" title="Permalink to this definition"></a></dt>
+<dd><p>all_joints_connected_to_the_link function gives a list of all the joints connected to a given link for a given robot-topology matrix.</p>
+<p>this function takes the robot-topology matrix and the link number as input arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – robot-topology matrix (of size nxn, to be given in numpy.array format).</p></li>
+<li><p><strong>linknumber</strong> – link number (it is to be indexed from 0, not from 1).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of size n-1 items specifying the type of joint with which the given link is connected to every other joint. The order of joints corresponds to the ascending order of the link numbers.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.all_links_connected_to_the_link">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">all_links_connected_to_the_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linknumber</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#all_links_connected_to_the_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.all_links_connected_to_the_link" title="Permalink to this definition"></a></dt>
+<dd><p>all_links_connected_to_the_link function gives a list of all the links connected to a given link for a given robot-topology matrix.</p>
+<p>this function takes the robot-topology matrix and the link number as input arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – robot-topology matrix (of size nxn, to be given in numpy.array format).</p></li>
+<li><p><strong>linknumber</strong> – link number (it is to be indexed from 0, not from 1).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of items specifying the indices of links with which the given link is connected, in ascending order of the link numbers.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.all_paths">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">all_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#all_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.all_paths" title="Permalink to this definition"></a></dt>
+<dd><p>all_paths function gives a list of all paths connecting the base link and the end-effector link for a given robot-topology matrix.</p>
+<p>this function takes the robot-topology matrix as input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix (of size nxn, to be given in numpy.array format).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of lists of items each corresponding to a path and specifying the sequence of links in that path that are connected from the base link to the end-effector link (the link numbers are indexed from 0, not from 1).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.check_robot_topology_matrix">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">check_robot_topology_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#check_robot_topology_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.check_robot_topology_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>check_robot_topology_matrix function performs several checks on the logical consistency of Robot-Topology matrix.</p>
+<p>this function takes the robot-topology matrix as the input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix (of size nxn, to be given in numpy.array format).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.from_P_to_P_tilde">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">from_P_to_P_tilde</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#from_P_to_P_tilde"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.from_P_to_P_tilde" title="Permalink to this definition"></a></dt>
+<dd><p>from_P_to_P_tilde function gives P_tilde and P_tilde_omega from P, by using robot-topology matrix. it also gives the corresponding indices of P for each of the elements of P_tilde and P_tilde_omega.</p>
+<p>this function takes the list P and the robot-topology matrix as the input arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – robot-topology matrix.</p></li>
+<li><p><strong>P</strong> – list of all paths, denoted by P.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>P_tilde in list format, P_tilde_omega in list format, independent_path_indices in list format and independent_omega_path_indices in list format.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.get_all_combinations_of_two_parts_of_manipulator">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">get_all_combinations_of_two_parts_of_manipulator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#get_all_combinations_of_two_parts_of_manipulator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.get_all_combinations_of_two_parts_of_manipulator" title="Permalink to this definition"></a></dt>
+<dd><p>get_all_combinations_of_two_parts_of_manipulator function gives all possible combinations of splitting the given set of links into two parts.</p>
+<p>this function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M_size</strong> – The number of links of the robot.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the entire possible list of items each containing the entire links grouped into two parts.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.get_jointvelocities_list">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">get_jointvelocities_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#get_jointvelocities_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.get_jointvelocities_list" title="Permalink to this definition"></a></dt>
+<dd><p>get_jointvelocities_list function gets the expressions for active and passive joint velocities (in string form, to be executed), from the corresponding robot-topology matrix.</p>
+<p>this function takes robot-topology matrix as the input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of active joint velocities (each in string format) and a list of passive joint velocities (each in string format).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.get_variables_list">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">get_variables_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#get_variables_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.get_variables_list" title="Permalink to this definition"></a></dt>
+<dd><p>get_variables_list function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for spatial manipulators.</p>
+<p>this function takes robot-topology matrix as the input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.get_variables_list_planar">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">get_variables_list_planar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#get_variables_list_planar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.get_variables_list_planar" title="Permalink to this definition"></a></dt>
+<dd><p>get_variables_list_planar function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for planar manipulators.</p>
+<p>this function takes robot-topology matrix as the input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.graph_adjacency_matrix_from_robot_topology_matrix">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">graph_adjacency_matrix_from_robot_topology_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#graph_adjacency_matrix_from_robot_topology_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.graph_adjacency_matrix_from_robot_topology_matrix" title="Permalink to this definition"></a></dt>
+<dd><p>graph_adjacency_matrix_from_robot_topology_matrix function converts a robot-topology matrix to its graph adjacency matrix. by doing so, it would no longer have the information to identify the actuating joints.</p>
+<p>This function takes robot-topology matrix as input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the corresponding graph adjacency matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.superfluous">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">superfluous</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#superfluous"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.superfluous" title="Permalink to this definition"></a></dt>
+<dd><p>superfluous function gives the information related to superfluous DOF if there are any, from the robot-topology matrix.</p>
+<p>This function takes robot-topology matrix as input argument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>M</strong> – robot-topology matrix.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of pieces of information regarding superfluous DOF. each piece of superfluous DOF would be of the format of [c_be, [(i,j),(k,l)]], where c_be is the part of links that has both base and the end-effector links, and [(i,j),(k,l)] are the points indices of two spherical joints corresponding to the superfluous DOF, in which the links j, k lie on the other part than c_be. if there are no superfluous DOF then it returns an empty list.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.vel_path">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">vel_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_variables</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#vel_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.vel_path" title="Permalink to this definition"></a></dt>
+<dd><p>vel_path function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for spatial manipulators.</p>
+<p>this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – robot-topology matrix.</p></li>
+<li><p><strong>path</strong> – a given path (containing link numbers in order) in list format.</p></li>
+<li><p><strong>available_variables</strong> – a list of available variables (each of them being in string format).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="acrod.jacobian.vel_path_planar">
+<span class="sig-prename descclassname"><span class="pre">acrod.jacobian.</span></span><span class="sig-name descname"><span class="pre">vel_path_planar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">M</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">available_variables</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/acrod/jacobian.html#vel_path_planar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#acrod.jacobian.vel_path_planar" title="Permalink to this definition"></a></dt>
+<dd><p>vel_path_planar function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for planar manipulators.</p>
+<p>this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – robot-topology matrix.</p></li>
+<li><p><strong>path</strong> – a given path (containing link numbers in order) in list format.</p></li>
+<li><p><strong>available_variables</strong> – a list of available variables (each of them being in string format).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-acrod">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-acrod" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="acrod" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Akkarapakam Suneesh Jacob and Rituparna Datta.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
