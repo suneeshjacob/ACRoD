@@ -1,9 +1,6 @@
 acrod package
 =============
 
-Submodules
-----------
-
 acrod.jacobian module
 ---------------------
 
@@ -12,10 +9,3 @@ acrod.jacobian module
    :undoc-members:
    :show-inheritance:
 
-Module contents
----------------
-
-.. automodule:: acrod
-   :members:
-   :undoc-members:
-   :show-inheritance:

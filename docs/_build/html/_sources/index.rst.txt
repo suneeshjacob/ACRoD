@@ -19,7 +19,17 @@ Currently available features
    :caption: Contents:
 
    installation_and_usage
+   notation_and_nomenclature
+   robot_topology_matrix
+   mathematics_behind_jacobian_formulation
+   community_guidelines
    modules
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples:
+
+   examples
 
 Indices and tables
 ==================

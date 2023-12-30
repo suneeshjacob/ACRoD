@@ -20,13 +20,10 @@ Jacobian for robotic manipulators
 2R Planar Serial Robot (as an example)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
+.. image:: ../misc/2R.png
+   :alt: Alternative Text
+   :width: 300
+   :align: center
 
 The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
@@ -225,29 +222,4 @@ The above output shows that for :math:`l_1=3.464` and :math:`l_2=2.236`,
 the robot has the condition number approximately equal to :math:`1.0`,
 which signifies optimal performance.
 
-Examples
---------
 
-Some examples (along with their mathematical derivations) can be found
-`here <./examples/Jacobian>`__.
-
-
-Community Guidelines
---------------------
-
--  For contribution to the software:
-
-   -  In order to contribute to the software, please consider using the
-      `pull request
-      feature <https://github.com/suneeshjacob/ACRoD/issues>`__ of
-      GitHub.
-
--  For reporting issues with the software:
-
-   -  For reporting issues or problems, please use
-      `issues <https://github.com/suneeshjacob/ACRoD/issues>`__.
-
--  For support:
-
-   -  For any further support (including installation, usage, etc.),
-      feel free to contact via suneeshjacob-at-gmail-dot-com.

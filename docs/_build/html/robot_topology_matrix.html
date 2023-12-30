@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot-topology Matrix &mdash; ACRoD 1.1.16 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Steps to formulate Jacobian" href="mathematics_behind_jacobian_formulation.html" />
+    <link rel="prev" title="Notation and Nomenclature" href="notation_and_nomenclature.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ACRoD
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation_and_usage.html">Installation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation_and_nomenclature.html">Notation and Nomenclature</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Robot-topology Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#matrix-based-representation-of-robot-topology">Matrix-based representation of robot topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#r-planar-serial-robot">3R Planar Serial Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#r-4p-planar-serial-parallel-hybrid-robot">4R-4P Planar Serial-Parallel Hybrid Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rssr-ssr-spatial-parallel-robot">RSSR-SSR Spatial Parallel Robot</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics_behind_jacobian_formulation.html">Steps to formulate Jacobian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics_behind_jacobian_formulation.html#references">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community_guidelines.html">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ACRoD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Robot-topology Matrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/robot_topology_matrix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="robot-topology-matrix">
+<h1>Robot-topology Matrix<a class="headerlink" href="#robot-topology-matrix" title="Permalink to this heading"></a></h1>
+<section id="matrix-based-representation-of-robot-topology">
+<h2>Matrix-based representation of robot topology<a class="headerlink" href="#matrix-based-representation-of-robot-topology" title="Permalink to this heading"></a></h2>
+<p>From graph theory, an adjacency matrix of a mechanism is normally a
+symmetric matrix in which each diagonal element represents each link and
+each off-diagonal element represents the connection between the
+corresponding links. To accommodate the distinction between active and
+passive joints, the adjacency matrix is modified to form Robot-Topology
+matrix, such that the upper off-diagonal region is dedicated to
+represent the connectivity of links whilst the lower off-diagonal region
+is dedicated to represent whether each corresponding joint is an active
+joint or a passive. The diagonal elements are normally taken as zeroes
+but in this study they are filled with ’9’s in order to distinguish the
+links from the absence of joints which could be helpful from the
+programming point of view. For linkages of single type of joints, each
+off-diagonal element is normally taken to be 1 when the two links are
+directly connected by a joint, and 0 when the two links are not directly
+connected by a joint. Since the robots in this study could have more
+than one type of joint, the off-diagonal elements are considered as
+shown in table 1.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Table 1: Joint-indicators in Robot-Topology matrix</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><ol class="upperalpha simple" start="19">
+<li><p>No.</p></li>
+</ol>
+</th>
+<th class="head"><p>Joint type</p></th>
+<th class="head"><p>Off-diagonal element</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Revolute (<span class="math notranslate nohighlight">\(R\)</span>)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Prismatic (<span class="math notranslate nohighlight">\(P\)</span>)</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Cylindrical (<span class="math notranslate nohighlight">\(C\)</span>)</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Spherical (<span class="math notranslate nohighlight">\(S\)</span>)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Universal (<span class="math notranslate nohighlight">\(U\)</span>)</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Helical (<span class="math notranslate nohighlight">\(H\)</span>)</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Plane (<span class="math notranslate nohighlight">\(F\)</span>)</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>No joint (<span class="math notranslate nohighlight">\(O\)</span>)</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Unlike mere mechanisms, robots have a link dedicated to base link and a
+link dedicated to end-effector link. Hence, the first diagonal element
+in the matrix is dedicated to the base link and the last diagonal
+element is dedicated to the end-effector link.</p>
+<p>In a serial manipulator, typically all joints are active. However, in
+parallel manipulators (including closed-loop manipulators), not all
+joints are active. There could be multiple ways of choosing active and
+passive sets of joints for parallel ones. The adjacency matrix notation
+provided in our earlier study <a class="reference external" href="#1">[1]</a> does not consist of
+information on the distinction of active and passive sets of joints but
+rather considers both the active and the passive joints alike. In this
+study, this issue is resolved by dedicating the lower off-diagonal
+elements of the matrix to represent whether they are active joints or
+not. For every upper off-diagonal element that represents a joint, the
+corresponding lower off-diagonal element (the corresponding element of
+its transpose) is assigned the number 1 if the joint is active and 0 if
+the joint is passive. And every upper off-diagonal element that does not
+represent a joint, would have the number 0 assigned to its corresponding
+off-diagonal element.</p>
+<p>In ACRoD Jacobian formulation, only revolute and prismatic joints are
+considered for actuation and hence the other types joints (cylindrical,
+spherical, universal, helical and planar) can only be passive.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="r-planar-serial-robot">
+<h3>3R Planar Serial Robot<a class="headerlink" href="#r-planar-serial-robot" title="Permalink to this heading"></a></h3>
+<p>Let us consider the 3R planar serial robot as shown in (a) of the figure
+below.</p>
+<p align="center"></p><p>The above robot has four links (including the fixed link). Hence the
+Robot-Topology matrix <span class="math notranslate nohighlight">\(M\)</span> would be a <span class="math notranslate nohighlight">\(4\times4\)</span> matrix, with
+all of its diagonal elements as ’9’s. Since the base link is considered
+to be the first link and the end-effector link is considered to be the
+last link, the base and the end-effector links are assigned the names
+<span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_4\)</span> respectively, as shown in (b) of the above
+figure. Now that the base and the end-effector links are fixed, the
+other two links can be arbitrarily named. Since there are two links left
+out, we have <span class="math notranslate nohighlight">\(2!=2\)</span> possible ways of naming them. One way is to
+name the link that is connected to the base link as <span class="math notranslate nohighlight">\(L_2\)</span> and the
+link that is connected to the end-effector link as <span class="math notranslate nohighlight">\(L_3\)</span>, as shown
+in (c) of the above figure. Here, we have three revolute joints between
+<span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_2\)</span>, <span class="math notranslate nohighlight">\(L_2\)</span> &amp; <span class="math notranslate nohighlight">\(L_3\)</span> and <span class="math notranslate nohighlight">\(L_3\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_4\)</span>. Hence, the pairs of row-column indices of the
+Robot-Topology matrix in the ascending order, i.e., (1,2), (2,3) and
+(3,4), would have the corresponding elements of the Robot-Topology
+matrix as ’1’s. From (a) of the figure, it can be observed by the
+specified arrows that all the three revolute joints are actuated (as
+expected in a non-redundant serial robot). Hence, the elements
+corresponding to the indices of these three actuators (joints) in
+descending order, i.e., (2,1), (3,2) and (4,3), would be ’1’s. Since
+there is no joint other than these three joints, the rest of the
+elements of the Robot-Topology matrix would be zeros. Hence, the
+Robot-Topology matrix would be as shown below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bf{M} = \left[\begin{matrix}9 &amp; 1 &amp; 0 &amp; 0 \\1 &amp; 9 &amp; 1 &amp; 0\\0 &amp; 1 &amp; 9 &amp; 1\\0 &amp; 0 &amp; 1 &amp; 9\end{matrix}\right]\end{split}\]</div>
+<p>Another way is to name the link that is connected to the base link as
+<span class="math notranslate nohighlight">\(L_3\)</span> and the link that is connected to the end-effector link as
+<span class="math notranslate nohighlight">\(L_2\)</span>, as shown in (d) of the above figure. In that case, the
+elements (1,3), (2,3) and (2,4) would be ’1’s, indicating the existence
+of revolute joints. The elements (3,1), (3,2) and (4,2) would be ’1’s,
+indicating that the corresponding joints, i.e., (1,3), (2,3) and (2,4),
+are actuators. Hence, the Robot-Topology matrix would be as shown below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bf{M} = \left[\begin{matrix}9 &amp; 0 &amp; 1 &amp; 0 \\0 &amp; 9 &amp; 1 &amp; 1\\1 &amp; 1 &amp; 9 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 9\end{matrix}\right]\end{split}\]</div>
+<p>Either matrix can be used as Robot-Topology matrix.</p>
+</section>
+<section id="r-4p-planar-serial-parallel-hybrid-robot">
+<h3>4R-4P Planar Serial-Parallel Hybrid Robot<a class="headerlink" href="#r-4p-planar-serial-parallel-hybrid-robot" title="Permalink to this heading"></a></h3>
+<p>Let us consider the 4R-4P planar serial-parallel hybrid robot as shown
+in (a) of the figure below.</p>
+<p align="center"></p><p>The above robot has seven links. Hence the Robot-Topology matrix
+<span class="math notranslate nohighlight">\(M\)</span> would be a <span class="math notranslate nohighlight">\(7\times7\)</span> matrix, with all of its diagonal
+elements as ’9’s. As per the convention, the base and the end-effector
+links are assigned the names <span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_7\)</span> respectively.
+One possible way of naming the other links is shown in (b) of the above
+figure. Here, the robot has four prismatic joints between <span class="math notranslate nohighlight">\(L_1\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_2\)</span>, <span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_3\)</span>, <span class="math notranslate nohighlight">\(L_2\)</span> &amp; <span class="math notranslate nohighlight">\(L_4\)</span> and
+<span class="math notranslate nohighlight">\(L_3\)</span> &amp; <span class="math notranslate nohighlight">\(L_4\)</span>. Hence, the pairs of row-column indices of the
+Robot-Topology matrix in the ascending order, i.e., (1,2), (1,3), (2,4)
+and (3,4), would have the corresponding elements of the Robot-Topology
+matrix as ’2’s. Likewise, the robot has four revolute joints between
+<span class="math notranslate nohighlight">\(L_4\)</span> &amp; <span class="math notranslate nohighlight">\(L_5\)</span>, <span class="math notranslate nohighlight">\(L_4\)</span> &amp; <span class="math notranslate nohighlight">\(L_6\)</span>, <span class="math notranslate nohighlight">\(L_5\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_7\)</span> and <span class="math notranslate nohighlight">\(L_6\)</span> &amp; <span class="math notranslate nohighlight">\(L_7\)</span>, and hence, the elements at
+(4,5), (4,6), (5,7) and (6,7) would be ’1’s. From (a) of the figure, it
+can be observed by the specified arrows that the joints between
+<span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_2\)</span>, <span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_3\)</span> and <span class="math notranslate nohighlight">\(L_4\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_5\)</span> are actuators. Hence, the elements corresponding to the
+indices of these three actuators (joints) in descending order, i.e.,
+(2,1), (3,1) and (5,4), would be ’1’s. The rest of the elements of the
+Robot-Topology matrix would be zeros. Hence, the Robot-Topology matrix
+would be as shown below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bf{M} = \left[\begin{matrix}9 &amp; 2 &amp; 2 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 9 &amp; 0 &amp; 2 &amp; 0 &amp; 0 &amp; 0\\1 &amp; 0 &amp; 9 &amp; 2 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 9 &amp; 1 &amp; 1 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 9 &amp; 0 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 9 &amp; 1\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 9\end{matrix}\right]\end{split}\]</div>
+<p>Other possible Robot-Topology matrices can be framed (by changing the
+numbering of links), which would be equivalent to the above matrix.</p>
+</section>
+<section id="rssr-ssr-spatial-parallel-robot">
+<h3>RSSR-SSR Spatial Parallel Robot<a class="headerlink" href="#rssr-ssr-spatial-parallel-robot" title="Permalink to this heading"></a></h3>
+<p>Let us consider the RSSR-SSR spatial parallel robot as shown in (a) of
+the figure below.</p>
+<p align="center"></p><p>The above robot has six links. Hence the Robot-Topology matrix <span class="math notranslate nohighlight">\(M\)</span>
+would be a <span class="math notranslate nohighlight">\(6\times6\)</span> matrix, with all of its diagonal elements as
+’9’s. As per the convention, the base and the end-effector links are
+assigned the names <span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_6\)</span> respectively. One
+possible way of naming the other links is shown in (b) of the above
+figure. Here, the robot has four prismatic joints between <span class="math notranslate nohighlight">\(L_3\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_4\)</span>, <span class="math notranslate nohighlight">\(L_4\)</span> &amp; <span class="math notranslate nohighlight">\(L_6\)</span>, <span class="math notranslate nohighlight">\(L_2\)</span> &amp; <span class="math notranslate nohighlight">\(L_6\)</span> and
+<span class="math notranslate nohighlight">\(L_5\)</span> &amp; <span class="math notranslate nohighlight">\(L_6\)</span>. Hence, the pairs of row-column indices of the
+Robot-Topology matrix in the ascending order, i.e., (3,4), (4,6), (2,6)
+and (5,6), would have the corresponding elements of the Robot-Topology
+matrix as ’4’s. Likewise, the robot has three revolute joints between
+<span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_2\)</span>, <span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_3\)</span> and <span class="math notranslate nohighlight">\(L_1\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_5\)</span>, and hence, the elements at (1,2), (1,3) and (1,5) would be
+’1’s. From (a) of the figure, it can be observed by the specified arrows
+that the joints between <span class="math notranslate nohighlight">\(L_1\)</span> &amp; <span class="math notranslate nohighlight">\(L_2\)</span> and <span class="math notranslate nohighlight">\(L_1\)</span> &amp;
+<span class="math notranslate nohighlight">\(L_3\)</span> are actuators. Hence, the elements corresponding to the
+indices of these three actuators (joints) in descending order, i.e.,
+(2,1) and (3,1), would be ’1’s. The rest of the elements of the
+Robot-Topology matrix would be zeros. Hence, the Robot-Topology matrix
+would be as shown below.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bf{M} = \left[\begin{matrix}9 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\1 &amp; 9 &amp; 0 &amp; 0 &amp; 0 &amp; 4\\1 &amp; 0 &amp; 9 &amp; 4 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 9 &amp; 0 &amp; 4\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 9 &amp; 4\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 9\end{matrix}\right]\end{split}\]</div>
+<p>Other possible Robot-Topology matrices can be framed (by changing the
+numbering of links), which would be equivalent to the above matrix.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<p>[1] Jacob, Akkarapakam Suneesh, Bhaskar Dasgupta, and Rituparna Datta.
+“Enumeration of spatial manipulators by using the concept of Adjacency
+Matrix.” arXiv preprint arXiv:2210.03327 (2022).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="notation_and_nomenclature.html" class="btn btn-neutral float-left" title="Notation and Nomenclature" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mathematics_behind_jacobian_formulation.html" class="btn btn-neutral float-right" title="Steps to formulate Jacobian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Akkarapakam Suneesh Jacob and Rituparna Datta.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
