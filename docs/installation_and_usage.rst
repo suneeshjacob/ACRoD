@@ -34,8 +34,8 @@ given by
 .. math::
 
    \left[\begin{matrix}
-   9 & 1 & 0 \\\\
-   1 & 9 & 1 \\\\
+   9 & 1 & 0 \\
+   1 & 9 & 1 \\
    0 & 1 & 9
    \end{matrix}\right]
 
@@ -82,7 +82,7 @@ of the jacobian object as follows.
 In an ipynb file of JupyterLab, the above code would produce the
 following output.
 
-.. math:: \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} \\\\ a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} \\\\ 1 & 1\end{matrix}\right]
+.. math:: \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} \\ a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} \\ 1 & 1\end{matrix}\right]
 
 The above Jacobian is based on the notations defined and described
 `here <./misc/Notation_and_Nomenclature.md>`__.
@@ -98,7 +98,7 @@ running the following lines.
 In an ipynb file of JupyterLab, the above code would produce the
 following output.
 
-.. math:: \left[\begin{matrix}\dot{\theta}_{(1,2)} \\\\ \dot{\theta}_{(2,3)}\end{matrix}\right]
+.. math:: \left[\begin{matrix}\dot{\theta}_{(1,2)} \\ \dot{\theta}_{(2,3)}\end{matrix}\right]
 
 Robot dimensional parameters can be viewed by running the below line.
 
@@ -110,7 +110,7 @@ Robot dimensional parameters can be viewed by running the below line.
 In an ipynb file of JupyterLab, the above code would produce the
 following output.
 
-.. math:: \left[\begin{matrix}r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]
+.. math:: \left[\begin{matrix}r_{(1,2)x} \\ r_{(1,2)y} \\ r_{(2,3)x} \\ r_{(2,3)y}\end{matrix}\right]
 
 Robot end-effector parameters can be viewed by running the below line.
 
@@ -122,7 +122,7 @@ Robot end-effector parameters can be viewed by running the below line.
 In an ipynb file of JupyterLab, the above code would produce the
 following output.
 
-.. math:: \left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]
+.. math:: \left[\begin{matrix}a_{x} \\ a_{y}\end{matrix}\right]
 
 Sample computation of Jacobian for the configuration corresponding to the parameters shown below:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

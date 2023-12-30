@@ -58,7 +58,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#examples">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#full-documentation">Full Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#community-guidelines">Community Guidelines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">acrod</a></li>
 </ul>
@@ -108,8 +107,8 @@ manipulator (as shown in the above figure), the robot topology matrix is
 given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left[\begin{matrix}
-9 &amp; 1 &amp; 0 \\\\
-1 &amp; 9 &amp; 1 \\\\
+9 &amp; 1 &amp; 0 \\
+1 &amp; 9 &amp; 1 \\
 0 &amp; 1 &amp; 9
 \end{matrix}\right]\end{split}\]</div>
 <p>The corresponding Jacobian function can be formulated as follows.</p>
@@ -146,7 +145,7 @@ of the jacobian object as follows.</p>
 <p>In an ipynb file of JupyterLab, the above code would produce the
 following output.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left[\begin{matrix}- a\_{y} + r\_{(1,2)y} &amp; - a\_{y} + r\_{(2,3)y} \\\\ a\_{x} - r\_{(1,2)x} &amp; a\_{x} - r\_{(2,3)x} \\\\ 1 &amp; 1\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\left[\begin{matrix}- a_{y} + r_{(1,2)y} &amp; - a_{y} + r_{(2,3)y} \\ a_{x} - r_{(1,2)x} &amp; a_{x} - r_{(2,3)x} \\ 1 &amp; 1\end{matrix}\right]\end{split}\]</div>
 <p>The above Jacobian is based on the notations defined and described
 <a class="reference external" href="./misc/Notation_and_Nomenclature.md">here</a>.</p>
 <p>Active joint velocities, in the corresponding order, can be viewed by
@@ -158,7 +157,7 @@ running the following lines.</p>
 <p>In an ipynb file of JupyterLab, the above code would produce the
 following output.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left[\begin{matrix}\dot{\theta}\_{(1,2)} \\\\ \dot{\theta}\_{(2,3)}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\left[\begin{matrix}\dot{\theta}_{(1,2)} \\ \dot{\theta}_{(2,3)}\end{matrix}\right]\end{split}\]</div>
 <p>Robot dimensional parameters can be viewed by running the below line.</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_dimensional_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">parameters_symbolic</span>
 <span class="n">robot_dimensional_parameters</span>
@@ -167,7 +166,7 @@ following output.</p>
 <p>In an ipynb file of JupyterLab, the above code would produce the
 following output.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left[\begin{matrix}r_{(1,2)x} \\\\ r_{(1,2)y} \\\\ r_{(2,3)x} \\\\ r_{(2,3)y}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\left[\begin{matrix}r_{(1,2)x} \\ r_{(1,2)y} \\ r_{(2,3)x} \\ r_{(2,3)y}\end{matrix}\right]\end{split}\]</div>
 <p>Robot end-effector parameters can be viewed by running the below line.</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_endeffector_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">endeffector_variables_symbolic</span>
 <span class="n">robot_endeffector_parameters</span>
@@ -176,14 +175,14 @@ following output.</p>
 <p>In an ipynb file of JupyterLab, the above code would produce the
 following output.</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\left[\begin{matrix}a_{x} \\\\ a_{y}\end{matrix}\right]\end{split}\]</div>
+\[\begin{split}\left[\begin{matrix}a_{x} \\ a_{y}\end{matrix}\right]\end{split}\]</div>
 </section>
 <section id="sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">
 <h3>Sample computation of Jacobian for the configuration corresponding to the parameters shown below:<a class="headerlink" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>End-effector point: <span class="math notranslate nohighlight">\(\textbf{a}=\hat{i}+2\hat{j}\)</span></p></li>
-<li><p>Locations of joints: <span class="math notranslate nohighlight">\(\textbf{r}\_{(1,2)}=3\hat{i}+4\hat{j}\)</span>
-and <span class="math notranslate nohighlight">\(\textbf{r}\_{(2,3)}=5\hat{i}+6\hat{j}\)</span></p></li>
+<li><p>Locations of joints: <span class="math notranslate nohighlight">\(\textbf{r}_{(1,2)}=3\hat{i}+4\hat{j}\)</span>
+and <span class="math notranslate nohighlight">\(\textbf{r}_{(2,3)}=5\hat{i}+6\hat{j}\)</span></p></li>
 </ul>
 <p>For the given set of dimensional parameters of the robot, the numerical
 Jacobian can be computed as follows. Firstly, we need to gather the
@@ -245,8 +244,8 @@ by the code shown below:</p>
 </pre></div>
 </div>
 <p>The link lengths <span class="math notranslate nohighlight">\(l_2\)</span> and <span class="math notranslate nohighlight">\(l_3\)</span> are given by
-<span class="math notranslate nohighlight">\(l_2 = \lVert \textbf{r}\_{12}-\textbf{r}\_{23} \rVert\)</span> and
-<span class="math notranslate nohighlight">\(l_3 = \lVert\textbf{r}\_{23}-\textbf{a}\rVert\)</span>. By using the code
+<span class="math notranslate nohighlight">\(l_2 = \lVert \textbf{r}_{12}-\textbf{r}_{23} \rVert\)</span> and
+<span class="math notranslate nohighlight">\(l_3 = \lVert\textbf{r}_{23}-\textbf{a}\rVert\)</span>. By using the code
 below, the link lengths of 2R robot can be computed.</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
 
@@ -269,11 +268,6 @@ which signifies optimal performance.</p>
 <h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
 <p>Some examples (along with their mathematical derivations) can be found
 <a class="reference external" href="./examples/Jacobian">here</a>.</p>
-</section>
-<section id="full-documentation">
-<h1>Full Documentation<a class="headerlink" href="#full-documentation" title="Permalink to this heading"></a></h1>
-<p>For full documentation, visit the documentation page
-<a class="reference external" href="https://acrod.readthedocs.io/en/latest/">here</a>.</p>
 </section>
 <section id="community-guidelines">
 <h1>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Permalink to this heading"></a></h1>
