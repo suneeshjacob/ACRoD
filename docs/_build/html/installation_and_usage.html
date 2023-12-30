@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; ACRoD 1.1.16 documentation</title>
+  <title>Installation and Usage &mdash; ACRoD 1.1.16 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
 
@@ -47,18 +47,21 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#usage">Usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#jacobian-for-robotic-manipulators">Jacobian for robotic manipulators</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#r-planar-serial-robot-as-an-example">2R Planar Serial Robot (as an example)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">Sample computation of Jacobian for the configuration corresponding to the parameters shown below:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dimensional-synthesis">Dimensional Synthesis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jacobian-for-robotic-manipulators">Jacobian for robotic manipulators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#r-planar-serial-robot-as-an-example">2R Planar Serial Robot (as an example)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">Sample computation of Jacobian for the configuration corresponding to the parameters shown below:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dimensional-synthesis">Dimensional Synthesis</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#examples">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#community-guidelines">Community Guidelines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#community-guidelines">Community Guidelines</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">acrod</a></li>
 </ul>
 
@@ -76,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Installation</li>
+      <li class="breadcrumb-item active">Installation and Usage</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/installation_and_usage.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,8 +89,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
+  <section id="installation-and-usage">
+<h1>Installation and Usage<a class="headerlink" href="#installation-and-usage" title="Permalink to this heading"></a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>The package can be installed from PyPI by using the following command
 via terminal.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>acrod
@@ -95,11 +100,11 @@ via terminal.</p>
 </div>
 </section>
 <section id="usage">
-<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h1>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <section id="jacobian-for-robotic-manipulators">
-<h2>Jacobian for robotic manipulators<a class="headerlink" href="#jacobian-for-robotic-manipulators" title="Permalink to this heading"></a></h2>
+<h3>Jacobian for robotic manipulators<a class="headerlink" href="#jacobian-for-robotic-manipulators" title="Permalink to this heading"></a></h3>
 <section id="r-planar-serial-robot-as-an-example">
-<h3>2R Planar Serial Robot (as an example)<a class="headerlink" href="#r-planar-serial-robot-as-an-example" title="Permalink to this heading"></a></h3>
+<h4>2R Planar Serial Robot (as an example)<a class="headerlink" href="#r-planar-serial-robot-as-an-example" title="Permalink to this heading"></a></h4>
 <p align="center"></p><p>The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
 <a class="reference external" href="./misc/Robot_Topology_Matrix.md">here</a>. For a planar 2R serial
@@ -178,7 +183,7 @@ following output.</p>
 \[\begin{split}\left[\begin{matrix}a_{x} \\ a_{y}\end{matrix}\right]\end{split}\]</div>
 </section>
 <section id="sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">
-<h3>Sample computation of Jacobian for the configuration corresponding to the parameters shown below:<a class="headerlink" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below" title="Permalink to this heading"></a></h3>
+<h4>Sample computation of Jacobian for the configuration corresponding to the parameters shown below:<a class="headerlink" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below" title="Permalink to this heading"></a></h4>
 <ul class="simple">
 <li><p>End-effector point: <span class="math notranslate nohighlight">\(\textbf{a}=\hat{i}+2\hat{j}\)</span></p></li>
 <li><p>Locations of joints: <span class="math notranslate nohighlight">\(\textbf{r}_{(1,2)}=3\hat{i}+4\hat{j}\)</span>
@@ -208,7 +213,7 @@ list. Thus, the computation can be performed as shown below.</p>
 <a class="reference external" href="./misc/Mathematics_behind_Jacobian_formulation.md">here</a>.</p>
 </section>
 <section id="dimensional-synthesis">
-<h3>Dimensional Synthesis<a class="headerlink" href="#dimensional-synthesis" title="Permalink to this heading"></a></h3>
+<h4>Dimensional Synthesis<a class="headerlink" href="#dimensional-synthesis" title="Permalink to this heading"></a></h4>
 <p>For dimensional synthesis, at least a performance parameter is required.
 One commonly used performance parameter in dimensional synthesis is the
 condition number. From the above Jacobian function, the condition number
@@ -265,12 +270,12 @@ which signifies optimal performance.</p>
 </section>
 </section>
 <section id="examples">
-<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h1>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
 <p>Some examples (along with their mathematical derivations) can be found
 <a class="reference external" href="./examples/Jacobian">here</a>.</p>
 </section>
 <section id="community-guidelines">
-<h1>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Permalink to this heading"></a></h1>
+<h2>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>For contribution to the software:</p>
 <ul>
@@ -293,6 +298,7 @@ feel free to contact via suneeshjacob-at-gmail-dot-com.</p></li>
 </ul>
 </li>
 </ul>
+</section>
 </section>
 
 

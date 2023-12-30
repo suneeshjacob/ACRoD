@@ -1,3 +1,6 @@
+Installation and Usage
+======================
+
 Installation
 ------------
 
