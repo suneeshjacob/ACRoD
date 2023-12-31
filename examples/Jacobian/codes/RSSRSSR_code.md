@@ -274,7 +274,7 @@ Output:
 ```py
 [(2, 3), (3, 5)]
 ```
-The above output shows that the superfluous DOF exists between the spherical joints joined by links 3,4 and 4,6 (since the link numbers are indexed from zero). And `c_be` represents the list of link numbers of the part that contains base and end-effector links (as explained here). The complement list of `c_be` can be computed as shown below.
+The above output shows that the superfluous DOF exists between the spherical joints joined by links 3,4 and 4,6 (since the link numbers are indexed from zero). And `c_be` represents the list of link numbers of the part that contains base and end-effector links (as explained in the [mathematics page](../../../misc/Mathematics_behind_Jacobian_formulation.md)). The complement list of `c_be` can be computed as shown below.
 
 ```py
 c_be_complement = [i for i in range(len(M)) if i not in c_be]
