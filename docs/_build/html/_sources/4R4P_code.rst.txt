@@ -22,9 +22,11 @@ Jacobian for planar manipulators
 
 The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
-`here <../../../misc/Robot_Topology_Matrix.md>`__. For RRRRPPPP planar
+`here`_. For RRRRPPPP planar
 serial-parallel hybrid manipulator shown above, the robot topology
 matrix is given by
+
+.. _here: robot_topology_matrix.html
 
 .. math:: \left[\begin{matrix}9 & 2 & 2 & 0 & 0 & 0 & 0\\1 & 9 & 0 & 2 & 0 & 0 & 0\\1 & 0 & 9 & 2 & 0 & 0 & 0\\0 & 0 & 0 & 9 & 1 & 1 & 0\\0 & 0 & 0 & 1 & 9 & 0 & 1\\0 & 0 & 0 & 0 & 0 & 9 & 1\\0 & 0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]
 
@@ -105,7 +107,9 @@ Output in Jupyter notebook:
 .. math:: \left[\begin{matrix}0 & 0 & - a_{y} + r_{(4,6)y} & a_{y} - r_{(5,7)y} & - a_{y} + r_{(6,7)y}\\0 & 0 & a_{x} - r_{(4,6)x} & - a_{x} + r_{(5,7)x} & a_{x} - r_{(6,7)x}\\- \cos{\left(\phi_{(2,4)} \right)} & \cos{\left(\phi_{(3,4)} \right)} & 0 & 0 & 0\\- \sin{\left(\phi_{(2,4)} \right)} & \sin{\left(\phi_{(3,4)} \right)} & 0 & 0 & 0\\0 & 0 & 1 & -1 & 1\end{matrix}\right]
 
 The above matrices are based on the notations defined and described
-`here <../../../misc/Notation_and_Nomenclature.md>`__.
+`here.`_
+
+.. _here.: motation_and_nomenclature.html
 
 Active joint velocities, in the corresponding order, can be viewed by
 running the following lines.

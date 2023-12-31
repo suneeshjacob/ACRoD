@@ -27,9 +27,11 @@ Jacobian for robotic manipulators
 
 The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
-`here <./misc/Robot_Topology_Matrix.md>`__. For a planar 2R serial
+`here`_. For a planar 2R serial
 manipulator (as shown in the above figure), the robot topology matrix is
 given by
+
+.. _here: robot_topology_matrix.html
 
 .. math::
 
@@ -85,7 +87,9 @@ following output.
 .. math:: \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} \\ a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} \\ 1 & 1\end{matrix}\right]
 
 The above Jacobian is based on the notations defined and described
-`here <./misc/Notation_and_Nomenclature.md>`__.
+`here.`_
+
+.. _here.: notation_and_nomenclature.html
 
 Active joint velocities, in the corresponding order, can be viewed by
 running the following lines.
@@ -156,7 +160,9 @@ The output produced by running the above code, is shown below.
           [ 1,  1]])
 
 Mathematical concepts behind formulating the Jacobian can be found
-`here <./misc/Mathematics_behind_Jacobian_formulation.md>`__.
+`here in this link`_.
+
+.. _here in this link: mathematics_behind_jacobian_formulation.html
 
 Dimensional Synthesis
 ^^^^^^^^^^^^^^^^^^^^^

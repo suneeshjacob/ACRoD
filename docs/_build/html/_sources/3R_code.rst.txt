@@ -22,8 +22,10 @@ Jacobian for planar manipulators
 
 The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
-`here <../../../misc/Robot_Topology_Matrix.md>`__. For RRR planar serial
+`here`_. For RRR planar serial
 manipulator shown above, the robot topology matrix is given by
+
+.. _here: robot_topology_matrix.html
 
 .. math:: \left[\begin{matrix}9 & 1 & 0 & 0 \\ 1 & 9 & 1 & 0 \\ 0 & 1 & 9 & 1 \\ 0 & 0 & 1 & 9\end{matrix}\right]
 
@@ -74,7 +76,9 @@ following output.
 .. math:: \left[\begin{matrix}- a_{y} + r_{(1,2)y} & - a_{y} + r_{(2,3)y} & - a_{y} + r_{(3,4)y}\\a_{x} - r_{(1,2)x} & a_{x} - r_{(2,3)x} & a_{x} - r_{(3,4)x}\\1 & 1 & 1\end{matrix}\right]
 
 The above Jacobian is based on the notations defined and described
-`here <../../../misc/Notation_and_Nomenclature.md>`__.
+`here.`_
+
+.. _here.: motation_and_nomenclature.html
 
 Active joint velocities, in the corresponding order, can be viewed by
 running the following lines.

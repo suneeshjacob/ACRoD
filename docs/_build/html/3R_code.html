@@ -113,7 +113,7 @@ corresponding adjacency matrix is given by</p>
 <h3>Jacobian for planar manipulators<a class="headerlink" href="#jacobian-for-planar-manipulators" title="Permalink to this heading"></a></h3>
 <p>The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
-<a class="reference external" href="../../../misc/Robot_Topology_Matrix.md">here</a>. For RRR planar serial
+<a class="reference external" href="robot_topology_matrix.html">here</a>. For RRR planar serial
 manipulator shown above, the robot topology matrix is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left[\begin{matrix}9 &amp; 1 &amp; 0 &amp; 0 \\ 1 &amp; 9 &amp; 1 &amp; 0 \\ 0 &amp; 1 &amp; 9 &amp; 1 \\ 0 &amp; 0 &amp; 1 &amp; 9\end{matrix}\right]\end{split}\]</div>
@@ -154,7 +154,7 @@ following output.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\left[\begin{matrix}- a_{y} + r_{(1,2)y} &amp; - a_{y} + r_{(2,3)y} &amp; - a_{y} + r_{(3,4)y}\\a_{x} - r_{(1,2)x} &amp; a_{x} - r_{(2,3)x} &amp; a_{x} - r_{(3,4)x}\\1 &amp; 1 &amp; 1\end{matrix}\right]\end{split}\]</div>
 <p>The above Jacobian is based on the notations defined and described
-<a class="reference external" href="../../../misc/Notation_and_Nomenclature.md">here</a>.</p>
+<a class="reference external" href="motation_and_nomenclature.html">here.</a></p>
 <p>Active joint velocities, in the corresponding order, can be viewed by
 running the following lines.</p>
 <div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">active_joint_velocities</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">active_joint_velocities_symbolic</span>

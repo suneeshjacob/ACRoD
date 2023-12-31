@@ -23,8 +23,10 @@ Jacobian for planar manipulators
 
 The topological information of a robot is to be specified by using its
 robot-topology matrix, as defined
-`here <../../../misc/Robot_Topology_Matrix.md>`__. For RSSR-SSR spatial
+`here`_. For RSSR-SSR spatial
 parallel manipulator shown above, the robot topology matrix is given by
+
+.. _here: robot_topology_matrix.html
 
 .. math:: \left[\begin{matrix}9 & 1 & 1 & 0 & 1 & 0\\1 & 9 & 0 & 0 & 0 & 4\\1 & 0 & 9 & 4 & 0 & 0\\0 & 0 & 0 & 9 & 0 & 4\\0 & 0 & 0 & 0 & 9 & 4\\0 & 0 & 0 & 0 & 0 & 9\end{matrix}\right]
 
@@ -101,7 +103,9 @@ Output in Jupyter notebook:
 .. math:: \left[\begin{array}{ccccccccccccc}0 & 0 & a_{z} - r_{(2,6)z} & - a_{y} + r_{(2,6)y} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\0 & - a_{z} + r_{(2,6)z} & 0 & a_{x} - r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\0 & a_{y} - r_{(2,6)y} & - a_{x} + r_{(2,6)x} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\end{array}\right]
 
 The above matrices are based on the notations defined and described
-`here <../../../misc/Notation_and_Nomenclature.md>`__.
+`here.`_
+
+.. _here.: motation_and_nomenclature.html
 
 Active joint velocities, in the corresponding order, can be viewed by
 running the following lines.
@@ -373,8 +377,10 @@ Output:
 The above output shows that the superfluous DOF exists between the
 spherical joints joined by links 3,4 and 4,6 (since the link numbers are
 indexed from zero). And ``c_be`` represents the list of link numbers of
-the part that contains base and end-effector links (as explained here).
+the part that contains base and end-effector links (as explained in the `mathematics page`_).
 The complement list of ``c_be`` can be computed as shown below.
+
+.. _mathematics page: mathematics_behind_jacobian_formulation.html
 
 .. code:: py
 
