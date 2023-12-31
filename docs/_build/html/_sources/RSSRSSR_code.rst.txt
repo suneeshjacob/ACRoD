@@ -9,7 +9,7 @@ Figure
    :width: 300
    :align: center
 
-The RSSR-SSR Serial-Parallel Hybrid Robot is taken from `[1] <#1>`__,
+The RSSR-SSR Serial-Parallel Hybrid Robot is taken from :ref:`[1] <references_rssrssr_code>`,
 and a picture of the robot is shown in the above figure. The
 corresponding adjacency matrix is given by
 
@@ -398,7 +398,7 @@ is evident from the figure in the beginning of this document.
 
 In the above results, the link numbers are indexed from 0 (not 1).
 
-
+.. _references_rssrssr_code:
 
 References
 ----------

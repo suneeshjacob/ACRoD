@@ -217,5 +217,5 @@ Constraint equations:
 .. math::
 
 
-   \bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}\_p}\bf{A_a}
+   \bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}_p}\bf{A_a}
 

@@ -9,7 +9,7 @@ Mathematics involved
    :width: 300
    :align: center
 
-The RSSR-SSR Serial-Parallel Hybrid Robot is taken from `[1] <#1>`__,
+The RSSR-SSR Serial-Parallel Hybrid Robot is taken from :ref:`[1] <references_rssrssr>`,
 and a picture of the robot is shown in the above figure. The
 corresponding adjacency matrix is given by
 
@@ -251,6 +251,7 @@ This needs to be added to the earlier system of equations, in order to
 make :math:`\bf{A_p}` a square matrix, with which the passive joint
 velocities can be written in terms of active joint velocities.
 
+.. _references_rssrssr:
 
 References
 ----------

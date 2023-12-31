@@ -5,7 +5,7 @@ Steps to formulate Jacobian
 ---------------------------
 
 This method is an extension/modification of the method explained
-presented in `[1] <#1>`__. The approach that is typically used to
+presented in :ref:`[1] <references_mathematics>`. The approach that is typically used to
 formulate Jacobian of a serial manipulator is to simply calculate the
 individual contributions of each of the joints to the end-effector along
 the path that connects the base-link and the end-effector link. Since in
@@ -153,7 +153,7 @@ In step 7, the existence of superfluous DOF(s), if any, is idenified. In
 the context of this paper, a superfluous DOF is DOF that does not each
 the end-effector of the robot by virtue of its inherent mechanism
 arrangement rather than any particular configuration. Jacob et
-al. `[2] <#2>`__ mentioned in their paper that, for revolute, prismatic,
+al. :ref:`[2] <references_mathematics>` mentioned in their paper that, for revolute, prismatic,
 cylindrical and spherical types of joints, two links connected by two
 joints cannot guarantee relative motion for arbitrary locations and
 orientations of axes of the joints, except in case of a
@@ -175,8 +175,7 @@ actively controlled. In some cases, the existence of superfluous DOF
 makes it impossible to completely control the complete velocity of the
 end-effector, in which case the robot would be uncontrollable. But in
 some other cases, the existence of superfluous DOF does not affect the
-velocity of the end-effector. The method used in the earlier study
-`[1] <#1>`__ is used to appropriately address the superfluous DOF case
+velocity of the end-effector. The method used in the earlier study :ref:`[1] <references_mathematics>` is used to appropriately address the superfluous DOF case
 in Jacobian formulation.
 
 The identification of the existence of superfluous DOF is made by
@@ -279,6 +278,8 @@ This algorithm can be used to find the four matrices
 For serial manipulators, since passive joints do not come into picture,
 the Jacobian would simply be
 :math:`\mathbf{\widetilde{J}}=\mathbf{J_a}`.
+
+.. _references_mathematics:
 
 References
 ----------

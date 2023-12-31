@@ -63,7 +63,7 @@ In a serial manipulator, typically all joints are active. However, in
 parallel manipulators (including closed-loop manipulators), not all
 joints are active. There could be multiple ways of choosing active and
 passive sets of joints for parallel ones. The adjacency matrix notation
-provided in our earlier study `[1] <#1>`__ does not consist of
+provided in our earlier study :ref:`[1] <references>` does not consist of
 information on the distinction of active and passive sets of joints but
 rather considers both the active and the passive joints alike. In this
 study, this issue is resolved by dedicating the lower off-diagonal
@@ -206,6 +206,8 @@ would be as shown below.
 
 Other possible Robot-Topology matrices can be framed (by changing the
 numbering of links), which would be equivalent to the above matrix.
+
+.. _references:
 
 References
 ----------

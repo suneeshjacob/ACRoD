@@ -93,7 +93,7 @@
 <section id="steps-to-formulate-jacobian">
 <h2>Steps to formulate Jacobian<a class="headerlink" href="#steps-to-formulate-jacobian" title="Permalink to this heading"></a></h2>
 <p>This method is an extension/modification of the method explained
-presented in <a class="reference external" href="#1">[1]</a>. The approach that is typically used to
+presented in <a class="reference internal" href="#references-mathematics"><span class="std std-ref">[1]</span></a>. The approach that is typically used to
 formulate Jacobian of a serial manipulator is to simply calculate the
 individual contributions of each of the joints to the end-effector along
 the path that connects the base-link and the end-effector link. Since in
@@ -239,7 +239,7 @@ velocities as shown in equation (5).</p>
 the context of this paper, a superfluous DOF is DOF that does not each
 the end-effector of the robot by virtue of its inherent mechanism
 arrangement rather than any particular configuration. Jacob et
-al. <a class="reference external" href="#2">[2]</a> mentioned in their paper that, for revolute, prismatic,
+al. <a class="reference internal" href="#references-mathematics"><span class="std std-ref">[2]</span></a> mentioned in their paper that, for revolute, prismatic,
 cylindrical and spherical types of joints, two links connected by two
 joints cannot guarantee relative motion for arbitrary locations and
 orientations of axes of the joints, except in case of a
@@ -261,8 +261,7 @@ actively controlled. In some cases, the existence of superfluous DOF
 makes it impossible to completely control the complete velocity of the
 end-effector, in which case the robot would be uncontrollable. But in
 some other cases, the existence of superfluous DOF does not affect the
-velocity of the end-effector. The method used in the earlier study
-<a class="reference external" href="#1">[1]</a> is used to appropriately address the superfluous DOF case
+velocity of the end-effector. The method used in the earlier study <a class="reference internal" href="#references-mathematics"><span class="std std-ref">[1]</span></a> is used to appropriately address the superfluous DOF case
 in Jacobian formulation.</p>
 <p>The identification of the existence of superfluous DOF is made by
 firstly checking whether the manipulator has at least two spherical
@@ -349,7 +348,7 @@ the Jacobian would simply be
 <span class="math notranslate nohighlight">\(\mathbf{\widetilde{J}}=\mathbf{J_a}\)</span>.</p>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<span id="references-mathematics"></span><h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
 <p>[1] Jacob, Akkarapakam Suneesh, and Bhaskar Dasgupta. “Dimensional
 synthesis of spatial manipulators for velocity and force transmission
 for operation around a specified task point.” arXiv preprint

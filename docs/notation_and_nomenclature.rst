@@ -5,10 +5,9 @@ Notation for describing the parameters of spatial manipulators
 --------------------------------------------------------------
 
 The notations presented in this document are modified versions of the
-notations mentioned in `[1] <#1>`__, which can be formulated directly
+notations mentioned in :ref:`[1] <references_notation>`, which can be formulated directly
 from the `robot-topology matrix`_, a is a
-modified form of matrix-based representation of robots mentioned in
-`[2] <#2>`__. The notations are explained below in detail.
+modified form of matrix-based representation of robots mentioned in :ref:`[2] <references_notation>`. The notations are explained below in detail.
 
 .. _robot-topology matrix: robot_topology_matrix.html
 
@@ -167,6 +166,8 @@ Since all the motion lies entirely in the xy-plane, the z-component of
 linear velocity along with the x & the y components of the angular
 velocity of the end-effector would be zeros, thereby reducing the size
 of the Jacobian from six rows to three rows.
+
+.. _references_notation:
 
 References
 ----------
