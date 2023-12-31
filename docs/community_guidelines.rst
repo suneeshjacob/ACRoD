@@ -8,7 +8,7 @@ Community Guidelines for Contribution, Reporting and Support.
 
    -  In order to contribute to the software, please consider using the
       `pull request
-      feature <https://github.com/suneeshjacob/ACRoD/issues>`__ of
+      feature <https://github.com/suneeshjacob/ACRoD/pulls>`__ of
       GitHub.
 
 -  For reporting issues with the software:

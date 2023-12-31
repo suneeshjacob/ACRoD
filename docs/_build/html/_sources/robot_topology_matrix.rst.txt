@@ -88,13 +88,10 @@ Examples
 Let us consider the 3R planar serial robot as shown in (a) of the figure
 below.
 
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
+.. image:: ../misc/3R.png
+   :alt: Alternative Text
+   :width: 600
+   :align: center
 
 The above robot has four links (including the fixed link). Hence the
 Robot-Topology matrix :math:`M` would be a :math:`4\times4` matrix, with
@@ -141,13 +138,10 @@ Either matrix can be used as Robot-Topology matrix.
 Let us consider the 4R-4P planar serial-parallel hybrid robot as shown
 in (a) of the figure below.
 
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
+.. image:: ../misc/4R4P.png
+   :alt: Alternative Text
+   :width: 600
+   :align: center
 
 The above robot has seven links. Hence the Robot-Topology matrix
 :math:`M` would be a :math:`7\times7` matrix, with all of its diagonal
@@ -182,13 +176,10 @@ RSSR-SSR Spatial Parallel Robot
 Let us consider the RSSR-SSR spatial parallel robot as shown in (a) of
 the figure below.
 
-.. raw:: html
-
-   <p align="center">
-
-.. raw:: html
-
-   </p>
+.. image:: ../misc/RSSRSSR.png
+   :alt: Alternative Text
+   :width: 600
+   :align: center
 
 The above robot has six links. Hence the Robot-Topology matrix :math:`M`
 would be a :math:`6\times6` matrix, with all of its diagonal elements as

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSSR-SSR Spatial Parallel Robot &mdash; ACRoD 1.1.16 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="4R-4P Serial-Parallel Hybrid Robot" href="4R4P_code.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ACRoD
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation_and_usage.html">Installation and Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notation_and_nomenclature.html">Notation and Nomenclature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robot_topology_matrix.html">Robot-topology Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mathematics_behind_jacobian_formulation.html">Mathematics Behind Jacobian Formulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="community_guidelines.html">Community Guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">API Documentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Mathematics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="examples.html#code">Code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="3R_code.html">3R Planar Serial Robot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4R4P_code.html">4R-4P Serial-Parallel Hybrid Robot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">RSSR-SSR Spatial Parallel Robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#figure">Figure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jacobian-for-planar-manipulators">Jacobian for planar manipulators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#some-other-attributes">Some other attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-derivation-of-jacobian">Mathematical derivation of Jacobian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ACRoD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="examples.html">Mathematics</a></li>
+      <li class="breadcrumb-item active">RSSR-SSR Spatial Parallel Robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/RSSRSSR_code.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="rssr-ssr-spatial-parallel-robot">
+<h1>RSSR-SSR Spatial Parallel Robot<a class="headerlink" href="#rssr-ssr-spatial-parallel-robot" title="Permalink to this heading"></a></h1>
+<section id="figure">
+<h2>Figure<a class="headerlink" href="#figure" title="Permalink to this heading"></a></h2>
+<a class="reference internal image-reference" href="_images/RSSRSSR.png"><img alt="Alternative Text" class="align-center" src="_images/RSSRSSR.png" style="width: 300px;" /></a>
+<p>The RSSR-SSR Serial-Parallel Hybrid Robot is taken from <a class="reference external" href="#1">[1]</a>,
+and a picture of the robot is shown in the above figure. The
+corresponding adjacency matrix is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\bf{M} = \left[\begin{matrix}L_1 &amp; R &amp; R &amp; O &amp; R &amp; O\\A &amp; L_2 &amp; O &amp; O &amp; O &amp; S\\A &amp; O &amp; L_3 &amp; S &amp; O &amp; O\\O &amp; O &amp; O &amp; L_4 &amp; O &amp; S\\O &amp; O &amp; O &amp; O &amp; L_5 &amp; S\\O &amp; O &amp; O &amp; O &amp; O &amp; L_6\end{matrix}\right]\end{split}\]</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<section id="jacobian-for-planar-manipulators">
+<h3>Jacobian for planar manipulators<a class="headerlink" href="#jacobian-for-planar-manipulators" title="Permalink to this heading"></a></h3>
+<p>The topological information of a robot is to be specified by using its
+robot-topology matrix, as defined
+<a class="reference external" href="../../../misc/Robot_Topology_Matrix.md">here</a>. For RSSR-SSR spatial
+parallel manipulator shown above, the robot topology matrix is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}9 &amp; 1 &amp; 1 &amp; 0 &amp; 1 &amp; 0\\1 &amp; 9 &amp; 0 &amp; 0 &amp; 0 &amp; 4\\1 &amp; 0 &amp; 9 &amp; 4 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 9 &amp; 0 &amp; 4\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 9 &amp; 4\\0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 9\end{matrix}\right]\end{split}\]</div>
+<p>The corresponding Jacobian function can be formulated as follows.</p>
+<p>Firstly, the required functions are imported as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">acrod.jacobian</span> <span class="kn">import</span> <span class="n">Jacobian</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">array</span>
+</pre></div>
+</div>
+<p>The robot-topology matrix for RSSR-SSR spatial parallel manipulator is
+defined and jacobian information is processed via the imported jacobian
+class as follows.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+    <span class="p">)</span>
+<span class="n">jac</span> <span class="o">=</span> <span class="n">Jacobian</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Jacobian function is generated as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">jacobian_function</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">get_jacobian_function</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the process of generating the above jacobian function, other
+attributes of the jacobian object also are updated. Symbolic Jacobian
+matrices can be extracted from the attributes. Since this is a
+non-serial robot, there would be four matrices required to compute the
+Jacobian, which are <span class="math notranslate nohighlight">\(J_a\)</span>, <span class="math notranslate nohighlight">\(J_p\)</span>, <span class="math notranslate nohighlight">\(A_a\)</span> and
+<span class="math notranslate nohighlight">\(A_p\)</span>. These can be extracted by the attributes <code class="docutils literal notranslate"><span class="pre">Ja</span></code>, <code class="docutils literal notranslate"><span class="pre">Jp</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Aa</span></code> and <code class="docutils literal notranslate"><span class="pre">Ap</span></code>, respectively, as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">symbolic_Ja</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Ja</span>
+<span class="n">symbolic_Jp</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Jp</span>
+<span class="n">symbolic_Aa</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Aa</span>
+<span class="n">symbolic_Ap</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Ap</span>
+</pre></div>
+</div>
+<p>In a Jupyter notebook, the symbolic matrices can be visualised as shown
+below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">symbolic_Ja</span>
+</pre></div>
+</div>
+<p>Output in Jupyter notebook:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}- \left(a_{y} - r_{(1,2)y}\right) \cos{\left(\beta_{(1,2)} \right)} + \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} &amp; 0 \\
+\left(a_{x} - r_{(1,2)x}\right) \cos{\left(\beta_{(1,2)} \right)} - \left(a_{z} - r_{(1,2)z}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} &amp; 0 \\
+\left(a_{x} - r_{(1,2)x}\right) \sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} + \left(a_{y} - r_{(1,2)y}\right) \sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} &amp; 0 \\
+\sin{\left(\beta_{(1,2)} \right)} \cos{\left(\phi_{(1,2)} \right)} &amp; 0 \\
+\sin{\left(\beta_{(1,2)} \right)} \sin{\left(\phi_{(1,2)} \right)} &amp; 0 \\
+\cos{\left(\beta_{(1,2)} \right)} &amp; 0\end{bmatrix}\end{split}\]</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">symbolic_Jp</span>
+</pre></div>
+</div>
+<p>Output in Jupyter notebook:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{array}{ccccccccccccc}0 &amp; 0 &amp; a_{z} - r_{(2,6)z} &amp; - a_{y} + r_{(2,6)y} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; - a_{z} + r_{(2,6)z} &amp; 0 &amp; a_{x} - r_{(2,6)x} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; a_{y} - r_{(2,6)y} &amp; - a_{x} + r_{(2,6)x} &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\end{array}\right]\end{split}\]</div>
+<p>The above matrices are based on the notations defined and described
+<a class="reference external" href="../../../misc/Notation_and_Nomenclature.md">here</a>.</p>
+<p>Active joint velocities, in the corresponding order, can be viewed by
+running the following lines.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">active_joint_velocities</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">active_joint_velocities_symbolic</span>
+<span class="n">active_joint_velocities</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}\dot{\theta}_{(1,2)}\\\dot{\theta}_{(1,3)}\end{matrix}\right]\end{split}\]</div>
+<p>Robot dimensional parameters can be viewed by running the below line.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_dimensional_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">parameters_symbolic</span>
+<span class="n">robot_dimensional_parameters</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}r_{(1,2)x}\\r_{(1,2)y}\\r_{(1,2)z}\\\beta_{(1,2)}\\\phi_{(1,2)}\\r_{(1,3)x}\\r_{(1,3)y}\\r_{(1,3)z}\\\beta_{(1,3)}\\\phi_{(1,3)}\\r_{(1,5)x}\\r_{(1,5)y}\\r_{(1,5)z}\\\beta_{(1,5)}\\\phi_{(1,5)}\\r_{(2,6)x}\\r_{(2,6)y}\\r_{(2,6)z}\\r_{(3,4)x}\\r_{(3,4)y}\\r_{(3,4)z}\\r_{(4,6)x}\\r_{(4,6)y}\\r_{(4,6)z}\\r_{(5,6)x}\\r_{(5,6)y}\\r_{(5,6)z}\end{matrix}\right]\end{split}\]</div>
+<p>Robot end-effector parameters can be viewed by running the below line.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">robot_endeffector_parameters</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">endeffector_variables_symbolic</span>
+<span class="n">robot_endeffector_parameters</span>
+</pre></div>
+</div>
+<p>In an ipynb file of JupyterLab, the above code would produce the
+following output.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[\begin{matrix}a_{x}\\a_{y}\\a_{z}\end{matrix}\right]\end{split}\]</div>
+<section id="sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below">
+<h4>Sample computation of Jacobian for the configuration corresponding to the parameters shown below:<a class="headerlink" href="#sample-computation-of-jacobian-for-the-configuration-corresponding-to-the-parameters-shown-below" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>End-effector point: <span class="math notranslate nohighlight">\(\textbf{a}=\hat{i}+2\hat{j}+3\hat{k}\)</span></p></li>
+<li><p>Locations of joints:
+<span class="math notranslate nohighlight">\(\textbf{r}_{(1,2)}=2\hat{i}+8\hat{j}+3\hat{k}\)</span>,
+<span class="math notranslate nohighlight">\(\textbf{r}_{(1,3)}=1\hat{i}+2\hat{j}+5\hat{k}\)</span>,
+<span class="math notranslate nohighlight">\(\textbf{r}_{(1,5)}=2\hat{i}+4\hat{j}+7\hat{k}\)</span>,
+<span class="math notranslate nohighlight">\(\textbf{r}_{(2,6)}=3\hat{i}+1\hat{j}+2\hat{k}\)</span>,
+<span class="math notranslate nohighlight">\(\textbf{r}_{(3,4)}=6\hat{i}+8\hat{j}+4\hat{k}\)</span>,
+<span class="math notranslate nohighlight">\(\textbf{r}_{(4,6)}=8\hat{i}+1\hat{j}+3\hat{k}\)</span> and
+<span class="math notranslate nohighlight">\(\textbf{r}_{(5,6)}=5\hat{i}+7\hat{j}+3\hat{k}\)</span></p></li>
+<li><p>Orientations of joints: <span class="math notranslate nohighlight">\(\beta_{(1,2)}=\pi/6\)</span>,
+<span class="math notranslate nohighlight">\(\phi_{(1,2)}=\pi/3\)</span>, <span class="math notranslate nohighlight">\(\beta_{(1,3)}=5\pi/6\)</span>,
+<span class="math notranslate nohighlight">\(\phi_{(1,3)}=2\pi/3\)</span>, <span class="math notranslate nohighlight">\(\beta_{(1,5)}=\pi/12\)</span> and
+<span class="math notranslate nohighlight">\(\phi_{(1,5)}=\pi/2\)</span>.</p></li>
+</ul>
+<p>For the given set of dimensional parameters of the robot, the numerical
+Jacobian can be computed as follows. Firstly, we need to gather the
+configuration parameters in Python list format, in a particular order.
+The robot dimensional parameters from <code class="docutils literal notranslate"><span class="pre">jac.parameters_symbolic</span></code> are
+found (as shown earlier) to be in the order of <span class="math notranslate nohighlight">\(r_{(1,2)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(1,2)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(1,2)z}\)</span>, <span class="math notranslate nohighlight">\(\beta_{(1,2)}\)</span>,
+<span class="math notranslate nohighlight">\(\phi_{(1,2)}\)</span>, <span class="math notranslate nohighlight">\(r_{(1,3)x}\)</span>, <span class="math notranslate nohighlight">\(r_{(1,3)y}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(1,3)z}\)</span>, <span class="math notranslate nohighlight">\(\beta_{(1,3)}\)</span>, <span class="math notranslate nohighlight">\(\phi_{(1,3)}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(1,5)x}\)</span>, <span class="math notranslate nohighlight">\(r_{(1,5)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(1,5)z}\)</span>,
+<span class="math notranslate nohighlight">\(\beta_{(1,5)}\)</span>, <span class="math notranslate nohighlight">\(\phi_{(1,5)}\)</span>, <span class="math notranslate nohighlight">\(r_{(2,6)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(2,6)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(2,6)z}\)</span>, <span class="math notranslate nohighlight">\(r_{(3,4)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(3,4)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(3,4)z}\)</span>, <span class="math notranslate nohighlight">\(r_{(4,6)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(4,6)y}\)</span>, <span class="math notranslate nohighlight">\(r_{(4,6)z}\)</span>, <span class="math notranslate nohighlight">\(r_{(5,6)x}\)</span>,
+<span class="math notranslate nohighlight">\(r_{(5,6)y}\)</span> and <span class="math notranslate nohighlight">\(r_{(5,6)z}\)</span>. Hence the configuration
+parameters are to be supplied in the same order, as a list. Thus, the
+computation can be performed as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">pi</span>
+
+<span class="n">end_effector_point</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">configuration_parameters</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">12</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">jacobian_at_the_given_configuration</span> <span class="o">=</span> <span class="n">jacobian_function</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">jacobian_at_the_given_configuration</span>
+</pre></div>
+</div>
+<p>The output produced by running the above code, is shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mf">19.62196517</span><span class="p">,</span>  <span class="mf">10.77434097</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">16.1460825</span> <span class="p">,</span>  <span class="o">-</span><span class="mf">8.61947278</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">43.06469529</span><span class="p">,</span>  <span class="mf">30.16815472</span><span class="p">],</span>
+       <span class="p">[</span>  <span class="mf">6.57574977</span><span class="p">,</span>   <span class="mf">4.30973639</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">19.33597911</span><span class="p">,</span>  <span class="mf">12.92920917</span><span class="p">],</span>
+       <span class="p">[</span>  <span class="mf">5.34317907</span><span class="p">,</span>   <span class="mf">2.15486819</span><span class="p">]])</span>
+</pre></div>
+</div>
+</section>
+<section id="accessing-each-matrix-individually">
+<h4>Accessing each matrix individually:<a class="headerlink" href="#accessing-each-matrix-individually" title="Permalink to this heading"></a></h4>
+<p>Each of <span class="math notranslate nohighlight">\(J_a\)</span>, <span class="math notranslate nohighlight">\(J_p\)</span>, <span class="math notranslate nohighlight">\(A_a\)</span> and <span class="math notranslate nohighlight">\(A_p\)</span> functions
+can be accessed as shown below</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">numerical_Ja</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Ja_func</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">numerical_Ja</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mf">5.19615242</span><span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.8660254</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">1.0669873</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.25</span>      <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.4330127</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.8660254</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">numerical_Jp</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Jp_func</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">numerical_Jp</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">numerical_Aa</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Aa_func</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">numerical_Aa</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">5.19615242</span><span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.8660254</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.0669873</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">5.19615242</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.8660254</span> <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.8660254</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span>       <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.0669873</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.25</span>      <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.4330127</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.8660254</span> <span class="p">,</span>  <span class="mf">0.</span>        <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span>      <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.4330127</span> <span class="p">,</span>  <span class="mf">0.4330127</span> <span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">0.8660254</span> <span class="p">,</span> <span class="o">-</span><span class="mf">0.8660254</span> <span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span>        <span class="p">,</span>  <span class="mf">2.66506351</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">numerical_Ap</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">Ap_func</span><span class="p">(</span><span class="n">end_effector_point</span><span class="p">,</span> <span class="n">configuration_parameters</span><span class="p">)</span>
+<span class="n">numerical_Ap</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">6.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">7.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">6.</span><span class="p">,</span>  <span class="mf">5.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">7.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span>  <span class="mf">7.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>And the computation <span class="math notranslate nohighlight">\(J_a-J_pA^{-1}_pA_a\)</span> is given by</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">numerical_Ja</span><span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">numerical_Jp</span><span class="p">,</span><span class="n">numpy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">numerical_Ap</span><span class="p">)),</span><span class="n">numerical_Aa</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which gives the same output as <code class="docutils literal notranslate"><span class="pre">jacobian_at_the_given_configuration</span></code>.</p>
+</section>
+</section>
+<section id="some-other-attributes">
+<h3>Some other attributes<a class="headerlink" href="#some-other-attributes" title="Permalink to this heading"></a></h3>
+<p>To get the computed list of all connecting paths from the base link to
+the end-effector link, the below script can be used:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">jac</span><span class="o">.</span><span class="n">P</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>which gives the list of all connecting paths (only link numbers are
+shown, indexed from 0).</p>
+<section id="independent-paths-pertaining-to-linear-and-angular-velocities">
+<h4>Independent paths pertaining to linear and angular velocities:<a class="headerlink" href="#independent-paths-pertaining-to-linear-and-angular-velocities" title="Permalink to this heading"></a></h4>
+<p>Out of the above paths, the computed list of independent paths
+pertaining to linear velocities and angular velocities, can be accessed
+by the below scripts:</p>
+<p>For independent paths pertaining to linear velocities:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">jac</span><span class="o">.</span><span class="n">P_tilde</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+<p>For independent paths pertaining to angular velocities:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">jac</span><span class="o">.</span><span class="n">P_tilde_omega</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+<section id="superfluous-dof-information">
+<h4>Superfluous DOF information:<a class="headerlink" href="#superfluous-dof-information" title="Permalink to this heading"></a></h4>
+<p>This manipulator has a superfluous DOF. The information of all the
+superfluous DOFs in the manipulator can be retrieved in a list by the
+script shown below:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">superfluous_dof_information</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">superfluous_dof_information</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">superfluous_dof_information</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>The above output shows that the number of superfluous DOF is 1. In order
+to access the information of this superfluous DOF, the script shown
+below can be used:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">c_be</span><span class="p">,</span> <span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),(</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)]</span> <span class="o">=</span> <span class="n">superfluous_dof_information</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">),(</span><span class="n">k</span><span class="p">,</span><span class="n">l</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>The above output shows that the superfluous DOF exists between the
+spherical joints joined by links 3,4 and 4,6 (since the link numbers are
+indexed from zero). And <code class="docutils literal notranslate"><span class="pre">c_be</span></code> represents the list of link numbers of
+the part that contains base and end-effector links (as explained here).
+The complement list of <code class="docutils literal notranslate"><span class="pre">c_be</span></code> can be computed as shown below.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">c_be_complement</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">c_be</span><span class="p">]</span>
+<span class="n">c_be_complement</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This shows that it is the link 4 that exhibits a superfluous DOF, which
+is evident from the figure in the beginning of this document.</p>
+<p>In the above results, the link numbers are indexed from 0 (not 1).</p>
+</section>
+</section>
+</section>
+<section id="mathematical-derivation-of-jacobian">
+<h2>Mathematical derivation of Jacobian<a class="headerlink" href="#mathematical-derivation-of-jacobian" title="Permalink to this heading"></a></h2>
+<p>The mathematical derivation is shown
+<a class="reference external" href="../maths/RSSR-SSR_serial-parallel_hybrid_robot.md">here</a>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading"></a></h2>
+<p>[1] Muralidharan V, Bandyopadhyay S (2019) “A two-degree-of-freedom
+rssr-ssr manipulator for sun-tracking.” In: Badodkar DN, Dwarakanath TA
+(eds) Machines, Mechanism and Robotics. Springer Singapore, Singapore,
+pp 135–147</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="4R4P_code.html" class="btn btn-neutral float-left" title="4R-4P Serial-Parallel Hybrid Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Akkarapakam Suneesh Jacob and Rituparna Datta.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
