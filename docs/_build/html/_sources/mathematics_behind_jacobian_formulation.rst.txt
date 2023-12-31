@@ -56,7 +56,7 @@ compact form in algorithm 2.
 
 In step 2, a set of independent paths are to be selected from the set of
 all paths. This can be done by formulating the matrix
-:math:`[\mathbf{C\_{V}}]` and finding the echelon form of its transpose
+:math:`[\mathbf{C_{V}}]` and finding the echelon form of its transpose
 and choosing the pivoted column indices and choosing the paths
 corresponding to these indices as a set of independent paths.
 
@@ -66,7 +66,7 @@ velocities, are the paths that are trivial for angular velocity
 formulation, due to the presence of prismatic joints and planar joints,
 as prismatic joints and planar joints do not contribute to the angular
 velocity of the end-effector. These can be found by taking the
-:math:`\mathbf{\Omega}\_{(i,j)}` values corresponding to prismatic
+:math:`\mathbf{\Omega}_{(i,j)}` values corresponding to prismatic
 joints and planar joints as zeroes and finding the independent paths of
 the corresponding coefficient matrix. In the matrix
 :math:`[\mathbf{C_{V}}]`, all the columns corresponding to prismatic
@@ -80,14 +80,14 @@ In step 4, the formulation of linear velocity of the end-effector
 through each path of :math:`\widetilde{P}` is given by the sum of
 contributions of linear velocities to the end-effector from all the
 joints through that path. Likewise, the formulation of angular velocity
-of the end-effector through each path of :math:`\widetilde{P}\_{\omega}`
+of the end-effector through each path of :math:`\widetilde{P}_{\omega}`
 is given by the sum of contributions of angular velocities to the
 end-effector from all the joints through that path. If
-:math:`\mathbf{a}` = :math:`\\{a_x, a_y, a_z\\}^T` is the end-effector
+:math:`\mathbf{a}` = :math:`\{a_x, a_y, a_z\}^T` is the end-effector
 point, the contributions of linear velocity and angular velocity to the
 end-effector from a joint connected by the links :math:`i` and :math:`j`
-are denoted by :math:`\mathbf{V}\_{(i,j)}` and
-:math:`\mathbf{\Omega}\_{(i,j)}` respectively, and for each type of
+are denoted by :math:`\mathbf{V}_{(i,j)}` and
+:math:`\mathbf{\Omega}_{(i,j)}` respectively, and for each type of
 joint they are given as shown in table 1.
 
 .. list-table:: Table 1: Velocity contributions to the end-effector from each joint of a connecting path
@@ -123,11 +123,11 @@ joint they are given as shown in table 1.
 
 Hence, for each :math:`\text{k}^{\text{th}}` path :math:`p_k` in
 :math:`\widetilde{P}`, the linear velocity of the end-effector is given
-by :math:`\mathbf{v^{(k)}} = \sum\limits_{p_k} \mathbf{V}\_{(i,j)}`, and
+by :math:`\mathbf{v^{(k)}} = \sum\limits_{p_k} \mathbf{V}_{(i,j)}`, and
 likewise, for each :math:`\text{k}^{\text{th}}` path :math:`p_k` in
 :math:`\widetilde{P}`, the linear velocity of the end-effector is given
 by
-:math:`\mathbf{\omega^{(k)}} = \sum\limits_{p_k} \mathbf{\Omega}\_{(i,j)}`.
+:math:`\mathbf{\omega^{(k)}} = \sum\limits_{p_k} \mathbf{\Omega}_{(i,j)}`.
 
 In step 5, the velocity vector of the end-effector is formulated by
 using :math:`\mathbf{v}^{(1)}` and :math:`\mathbf{\omega}^{(1)}`, as
@@ -221,14 +221,14 @@ velocity of one of the links connecting to one of the spherical joints
 about the axis passing through the two spherical joints is to be set to
 zero (This equation does not represent the true velocity and is only to
 accommodate calculations simpler). This can be achieved by equation (3),
-where :math:`\vec{\omega}\_{k}` is the absolute velocity of the link if
+where :math:`\vec{\omega}_{k}` is the absolute velocity of the link if
 it is the case of a single link (and is the absolute velocity of any
 link that is connected to one of the spherical joints if it is the case
-of a set of links), :math:`\mathbf{r}\_{(i,j)}` and
-:math:`\mathbf{r}\_{kl}` are the position vectors of the two spherical
+of a set of links), :math:`\mathbf{r}_{(i,j)}` and
+:math:`\mathbf{r}_{kl}` are the position vectors of the two spherical
 joints.
 
-.. math:: \mathbf{\omega_{s}}\cdot \left(\mathbf{r}\_{(i,j)}-\mathbf{r}\_{(k,l)}\right) = 0 \tag{3}
+.. math:: \mathbf{\omega_{s}}\cdot \left(\mathbf{r}_{(i,j)}-\mathbf{r}_{(k,l)}\right) = 0 \tag{3}
 
 In step 8, :math:`\mathbf{\Omega_a}` and :math:`\mathbf{\Omega_p}` are
 chosen, and the equations
