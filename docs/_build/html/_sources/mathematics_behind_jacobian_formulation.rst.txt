@@ -90,26 +90,36 @@ are denoted by :math:`\mathbf{V}\_{(i,j)}` and
 :math:`\mathbf{\Omega}\_{(i,j)}` respectively, and for each type of
 joint they are given as shown in table 1.
 
-Table 1: Velocity contributions to the end-effector from each joint of a
-connecting path \| Type \| :math:`\mathbf{\Omega}_{(i,j)}` \|
-:math:`\mathbf{V}_{(i,j)}` \| \| :—-: \| :—: \| :—: \| \|\ :math:`R` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)`
-\| \|\ :math:`P` \| 0 \|
-:math:`\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}` \| \|\ :math:`C` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right) + \dot{d}\_{(i,j)}\mathbf{n}\_{(i,j)}`
-\| \|\ :math:`S` \| :math:`\mathbf{\omega}\_{(i,j)}` \|
-:math:`\mathbf{\omega}\_{(i,j)} \times \left( \mathbf{a} - \mathbf{r}\_{(i,j)}\right)`
-\| \|\ :math:`U` \|
-:math:`\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}`
-\|
-:math:`\left(\dot{\gamma}\_{(i,j)}\mathbf{\hat{m}}\_{(i,j)}+\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\right)\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)`
-\| \|\ :math:`H` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}` \|
-:math:`\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}\_{(i,j)}\right)+\frac{p}{2\pi}\dot{\theta}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}`
-\| \|\ :math:`F` \| 0 \|
-:math:`\dot{d}\_{(i,j)}\mathbf{\hat{n}}\_{(i,j)}` \|
+.. list-table:: Table 1: Velocity contributions to the end-effector from each joint of a connecting path
+   :widths: 20 40 40
+   :header-rows: 1
+
+   * - Type
+     - :math:`\mathbf{\Omega}_{(i,j)}`
+     - :math:`\mathbf{V}_{(i,j)}`
+   * - :math:`R`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}_{(i,j)}\right)`
+   * - :math:`P`
+     - 0
+     - :math:`\dot{d}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+   * - :math:`C`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}_{(i,j)}\right) + \dot{d}_{(i,j)}\mathbf{n}_{(i,j)}`
+   * - :math:`S`
+     - :math:`\mathbf{\omega}_{(i,j)}`
+     - :math:`\mathbf{\omega}_{(i,j)} \times \left( \mathbf{a} - \mathbf{r}_{(i,j)}\right)`
+   * - :math:`U`
+     - :math:`\dot{\gamma}_{(i,j)}\mathbf{\hat{m}}_{(i,j)}+\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+     - :math:`\left(\dot{\gamma}_{(i,j)}\mathbf{\hat{m}}_{(i,j)}+\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}\right)\times \left(\mathbf{a}-\mathbf{r}_{(i,j)}\right)`
+   * - :math:`H`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+     - :math:`\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}\times \left(\mathbf{a}-\mathbf{r}_{(i,j)}\right)+\frac{p}{2\pi}\dot{\theta}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+   * - :math:`F`
+     - 0
+     - :math:`\dot{d}_{(i,j)}\mathbf{\hat{n}}_{(i,j)}`
+
+
 
 Hence, for each :math:`\text{k}^{\text{th}}` path :math:`p_k` in
 :math:`\widetilde{P}`, the linear velocity of the end-effector is given
@@ -121,23 +131,23 @@ by
 
 In step 5, the velocity vector of the end-effector is formulated by
 using :math:`\mathbf{v}^{(1)}` and :math:`\mathbf{\omega}^{(1)}`, as
-shown in equation (1). This would be a function of not just the active
+shown in the equation below. This would be a function of not just the active
 joint velocities but also the passive joint velocities, and hence it is
 not sufficient to derive the Jacobian matrix. The passive joints are to
 be written in terms of active joint angles in order to be able to derive
 the Jacobian matrix.
 
-.. math:: \mathbf{V_e} = \begin{Bmatrix} \mathbf{v} \\ \mathbf{\omega} \end{Bmatrix} = \begin{Bmatrix} \mathbf{v}^{(1)} \\ \mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p} \tag{1}
+.. math:: \mathbf{V_e} = \begin{Bmatrix} \mathbf{v} \\ \mathbf{\omega} \end{Bmatrix} = \begin{Bmatrix} \mathbf{v}^{(1)} \\ \mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p}
 
 In step 6, the constraints equations are formed by considering
 :math:`\mathbf{v^{(i)}}-\mathbf{v}^{(1)}=0` for all :math:`i\neq 1` and
 :math:`\mathbf{\omega^{(j)}}-\mathbf{\omega}^{(1)}=0` for all
 :math:`j\neq 1`. These form a linear system of equations in active and
-passive joint velocities as shown in equation (2), from which the
+passive joint velocities as shown in the equation below, from which the
 passive joint velocities can be written in terms of active joint
 velocities as shown in equation (5).
 
-.. math:: \begin{Bmatrix} \mathbf{v}^{(2)}-\mathbf{v}^{(1)} \\ \mathbf{v}^{(3)}-\mathbf{v}^{(1)} \\ \vdots \\ \mathbf{v}^{(N_{\mathbf{v}})}-\mathbf{v}^{(1)} \\ \mathbf{\omega}^{(2)}-\mathbf{\omega}^{(1)} \\ \mathbf{\omega}^{(3)}-\mathbf{\omega}^{(1)} \\ \vdots \\ \mathbf{\omega}^{(N_{\mathbf{\omega}})}-\mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a}+\mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0} \tag{2}
+.. math:: \begin{Bmatrix} \mathbf{v}^{(2)}-\mathbf{v}^{(1)} \\ \mathbf{v}^{(3)}-\mathbf{v}^{(1)} \\ \vdots \\ \mathbf{v}^{(N_{\mathbf{v}})}-\mathbf{v}^{(1)} \\ \mathbf{\omega}^{(2)}-\mathbf{\omega}^{(1)} \\ \mathbf{\omega}^{(3)}-\mathbf{\omega}^{(1)} \\ \vdots \\ \mathbf{\omega}^{(N_{\mathbf{\omega}})}-\mathbf{\omega}^{(1)} \end{Bmatrix} = \mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a}+\mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0}
 
 In step 7, the existence of superfluous DOF(s), if any, is idenified. In
 the context of this paper, a superfluous DOF is DOF that does not each
@@ -234,10 +244,9 @@ serial manipulators is as shown in equation (8).
 
 .. math:: \mathbf{V_e} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\mathbf{\Omega_p} \tag{4}
 
-.. math::
+.. math:: \mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a} + \mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0}
 
-   \mathbf{A}\mathbf{\Omega} = \mathbf{A_a}\mathbf{\Omega_a} + \mathbf{A_p}\mathbf{\Omega_p} = \mathbf{0} \\
-           \Rightarrow \mathbf{\Omega_p}=-\mathbf{A^{-1}_p}\mathbf{A_a}\mathbf{\Omega_a} \tag{5}
+.. math:: \Rightarrow \mathbf{\Omega_p}=-\mathbf{A^{-1}_p}\mathbf{A_a}\mathbf{\Omega_a} \tag{5}
 
 .. math:: \mathbf{V_e} = \mathbf{J}\mathbf{\Omega} = \mathbf{J_a}\mathbf{\Omega_a}+\mathbf{J_p}\left(-\mathbf{A^{-1}_p}\mathbf{A_a}\mathbf{\Omega_a}\right) = \left(\mathbf{J_a}-\mathbf{J_p}\mathbf{A^{-1}_p}\mathbf{A_a}\right)\mathbf{\Omega_a} = \mathbf{\widetilde{J}}\mathbf{\Omega_a} \tag{6}
 
