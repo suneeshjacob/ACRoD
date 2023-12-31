@@ -228,9 +228,6 @@ class Jacobian(object):
 
     Both the attributes and the parameters are shown under the heading of **Parameters** below.
     
-    Attributes:
-    -----------
-    
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
     :param type: robot_type (either 'planar' or 'spatial').
