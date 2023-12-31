@@ -251,11 +251,6 @@ This needs to be added to the earlier system of equations, in order to
 make :math:`\bf{A_p}` a square matrix, with which the passive joint
 velocities can be written in terms of active joint velocities.
 
-Implementation in ACRoD
------------------------
-
-The implementation of Jacobian computation for this robot is shown
-`here <../codes/RSSRSSR_code.md>`__.
 
 References
 ----------

@@ -219,8 +219,3 @@ Constraint equations:
 
    \bf{\widetilde{J}} = \bf{J_a}-\bf{J_p}\bf{A^{-1}\_p}\bf{A_a}
 
-Implementation in ACRoD
------------------------
-
-The implementation of Jacobian computation for this robot is shown
-`here <../codes/4R4P_code.md>`__.

@@ -146,8 +146,3 @@ The output produced by running the above code, is shown below.
           [-2, -1, -3],
           [ 1,  1,  1]])
 
-Mathematical derivation of Jacobian
------------------------------------
-
-The mathematical derivation is shown
-`here <../maths/3R_serial_robot.md>`__.

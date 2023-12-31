@@ -310,8 +310,3 @@ The above scripts give the lists of all the independent connecting paths
 pertaining to linear and angular velocities (only link numbers are
 shown, indexed from 0).
 
-Mathematical derivation of Jacobian
------------------------------------
-
-The mathematical derivation is shown
-`here <../maths/4R4P_parallel_robot.md>`__.

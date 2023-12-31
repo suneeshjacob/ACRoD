@@ -85,8 +85,3 @@ Therefore, the Jacobian of the manipulator is
 Since it is a serial manipulator, the matrices :math:`\bf{J_p}`,
 :math:`\bf{A_a}` and :math:`\bf{A_p}` do not come into picture.
 
-Implementation in ACRoD
------------------------
-
-The implementation of Jacobian computation for this robot is shown
-`here <../codes/RRR_code.md>`__.
