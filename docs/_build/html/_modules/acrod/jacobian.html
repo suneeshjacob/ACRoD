@@ -87,11 +87,24 @@
 
 <div class="viewcode-block" id="check_robot_topology_matrix"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.check_robot_topology_matrix">[docs]</a><span class="k">def</span> <span class="nf">check_robot_topology_matrix</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    check_robot_topology_matrix function performs several checks on the logical consistency of Robot-Topology matrix.</span>
+<span class="sd">    `check_robot_topology_matrix` function performs several checks on the logical consistency of Robot-Topology matrix.</span>
 
 <span class="sd">    this function takes the robot-topology matrix as the input argument.</span>
 
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+
 <span class="sd">    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).</span>
+<span class="sd">    :type M: numpy.ndarray</span>
+<span class="sd">    </span>
+<span class="sd">    :raises ValueError: If the Robot-Topology matrix is not a 2D array.</span>
+<span class="sd">    :raises ValueError: If the Robot-Topology matrix is not a square matrix.</span>
+<span class="sd">    :raises ValueError: If any of the diagonal elements of the Robot-Topology matrix is not 9.</span>
+<span class="sd">    :raises ValueError: If the upper off-diagonal elements of the Robot-Topology matrix are other than the integers between 0 and 7.</span>
+<span class="sd">    :raises ValueError: If the lower off-diagonal elements of the Robot-Topology matrix are other than the integers 0 and 1.</span>
+<span class="sd">    :raises ValueError: If the Robot-Topology matrix has its lower off-diagonal element 1 but the corresponding upper off-diagonal element is 0.</span>
+<span class="sd">    :raises ValueError: If the Robot-Topology matrix has its lower off-diagonal element 1 but the corresponding upper off-diagonal element other than the integers 1 and 2.</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">shape</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
@@ -118,13 +131,16 @@
 
 <div class="viewcode-block" id="all_joints_connected_to_the_link"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.all_joints_connected_to_the_link">[docs]</a><span class="k">def</span> <span class="nf">all_joints_connected_to_the_link</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">linknumber</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    all_joints_connected_to_the_link function gives a list of all the joints connected to a given link for a given robot-topology matrix.</span>
+<span class="sd">    `all_joints_connected_to_the_link` function gives a list of all the joints connected to a given link for a given robot-topology matrix.</span>
 
 <span class="sd">    this function takes the robot-topology matrix and the link number as input arguments.</span>
 
 <span class="sd">    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :param linknumber: link number (it is to be indexed from 0, not from 1).</span>
+<span class="sd">    :type linknumber: int</span>
 <span class="sd">    :return: a list of size n-1 items specifying the type of joint with which the given link is connected to every other joint. The order of joints corresponds to the ascending order of the link numbers.</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="n">k</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">linknumber</span><span class="p">))</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">linknumber</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
@@ -137,13 +153,16 @@
 
 <div class="viewcode-block" id="all_links_connected_to_the_link"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.all_links_connected_to_the_link">[docs]</a><span class="k">def</span> <span class="nf">all_links_connected_to_the_link</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">linknumber</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    all_links_connected_to_the_link function gives a list of all the links connected to a given link for a given robot-topology matrix.</span>
+<span class="sd">    `all_links_connected_to_the_link` function gives a list of all the links connected to a given link for a given robot-topology matrix.</span>
 
 <span class="sd">    this function takes the robot-topology matrix and the link number as input arguments.</span>
 
 <span class="sd">    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :param linknumber: link number (it is to be indexed from 0, not from 1).</span>
+<span class="sd">    :type linknumber: int</span>
 <span class="sd">    :return: a list of items specifying the indices of links with which the given link is connected, in ascending order of the link numbers.</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">all_joints_connected_to_the_link</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">linknumber</span><span class="p">)</span>
     <span class="n">k2</span> <span class="o">=</span> <span class="n">k</span><span class="p">[:</span><span class="n">linknumber</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">+</span><span class="n">k</span><span class="p">[</span><span class="n">linknumber</span><span class="p">:]</span>
@@ -153,12 +172,14 @@
 <span class="c1"># Function for getting all possible paths</span>
 <div class="viewcode-block" id="all_paths"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.all_paths">[docs]</a><span class="k">def</span> <span class="nf">all_paths</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    all_paths function gives a list of all paths connecting the base link and the end-effector link for a given robot-topology matrix.</span>
+<span class="sd">    `all_paths` function gives a list of all paths connecting the base link and the end-effector link for a given robot-topology matrix.</span>
 
 <span class="sd">    this function takes the robot-topology matrix as input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: a list of lists of items each corresponding to a path and specifying the sequence of links in that path that are connected from the base link to the end-effector link (the link numbers are indexed from 0, not from 1).</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">M</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
     <span class="n">P</span> <span class="o">=</span> <span class="p">[]</span>
@@ -183,12 +204,14 @@
 
 <div class="viewcode-block" id="get_all_combinations_of_two_parts_of_manipulator"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.get_all_combinations_of_two_parts_of_manipulator">[docs]</a><span class="k">def</span> <span class="nf">get_all_combinations_of_two_parts_of_manipulator</span><span class="p">(</span><span class="n">M_size</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    get_all_combinations_of_two_parts_of_manipulator function gives all possible combinations of splitting the given set of links into two parts.</span>
+<span class="sd">    `get_all_combinations_of_two_parts_of_manipulator` function gives all possible combinations of splitting the given set of links into two parts.</span>
 
 <span class="sd">    this function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.</span>
 
 <span class="sd">    :param M_size: The number of links of the robot.</span>
+<span class="sd">    :type M_size: int</span>
 <span class="sd">    :return: the entire possible list of items each containing the entire links grouped into two parts.</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">output_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">M_size</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -219,12 +242,14 @@
 
 <div class="viewcode-block" id="graph_adjacency_matrix_from_robot_topology_matrix"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.graph_adjacency_matrix_from_robot_topology_matrix">[docs]</a><span class="k">def</span> <span class="nf">graph_adjacency_matrix_from_robot_topology_matrix</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    graph_adjacency_matrix_from_robot_topology_matrix function converts a robot-topology matrix to its graph adjacency matrix. by doing so, it would no longer have the information to identify the actuating joints.</span>
+<span class="sd">    `graph_adjacency_matrix_from_robot_topology_matrix` function converts a robot-topology matrix to its graph adjacency matrix. by doing so, it would no longer have the information to identify the actuating joints.</span>
 
 <span class="sd">    This function takes robot-topology matrix as input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: the corresponding graph adjacency matrix.</span>
+<span class="sd">    :rtype: numpy.ndarray</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">B</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="k">if</span> <span class="n">j</span><span class="o">&gt;</span><span class="n">i</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span>
@@ -234,12 +259,14 @@
 <span class="c1"># Function for getting information about superfluous DOF</span>
 <div class="viewcode-block" id="superfluous"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.superfluous">[docs]</a><span class="k">def</span> <span class="nf">superfluous</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    superfluous function gives the information related to superfluous DOF if there are any, from the robot-topology matrix.</span>
+<span class="sd">    `superfluous` function gives the information related to superfluous DOF if there are any, from the robot-topology matrix.</span>
 
 <span class="sd">    This function takes robot-topology matrix as input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: a list of pieces of information regarding superfluous DOF. each piece of superfluous DOF would be of the format of [c_be, [(i,j),(k,l)]], where c_be is the part of links that has both base and the end-effector links, and [(i,j),(k,l)] are the points indices of two spherical joints corresponding to the superfluous DOF, in which the links j, k lie on the other part than c_be. if there are no superfluous DOF then it returns an empty list.</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">S</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">M</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
@@ -280,7 +307,7 @@
 
 <div class="viewcode-block" id="Jacobian"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian">[docs]</a><span class="k">class</span> <span class="nc">Jacobian</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either &#39;spatial&#39; or &#39;planar&#39;. by default, it is &#39;spatial&#39;.</span>
+<span class="sd">    `Jacobian` class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either &#39;spatial&#39; or &#39;planar&#39;. by default, it is &#39;spatial&#39;.</span>
 
 <span class="sd">    Both the attributes and the parameters are shown under the heading of **Parameters** below.</span>
 <span class="sd">    </span>
@@ -362,6 +389,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">endeffector_variables_symbolic</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">superfluous_dof_information</span> <span class="o">=</span> <span class="kc">None</span>
 <div class="viewcode-block" id="Jacobian.get_all_paths"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian.get_all_paths">[docs]</a>    <span class="k">def</span> <span class="nf">get_all_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `get_all_paths` is a method that takes no input arguments but takes the graph adjacency matrix from the `M` attribute of the class and updates the `P` attribute of the class with all paths from base link to end-effector link, in list format. Additionally, based on the number of paths, it updates the `is_serial` attribute of the class with appropriate boolean value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span>
         <span class="n">P</span> <span class="o">=</span> <span class="n">all_paths</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">P</span> <span class="o">=</span> <span class="n">P</span>
@@ -370,6 +400,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_serial</span> <span class="o">=</span> <span class="kc">False</span></div>
 <div class="viewcode-block" id="Jacobian.get_independent_paths"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian.get_independent_paths">[docs]</a>    <span class="k">def</span> <span class="nf">get_independent_paths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `get_independent_paths` is a method that takes no input arguments but takes the graph adjacency matrix from the `M` attribute of the class and the paths from the `P` attribute of the class, and updates the attributes `P_tilde`, `P_tilde_omega`, `indices_P_tilde` and `indices_P_tilde_omega`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span>
         <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span>
         <span class="n">P_tilde</span><span class="p">,</span> <span class="n">P_tilde_omega</span><span class="p">,</span> <span class="n">indices_P_tilde</span><span class="p">,</span> <span class="n">indices_P_tilde_omega</span> <span class="o">=</span> <span class="n">from_P_to_P_tilde</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
@@ -378,6 +411,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">indices_P_tilde</span> <span class="o">=</span> <span class="n">indices_P_tilde</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indices_P_tilde_omega</span> <span class="o">=</span> <span class="n">indices_P_tilde_omega</span></div>
 <div class="viewcode-block" id="Jacobian.execute_equations"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian.execute_equations">[docs]</a>    <span class="k">def</span> <span class="nf">execute_equations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `execute_equations` is a method that takes no input arguments but takes the attributes `M`, `P`, `type`, `indices_P_tilde` and `indices_P_tilde_omega` of the class, and updates the attributes `superfluous_dof_information`, `Ja`, `Jp`, `Aa`, `Ap`, `parameters`, `parameters_symbolic`, `endeffector_variables_symbolic`, `Ja_func`, `Jp_func`, `Aa_func`, `Ap_func`, `active_joint_velocities`, `active_joint_velocities_symbolic`, `passive_joint_velocities` and `passive_joint_velocities_symbolic`. For serial manipulator, passive joints do not come into picture, and hence the attributes `Jp`, `Aa`, `Ap`, `Jp_func`, `Aa_func`, `Ap_func`, `passive_joint_velocities` and `passive_joint_velocities_symbolic` would remain with `None` value. Likewise, for manipulators without superfluous DOF, the attribute `superfluous_dof_information` would remain with `None` value. Additionally, it returns the $J_a$ function `Ja_func`, the $J_p$ function `Jp_func`, the $A_a$ function `Aa_func`, the $A_p$ function `Ap_func`, the list of active joint velocities (not symbolic) `active_jointvelocities`, the list of passive joint velocities (not symbolic) `passive_jointvelocities`, and the list of decision variables (not symbolic) `decision_variables_str`.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: The $J_a$ function `Ja_func`, the $J_p$ function `Jp_func`, the $A_a$ function `Aa_func`, the $A_p$ function `Ap_func`, the list of active joint velocities (not symbolic) `active_jointvelocities`, the list of passive joint velocities (not symbolic) `passive_jointvelocities`, and the list of decision variables (not symbolic) `decision_variables_str`.</span>
+<span class="sd">        :rtype: tuple</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">M</span>
         <span class="n">P</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span>
         <span class="n">robot_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span>
@@ -528,11 +567,23 @@
         <span class="k">return</span> <span class="n">Ja_func</span><span class="p">,</span> <span class="n">Jp_func</span><span class="p">,</span> <span class="n">Aa_func</span><span class="p">,</span> <span class="n">Ap_func</span><span class="p">,</span> <span class="n">active_jointvelocities</span><span class="p">,</span> <span class="n">passive_jointvelocities</span><span class="p">,</span> <span class="n">decision_variables_str</span></div>
 
 <div class="viewcode-block" id="Jacobian.process_functions"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian.process_functions">[docs]</a>    <span class="k">def</span> <span class="nf">process_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `process_functions` is a method that takes no input arguments but executes the methods `get_all_paths`, `get_independent_paths` and `execute_equations`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_all_paths</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_independent_paths</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">execute_equations</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Jacobian.get_jacobian_function"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.Jacobian.get_jacobian_function">[docs]</a>    <span class="k">def</span> <span class="nf">get_jacobian_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MoorePenrose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        `get_jacobian_function` is a method that takes no necessary input arguments (although takes optional parameter `MoorePenrose` as a boolean value) and executes `process_functions` method and collects the functions (as needed) from attributes `Ja_func`, `Ja_func`, `Ja_func` and `Ja_func`, and returns a function for the final Jacobian matrix.</span>
+
+<span class="sd">        :param MoorePenrose: This is an optional parameter, which if true performs a Moore-Penrose inverse of $A_P$ instead of normal inverse, while preparing the final Jacobian matrix function.</span>
+<span class="sd">        :type MoorePenrose: bool</span>
+<span class="sd">        :return: A callable function that accepts a list of end-effector point and a list of dimensional parameters as input arguments, and returns the final Jacobian matrix in numpy.array format.</span>
+<span class="sd">        :rtype: Callable</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">process_functions</span><span class="p">()</span>
         <span class="n">Ja</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Ja_func</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_serial</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
@@ -549,14 +600,18 @@
 
 <div class="viewcode-block" id="vel_path_planar"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.vel_path_planar">[docs]</a><span class="k">def</span> <span class="nf">vel_path_planar</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">available_variables</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    vel_path_planar function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for planar manipulators.</span>
+<span class="sd">    `vel_path_planar` function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for planar manipulators.</span>
 
 <span class="sd">    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :param path: a given path (containing link numbers in order) in list format.</span>
+<span class="sd">    :type path: list</span>
 <span class="sd">    :param available_variables: a list of available variables (each of them being in string format).</span>
+<span class="sd">    :type available_variables: list</span>
 <span class="sd">    :return: the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.</span>
+<span class="sd">    :rtype: tuple</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">executions_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">linear_velocity</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -606,14 +661,18 @@
 
 <div class="viewcode-block" id="vel_path"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.vel_path">[docs]</a><span class="k">def</span> <span class="nf">vel_path</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">available_variables</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    vel_path function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for spatial manipulators.</span>
+<span class="sd">    `vel_path` function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for spatial manipulators.</span>
 
 <span class="sd">    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :param path: a given path (containing link numbers in order) in list format.</span>
+<span class="sd">    :type path: list</span>
 <span class="sd">    :param available_variables: a list of available variables (each of them being in string format).</span>
+<span class="sd">    :type available_variables: list</span>
 <span class="sd">    :return: the expression for linear velocity (in string format, to be executed), the expression for angular velocity (in string format, to be executed), a list of expressions for symbolic variables (in string format, to be executed), and the updated available_variables.</span>
+<span class="sd">    :rtype: tuple</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">executions_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">linear_velocity</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
@@ -756,12 +815,14 @@
 
 <div class="viewcode-block" id="get_jointvelocities_list"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.get_jointvelocities_list">[docs]</a><span class="k">def</span> <span class="nf">get_jointvelocities_list</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    get_jointvelocities_list function gets the expressions for active and passive joint velocities (in string form, to be executed), from the corresponding robot-topology matrix.</span>
+<span class="sd">    `get_jointvelocities_list` function gets the expressions for active and passive joint velocities (in string form, to be executed), from the corresponding robot-topology matrix.</span>
 
 <span class="sd">    this function takes robot-topology matrix as the input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: a list of active joint velocities (each in string format) and a list of passive joint velocities (each in string format).</span>
+<span class="sd">    :rtype: list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">active_jointvelocities_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">passive_jointvelocities_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -798,13 +859,16 @@
 
 <div class="viewcode-block" id="from_P_to_P_tilde"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.from_P_to_P_tilde">[docs]</a><span class="k">def</span> <span class="nf">from_P_to_P_tilde</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    from_P_to_P_tilde function gives P_tilde and P_tilde_omega from P, by using robot-topology matrix. it also gives the corresponding indices of P for each of the elements of P_tilde and P_tilde_omega.</span>
+<span class="sd">    `from_P_to_P_tilde` function gives P_tilde and P_tilde_omega from P, by using robot-topology matrix. it also gives the corresponding indices of P for each of the elements of P_tilde and P_tilde_omega.</span>
 
 <span class="sd">    this function takes the list P and the robot-topology matrix as the input arguments.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :param P: list of all paths, denoted by P.</span>
+<span class="sd">    :type P: list</span>
 <span class="sd">    :return: P_tilde in list format, P_tilde_omega in list format, independent_path_indices in list format and independent_omega_path_indices in list format.</span>
+<span class="sd">    :rtype: tuple</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">V_i_j_vector</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">Cv</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([]),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
@@ -834,12 +898,14 @@
 
 <div class="viewcode-block" id="get_variables_list_planar"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.get_variables_list_planar">[docs]</a><span class="k">def</span> <span class="nf">get_variables_list_planar</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    get_variables_list_planar function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for planar manipulators.</span>
+<span class="sd">    `get_variables_list_planar` function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for planar manipulators.</span>
 
 <span class="sd">    this function takes robot-topology matrix as the input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">variables_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)):</span>
@@ -860,12 +926,14 @@
 
 <div class="viewcode-block" id="get_variables_list"><a class="viewcode-back" href="../../acrod.html#acrod.jacobian.get_variables_list">[docs]</a><span class="k">def</span> <span class="nf">get_variables_list</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    get_variables_list function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for spatial manipulators.</span>
+<span class="sd">    `get_variables_list` function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for spatial manipulators.</span>
 
 <span class="sd">    this function takes robot-topology matrix as the input argument.</span>
 
 <span class="sd">    :param M: robot-topology matrix.</span>
+<span class="sd">    :type M: numpy.ndarray</span>
 <span class="sd">    :return: a dict of keys representing the indices of joints and the corresponding values being lists of parameters (each parameter in string format).</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">variables_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)):</span>
