@@ -180,7 +180,7 @@ For full documentation, visit the documentation page [here](https://acrod.readth
 ## Community Guidelines
 
 - For contribution to the software:
-  - In order to contribute to the software, please consider using the [pull request feature](https://github.com/suneeshjacob/ACRoD/issues) of GitHub.
+  - In order to contribute to the software, please consider using the [pull request feature](https://github.com/suneeshjacob/ACRoD/pulls) of GitHub.
 - For reporting issues with the software:
   - For reporting issues or problems, please use [issues](https://github.com/suneeshjacob/ACRoD/issues).
 - For support:
