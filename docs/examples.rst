@@ -13,7 +13,7 @@ Code
 ====
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    3R_code
    4R4P_code

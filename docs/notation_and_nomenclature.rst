@@ -6,9 +6,11 @@ Notation for describing the parameters of spatial manipulators
 
 The notations presented in this document are modified versions of the
 notations mentioned in `[1] <#1>`__, which can be formulated directly
-from the `robot-topology matrix <Robot_Topology_Matrix.md>`__, a is a
+from the `robot_topology_matrix.rst`_, a is a
 modified form of matrix-based representation of robots mentioned in
 `[2] <#2>`__. The notations are explained below in detail.
+
+.. _robot_topology_matrix.rst: ../../robot_topology_matrix.rst
 
 The robot-topology matrix considered in this study consists of the
 diagonal elements corresponding to the links of the manipulator, in
