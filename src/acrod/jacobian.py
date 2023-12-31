@@ -199,6 +199,11 @@ class Jacobian(object):
     """
     Jacobian class takes the robot-topology matrix as the input. additionally, it takes the robot_type argument (optional) as either 'spatial' or 'planar'. by default, it is 'spatial'.
 
+    Both the attributes and the parameters are shown under the heading of **Parameters** below.
+    
+    Attributes:
+    -----------
+    
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
     :param type: robot_type (either 'planar' or 'spatial').
