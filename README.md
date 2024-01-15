@@ -159,15 +159,15 @@ The link lengths $l_2$ and $l_3$ are given by $l_2 = \lVert \textbf{r}\_{12}-\te
 ```py
 from numpy.linalg import norm
 
-l1 = norm(r23-r12)
-l2 = norm(r23-end_effector_point)
-print(l1,l2,res.fun)
+l2 = norm(r23-r12)
+l3 = norm(r23-end_effector_point)
+print(l2,l3,res.fun)
 ```
 Output:
 ```py
 3.4641016153289317 2.236067976155377 1.0000000007904777
 ```
-The above output shows that for $l_1=3.464$ and $l_2=2.236$, the robot has the condition number approximately equal to $1.0$, which signifies optimal performance.
+The above output shows that for $l_2=3.464$ and $l_3=2.236$, the robot has the condition number approximately equal to $1.0$, which signifies optimal performance.
 
 ## Examples
 
