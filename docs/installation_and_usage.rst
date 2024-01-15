@@ -214,8 +214,8 @@ below, the link lengths of 2R robot can be computed.
 
    from numpy.linalg import norm
 
-   l1 = norm(r23-r12)
-   l2 = norm(r23-end_effector_point)
+   l2 = norm(r23-r12)
+   l3 = norm(r23-end_effector_point)
    print(l1,l2,res.fun)
 
 Output:
@@ -224,7 +224,7 @@ Output:
 
    3.4641016153289317 2.236067976155377 1.0000000007904777
 
-The above output shows that for :math:`l_1=3.464` and :math:`l_2=2.236`,
+The above output shows that for :math:`l_2=3.464` and :math:`l_3=2.236`,
 the robot has the condition number approximately equal to :math:`1.0`,
 which signifies optimal performance.
 
