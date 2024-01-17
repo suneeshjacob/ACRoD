@@ -8,8 +8,7 @@ def check_robot_topology_matrix(M):
 
     this function takes the robot-topology matrix as the input argument.
 
-    Parameters:
-    -----------
+
 
     :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :type M: numpy.ndarray
