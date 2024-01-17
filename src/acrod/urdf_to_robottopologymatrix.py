@@ -13,14 +13,14 @@ def get_joints_from_urdf(root):
                     if child2.tag == 'child':
                         child_link = child2.attrib['link']
                 joints_info.append((child.attrib['name'], child.attrib['type'], parent_link, child_link,))
-    return joints_info
+    return sorted(joints_info, key=lambda x:x[0])
 
 def get_links_from_urdf(root):
     links_info = []
     for child in root:
         if child.tag == 'link':
             links_info.append(child.attrib['name'])
-    return links_info
+    return sorted(links_info)
 
 import xml.etree.ElementTree as ET
 
@@ -36,3 +36,10 @@ child_links = set(list(zip(*all_joints))[3])
 
 base_links = parent_links - child_links
 endeffector_links = child_links - parent_links
+
+base_link = sorted(base_links)[0]
+endeffector_link = sorted(endeffector_links)[0]
+
+n = len(all_links)
+M = 9*numpy.eye(n)
+
