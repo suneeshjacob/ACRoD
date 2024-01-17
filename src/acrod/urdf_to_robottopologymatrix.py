@@ -61,7 +61,7 @@ for i in all_joints:
     if all_joints[i][0] == 'prismatic':
         M[ind1,ind2] = 2
         M[ind2,ind1] = 1
-    elif all_joints[i][0] == 'revolute':
+    elif all_joints[i][0] in ['revolute','continuous']:
         M[ind1,ind2] = 1
         M[ind2,ind1] = 1
     elif all_joints[i][0] == 'planar':
