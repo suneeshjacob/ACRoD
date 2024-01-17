@@ -48,3 +48,6 @@ M = 9*numpy.eye(n)
 
 links_list = [base_link] + all_links[numpy.logical_and(all_links != base_link, all_links != endeffector_link)].tolist() + [endeffector_link]
 links_dict = dict(enumerate(links_list))
+links_dict_inverse = {v:k for k,v in enumerate(links_list)}
+
+
