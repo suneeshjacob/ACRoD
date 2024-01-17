@@ -51,3 +51,19 @@ links_dict = dict(enumerate(links_list))
 links_dict_inverse = {v:k for k,v in enumerate(links_list)}
 
 
+for i in all_joints:
+    ind1 = links_dict_inverse[all_joints[i][1]]
+    ind2 = links_dict_inverse[all_joints[i][2]]
+    if ind1>ind2:
+        temp = ind2
+        ind2 = ind1
+        ind1 = temp
+    if all_joints[i][0] == 'prismatic':
+        M[ind1,ind2] = 2
+        M[ind2,ind1] = 1
+    elif all_joints[i][0] == 'revolute':
+        M[ind1,ind2] = 1
+        M[ind2,ind1] = 1
+    elif all_joints[i][0] == 'planar':
+        M[ind1,ind2] = 7
+
