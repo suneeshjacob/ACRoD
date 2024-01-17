@@ -21,7 +21,7 @@ def get_links_from_urdf(root):
     for child in root:
         if child.tag == 'link':
             links_info.append(child.attrib['name'])
-    return numpy.unique(sorted(links_info))
+    return list(enumerate(numpy.unique(sorted(links_info))))
 
 import xml.etree.ElementTree as ET
 
