@@ -32,8 +32,8 @@ root = tree.getroot()
 all_links = get_links_from_urdf(root)
 all_joints = get_joints_from_urdf(root)
 
-parent_links = set(list(zip(*all_joints))[2])
-child_links = set(list(zip(*all_joints))[3])
+parent_links = set(list(zip(*all_joints.values()))[1])
+child_links = set(list(zip(*all_joints.values()))[2])
 
 base_links = parent_links - child_links
 endeffector_links = child_links - parent_links
