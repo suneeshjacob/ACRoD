@@ -44,4 +44,7 @@ endeffector_link = sorted(endeffector_links)[0]
 n = len(all_links)
 M = 9*numpy.eye(n)
 
-links_list = []
+
+
+links_list = [base_link] + all_links[numpy.logical_and(all_links != base_link, all_links != endeffector_link)].tolist() + [endeffector_link]
+links_dict = dict(enumerate(links_list))
