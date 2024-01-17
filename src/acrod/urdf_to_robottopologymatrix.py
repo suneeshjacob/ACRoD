@@ -5,7 +5,7 @@ def get_joints_from_urdf(root):
     joints_info = []
     for child in root:
         if child.tag == 'joint':
-            if child.attrib['type'] in ['revolute', 'prismatic', 'planar']:
+            if child.attrib['type'] in ['revolute', 'continuous', 'prismatic', 'planar']:
                 parent_link = None
                 child_link = None
                 for child2 in child:
