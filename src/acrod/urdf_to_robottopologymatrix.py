@@ -67,3 +67,8 @@ for i in all_joints:
     elif all_joints[i][0] == 'planar':
         M[ind1,ind2] = 7
 
+def reduce_robottopologymatrix(M):
+    listofsumofalljointsconnectedtoeachlink = numpy.array([sum(all_joints_connected_to_the_link(M,i)) for i in range(len(M))])
+    lst = listofsumofalljointsconnectedtoeachlink==0
+    M_new = M[~lst,:][:,~lst]
+    return M_new
