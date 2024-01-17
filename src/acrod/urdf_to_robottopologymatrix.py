@@ -22,7 +22,7 @@ def get_links_from_urdf(root):
     for child in root:
         if child.tag == 'link':
             links_info.append(child.attrib['name'])
-    return list(enumerate(numpy.unique(sorted(links_info))))
+    return numpy.unique(sorted(links_info))
 
 
 filepath = r'/Users/apple/Downloads/T12.URDF'
@@ -44,3 +44,4 @@ endeffector_link = sorted(endeffector_links)[0]
 n = len(all_links)
 M = 9*numpy.eye(n)
 
+links_list = []
