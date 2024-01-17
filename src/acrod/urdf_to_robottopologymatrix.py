@@ -1,4 +1,5 @@
 import numpy
+import xml.etree.ElementTree as ET
 
 def get_joints_from_urdf(root):
     joints_info = []
@@ -23,7 +24,6 @@ def get_links_from_urdf(root):
             links_info.append(child.attrib['name'])
     return list(enumerate(numpy.unique(sorted(links_info))))
 
-import xml.etree.ElementTree as ET
 
 filepath = r'/Users/apple/Downloads/T12.URDF'
 tree = ET.parse(filepath)
