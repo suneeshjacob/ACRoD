@@ -15,7 +15,7 @@ def get_joints_from_urdf(root):
                 joints_info.append((child.attrib['name'], child.attrib['type'], parent_link, child_link,))
     
     #return {i[0]:i[1:] for i in sorted(joints_info, key=lambda x:x[0])}
-    return sorted(joints_info, key=lambda x:x[0])
+    return joints_info
 
 def get_links_from_urdf(root):
     links_info = []
