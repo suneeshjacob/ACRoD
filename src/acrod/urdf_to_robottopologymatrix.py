@@ -13,7 +13,8 @@ def get_joints_from_urdf(root):
                     if child2.tag == 'child':
                         child_link = child2.attrib['link']
                 joints_info.append((child.attrib['name'], child.attrib['type'], parent_link, child_link,))
-    return numpy.unique(sorted(joints_info, key=lambda x:x[0]))
+    
+    return {i[0]:i[1:] for i in numpy.unique(sorted(joints_info, key=lambda x:x[0]))}
 
 def get_links_from_urdf(root):
     links_info = []
