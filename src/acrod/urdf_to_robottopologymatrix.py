@@ -64,7 +64,7 @@ def from_urdf_to_matrix(path_to_urdf_file):
         elif all_joints[i][0] == 'planar':
             M[ind1,ind2] = 7
     
-    return M
+    return reduce_robottopologymatrix(M)
 
 def reduce_robottopologymatrix(M):
     listofsumofalljointsconnectedtoeachlink = numpy.array([sum(all_joints_connected_to_the_link(M,i)) for i in range(len(M))])
