@@ -1,3 +1,5 @@
+import numpy
+
 def get_joints_from_urdf(root):
     joints_info = []
     for child in root:
