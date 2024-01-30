@@ -9,3 +9,10 @@ acrod.jacobian module
    :undoc-members:
    :show-inheritance:
 
+acrod.urdf_to_robottopologymatrix module
+---------------------
+
+.. automodule:: acrod.urdf_to_robottopologymatrix
+   :members:
+   :undoc-members:
+   :show-inheritance:
