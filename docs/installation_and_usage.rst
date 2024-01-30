@@ -63,6 +63,10 @@ follows.
        )
    jac = Jacobian(M, robot_type = 'planar')
 
+Note: In order to use a URDF file as input, see `this link`_ for automatically extracting Robot-topology matrix directly from URDF file (with some limitations).
+
+.. _this link: mathematics_behind_jacobian_formulation.html
+
 Jacobian function is generated as shown below.
 
 .. code:: py
