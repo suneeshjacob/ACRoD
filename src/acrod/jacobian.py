@@ -6,7 +6,7 @@ def check_robot_topology_matrix(M):
     """
     `check_robot_topology_matrix` function performs several checks on the logical consistency of Robot-Topology matrix.
 
-    this function takes the robot-topology matrix as the input argument.
+    This function takes the robot-topology matrix as the input argument.
 
 
 
@@ -49,7 +49,7 @@ def all_joints_connected_to_the_link(M,linknumber):
     """
     `all_joints_connected_to_the_link` function gives a list of all the joints connected to a given link for a given robot-topology matrix.
 
-    this function takes the robot-topology matrix and the link number as input arguments.
+    This function takes the robot-topology matrix and the link number as input arguments.
 
     :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :type M: numpy.ndarray
@@ -71,7 +71,7 @@ def all_links_connected_to_the_link(M,linknumber):
     """
     `all_links_connected_to_the_link` function gives a list of all the links connected to a given link for a given robot-topology matrix.
 
-    this function takes the robot-topology matrix and the link number as input arguments.
+    This function takes the robot-topology matrix and the link number as input arguments.
 
     :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :type M: numpy.ndarray
@@ -90,7 +90,7 @@ def all_paths(M):
     """
     `all_paths` function gives a list of all paths connecting the base link and the end-effector link for a given robot-topology matrix.
 
-    this function takes the robot-topology matrix as input argument.
+    This function takes the robot-topology matrix as input argument.
 
     :param M: robot-topology matrix (of size nxn, to be given in numpy.array format).
     :type M: numpy.ndarray
@@ -122,7 +122,7 @@ def get_all_combinations_of_two_parts_of_manipulator(M_size):
     """
     `get_all_combinations_of_two_parts_of_manipulator` function gives all possible combinations of splitting the given set of links into two parts.
 
-    this function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.
+    This function takes the number of links (which is the same as the size of the robot-topology matrix) as input argument.
 
     :param M_size: The number of links of the robot.
     :type M_size: int
@@ -515,7 +515,7 @@ def vel_path_planar(M, path, available_variables):
     """
     `vel_path_planar` function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for planar manipulators.
 
-    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
+    This function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
@@ -576,7 +576,7 @@ def vel_path(M, path, available_variables):
     """
     `vel_path` function processes the strings to be executed for symbolic variabes and velocity expressions of a given path by using the robot-topology matrix, and it also updates the available_variables (so that only those variables that are unavailable are added, thereby avoiding redundancy). this is for spatial manipulators.
 
-    this function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
+    This function takes robot-topology matrix, the path and the available variables list (string format) as input arguments.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
@@ -730,7 +730,7 @@ def get_jointvelocities_list(M):
     """
     `get_jointvelocities_list` function gets the expressions for active and passive joint velocities (in string form, to be executed), from the corresponding robot-topology matrix.
 
-    this function takes robot-topology matrix as the input argument.
+    This function takes robot-topology matrix as the input argument.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
@@ -774,7 +774,7 @@ def from_P_to_P_tilde(P,M):
     """
     `from_P_to_P_tilde` function gives P_tilde and P_tilde_omega from P, by using robot-topology matrix. it also gives the corresponding indices of P for each of the elements of P_tilde and P_tilde_omega.
 
-    this function takes the list P and the robot-topology matrix as the input arguments.
+    This function takes the list P and the robot-topology matrix as the input arguments.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
@@ -813,7 +813,7 @@ def get_variables_list_planar(M):
     """
     `get_variables_list_planar` function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for planar manipulators.
 
-    this function takes robot-topology matrix as the input argument.
+    This function takes robot-topology matrix as the input argument.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
@@ -841,7 +841,7 @@ def get_variables_list(M):
     """
     `get_variables_list` function gives the expressions for parameters (representing locations and orientations of joints, in string form), from the corresponding robot-topology matrix. this is for spatial manipulators.
 
-    this function takes robot-topology matrix as the input argument.
+    This function takes robot-topology matrix as the input argument.
 
     :param M: robot-topology matrix.
     :type M: numpy.ndarray
