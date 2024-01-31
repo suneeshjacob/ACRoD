@@ -3,6 +3,16 @@ import xml.etree.ElementTree as ET
 from acrod.jacobian import all_joints_connected_to_the_link
 
 def get_joints_from_urdf(root):
+    """
+    `get_joints_from_urdf` function extracts a dictionary having information of all the joints in the XML object of the URDF file.
+
+    This function takes the XML object as input argument.
+
+    :param root: XML object of the URDF file (to be given in ElementTree.Element format).
+    :type M: ElementTree.Element
+    :return: a list of all joint names (from the XML object) as keys, eaching having a tuple of its corresponding type of the joint, parent link name and child link name as values.
+    :rtype: dict
+    """
     joints_info = []
     for child in root:
         if child.tag == 'joint':
