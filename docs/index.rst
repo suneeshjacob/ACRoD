@@ -22,6 +22,7 @@ Currently available features
    notation_and_nomenclature
    robot_topology_matrix
    mathematics_behind_jacobian_formulation
+   urdf_to_robot_topology_matrix
    community_guidelines
    modules
 
