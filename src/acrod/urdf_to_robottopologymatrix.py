@@ -29,6 +29,16 @@ def get_joints_from_urdf(root):
     return {i[0]:i[1:] for i in sorted(joints_info, key=lambda x:x[0])}
 
 def get_links_from_urdf(root):
+    """
+    `get_links_from_urdf` function extracts a list having information of names of all the link in the XML object of the URDF file and outputs the list in numpy.array format.
+
+    This function takes the XML object as input argument.
+
+    :param root: XML object of the URDF file (to be given in ElementTree.Element format).
+    :type M: ElementTree.Element
+    :return: a numpy array containing all the link names (from the XML object).
+    :rtype: numpy.ndarray
+    """
     links_info = []
     for child in root:
         if child.tag == 'link':
