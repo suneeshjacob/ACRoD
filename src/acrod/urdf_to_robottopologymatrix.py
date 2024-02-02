@@ -102,7 +102,7 @@ def reduce_robottopologymatrix(M):
 
     This function takes the robot-topology matrix as the input argument (in numpy array format).
 
-    :param root: XML object of the URDF file (to be given in ElementTree.Element format).
+    :param M: The robot-topology matrix from which the unconnected links are to be removed off.
     :type M: numpy.ndarray
     :return: A reduced robot-topology matrix by removing the unconnected links.
     :rtype: numpy.ndarray
