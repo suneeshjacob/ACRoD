@@ -51,10 +51,10 @@ def from_urdf_to_matrix(path_to_urdf_file):
 
     The URDF file is expected to have only one base link and only one end-effector link.
 
-    :param root: XML object of the URDF file (to be given in ElementTree.Element format).
-    :type M: ElementTree.Element
-    :return: a list of all joint names (from the XML object) as keys, eaching having a tuple of its corresponding type of the joint, parent link name and child link name as values.
-    :rtype: dict
+    :param path_to_urdf_file: A valid path for the URDF file.
+    :type M: str
+    :return: A corresponding robot-topology matrix in numpy array format.
+    :rtype: numpy.ndarray
     """
     tree = ET.parse(path_to_urdf_file)
     root = tree.getroot()
@@ -98,14 +98,14 @@ def from_urdf_to_matrix(path_to_urdf_file):
 
 def reduce_robottopologymatrix(M):
     """
-    `get_joints_from_urdf` function extracts a dictionary having information of all the joints in the XML object of the URDF file.
+    `reduce_robottopologymatrix` function reduces the robot topology matrix that has unconnected link(s) by removing those link(s).
 
-    This function takes the XML object as input argument.
+    This function takes the robot-topology matrix as the input argument (in numpy array format).
 
     :param root: XML object of the URDF file (to be given in ElementTree.Element format).
-    :type M: ElementTree.Element
-    :return: a list of all joint names (from the XML object) as keys, eaching having a tuple of its corresponding type of the joint, parent link name and child link name as values.
-    :rtype: dict
+    :type M: numpy.ndarray
+    :return: A reduced robot-topology matrix by removing the unconnected links.
+    :rtype: numpy.ndarray
     """
     listofsumofalljointsconnectedtoeachlink = numpy.array([sum(all_joints_connected_to_the_link(M,i)) for i in range(len(M))])
     lst = listofsumofalljointsconnectedtoeachlink==0
