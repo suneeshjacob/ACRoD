@@ -65,7 +65,7 @@ follows.
 
 Note: In order to use a URDF file as input, see `this link`_ for automatically extracting Robot-topology matrix directly from URDF file (with some limitations).
 
-.. _this link: mathematics_behind_jacobian_formulation.html
+.. _this link: urdf_to_robot_topology_matrix.rst.html
 
 Jacobian function is generated as shown below.
 
