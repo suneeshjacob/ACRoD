@@ -1,6 +1,6 @@
 import numpy
 import xml.etree.ElementTree as ET
-from acrod.jacobian import all_joints_connected_to_the_link
+from src.acrod.jacobian import all_joints_connected_to_the_link
 
 def get_joints_from_urdf(root):
     """
