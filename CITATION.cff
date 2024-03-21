@@ -1,32 +1,40 @@
-cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+cff-version: "1.2.0"
 authors:
-- family-names: "Akkarapakam"
-  given-names: "Suneesh Jacob"
+- family-names: Jacob
+  given-names: Akkarapakam Suneesh
   orcid: "https://orcid.org/0000-0002-9855-9368"
-- family-names: "Datta"
-  given-names: "Rituparna"
+- family-names: Datta
+  given-names: Rituparna
   orcid: "https://orcid.org/0000-0003-3816-2438"
-title: "ACRoD"
-version: 1.2.0
-doi: 10.21105/joss.05927
-date-released: 2024-03-15
-url: "https://github.com/suneeshjacob/ACRoD"
+contact:
+- family-names: Jacob
+  given-names: Akkarapakam Suneesh
+  orcid: "https://orcid.org/0000-0002-9855-9368"
+doi: 10.5281/zenodo.10819242
+message: If you use this software, please cite our article in the
+  Journal of Open Source Software.
 preferred-citation:
-  type: article
   authors:
-  - family-names: "Akkarapakam"
-    given-names: "Suneesh Jacob"
+  - family-names: Jacob
+    given-names: Akkarapakam Suneesh
     orcid: "https://orcid.org/0000-0002-9855-9368"
-  - family-names: "Datta"
-    given-names: "Rituparna"
+  - family-names: Datta
+    given-names: Rituparna
     orcid: "https://orcid.org/0000-0003-3816-2438"
-  doi: "10.21105/joss.05927"
-  journal: "Journal of Open Source Software"
-  month: 3
-  start: 5927 # First page number
-  end: 5927 # Last page number
-  title: "Automatic Computation for Robot Design (ACRoD): A Python package for numerical calculation of Jacobian of a robot at a given configuration around a specified end-effector point"
+  date-published: 2024-03-21
+  doi: 10.21105/joss.05927
+  issn: 2475-9066
   issue: 95
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  start: 5927
+  title: "Automatic Computation for Robot Design (ACRoD): A Python
+    package for numerical calculation of Jacobian of a robot at a given
+    configuration around a specified end-effector point"
+  type: article
+  url: "https://joss.theoj.org/papers/10.21105/joss.05927"
   volume: 9
-  year: 2024
+title: "Automatic Computation for Robot Design (ACRoD): A Python package
+  for numerical calculation of Jacobian of a robot at a given
+  configuration around a specified end-effector point"
