@@ -8,7 +8,25 @@ authors:
   given-names: "Rituparna"
   orcid: "https://orcid.org/0000-0003-3816-2438"
 title: "ACRoD"
-version: 1.0.0
-<!--doi: 10!.5281/zenodo.1234-->
-date-released: 2023-04-14
+version: 1.2.0
+doi: 10.21105/joss.05927
+date-released: 2024-03-15
 url: "https://github.com/suneeshjacob/ACRoD"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Akkarapakam"
+    given-names: "Suneesh Jacob"
+    orcid: "https://orcid.org/0000-0002-9855-9368"
+  - family-names: "Datta"
+    given-names: "Rituparna"
+    orcid: "https://orcid.org/0000-0003-3816-2438"
+  doi: "10.21105/joss.05927"
+  journal: "Journal of Open Source Software"
+  month: 3
+  start: 5927 # First page number
+  end: 5927 # Last page number
+  title: "Automatic Computation for Robot Design (ACRoD): A Python package for numerical calculation of Jacobian of a robot at a given configuration around a specified end-effector point"
+  issue: 95
+  volume: 9
+  year: 2024
