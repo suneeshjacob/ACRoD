@@ -1,4 +1,4 @@
-# Automatic Computation for Robot Design (ACRoD)
+# Automatic Computation for Robot Design (ACRoD) [![status](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c/status.svg)](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c)
 
 ## Description
 
@@ -8,8 +8,6 @@ This repository is dedicated to develop functions for automatic computations for
 
 - Jacobian formulation for planar and spatial manipulators around a given end-effector point. (This is useful in performing optimisation of Jacobian-based performance parameters of any non-redundant robot directly from its robot-topology matrix)
   - **Statement of need:** Jacobian formulation is highly used in dimensional synthesis of robotic manipulators, which deals with optimal design of robot's dimensional parameters (link-lengths and joint-orientations). For a given topological structure, formulating Jacobian around a given end-effector point for designing optimal dimensional parameters would require only the topological information, as every other step can be automated. Formulating Jacobian for serial manipulators is easy but for parallel manipulators and serial-parallel hybrid manipulators it is more complicated and often tedious. ACRoD automates this task of formulating Jacobian for a given end-effector point by running all the required steps in the background. The targetted audience includes researchers and engineers working on performing dimensional synthesis of manipulators (especially for multiple manipultors in bulk for comparison) to compute optimal dimensions for operation around a single end-effector point, and those needing to verify the DOF of a topological structure (especially for those special cases of kinematic mechanisms where Chebychev–Grübler–Kutzbach criterion fails to accurately determine the DOF) by analysing the Jacobian. Even though this does not include scripts for implementing optimisation or computing performance metrics for dimensional synthesis or for computing the validity of DOF, it does include scripts for computation of Jacobian which is an essential part for these analyses.
-
-[![status](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c/status.svg)](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c)
 
 ## Installation
 
