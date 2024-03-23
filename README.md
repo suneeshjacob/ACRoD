@@ -1,4 +1,4 @@
-# Automatic Computation for Robot Design (ACRoD) [![status](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c/status.svg)](https://joss.theoj.org/papers/2c8c94adbd8240eadaa4f77c2057b14c)
+# Automatic Computation for Robot Design (ACRoD) 
 
 ## Description (For `next_version` branch)
 
