@@ -87,12 +87,12 @@ for i in range(len(c)):
     string = f'c{i+1} = sympy.Matrix(c[{i}])'
     exec(string)
 
-p1 = (T_0_1*sympy.Matrix([c1,1]))[:3]
-p2 = (T_0_2*sympy.Matrix([c2,1]))[:3]
-p3 = (T_0_3*sympy.Matrix([c3,1]))[:3]
-p4 = (T_0_4*sympy.Matrix([c4,1]))[:3]
-p5 = (T_0_5*sympy.Matrix([c5,1]))[:3]
-p6 = (T_0_6*sympy.Matrix([c6,1]))[:3]
+p1 = (T_0_1*sympy.Matrix([c1,1]))[:3,1]
+p2 = (T_0_2*sympy.Matrix([c2,1]))[:3,1]
+p3 = (T_0_3*sympy.Matrix([c3,1]))[:3,1]
+p4 = (T_0_4*sympy.Matrix([c4,1]))[:3,1]
+p5 = (T_0_5*sympy.Matrix([c5,1]))[:3,1]
+p6 = (T_0_6*sympy.Matrix([c6,1]))[:3,1]
 
 v1 = sympy.diff(p1, t)
 v2 = sympy.diff(p2, t)
