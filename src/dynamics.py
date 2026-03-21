@@ -29,6 +29,9 @@ m6 = 1
 
 g = 9.81
 
+half = sympy.Rational(1,2)
+ninety_degrees = sympy.Rational(1,2)*sympy.pi
+
 t = sympy.symbols('t')
 
 theta1 = sympy.Function('\\theta_{1}')(t)
@@ -68,9 +71,6 @@ theta = sympy.symbols(r'\theta')
 
 T_sym = Trz(theta)*Ttz(d)*Ttx(a)*Trx(alpha)
 T = lambda x: T_sym.subs({alpha: x[0], a:x[1], d:x[2], theta:x[3]})
-
-half = sympy.Rational(1,2)
-ninety_degrees = sympy.Rational(1,2)*sympy.pi
 
 for i in range(len(DH_table)):
     string1 = f'T_{i}_{i+1} = T(DH_table[{i}])'
