@@ -105,7 +105,8 @@ v5 = sympy.diff(p5, t)
 v6 = sympy.diff(p6, t)
 
 Jv = sympy.diff(p,t).jacobian(sympy.diff(joints_state_sym,t))
-Omega_matrix = sympy.simplify(sympy.diff(R, t) * R.T)
+# Omega_matrix = sympy.simplify(sympy.diff(R, t) * R.T)
+Omega_matrix = sympy.diff(R, t) * R.T
 omega_vec = sympy.Matrix([Omega_matrix[2,1], Omega_matrix[0,2], Omega_matrix[1,0]])
 Jomega = omega_vec.jacobian(sympy.diff(joints_state_sym,t))
 
