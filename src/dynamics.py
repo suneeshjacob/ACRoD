@@ -83,43 +83,16 @@ T_eff = T_0_6
 p = T_eff[:3,-1]
 R = T_eff[:3,:3]
 
-c1x = sympy.symbols(r'c_{1x}')
-c1y = sympy.symbols(r'c_{1y}')
-c1z = sympy.symbols(r'c_{1z}')
+for i in range(len(c)):
+    string = f'c{i+1} = sympy.Matrix(c[{i}])'
+    exec(string)
 
-c2x = sympy.symbols(r'c_{2x}')
-c2y = sympy.symbols(r'c_{2y}')
-c2z = sympy.symbols(r'c_{2z}')
-
-c3x = sympy.symbols(r'c_{3x}')
-c3y = sympy.symbols(r'c_{3y}')
-c3z = sympy.symbols(r'c_{3z}')
-
-c4x = sympy.symbols(r'c_{4x}')
-c4y = sympy.symbols(r'c_{4y}')
-c4z = sympy.symbols(r'c_{4z}')
-
-c5x = sympy.symbols(r'c_{5x}')
-c5y = sympy.symbols(r'c_{5y}')
-c5z = sympy.symbols(r'c_{5z}')
-
-c6x = sympy.symbols(r'c_{6x}')
-c6y = sympy.symbols(r'c_{6y}')
-c6z = sympy.symbols(r'c_{6z}')
-
-c1 = sympy.Matrix([c1x, c1y, c1z])
-c2 = sympy.Matrix([c2x, c2y, c2z])
-c3 = sympy.Matrix([c3x, c3y, c3z])
-c4 = sympy.Matrix([c4x, c4y, c4z])
-c5 = sympy.Matrix([c5x, c5y, c5z])
-c6 = sympy.Matrix([c6x, c6y, c6z])
-
-p1 = T_0_1*sympy.Matrix([c1,1])
-p2 = T_0_2*sympy.Matrix([c2,1])
-p3 = T_0_3*sympy.Matrix([c3,1])
-p4 = T_0_4*sympy.Matrix([c4,1])
-p5 = T_0_5*sympy.Matrix([c5,1])
-p6 = T_0_6*sympy.Matrix([c6,1])
+p1 = (T_0_1*sympy.Matrix([c1,1]))[:3]
+p2 = (T_0_2*sympy.Matrix([c2,1]))[:3]
+p3 = (T_0_3*sympy.Matrix([c3,1]))[:3]
+p4 = (T_0_4*sympy.Matrix([c4,1]))[:3]
+p5 = (T_0_5*sympy.Matrix([c5,1]))[:3]
+p6 = (T_0_6*sympy.Matrix([c6,1]))[:3]
 
 v1 = sympy.diff(p1, t)
 v2 = sympy.diff(p2, t)
