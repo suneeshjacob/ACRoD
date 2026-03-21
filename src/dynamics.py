@@ -140,6 +140,8 @@ V4 = m4*g*h4
 V5 = m5*g*h5
 V6 = m6*g*h6
 
+V = V1+V2+V3+V4+V5+V6
+
 L = T-V
 
 tau1 = sympy.diff(sympy.diff(L, sympy.diff(theta1,t)), t) - sympy.diff(L, theta1)
