@@ -50,6 +50,9 @@ DH_table = [
     [0, 0, L5+L6, theta6]
 ]
 
+joints_state_sym = sympy.Matrix([theta1, theta2, theta3, theta4, theta5, theta6])
+types_of_joints = [0,0,0,0,0,0]
+
 c = [
   [-0.5, 0, 0],
   [-0.5, 0, 0],
