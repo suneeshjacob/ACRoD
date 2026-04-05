@@ -1,17 +1,14 @@
-
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, List, Optional, Sequence, Tuple
+from typing import List, Optional, Sequence, Tuple
 import numpy as np
-
 
 ArrayLike = Sequence[float]
 
 
 @dataclass
 class Material:
-    """Simple material definition."""
     name: str = "custom"
     density: float = 1.0  # kg/m^3
 
@@ -21,9 +18,11 @@ class LinkSpec:
     """
     One revolute link described by standard DH parameters and inertial data.
 
-    All COM and inertia quantities are expressed in the link frame after the
-    corresponding DH transform (the same convention used in your notebook for
-    p_i = T_0i * [c_i; 1]).
+    alpha, a, d, theta_offset are standard DH parameters.
+    mass is in kg.
+    com is expressed in the link frame after the corresponding DH transform.
+    inertia_local is the 3x3 inertia tensor about the COM, expressed in the
+    same link frame.
     """
     alpha: float
     a: float
@@ -55,7 +54,7 @@ class LinkSpec:
         name: str = "link",
     ) -> "LinkSpec":
         """
-        Build a link by approximating it as a box with dimensions (lx, ly, lz).
+        Approximate the link as a box with dimensions (lx, ly, lz).
         """
         lx, ly, lz = map(float, size)
         volume = lx * ly * lz
@@ -92,7 +91,7 @@ class LinkSpec:
         name: str = "link",
     ) -> "LinkSpec":
         """
-        Build a link by approximating it as a solid cylinder aligned with local z.
+        Approximate the link as a solid cylinder aligned with local z.
         """
         radius = float(radius)
         length = float(length)
@@ -120,26 +119,107 @@ class SerialManipulator:
     """
     Reusable class for revolute serial manipulators using standard DH parameters.
 
-    Main features:
+    Features:
     - Forward kinematics
-    - Geometric Jacobian and numerical Jacobian derivative
-    - Inverse kinematics (Newton-Raphson / gradient descent)
+    - Geometric Jacobian
+    - Jacobian derivative (numerical)
+    - Inverse kinematics (Newton-Raphson and gradient descent)
     - Mass matrix, Coriolis matrix, gravity vector
     - Inverse dynamics
     - Forward dynamics
     - RK4 integration
     """
 
-    def __init__(
-        self,
-        links: Sequence[LinkSpec],
-        gravity: ArrayLike = (0.0, 0.0, -9.81),
-    ) -> None:
+    def __init__(self, links: Sequence[LinkSpec], gravity: ArrayLike = (0.0, 0.0, -9.81)) -> None:
         if len(links) == 0:
             raise ValueError("At least one link is required.")
         self.links: List[LinkSpec] = list(links)
         self.n = len(self.links)
         self.gravity = np.asarray(gravity, dtype=float).reshape(3)
+
+    # ------------------------------------------------------------------
+    # Constructors / helpers
+    # ------------------------------------------------------------------
+    @classmethod
+    def from_dh_table(
+        cls,
+        dh_table: Sequence[Sequence[float]],
+        *,
+        masses: Optional[Sequence[float]] = None,
+        coms: Optional[Sequence[ArrayLike]] = None,
+        inertias: Optional[Sequence[ArrayLike]] = None,
+        gravity: ArrayLike = (0.0, 0.0, -9.81),
+        names: Optional[Sequence[str]] = None,
+    ) -> "SerialManipulator":
+        """
+        Build the manipulator directly from a DH table.
+
+        Each DH row must be [alpha, a, d, theta_offset].
+        The joint variables themselves are passed later in q.
+
+        Example row:
+            [np.pi/2, 0.0, L1, 0.0]
+        meaning theta_used = q[i] + 0.0
+
+        Another example row:
+            [0.0, L2, 0.0, np.pi/2]
+        meaning theta_used = q[i] + np.pi/2
+        """
+        n = len(dh_table)
+        if masses is None:
+            masses = [0.0] * n
+        if coms is None:
+            coms = [(0.0, 0.0, 0.0)] * n
+        if inertias is None:
+            inertias = [np.zeros((3, 3), dtype=float) for _ in range(n)]
+        if names is None:
+            names = [f"link_{i+1}" for i in range(n)]
+
+        if not (len(masses) == len(coms) == len(inertias) == len(names) == n):
+            raise ValueError("DH table, masses, coms, inertias, and names must have the same length.")
+
+        links = []
+        for i, row in enumerate(dh_table):
+            if len(row) != 4:
+                raise ValueError(f"DH row {i} must have exactly 4 values: [alpha, a, d, theta_offset].")
+            alpha, a, d, theta_offset = row
+            links.append(
+                LinkSpec(
+                    alpha=float(alpha),
+                    a=float(a),
+                    d=float(d),
+                    theta_offset=float(theta_offset),
+                    mass=float(masses[i]),
+                    com=coms[i],
+                    inertia_local=inertias[i],
+                    name=str(names[i]),
+                )
+            )
+        return cls(links, gravity=gravity)
+
+    @staticmethod
+    def box_inertia(mass: float, lx: float, ly: float, lz: float) -> np.ndarray:
+        """Inertia of a solid box about its center, aligned with the local frame."""
+        Ixx = (mass / 12.0) * (ly ** 2 + lz ** 2)
+        Iyy = (mass / 12.0) * (lx ** 2 + lz ** 2)
+        Izz = (mass / 12.0) * (lx ** 2 + ly ** 2)
+        return np.diag([Ixx, Iyy, Izz])
+
+    @staticmethod
+    def cylinder_inertia_z(mass: float, radius: float, length: float) -> np.ndarray:
+        """Inertia of a solid cylinder aligned with local z, about its center."""
+        Ixx = (mass / 12.0) * (3.0 * radius ** 2 + length ** 2)
+        Iyy = Ixx
+        Izz = 0.5 * mass * radius ** 2
+        return np.diag([Ixx, Iyy, Izz])
+
+    @staticmethod
+    def box_mass_from_density(lx: float, ly: float, lz: float, density: float) -> float:
+        return float(lx * ly * lz * density)
+
+    @staticmethod
+    def cylinder_mass_from_density(radius: float, length: float, density: float) -> float:
+        return float(np.pi * radius ** 2 * length * density)
 
     # ------------------------------------------------------------------
     # Basic utilities
@@ -156,15 +236,6 @@ class SerialManipulator:
         ], dtype=float)
 
     @staticmethod
-    def _skew(v: np.ndarray) -> np.ndarray:
-        x, y, z = v
-        return np.array([
-            [0.0, -z,  y],
-            [z,   0.0, -x],
-            [-y,  x,   0.0],
-        ], dtype=float)
-
-    @staticmethod
     def _rotation_error(R_current: np.ndarray, R_target: np.ndarray) -> np.ndarray:
         return 0.5 * (
             np.cross(R_current[:, 0], R_target[:, 0]) +
@@ -172,7 +243,8 @@ class SerialManipulator:
             np.cross(R_current[:, 2], R_target[:, 2])
         )
 
-    def _wrap_angles(self, q: np.ndarray) -> np.ndarray:
+    @staticmethod
+    def _wrap_angles(q: np.ndarray) -> np.ndarray:
         return (q + np.pi) % (2.0 * np.pi) - np.pi
 
     def _kinematic_cache(self, q: ArrayLike) -> dict:
@@ -213,11 +285,19 @@ class SerialManipulator:
             return cache["frames"]
         return cache["frames"][-1]
 
+    def forward_kinematics_to_link(self, q: ArrayLike, link_index: int) -> np.ndarray:
+        frames = self.forward_kinematics(q, return_all_frames=True)
+        return frames[link_index + 1]
+
     def end_effector_position(self, q: ArrayLike) -> np.ndarray:
         return self.forward_kinematics(q)[:3, 3]
 
     def end_effector_rotation(self, q: ArrayLike) -> np.ndarray:
         return self.forward_kinematics(q)[:3, :3]
+
+    def all_joint_positions(self, q: ArrayLike) -> np.ndarray:
+        frames = self.forward_kinematics(q, return_all_frames=True)
+        return np.array([T[:3, 3] for T in frames], dtype=float)
 
     def jacobian(self, q: ArrayLike) -> np.ndarray:
         cache = self._kinematic_cache(q)
@@ -264,12 +344,7 @@ class SerialManipulator:
     # ------------------------------------------------------------------
     # Inverse kinematics
     # ------------------------------------------------------------------
-    def pose_error(
-        self,
-        q: ArrayLike,
-        T_target: np.ndarray,
-        position_only: bool = False,
-    ) -> np.ndarray:
+    def pose_error(self, q: ArrayLike, T_target: np.ndarray, position_only: bool = False) -> np.ndarray:
         T_current = self.forward_kinematics(q)
         pos_err = T_target[:3, 3] - T_current[:3, 3]
         if position_only:
@@ -286,9 +361,6 @@ class SerialManipulator:
         damping: float = 1e-6,
         position_only: bool = False,
     ) -> Tuple[np.ndarray, bool, int]:
-        """
-        Damped Newton-Raphson / least-squares IK.
-        """
         q = np.asarray(q0, dtype=float).reshape(self.n).copy()
 
         for k in range(max_iter):
@@ -315,9 +387,6 @@ class SerialManipulator:
         tol: float = 1e-6,
         position_only: bool = False,
     ) -> Tuple[np.ndarray, bool, int]:
-        """
-        Gradient-descent IK using J^T e.
-        """
         q = np.asarray(q0, dtype=float).reshape(self.n).copy()
 
         for k in range(max_iter):
@@ -346,7 +415,6 @@ class SerialManipulator:
             Jw = J_i[3:, :]
             R_i = cache["com_rotations"][i]
             I_base = R_i @ link.inertia_local @ R_i.T
-
             M += link.mass * (Jv.T @ Jv) + Jw.T @ I_base @ Jw
 
         return 0.5 * (M + M.T)
@@ -377,16 +445,15 @@ class SerialManipulator:
         C = np.zeros((self.n, self.n), dtype=float)
         for i in range(self.n):
             for j in range(self.n):
-                value = 0.0
+                cij = 0.0
                 for k in range(self.n):
                     c_ijk = 0.5 * (
                         dM_dq[k, i, j] +
                         dM_dq[j, i, k] -
                         dM_dq[i, j, k]
                     )
-                    value += c_ijk * q_dot[k]
-                C[i, j] = value
-
+                    cij += c_ijk * q_dot[k]
+                C[i, j] = cij
         return C
 
     def inverse_dynamics(self, q: ArrayLike, q_dot: ArrayLike, q_ddot: ArrayLike) -> np.ndarray:
@@ -435,3 +502,82 @@ class SerialManipulator:
         q_next = self._wrap_angles(next_state[:self.n])
         q_dot_next = next_state[self.n:]
         return q_next, q_dot_next
+
+
+if __name__ == "__main__":
+    # --------------------------------------------------------------
+    # Example for the exact DH style from your notebook.
+    # --------------------------------------------------------------
+    pi = np.pi
+    ninety_degrees = np.pi / 2
+
+    L1 = 0.40
+    L2 = 0.30
+    L3 = 0.20
+    L4 = 0.10
+    L5 = 0.10
+    L6 = 0.08
+
+    # Convert your notebook-style table into constant offsets.
+    # The actual joint variables will be supplied separately in q.
+    DH_table = [
+        [ninety_degrees, 0.0, L1, 0.0],
+        [0.0,            L2,  0.0, ninety_degrees],
+        [ninety_degrees, 0.0, 0.0, 0.0],
+        [ninety_degrees, 0.0, L3 + L4, np.pi],
+        [ninety_degrees, 0.0, 0.0, ninety_degrees],
+        [0.0,            0.0, L5 + L6, 0.0],
+    ]
+
+    masses = [5.0, 4.0, 3.0, 2.5, 1.5, 1.0]
+    coms = [
+        (0.0, 0.0, L1 / 2),
+        (L2 / 2, 0.0, 0.0),
+        (0.0, 0.0, 0.0),
+        (0.0, 0.0, (L3 + L4) / 2),
+        (0.0, 0.0, 0.0),
+        (0.0, 0.0, (L5 + L6) / 2),
+    ]
+    inertias = [
+        np.diag([0.02, 0.02, 0.01]),
+        np.diag([0.01, 0.03, 0.03]),
+        np.diag([0.01, 0.01, 0.01]),
+        np.diag([0.02, 0.02, 0.01]),
+        np.diag([0.005, 0.005, 0.003]),
+        np.diag([0.004, 0.004, 0.002]),
+    ]
+
+    robot = SerialManipulator.from_dh_table(
+        DH_table,
+        masses=masses,
+        coms=coms,
+        inertias=inertias,
+        gravity=(0.0, 0.0, -9.81),
+    )
+
+    q = np.array([0.2, -0.3, 0.1, 0.4, -0.2, 0.3], dtype=float)
+    q_dot = np.array([0.1, 0.0, -0.05, 0.02, 0.01, -0.03], dtype=float)
+    q_ddot = np.array([0.5, -0.2, 0.1, 0.3, -0.1, 0.2], dtype=float)
+
+    T_ee = robot.forward_kinematics(q)
+    J = robot.jacobian(q)
+    J_dot = robot.jacobian_derivative(q, q_dot)
+    tau = robot.inverse_dynamics(q, q_dot, q_ddot)
+    q_ddot_fd = robot.forward_dynamics(q, q_dot, tau)
+
+    print("End-effector transform:\n", T_ee)
+    print("\nJacobian shape:", J.shape)
+    print("Jdot shape:", J_dot.shape)
+    print("\nInverse dynamics tau:\n", tau)
+    print("\nForward dynamics q_ddot:\n", q_ddot_fd)
+
+    # IK example (position only)
+    T_target = T_ee.copy()
+    q0 = np.zeros(robot.n)
+    q_sol_nr, ok_nr, it_nr = robot.inverse_kinematics_newton(T_target, q0, position_only=False)
+    q_sol_gd, ok_gd, it_gd = robot.inverse_kinematics_gradient(T_target, q0, position_only=False)
+
+    print("\nNewton IK converged:", ok_nr, "iterations:", it_nr)
+    print("Newton IK solution:\n", q_sol_nr)
+    print("\nGradient IK converged:", ok_gd, "iterations:", it_gd)
+    print("Gradient IK solution:\n", q_sol_gd)
