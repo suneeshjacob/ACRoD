@@ -16,18 +16,25 @@ class Material:
 @dataclass
 class LinkSpec:
     """
-    One revolute link described by standard DH parameters and inertial data.
+    One serial-chain joint/link described by standard DH parameters and inertial data.
 
-    alpha, a, d, theta_offset are standard DH parameters.
-    mass is in kg.
-    com is expressed in the link frame after the corresponding DH transform.
-    inertia_local is the 3x3 inertia tensor about the COM, expressed in the
-    same link frame.
+    For a revolute joint:
+        theta_used = theta_offset + q[i]
+        d_used     = d
+
+    For a prismatic joint:
+        theta_used = theta_offset
+        d_used     = d + q[i]
+
+    joint_type must be either:
+        'R' / 'revolute'
+        'P' / 'prismatic'
     """
     alpha: float
     a: float
     d: float
     theta_offset: float = 0.0
+    joint_type: str = "R"
     mass: float = 0.0
     com: ArrayLike = (0.0, 0.0, 0.0)
     inertia_local: ArrayLike = ((0.0, 0.0, 0.0),
@@ -39,6 +46,13 @@ class LinkSpec:
         self.com = np.asarray(self.com, dtype=float).reshape(3)
         self.inertia_local = np.asarray(self.inertia_local, dtype=float).reshape(3, 3)
         self.inertia_local = 0.5 * (self.inertia_local + self.inertia_local.T)
+        jt = str(self.joint_type).strip().lower()
+        if jt in ("r", "revolute"):
+            self.joint_type = "R"
+        elif jt in ("p", "prismatic"):
+            self.joint_type = "P"
+        else:
+            raise ValueError("joint_type must be 'R'/'revolute' or 'P'/'prismatic'.")
 
     @classmethod
     def from_box(
@@ -50,12 +64,10 @@ class LinkSpec:
         size: Tuple[float, float, float],
         material: Material,
         theta_offset: float = 0.0,
+        joint_type: str = "R",
         com: Optional[ArrayLike] = None,
         name: str = "link",
     ) -> "LinkSpec":
-        """
-        Approximate the link as a box with dimensions (lx, ly, lz).
-        """
         lx, ly, lz = map(float, size)
         volume = lx * ly * lz
         mass = material.density * volume
@@ -70,6 +82,7 @@ class LinkSpec:
             a=a,
             d=d,
             theta_offset=theta_offset,
+            joint_type=joint_type,
             mass=mass,
             com=com,
             inertia_local=inertia_local,
@@ -87,12 +100,10 @@ class LinkSpec:
         length: float,
         material: Material,
         theta_offset: float = 0.0,
+        joint_type: str = "R",
         com: Optional[ArrayLike] = None,
         name: str = "link",
     ) -> "LinkSpec":
-        """
-        Approximate the link as a solid cylinder aligned with local z.
-        """
         radius = float(radius)
         length = float(length)
         volume = np.pi * radius ** 2 * length
@@ -108,6 +119,7 @@ class LinkSpec:
             a=a,
             d=d,
             theta_offset=theta_offset,
+            joint_type=joint_type,
             mass=mass,
             com=com,
             inertia_local=inertia_local,
@@ -117,17 +129,22 @@ class LinkSpec:
 
 class SerialManipulator:
     """
-    Reusable class for revolute serial manipulators using standard DH parameters.
+    Serial manipulator with mixed revolute/prismatic joints using standard DH parameters.
 
     Features:
     - Forward kinematics
     - Geometric Jacobian
     - Jacobian derivative (numerical)
-    - Inverse kinematics (Newton-Raphson and gradient descent)
+    - Inverse kinematics (Newton-Raphson / gradient descent)
     - Mass matrix, Coriolis matrix, gravity vector
     - Inverse dynamics
     - Forward dynamics
     - RK4 integration
+
+    Notes:
+    - q stores generalized coordinates: radians for revolute, meters for prismatic.
+    - q_dot stores angular velocity / linear velocity.
+    - tau stores torque for revolute joints and force for prismatic joints.
     """
 
     def __init__(self, links: Sequence[LinkSpec], gravity: ArrayLike = (0.0, 0.0, -9.81)) -> None:
@@ -136,6 +153,8 @@ class SerialManipulator:
         self.links: List[LinkSpec] = list(links)
         self.n = len(self.links)
         self.gravity = np.asarray(gravity, dtype=float).reshape(3)
+        self.revolute_mask = np.array([link.joint_type == "R" for link in self.links], dtype=bool)
+        self.prismatic_mask = ~self.revolute_mask
 
     # ------------------------------------------------------------------
     # Constructors / helpers
@@ -145,6 +164,7 @@ class SerialManipulator:
         cls,
         dh_table: Sequence[Sequence[float]],
         *,
+        joint_types: Optional[Sequence[str]] = None,
         masses: Optional[Sequence[float]] = None,
         coms: Optional[Sequence[ArrayLike]] = None,
         inertias: Optional[Sequence[ArrayLike]] = None,
@@ -152,18 +172,18 @@ class SerialManipulator:
         names: Optional[Sequence[str]] = None,
     ) -> "SerialManipulator":
         """
-        Build the manipulator directly from a DH table.
+        Build directly from a DH table.
 
-        Each DH row must be [alpha, a, d, theta_offset].
-        The joint variables themselves are passed later in q.
+        Default 4-column row format:
+            [alpha, a, d, theta_offset]
+        with joint_types given separately.
 
-        Example row:
-            [np.pi/2, 0.0, L1, 0.0]
-        meaning theta_used = q[i] + 0.0
+        Optional 5-column row format:
+            [alpha, a, d, theta_offset, joint_type]
 
-        Another example row:
-            [0.0, L2, 0.0, np.pi/2]
-        meaning theta_used = q[i] + np.pi/2
+        Convention:
+        - Revolute joint:  theta = theta_offset + q[i], d = d
+        - Prismatic joint: theta = theta_offset,         d = d + q[i]
         """
         n = len(dh_table)
         if masses is None:
@@ -175,13 +195,32 @@ class SerialManipulator:
         if names is None:
             names = [f"link_{i+1}" for i in range(n)]
 
-        if not (len(masses) == len(coms) == len(inertias) == len(names) == n):
-            raise ValueError("DH table, masses, coms, inertias, and names must have the same length.")
+        extracted_joint_types = []
+        parsed_rows = []
+        for i, row in enumerate(dh_table):
+            if len(row) == 4:
+                parsed_rows.append(row)
+                extracted_joint_types.append(None)
+            elif len(row) == 5:
+                parsed_rows.append(row[:4])
+                extracted_joint_types.append(row[4])
+            else:
+                raise ValueError(
+                    f"DH row {i} must have 4 values [alpha, a, d, theta_offset] "
+                    f"or 5 values [alpha, a, d, theta_offset, joint_type]."
+                )
+
+        if joint_types is None:
+            if any(jt is None for jt in extracted_joint_types):
+                joint_types = ["R"] * n
+            else:
+                joint_types = extracted_joint_types
+
+        if not (len(joint_types) == len(masses) == len(coms) == len(inertias) == len(names) == n):
+            raise ValueError("DH table, joint_types, masses, coms, inertias, and names must have the same length.")
 
         links = []
-        for i, row in enumerate(dh_table):
-            if len(row) != 4:
-                raise ValueError(f"DH row {i} must have exactly 4 values: [alpha, a, d, theta_offset].")
+        for i, row in enumerate(parsed_rows):
             alpha, a, d, theta_offset = row
             links.append(
                 LinkSpec(
@@ -189,6 +228,7 @@ class SerialManipulator:
                     a=float(a),
                     d=float(d),
                     theta_offset=float(theta_offset),
+                    joint_type=str(joint_types[i]),
                     mass=float(masses[i]),
                     com=coms[i],
                     inertia_local=inertias[i],
@@ -199,7 +239,6 @@ class SerialManipulator:
 
     @staticmethod
     def box_inertia(mass: float, lx: float, ly: float, lz: float) -> np.ndarray:
-        """Inertia of a solid box about its center, aligned with the local frame."""
         Ixx = (mass / 12.0) * (ly ** 2 + lz ** 2)
         Iyy = (mass / 12.0) * (lx ** 2 + lz ** 2)
         Izz = (mass / 12.0) * (lx ** 2 + ly ** 2)
@@ -207,7 +246,6 @@ class SerialManipulator:
 
     @staticmethod
     def cylinder_inertia_z(mass: float, radius: float, length: float) -> np.ndarray:
-        """Inertia of a solid cylinder aligned with local z, about its center."""
         Ixx = (mass / 12.0) * (3.0 * radius ** 2 + length ** 2)
         Iyy = Ixx
         Izz = 0.5 * mass * radius ** 2
@@ -243,17 +281,27 @@ class SerialManipulator:
             np.cross(R_current[:, 2], R_target[:, 2])
         )
 
-    @staticmethod
-    def _wrap_angles(q: np.ndarray) -> np.ndarray:
-        return (q + np.pi) % (2.0 * np.pi) - np.pi
+    def _wrap_coordinates(self, q: np.ndarray) -> np.ndarray:
+        q = np.asarray(q, dtype=float).reshape(self.n).copy()
+        q[self.revolute_mask] = (q[self.revolute_mask] + np.pi) % (2.0 * np.pi) - np.pi
+        return q
+
+    def _resolved_dh(self, link: LinkSpec, qi: float) -> Tuple[float, float, float, float]:
+        if link.joint_type == "R":
+            theta = link.theta_offset + qi
+            d = link.d
+        else:
+            theta = link.theta_offset
+            d = link.d + qi
+        return link.alpha, link.a, d, theta
 
     def _kinematic_cache(self, q: ArrayLike) -> dict:
         q = np.asarray(q, dtype=float).reshape(self.n)
 
         frames: List[np.ndarray] = [np.eye(4)]
         for i, link in enumerate(self.links):
-            theta = q[i] + link.theta_offset
-            A_i = self._dh_transform(link.alpha, link.a, link.d, theta)
+            alpha, a, d, theta = self._resolved_dh(link, q[i])
+            A_i = self._dh_transform(alpha, a, d, theta)
             frames.append(frames[-1] @ A_i)
 
         joint_origins = [frames[i][:3, 3].copy() for i in range(self.n)]
@@ -311,16 +359,16 @@ class SerialManipulator:
         for j in range(self.n):
             z = joint_axes[j]
             p = joint_origins[j]
-            J[:3, j] = np.cross(z, p_ee - p)
-            J[3:, j] = z
+            if self.links[j].joint_type == "R":
+                J[:3, j] = np.cross(z, p_ee - p)
+                J[3:, j] = z
+            else:
+                J[:3, j] = z
+                J[3:, j] = 0.0
 
         return J
 
     def jacobian_derivative(self, q: ArrayLike, q_dot: ArrayLike, eps: float = 1e-6) -> np.ndarray:
-        """
-        Numerical approximation of Jdot = dJ/dt using a central difference
-        along the motion direction q_dot.
-        """
         q = np.asarray(q, dtype=float).reshape(self.n)
         q_dot = np.asarray(q_dot, dtype=float).reshape(self.n)
         J_plus = self.jacobian(q + eps * q_dot)
@@ -337,8 +385,12 @@ class SerialManipulator:
         for j in range(link_index + 1):
             z = joint_axes[j]
             p = joint_origins[j]
-            J[:3, j] = np.cross(z, p_com - p)
-            J[3:, j] = z
+            if self.links[j].joint_type == "R":
+                J[:3, j] = np.cross(z, p_com - p)
+                J[3:, j] = z
+            else:
+                J[:3, j] = z
+                J[3:, j] = 0.0
         return J
 
     # ------------------------------------------------------------------
@@ -366,7 +418,7 @@ class SerialManipulator:
         for k in range(max_iter):
             err = self.pose_error(q, T_target, position_only=position_only)
             if np.linalg.norm(err) < tol:
-                return self._wrap_angles(q), True, k
+                return self._wrap_coordinates(q), True, k
 
             J = self.jacobian(q)
             if position_only:
@@ -374,9 +426,9 @@ class SerialManipulator:
 
             A = J.T @ J + damping * np.eye(self.n)
             dq = np.linalg.solve(A, J.T @ err)
-            q = self._wrap_angles(q + dq)
+            q = self._wrap_coordinates(q + dq)
 
-        return q, False, max_iter
+        return self._wrap_coordinates(q), False, max_iter
 
     def inverse_kinematics_gradient(
         self,
@@ -392,15 +444,15 @@ class SerialManipulator:
         for k in range(max_iter):
             err = self.pose_error(q, T_target, position_only=position_only)
             if np.linalg.norm(err) < tol:
-                return self._wrap_angles(q), True, k
+                return self._wrap_coordinates(q), True, k
 
             J = self.jacobian(q)
             if position_only:
                 J = J[:3, :]
 
-            q = self._wrap_angles(q + step_size * J.T @ err)
+            q = self._wrap_coordinates(q + step_size * J.T @ err)
 
-        return q, False, max_iter
+        return self._wrap_coordinates(q), False, max_iter
 
     # ------------------------------------------------------------------
     # Dynamics
@@ -499,85 +551,51 @@ class SerialManipulator:
         k4 = self.state_derivative(state + dt * k3, tau)
 
         next_state = state + (dt / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
-        q_next = self._wrap_angles(next_state[:self.n])
+        q_next = self._wrap_coordinates(next_state[:self.n])
         q_dot_next = next_state[self.n:]
         return q_next, q_dot_next
 
 
 if __name__ == "__main__":
-    # --------------------------------------------------------------
-    # Example for the exact DH style from your notebook.
-    # --------------------------------------------------------------
-    pi = np.pi
     ninety_degrees = np.pi / 2
+    L1 = 0.5
 
-    L1 = 0.40
-    L2 = 0.30
-    L3 = 0.20
-    L4 = 0.10
-    L5 = 0.10
-    L6 = 0.08
-
-    # Convert your notebook-style table into constant offsets.
-    # The actual joint variables will be supplied separately in q.
+    # Example: R-P-R robot
+    # Row format: [alpha, a, d, theta_offset]
     DH_table = [
-        [ninety_degrees, 0.0, L1, 0.0],
-        [0.0,            L2,  0.0, ninety_degrees],
-        [ninety_degrees, 0.0, 0.0, 0.0],
-        [ninety_degrees, 0.0, L3 + L4, np.pi],
-        [ninety_degrees, 0.0, 0.0, ninety_degrees],
-        [0.0,            0.0, L5 + L6, 0.0],
+        [0.0,             0.0, 0.0, 0.0],
+        [ninety_degrees,  0.0, 0.0, 0.0],
+        [0.0,              L1, 0.0, 0.0],
     ]
+    joint_types = ["R", "P", "R"]
 
-    masses = [5.0, 4.0, 3.0, 2.5, 1.5, 1.0]
+    masses = [2.0, 1.5, 1.0]
     coms = [
-        (0.0, 0.0, L1 / 2),
-        (L2 / 2, 0.0, 0.0),
         (0.0, 0.0, 0.0),
-        (0.0, 0.0, (L3 + L4) / 2),
-        (0.0, 0.0, 0.0),
-        (0.0, 0.0, (L5 + L6) / 2),
+        (0.0, 0.0, 0.1),
+        (L1 / 2.0, 0.0, 0.0),
     ]
-    inertias = [
-        np.diag([0.02, 0.02, 0.01]),
-        np.diag([0.01, 0.03, 0.03]),
-        np.diag([0.01, 0.01, 0.01]),
-        np.diag([0.02, 0.02, 0.01]),
-        np.diag([0.005, 0.005, 0.003]),
-        np.diag([0.004, 0.004, 0.002]),
-    ]
+    inertias = [np.diag([0.01, 0.01, 0.01]) for _ in range(3)]
 
     robot = SerialManipulator.from_dh_table(
         DH_table,
+        joint_types=joint_types,
         masses=masses,
         coms=coms,
         inertias=inertias,
         gravity=(0.0, 0.0, -9.81),
     )
 
-    q = np.array([0.2, -0.3, 0.1, 0.4, -0.2, 0.3], dtype=float)
-    q_dot = np.array([0.1, 0.0, -0.05, 0.02, 0.01, -0.03], dtype=float)
-    q_ddot = np.array([0.5, -0.2, 0.1, 0.3, -0.1, 0.2], dtype=float)
+    q = np.array([0.2, 0.15, -0.3])
+    q_dot = np.array([0.0, 0.0, 0.0])
+    q_ddot = np.array([0.0, 0.0, 0.0])
 
-    T_ee = robot.forward_kinematics(q)
+    T = robot.forward_kinematics(q)
     J = robot.jacobian(q)
     J_dot = robot.jacobian_derivative(q, q_dot)
     tau = robot.inverse_dynamics(q, q_dot, q_ddot)
-    q_ddot_fd = robot.forward_dynamics(q, q_dot, tau)
 
-    print("End-effector transform:\n", T_ee)
-    print("\nJacobian shape:", J.shape)
-    print("Jdot shape:", J_dot.shape)
-    print("\nInverse dynamics tau:\n", tau)
-    print("\nForward dynamics q_ddot:\n", q_ddot_fd)
-
-    # IK example (position only)
-    T_target = T_ee.copy()
-    q0 = np.zeros(robot.n)
-    q_sol_nr, ok_nr, it_nr = robot.inverse_kinematics_newton(T_target, q0, position_only=False)
-    q_sol_gd, ok_gd, it_gd = robot.inverse_kinematics_gradient(T_target, q0, position_only=False)
-
-    print("\nNewton IK converged:", ok_nr, "iterations:", it_nr)
-    print("Newton IK solution:\n", q_sol_nr)
-    print("\nGradient IK converged:", ok_gd, "iterations:", it_gd)
-    print("Gradient IK solution:\n", q_sol_gd)
+    print("T =\n", T)
+    print("J =\n", J)
+    print("J_dot =\n", J_dot)
+    print("generalized effort =", tau)
